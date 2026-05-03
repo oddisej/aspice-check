@@ -1,0 +1,432 @@
+process_group:
+  code: "SYS"
+  name: "System Engineering"
+
+processes:
+  # ============================================================
+  # SYS.1 — Requirements Elicitation
+  # ============================================================
+  - process_id: "SYS.1"
+    process_name: "Requirements Elicitation"
+    process_purpose: >-
+      The purpose is to gather, analyze, and track evolving stakeholder needs and requirements
+      throughout the lifecycle of the product and/or service to establish a set of agreed requirements.
+    process_outcomes:
+      - id: 1
+        description: "Continuing communication with the stakeholder is established."
+      - id: 2
+        description: "Stakeholder expectations are understood, and requirements are defined and agreed."
+      - id: 3
+        description: "Stakeholder requirements changes arising from stakeholder needs are analyzed to enable associated risk assessment and impact management."
+      - id: 4
+        description: "Determination of stakeholder requirements status is ensured for all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Obtain stakeholder expectations and requests"
+        description: >-
+          Obtain and define stakeholder expectations and requests through direct solicitation
+          of stakeholder input, and through review of stakeholder business proposals (where
+          relevant) and other documents containing inputs to stakeholder requirements, and
+          consideration of the target operating and hardware environment.
+        notes:
+          - "Note 1: Documenting the stakeholder, or the source of a stakeholder requirement, supports stakeholder requirements agreement and change analysis (see BP2 and BP3)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Agree on requirements"
+        description: >-
+          Formalize the stakeholder's expectations and requests into requirements. Reach a
+          common understanding of the set of stakeholder requirements among affected parties
+          by obtaining an explicit agreement from all affected parties.
+        notes:
+          - "Note 2: Examples of affected parties are customers, suppliers, design partners, joint venture partners, or outsourcing parties."
+          - "Note 3: The agreed stakeholder requirements may be based on feasibility studies and/or cost and schedule impact analysis."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Analyze stakeholder requirements changes"
+        description: >-
+          Analyze all changes made to the stakeholder requirements against the agreed
+          stakeholder requirements. Assess the impact and risks, and initiate appropriate
+          change control and mitigation actions.
+        notes:
+          - "Note 4: Requirements changes may arise from different sources as for instance changing technology, stakeholder needs, or legal constraints."
+          - "Note 5: Refer to SUP.10 Change Request Management, if required."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Communicate requirements status"
+        description: >-
+          Ensure all affected parties can be aware of the status and disposition of their
+          requirements including changes and can communicate necessary information and data.
+        maps_to_outcomes: [1, 4]
+    output_information_items:
+      - item_id: "15-51"
+        name: "Analysis Results"
+        maps_to_outcomes: [3]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [1, 2]
+      - item_id: "17-00"
+        name: "Requirement"
+        maps_to_outcomes: [2]
+      - item_id: "17-54"
+        name: "Requirement Attribute"
+        maps_to_outcomes: [2, 3, 4]
+
+  # ============================================================
+  # SYS.2 — System Requirements Analysis
+  # ============================================================
+  - process_id: "SYS.2"
+    process_name: "System Requirements Analysis"
+    process_purpose: >-
+      The purpose is to establish a structured and analyzed set of system requirements
+      consistent with the stakeholder requirements.
+    process_outcomes:
+      - id: 1
+        description: "System requirements are specified."
+      - id: 2
+        description: "System requirements are structured and prioritized."
+      - id: 3
+        description: "System requirements are analyzed for correctness and technical feasibility."
+      - id: 4
+        description: "The impact of system requirements on the operating environment is analyzed."
+      - id: 5
+        description: "Consistency and bidirectional traceability are established between system requirements and stakeholder requirements."
+      - id: 6
+        description: "The system requirements are agreed and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify system requirements"
+        description: >-
+          Use the stakeholder requirements to identify and document the functional and
+          non-functional requirements for the system according to defined characteristics
+          for requirements.
+        notes:
+          - "Note 1: Characteristics of requirements are defined in standards such as ISO IEEE 29148, ISO 26262-8:2018, or the INCOSE Guide For Writing Requirements."
+          - "Note 2: Examples for defined characteristics of requirements shared by technical standards are verifiability (i.e., verification criteria being inherent in the requirements text), unambiguity/comprehensibility, freedom from design and implementation, and not contradicting any other requirement)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Structure system requirements"
+        description: >-
+          Structure and prioritize the system requirements.
+        notes:
+          - "Note 3: Examples for structuring criteria can be grouping (e.g., by functionality) or product variants identification."
+          - "Note 4: Prioritization can be done according to project or stakeholder needs via e.g., definition of release scopes. Please refer to SPL.2.BP1."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Analyze system requirements"
+        description: >-
+          Analyze the specified system requirements including their interdependencies to
+          ensure correctness, technical feasibility, and to support project management
+          regarding project estimates.
+        notes:
+          - "Note 5: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates."
+          - "Note 6: Technical feasibility can be evaluated based on e.g., platform or product line, or by means of prototype development or product demonstrators."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Analyze the impact on the system context"
+        description: >-
+          Analyze the impact that the system requirements will have on elements in the
+          relevant system context.
+        maps_to_outcomes: [4]
+      - bp_id: "BP5"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between system
+          requirements and stakeholder requirements.
+        notes:
+          - "Note 7: Bidirectional traceability supports consistency, facilitates impact analyses of change requests, and supports the demonstration of coverage of stakeholder requirements. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+          - "Note 8: There may be non-functional stakeholder requirements that the system requirements do not trace to. Examples are process requirements. Such stakeholder requirements are still subject to verification."
+        maps_to_outcomes: [5]
+      - bp_id: "BP6"
+        title: "Communicate agreed system requirements and impact on the system context"
+        description: >-
+          Communicate the agreed system requirements, and results of the impact analysis
+          on the system context, to all affected parties.
+        maps_to_outcomes: [6]
+    output_information_items:
+      - item_id: "17-00"
+        name: "Requirement"
+        maps_to_outcomes: [1, 2]
+      - item_id: "17-54"
+        name: "Requirement Attribute"
+        maps_to_outcomes: [2, 3]
+      - item_id: "15-51"
+        name: "Analysis Results"
+        maps_to_outcomes: [3, 4]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [5]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [6]
+
+  # ============================================================
+  # SYS.3 — System Architectural Design
+  # ============================================================
+  - process_id: "SYS.3"
+    process_name: "System Architectural Design"
+    process_purpose: >-
+      The purpose is to establish an analyzed system architecture, comprising static and
+      dynamic aspects, consistent with the system requirements.
+    process_outcomes:
+      - id: 1
+        description: "A system architecture is designed including a definition of the system elements with their behavior, their interfaces, their relationships, and their interactions."
+      - id: 2
+        description: "The system architecture is analyzed against defined criteria, and special characteristics are identified."
+      - id: 3
+        description: "Consistency and bidirectional traceability are established between system architecture and system requirements."
+      - id: 4
+        description: "The agreed system architecture and the special characteristics are communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify static aspects of the system architecture"
+        description: >-
+          Specify and document the static aspects of the system architecture with respect
+          to the functional and non-functional system requirements, including external
+          interfaces and a defined set of system elements with their interfaces and
+          relationships.
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Specify dynamic aspects of the system architecture"
+        description: >-
+          Specify and document the dynamic aspects of the system architecture with respect
+          to the functional and non-functional system requirements including the behavior
+          of the system elements and their interaction in different system modes.
+        notes:
+          - "Note 1: Examples of interactions of system elements are timing diagrams, mechanical components, processing times of ECUs, and signal propagation times of bus systems."
+        maps_to_outcomes: [1]
+      - bp_id: "BP3"
+        title: "Analyze system architecture"
+        description: >-
+          Analyze the system architecture regarding relevant technical design aspects related
+          to the product lifecycle, and to support project management regarding project
+          estimates, and derive special characteristics for non-software system elements.
+          Document a rationale for the system architectural design decisions.
+        notes:
+          - "Note 2: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates."
+          - "Note 3: Examples for product lifecycle phases are production, maintenance & repair, decommissioning."
+          - "Note 4: Examples for technical aspects are manufacturability for production, suitability of pre-existing system elements to be reused, or availability of system elements."
+          - "Note 5: Examples for methods being suitable for analyzing technical aspects are prototypes, simulations, and qualitative analyses (e.g., FMEA approaches)"
+          - "Note 6: Examples of design rationales are proven-in-use, reuse of a product platform or product line), a make-or-buy decision, or found in an evolutionary way (e.g., set-based design)."
+        maps_to_outcomes: [2]
+      - bp_id: "BP4"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between the elements
+          of the system architecture and the system requirements that represent properties
+          or characteristics of the physical end product.
+        notes:
+          - "Note 7: Bidirectional traceability further supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+          - "Note 8: There may be non-functional requirements that the system architectural design does not trace to. Examples are do not address, or represent, direct properties or characteristics of the physical end product. Such requirements are still subject to verification."
+        maps_to_outcomes: [3]
+      - bp_id: "BP5"
+        title: "Communicate agreed system architecture"
+        description: >-
+          Communicate the agreed system architecture, including the special characteristics,
+          to all affected parties.
+        maps_to_outcomes: [4]
+    output_information_items:
+      - item_id: "04-06"
+        name: "System Architecture"
+        maps_to_outcomes: [1]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [3]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [4]
+      - item_id: "15-51"
+        name: "Analysis Results"
+        maps_to_outcomes: [2]
+      - item_id: "17-57"
+        name: "Special Characteristics"
+        maps_to_outcomes: [2]
+
+  # ============================================================
+  # SYS.4 — System Integration and Integration Verification
+  # ============================================================
+  - process_id: "SYS.4"
+    process_name: "System Integration and Integration Verification"
+    process_purpose: >-
+      The purpose is to integrate systems elements and verify that the integrated system
+      elements are consistent with the system architecture.
+    process_outcomes:
+      - id: 1
+        description: "Verification measures are specified for system integration verification of the integrated system elements based on the system architecture, including the interfaces of, and interactions between, system elements."
+      - id: 2
+        description: "System elements are integrated up to a complete integrated system consistent with the release scope."
+      - id: 3
+        description: "Verification measures are selected according to the release scope considering criteria, including criteria for regression verification."
+      - id: 4
+        description: "Integrated system elements are verified using the selected verification measures, and the results of the system integration verification are recorded."
+      - id: 5
+        description: "Consistency and bidirectional traceability are established between verification measures and the elements of the system architecture."
+      - id: 6
+        description: "Bidirectional traceability between verification results and verification measures is established."
+      - id: 7
+        description: "Results of the system integration and integration verification are summarized and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify verification measures for system integration"
+        description: >-
+          Specify the verification measures, based on a defined sequence and preconditions
+          for the integration of system elements against the system static and dynamic aspects
+          of the system architecture, including techniques for the verification measures,
+          pass/fail criteria for verification measures, a definition of entry and exit criteria
+          for the verification measures, and the required verification infrastructure and
+          environment setup.
+        notes:
+          - "Note 1: Examples on what a verification measure may focus are the timing dependencies of the correct signal flow between interfacing system elements, or interactions between hardware and software, as specified in the system architecture. The system integration test cases may focus on the correct signal flow between system items, the timeliness and timing dependencies of signal flow between system items, the correct interpretation of signals by all system items using an interface, and/or the dynamic interaction between system items."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Select verification measures"
+        description: >-
+          Document the selection of verification measures for each integration step
+          considering selection criteria including criteria for regression verification. The
+          documented selection of verification measures shall have sufficient coverage
+          according to the release scope.
+        notes:
+          - "Note 2: Examples for selection criteria can be prioritization of requirements, the need for regression verification (due to e.g., changes to the system architectural design or to system components), or the intended use of the delivered product release (e.g., test bench, test track, public road etc.)"
+        maps_to_outcomes: [3]
+      - bp_id: "BP3"
+        title: "Integrate system elements and perform integration verification"
+        description: >-
+          Integrate the system elements until the system is fully integrated according to the
+          specified interfaces and interactions between the system elements, and according
+          to the defined sequence and defined preconditions. Perform the selected system
+          integration verification measures. Record the verification measure data including
+          pass/fail status and corresponding verification measure data.
+        notes:
+          - "Note 3: Examples for preconditions for starting system integration can be successful system element verification or qualification of pre-existing system elements."
+          - "Note 4: See SUP.9 for handling verification results that deviate from expected results"
+        maps_to_outcomes: [2, 4]
+      - bp_id: "BP4"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between verification
+          measures and the system architecture. Establish bidirectional traceability between
+          verification results and verification measures.
+        notes:
+          - "Note 5: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+        maps_to_outcomes: [5, 6]
+      - bp_id: "BP5"
+        title: "Summarize and communicate results"
+        description: >-
+          Summarize the system integration and integration verification results and
+          communicate them to all affected parties.
+        notes:
+          - "Note 6: Providing all necessary information from the test case execution in a summary enables other parties to judge the consequences."
+        maps_to_outcomes: [7]
+    output_information_items:
+      - item_id: "08-60"
+        name: "Verification Measure"
+        maps_to_outcomes: [1]
+      - item_id: "06-50"
+        name: "Integration Sequence Instruction"
+        maps_to_outcomes: [2]
+      - item_id: "03-50"
+        name: "Verification Measure Data"
+        maps_to_outcomes: [4]
+      - item_id: "08-58"
+        name: "Verification Measure Selection Set"
+        maps_to_outcomes: [3]
+      - item_id: "15-52"
+        name: "Verification Results"
+        maps_to_outcomes: [4]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [5, 6]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [7]
+      - item_id: "11-06"
+        name: "Integrated System"
+        maps_to_outcomes: [2]
+
+  # ============================================================
+  # SYS.5 — System Verification
+  # ============================================================
+  - process_id: "SYS.5"
+    process_name: "System Verification"
+    process_purpose: >-
+      The purpose is to ensure that the system is verified to be consistent with the system
+      requirements.
+    process_outcomes:
+      - id: 1
+        description: "Verification measures are specified for system verification of the system based on the system requirements."
+      - id: 2
+        description: "Verification measures are selected according to the release scope considering criteria, including criteria for regression verification."
+      - id: 3
+        description: "The integrated system is verified using the selected verification measures and the results of system verification are recorded."
+      - id: 4
+        description: "Consistency and bidirectional traceability are established between verification measures and system requirements."
+      - id: 5
+        description: "Bidirectional traceability is established between verification results and verification measures."
+      - id: 6
+        description: "Verification results are summarized and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify verification measures for system verification"
+        description: >-
+          Specify the verification measures for system verification suitable to provide
+          evidence for compliance with the functional and non-functional information in the
+          system requirements, including techniques for the verification measures, pass/fail
+          criteria for verification measures, a definition of entry and exit criteria for the
+          verification measures, necessary sequence of verification measures, and the required
+          verification infrastructure and environment setup.
+        notes:
+          - "Note 1: The system verification measures may cover aspects such as thermal, environmental, robustness/lifetime, and EMC."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Select verification measures"
+        description: >-
+          Document the selection of verification measures considering selection criteria
+          including criteria for regression verification. The selection of verification measures
+          shall have sufficient coverage according to the release scope.
+        notes:
+          - "Note 2: Examples for criteria for selection can be prioritization of requirements, the need for regression verification (due to e.g., changes to the system requirements), the intended use of the delivered product release (test bench, test track, public road etc.)"
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Perform verification of the integrated system"
+        description: >-
+          Perform the verification of the integrated system using the selected verification
+          measures. Record the verification results including pass/fail status and
+          corresponding verification measure data.
+        notes:
+          - "Note 3: See SUP.9 for handling verification results that deviate from expected results"
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between verification
+          measures and system requirements. Establish bidirectional traceability between
+          verification results and verification measures.
+        notes:
+          - "Note 4: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+        maps_to_outcomes: [4, 5]
+      - bp_id: "BP5"
+        title: "Summarize and communicate results"
+        description: >-
+          Summarize the system verification results and communicate them to all affected
+          parties.
+        notes:
+          - "Note 5: Providing all necessary information from the test case execution in a summary enables other parties to judge the consequences."
+        maps_to_outcomes: [6]
+    output_information_items:
+      - item_id: "08-60"
+        name: "Verification Measure"
+        maps_to_outcomes: [1]
+      - item_id: "03-50"
+        name: "Verification Measure Data"
+        maps_to_outcomes: [3]
+      - item_id: "08-58"
+        name: "Verification Measure Selection Set"
+        maps_to_outcomes: [2]
+      - item_id: "15-52"
+        name: "Verification Results"
+        maps_to_outcomes: [3]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [4, 5]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [6]

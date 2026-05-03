@@ -1,0 +1,306 @@
+process_group:
+  code: "MAN"
+  name: "Management"
+
+processes:
+  # ============================================================
+  # MAN.3 — Project Management
+  # ============================================================
+  - process_id: "MAN.3"
+    process_name: "Project Management"
+    process_purpose: >-
+      The purpose is to identify and control the activities, and establish resources necessary for a
+      project to develop a product, in the context of the project's requirements and constraints.
+    process_outcomes:
+      - id: 1
+        description: "The scope of the work for the project is defined."
+      - id: 2
+        description: "The feasibility of achieving the goals of the project with available resources and constraints is evaluated."
+      - id: 3
+        description: "The activities and resources necessary to complete the work are sized and estimated."
+      - id: 4
+        description: "Interfaces within the project, and with other projects and organizational units, are identified and monitored."
+      - id: 5
+        description: "Plans for the execution of the project are developed, implemented and maintained."
+      - id: 6
+        description: "Progress of the project is monitored and reported."
+      - id: 7
+        description: "Adjustment is performed when project goals are not achieved."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Define the scope of work"
+        description: >-
+          Identify the project's goals, motivation and boundaries.
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Define project life cycle"
+        description: >-
+          Define the life cycle for the project, which is appropriate to the scope, context,
+          and complexity of the project. Define a release scope for relevant milestones.
+        notes:
+          - "Note 1: This may include the alignment of the project life cycle with the customer's development process."
+        maps_to_outcomes: [1, 2]
+      - bp_id: "BP3"
+        title: "Evaluate feasibility of the project"
+        description: >-
+          Evaluate the feasibility of achieving the goals of the project with respect to time,
+          project estimates, and available resources.
+        notes:
+          - "Note 2: The evaluation of feasibility may consider technical constraints of the project."
+        maps_to_outcomes: [2]
+      - bp_id: "BP4"
+        title: "Define and monitor work packages"
+        description: >-
+          Define and monitor work packages and their dependencies according to defined
+          project life cycle and estimations.
+        notes:
+          - "Note 3: The structure and the size of the work packages support an adequate progress monitoring."
+          - "Note 4: Work packages may be organized in a work breakdown structure."
+        maps_to_outcomes: [3, 4, 5, 7]
+      - bp_id: "BP5"
+        title: "Define and monitor project estimates and resources"
+        description: >-
+          Define and monitor project estimates of effort and resources based on project's goals,
+          project risks, motivation and boundaries.
+        notes:
+          - "Note 5: Examples of necessary resources are budget, people, product samples, or infrastructure."
+          - "Note 6: Project risks (using MAN.5) may be considered."
+          - "Note 7: Estimations and resources may include engineering, management and supporting processes."
+        maps_to_outcomes: [2, 3, 7]
+      - bp_id: "BP6"
+        title: "Define and monitor required skills, knowledge, and experience"
+        description: >-
+          Identify and monitor the required skills, knowledge, and experience for the project
+          in line with the estimates and work packages.
+        notes:
+          - "Note 8: Training, mentoring or coaching of individuals may be applied to resolve deviations from required skills and knowledge."
+        maps_to_outcomes: [3, 7]
+      - bp_id: "BP7"
+        title: "Define and monitor project interfaces and agreed commitments"
+        description: >-
+          Identify and agree interfaces of the project with affected stakeholders and monitor
+          agreed commitments. Define an escalation mechanism for commitments that are not fulfilled.
+        notes:
+          - "Note 9: Affected stakeholders may include other projects, organizational units, sub-contractors, and service providers."
+        maps_to_outcomes: [3, 5, 7]
+      - bp_id: "BP8"
+        title: "Define and monitor project schedule"
+        description: >-
+          Allocate resources to work packages and schedule each activity of the project.
+          Monitor the performance of activities against schedule.
+        maps_to_outcomes: [6, 7]
+      - bp_id: "BP9"
+        title: "Ensure consistency"
+        description: >-
+          Regularly adjust estimates, resources, skills, work packages and their dependencies,
+          schedules, plans, interfaces, and commitments for the project to ensure consistency
+          with the scope of work.
+        notes:
+          - "Note 10: This may include the consideration of critical dependencies, that are an input for risk management."
+        maps_to_outcomes: [3, 4, 5, 7]
+      - bp_id: "BP10"
+        title: "Review and report progress of the project"
+        description: >-
+          Regularly review and report the status of the project and the fulfillment of work
+          packages against estimated effort and duration to all affected parties. Prevent
+          recurrence of identified problems.
+        notes:
+          - "Note 11: Project reviews may be executed at regular intervals by the management. Project reviews may contribute to identify best practices and lessons learned."
+          - "Note 12: Refer to SUP.9 for resolution of problems."
+        maps_to_outcomes: [6, 7]
+    output_information_items:
+      - item_id: "08-53"
+        name: "Scope of work"
+        maps_to_outcomes: [1]
+      - item_id: "08-54"
+        name: "Feasibility analysis"
+        maps_to_outcomes: [2, 4]
+      - item_id: "14-10"
+        name: "Work package"
+        maps_to_outcomes: [3, 4, 5]
+      - item_id: "13-52"
+        name: "Communication evidence"
+        maps_to_outcomes: [2, 3]
+      - item_id: "13-16"
+        name: "Change request"
+        maps_to_outcomes: [7]
+      - item_id: "13-51"
+        name: "Consistency evidence"
+        maps_to_outcomes: [2, 7]
+      - item_id: "14-02"
+        name: "Corrective action"
+        maps_to_outcomes: [6, 7]
+      - item_id: "18-52"
+        name: "Escalation path"
+        maps_to_outcomes: [4, 6, 7]
+      - item_id: "08-56"
+        name: "Schedule"
+        maps_to_outcomes: [3, 5, 7]
+      - item_id: "14-50"
+        name: "Stakeholder groups list"
+        maps_to_outcomes: [4]
+      - item_id: "15-06"
+        name: "Project status"
+        maps_to_outcomes: [4, 6]
+
+  # ============================================================
+  # MAN.5 — Risk Management
+  # ============================================================
+  - process_id: "MAN.5"
+    process_name: "Risk Management"
+    process_purpose: >-
+      The purpose is to regularly identify, analyze, treat and monitor process related risks
+      and product related risks.
+    process_outcomes:
+      - id: 1
+        description: "The sources of risks are identified and regularly updated."
+      - id: 2
+        description: "Potential undesirable events are identified as they develop during the conduct of the project."
+      - id: 3
+        description: "Risks are analyzed and the priority in which to apply resources to treatment of these risks is determined."
+      - id: 4
+        description: "Risk measures are defined, applied, and assessed to determine changes in the status of risk and the progress of the risk treatment activities."
+      - id: 5
+        description: "Appropriate treatment is taken to correct or avoid the impact of risk based on its priority, probability, and consequence or other defined risk threshold."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Identify sources of risks"
+        description: >-
+          Identify and regularly update the sources of risks with affected parties.
+        notes:
+          - "Note 1: Risks may include technical, economical, and schedule risks."
+          - "Note 2: Risks may include the suppliers' deliverables and services."
+          - "Note 3: The risk sources may vary across the entire project life cycle."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Identify potential undesirable events"
+        description: >-
+          Identify potential undesirable events within the scope of the risk management
+          for the project.
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Determine risks"
+        description: >-
+          Determine the probability and severity of the undesirable events to support
+          priorities for the mitigation of the risks.
+        notes:
+          - "Note 4: Different methods may be used to analyze technical risks of a system, for example, functional analysis, simulation, FMEA, FTA etc."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Define risk treatment options"
+        description: >-
+          For each risk select a treatment option to accept, mitigate, avoid, or share
+          (transfer) the risk.
+        maps_to_outcomes: [4, 5]
+      - bp_id: "BP5"
+        title: "Define and perform risk treatment activities"
+        description: >-
+          Define and perform risk activities for risk treatment options.
+        maps_to_outcomes: [4, 5]
+      - bp_id: "BP6"
+        title: "Monitor risks"
+        description: >-
+          Regularly re-evaluate the risk related to the identified potential undesirable events
+          to determine changes in the status of a risk and to evaluate the progress of the
+          risk treatment activities.
+        notes:
+          - "Note 5: Risks of high priority may need to be communicated to and monitored by higher levels of management."
+        maps_to_outcomes: [4]
+      - bp_id: "BP7"
+        title: "Take corrective action"
+        description: >-
+          When risk treatment activities are not effective, take appropriate corrective action.
+        notes:
+          - "Note 6: Corrective actions may involve reevaluation of risks, developing and implementing new mitigation concepts or adjusting the existing concepts."
+        maps_to_outcomes: [5]
+    output_information_items:
+      - item_id: "15-51"
+        name: "Analysis results"
+        maps_to_outcomes: [1, 2, 3, 5]
+      - item_id: "15-09"
+        name: "Risk status"
+        maps_to_outcomes: [1, 3, 4, 5]
+      - item_id: "08-55"
+        name: "Risk measure"
+        maps_to_outcomes: [4, 5]
+      - item_id: "14-02"
+        name: "Corrective action"
+        maps_to_outcomes: [4, 5]
+
+  # ============================================================
+  # MAN.6 — Measurement
+  # ============================================================
+  - process_id: "MAN.6"
+    process_name: "Measurement"
+    process_purpose: >-
+      The purpose is to collect and analyze data relating to the development results and
+      processes implemented within the organization and its projects, to support effective
+      management of the processes.
+    process_outcomes:
+      - id: 1
+        description: "The measurement information needs that are necessary to evaluate the achievement of process objectives and the achievement of desired work products are identified."
+      - id: 2
+        description: "An appropriate set of metrics, driven by the information needs are identified and/or developed."
+      - id: 3
+        description: "Measurement activities are identified and performed."
+      - id: 4
+        description: "The required metrics are collected, stored, analyzed, and the results interpreted."
+      - id: 5
+        description: "Metrics are used to support decisions and provide an objective basis for communication."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Identify information needs"
+        description: >-
+          Identify the measurement information needs that are necessary to evaluate the
+          achievement of process objectives and work products.
+        notes:
+          - "Note 1: Information needs may change over time. Therefore, the measurement process may be used in an iterative way."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Specify metrics"
+        description: >-
+          Identify and develop an appropriate set of metrics based on measurement
+          information needs.
+        notes:
+          - "Note 2: Metrics may be related to processes or development results."
+        maps_to_outcomes: [2, 3]
+      - bp_id: "BP3"
+        title: "Collect and store metrics"
+        description: >-
+          Collect and store both base and derived metrics, including any context information
+          necessary to verify and understand the metrics.
+        notes:
+          - "Note 3: Base metrics in the context of this process are directly gathered metrics like \"number of defects found\" or \"number of lines of code\", where derived metrics are two or more metrics that are brought in relation to each other like \"number of defects found per line of code\"."
+        maps_to_outcomes: [3, 4]
+      - bp_id: "BP4"
+        title: "Analyze collected metrics"
+        description: >-
+          Analyze, interpret and review measured values to support decision-making.
+        maps_to_outcomes: [4, 5]
+      - bp_id: "BP5"
+        title: "Communicate analysis results"
+        description: >-
+          Communicate analysis results to all affected parties.
+        maps_to_outcomes: [5]
+      - bp_id: "BP6"
+        title: "Use metrics for decision-making"
+        description: >-
+          Make accessible and use information from collected metrics and analysis results
+          for any decision-making process for which it is relevant.
+        maps_to_outcomes: [5]
+    output_information_items:
+      - item_id: "03-03"
+        name: "Benchmarking data"
+        maps_to_outcomes: [4, 5]
+      - item_id: "03-04"
+        name: "Customer satisfaction data"
+        maps_to_outcomes: [4, 5]
+      - item_id: "03-06"
+        name: "Process performance information"
+        maps_to_outcomes: [4, 5]
+      - item_id: "07-51"
+        name: "Measurement result"
+        maps_to_outcomes: [2, 3, 4, 5]
+      - item_id: "15-51"
+        name: "Analysis results"
+        maps_to_outcomes: [1, 4, 5]

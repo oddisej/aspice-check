@@ -1,0 +1,2 @@
+recursive-include src/aspice_eval/knowledge_base *.yaml *.json
+recursive-include knowledge_base *.yaml *.json

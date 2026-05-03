@@ -1,0 +1,3033 @@
+
+--- PAGE 118 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+118
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex A Conformity statements 
+Annex A.1 Introduction 
+The Automotive SPICE process assessment and process reference model are meeting the 
+requirements for conformance defined in ISO/IEC 33004:2015. The process assessment model can 
+be used in the performance of assessments that meet the requirements of ISO/IEC 33002:2015. 
+This clause serves as the statement of conformance of the process assessment and process 
+reference models to the requirements defined in ISO/IEC 33004:2015. 
+[ISO/IEC 33004:2015, 5.5 and 6.4] 
+Due to copyright reasons each requirement is only referred by its number. The full text of the 
+requirements can be drawn from ISO/IEC 33004:2015. 
+Annex A.2 Conformance to the requirements for process reference models 
+Clause 5.3, "Requirements for process reference models" 
+The following information is provided in chapter 1 and 3 of this document: 
+• 
+the declaration of the domain of this process reference model; 
+• 
+the description of the relationship between this process reference model and its intended 
+context of use; and 
+• 
+the description of the relationship between the processes defined within this process reference 
+model. 
+The descriptions of the processes within the scope of this process reference model meeting the 
+requirements of ISO/IEC 33004:2015 clause 5.4 is provided in chapter 4 of this document. 
+ [ISO/IEC 33004:2015, 5.3.1] 
+The relevant communities of interest and their mode of use and the consensus achieved for this 
+process reference model is documented in the copyright notice and the scope of this document.  
+[ISO/IEC 33004:2015, 5.3.2] 
+The process descriptions are unique. The identification is provided by unique names and by the 
+identifier of each process of this document. 
+[ISO/IEC 33004:2015, 5.3.3] 
+Clause 5.4, "Process descriptions" 
+These requirements are met by the process descriptions in chapter 4 of this document. 
+[ISO/IEC 33004:2015, 5.4] 
+ 
+ 
+
+--- PAGE 119 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+119
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex A.3 Conformance to the requirements for process assessment models 
+Clause 6.1, "Introduction" 
+The purpose of this process assessment model is to support assessment of process capability within 
+the automotive domain using the defined process measurement framework. 
+[ISO/IEC 33004:2015, 6.1] 
+Clause 6.2, "Process assessment model scope" 
+The process scope of this process assessment model is defined in the process reference model 
+included in chapter 3.1 of this document. The Automotive SPICE process reference model is 
+satisfying the requirements of ISO/IEC 33004:2015, clause 5 as described in Annex A.2. 
+The process capability scope of this process assessment model is defined in the process 
+measurement framework, which defines a process measurement framework for process capability 
+satisfying the requirements of ISO/IEC 33003:2015. 
+[ISO/IEC 33004:2015, 6.2] 
+Clause 6.3, "Requirements for process assessment models" 
+The Automotive SPICE process assessment model is related to process capability. 
+[ISO/IEC 33004:2015, 6.3.1] 
+ 
+This process assessment model incorporates the defined process measurement framework, which 
+satisfies the requirements of ISO/IEC 33003:2015. 
+[ISO/IEC 33004:2015, 6.3.2] 
+ 
+This process assessment model is based on the Automotive SPICE Reference Model included in 
+this document. 
+This process assessment model is based on the defined Measurement Framework. 
+[ISO/IEC 33004:2015, 6.3.3] 
+ 
+The processes included in this process assessment model are identical to those specified in the 
+Process Reference Model 
+[ISO/IEC 33004:2015, 6.3.4] 
+ 
+For all processes in this process assessment model all levels defined in the process measurement 
+framework are addressed. 
+[ISO/IEC 33004:2015, 6.3.5] 
+ 
+This process assessment model defines  
+
+--- PAGE 120 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+120
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+• 
+the selected process quality characteristic; 
+• 
+the selected process measurement framework; 
+• 
+the selected process reference model(s); 
+• 
+the selected processes from the process reference model(s) 
+in chapter 3 of this document. 
+[ISO/IEC 33004:2015, 6.3.5 a-d] 
+ 
+In the capability dimension, this process assessment model addresses all of the process attributes 
+and capability levels defined in the process measurement framework. 
+[ISO/IEC 33004:2015, 6.3.5 e] 
+Clause 6.3.1, "Assessment indicators" 
+Note: Due to an error in numbering in the published version of ISO/IEC 33004:2015 the following 
+reference numbers are redundant to those stated above. To refer to the correct clauses from ISO/IEC 
+33004:2015, the text of clause heading is additionally specified for the following three requirements. 
+The Automotive SPICE process assessment model provides a two-dimensional view of process 
+capability for the processes in the process reference model, through the inclusion of assessment 
+indicators as defined in chapter 3.3. The assessment indicators used are: 
+• 
+Base practices and information items 
+ [ISO/IEC 33004:2015, 6.3.1 a, "Assessment indicators"] 
+ 
+• 
+Generic practices and information items  
+[ISO/IEC 33004:2015, 6.3.1 b, "Assessment indicators"] 
+Clause 6.3.2, "Mapping process assessment models to process reference models" 
+The mapping of the assessment indicators to the purpose and process outcomes of the processes 
+in the process reference model is included in the tables for each process in chapter 4.  
+The mapping of the assessment indicators to the process attributes in the process measurement 
+framework including all of the process attribute achievements is included in the tables for each 
+process attribute in chapter 5. 
+[ISO/IEC 33004:2015, 6.3.2, "Mapping process assessment models"] 
+Clause 6.3.3, "Expression of assessment results" 
+The process attributes and the process attribute ratings in this process assessment model are 
+identical to those defined in the measurement framework. As a consequence, results of assessments 
+based upon this process assessment model are expressed directly as a set of process attribute 
+ratings for each process within the scope of the assessment. No form of translation or conversion is 
+required. 
+[ISO/IEC 33004:2015, 6.3.3, "Expression of assessment results"] 
+
+--- PAGE 121 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+121
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex A.4 Conformance to the requirements for measurement frameworks 
+The measurement framework defined in Automotive SPICE 4.0 is an adaption of the measurement 
+framework defined in ISO/IEC 33020:2019. The following modifications have been performed: 
+• 
+Renaming of the Process attribute titles. 
+• 
+Changes in the generic practices. 
+• 
+Assignments of indicators to process attribute achievements. 
+Conceptualization, Construct definition and Operationalization relevant for conformity to ISO/IEC 
+33003:2015 has been adopted from ISO/IEC 33020:2019. 
+The conformity of the Automotive SPICE Measurement Framework is thereby confirmed based on 
+the existing conformance statement of 33020:2019. 
+
+--- PAGE 122 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+122
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex B Information Item Characteristics 
+Characteristics of information items are defined using the schema in table B.1. See Section 3.3.2 on 
+the definition and explanation on how to interpret information items and their characteristics. 
+Information item 
+identifier 
+An identifier number for the information item which is used to reference the information 
+item. 
+Information item 
+name 
+Provides an example of a typical name associated with the information item 
+characteristics. This name is provided as an identifier of the type of information item the 
+practice or process might produce. Organizations may call these information items by 
+different names. The name of the information item in the organization is not significant. 
+Similarly, organizations may have several equivalent information items which contain 
+the characteristics defined in one information item type. The formats for the information 
+items can vary. It is up to the assessor and the organizational unit coordinator to map 
+the actual information items produced in their organization to the examples given here. 
+Information item 
+characteristics 
+Provides examples of the potential characteristics associated with the information item 
+types. The assessor may use these in evaluating the samples provided by the 
+organizational unit. It is not intended to use the listed characteristics as a checklist. 
+Some characteristics may be contained in other work products, as it would be found 
+appropriate in the assessed organization. 
+Table B.1 — Structure of information item characteristics (IIC) table 
+ 
+ID 
+Name 
+Characteristics 
+01-03 Software component 
+• 
+Software element in the software architecture above the software unit 
+level. 
+• 
+Represented by a design model element or executable code such as 
+libs or scripts and a configuration description, if applicable. 
+01-50 Integrated software 
+• 
+Software executable (e.g, simulator with stubbing, debug-able, object 
+code) including: 
+- 
+application parameter files (being a technical implementation 
+solution for configurability-oriented requirements) 
+- 
+all configured software elements 
+01-52 Configuration item list 
+• 
+Items under configuration control 
+• 
+The name of work products and an associated reference (to file, to tool 
+artifact) 
+• 
+Configuration item attributes and properties 
+01-53 Trained ML model 
+• 
+The trained ML model is the output of the training process. It consists of 
+the software representing the ML architecture, the set of weights which 
+were optimized during the training, and the final set of 
+hyperparameters. 
+01-54 Hyperparameter 
+• 
+Hyperparameters are used to control the ML model which has to be 
+trained, e.g.: 
+- 
+Learn rate of training 
+- 
+Scaling of network (number of layers or neurons per layer) 
+- 
+Loss function 
+• 
+Minimum characteristics: 
+- 
+Description 
+- 
+Initial value 
+- 
+Final value upon communicating the results of the ML training 
+
+--- PAGE 123 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+123
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+02-01 Commitment / 
+agreement 
+• 
+Signed off by all parties involved in the commitment/agreement 
+• 
+Establishes what the commitment is for 
+• 
+Establishes the resources required to fulfill the commitment, such as: 
+- 
+time 
+- 
+people 
+- 
+budget 
+- 
+equipment 
+- 
+facilities 
+03-06 Process performance 
+information 
+• 
+Measurements about defined quantitative or qualitative measurable 
+indicators, that match defined information needs. 
+• 
+Measurement metrics for the calculation of the quantitatively or 
+qualitatively measurable indicators 
+• 
+Data comparing process performance against expected levels 
+• 
+Examples for project performance information: 
+- 
+resource utilization against established target 
+- 
+time schedule against established target 
+- 
+activity or task completion criteria met 
+- 
+defined input and output work products available 
+- 
+process quality against quality expectations and/or criteria 
+- 
+product quality against quality expectations and/or criteria 
+- 
+highlight product performance issues, trends 
+• 
+Examples for service level performance information: 
+- 
+references any goals established 
+- 
+real time metrics related to aspects such as: 
+- 
+capacity 
+- 
+throughput 
+- 
+operational performance 
+- 
+operational service 
+- 
+service outage time 
+- 
+up time 
+- 
+job run time 
+03-50 Verification Measure 
+data 
+• 
+Verification measure data are data recorded during the execution of a 
+verification measure, e.g.: 
+- 
+for test cases: raw data, logs, traces, tool generated outputs 
+- 
+measurements: values 
+- 
+calculations: values 
+- 
+simulations: protocol 
+- 
+reviews such as optical inspections à findings record 
+- 
+analyses: values 
+03-51 ML data set 
+• 
+Selection of ML Data for e.g., ML model training (ML Training and 
+Validation Data Set) or test of the trained and deployed ML model (ML 
+Test Data Set). 
+03-53 ML data 
+• 
+Datum to be used for Machine Learning. The datum has to be attributed 
+by metadata, e.g., unique ID and data characteristics. Examples: 
+- 
+Visual data like a photo or videos (but a video could also be 
+considered as sequence of photos depending on the intended use) 
+- 
+Audio recording 
+- 
+Sensor data 
+- 
+Data created by an algorithm 
+
+--- PAGE 124 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+124
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+- 
+Data might be processed to create additional data. E.g., processing 
+could add noise, change colors or merge pictures. 
+03-54 Hardware production 
+data 
+• 
+Consists of bill of materials  
+• 
+Consists of layout e.g, GERBER data 
+• 
+Specifies requirements for EOL test e.g.: 
+- 
+Test type (AOI, ICT, boundary scan) 
+- 
+Test coverage 
+- 
+Electrical loads 
+- 
+Acceptance criteria 
+• 
+In case of semiconductor development: mask data (GDS2)  
+04-04 Software architecture 
+• 
+A justifying rationale for the chosen architecture. 
+• 
+Individual functional and non-functional behavior of the software 
+component 
+• 
+Settings for application parameters (being a technical implementation 
+solution for configurability-oriented requirements) 
+• 
+Technical characteristics of interfaces for relationships between 
+software components such as: 
+- 
+Synchronization of Processes and tasks 
+- 
+Programming language call 
+- 
+APIs 
+- 
+Specifications of SW libraries 
+- 
+Method definitions in an object- oriented class definitions or 
+UML/SysML interface classes 
+- 
+Callback functions, “hooks” 
+• 
+Dynamics of software components and software states such as: 
+- 
+Logical software operating modes (e.g, start-up, shutdown, normal 
+mode, calibration, diagnosis, etc.) 
+- 
+intercommunication (processes, tasks, threads) and priority 
+- 
+time slices and cycle time 
+- 
+interrupts with their priorities 
+- 
+interactions between software components 
+• 
+Explanatory annotations, e.g, with natural language, for single elements 
+or entire diagrams/models. 
+04-05 Software detailed 
+design 
+• 
+Elements of a software detailed design: 
+- 
+Control flow definition 
+- 
+Format of input/output data 
+- 
+Algorithms 
+- 
+Defined data structures 
+- 
+Justified global variables 
+- 
+Explanatory annotations, e.g, with natural language, for single 
+elements or entire diagrams/models 
+• 
+Examples for expression languages, depending on the complexity or 
+criticality of a software unit: 
+- 
+natural language or informal languages 
+- 
+semi-formal languages (e.g, UML, SysML) 
+- 
+formal languages (e.g, model-based approach) 
+04-06 System architecture 
+• 
+A justifying rationale for the chosen architecture. 
+• 
+Individual behavior of system elements 
+• 
+Interrelationships between system elements 
+Settings for system parameters (such as application parameters) 
+
+--- PAGE 125 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+125
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+Manual/human control actions, e.g., according to STPA 
+• 
+Interface Definitions: 
+- 
+Technical characteristics of interfaces for relationships between 
+two system elements 
+• 
+Interfaces between system elements e.g.: 
+- 
+bus interfaces (CAN, MOST, LIN, Flexray etc.) 
+- 
+thermal influences 
+- 
+hardware-software-interfaces (HSI), see below 
+- 
+electromagnetic interfaces 
+- 
+optical interfaces 
+- 
+hardware-mechanical-interfaces (e.g., a cable satisfying both 
+mechanical and electrical requirements, housing interface to a 
+PCB) 
+- 
+hardware-mechanical interconnection technology such as 
+connectors, pressfit 
+- 
+creepage and clearance distances 
+• 
+Fixations such as adhesive joints, screw bolts/fitting, riveted bolts, 
+welding 
+• 
+System interfaces related to EE Hardware e.g.: 
+- 
+analogue or digital interfaces (PWM, I/O) and their pin 
+configurations 
+- 
+SPI bus, I2C bus, electrical interconnections 
+- 
+placement, e.g., thermal interfaces between hardware elements 
+(heat dissipation) 
+- 
+soldering 
+- 
+creepage and clearance distances 
+• 
+Interfaces for mechanical engineering e.g.: 
+- 
+friction 
+- 
+thermal influences 
+- 
+tolerances 
+- 
+clutches 
+- 
+fixations such as adhesive joints, screw bolts/fitting, riveted bolts, 
+welding 
+- 
+forces (as a result of e.g., vibrations or friction) 
+- 
+placement 
+- 
+shape 
+- 
+A hardware-software interface, e.g.: 
+- 
+connector pin configurations and floating IOs for 
+µCs/MOSFETs 
+- 
+signal scaling & resolution to be reflected by the application 
+software 
+• 
+Mechanical-hardware interfaces e.g. 
+- 
+such as mechanical dimensioning 
+- 
+positioning of connectors 
+- 
+positioning of e.g., hall sensors in relation to the bus-bar 
+- 
+tolerances 
+• 
+Dynamics of system elements and system states: 
+- 
+Description of the system states and operation modes (startup, 
+shutdown, sleep mode, diagnosis/calibration mode, production 
+mode, degradation, emergency such as “limp-home”, etc.) 
+- 
+Description of the dependencies among the system components 
+regarding the operation modes 
+
+--- PAGE 126 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+126
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+- 
+Interactions between system elements such as inertia of 
+mechanical components to be reflected by the ECU, signal 
+propagation and processing time through the hardware and 
+software and e.g., bus systems 
+• 
+Explanatory annotations, e.g., with natural language, for single 
+elements or entire diagrams/models. 
+04-51 ML architecture 
+• 
+An ML architecture is basically a special part of a software architecture 
+(see 04-04). Additionally 
+- 
+ML architecture describes the overall structure of the ML-based 
+software element 
+- 
+ML architecture specifies ML architectural elements including an 
+ML model and other ML architectural elements, provided to train, 
+deploy, and test the ML model. 
+- 
+describes interfaces within the ML-based software element and to 
+other software elements 
+- 
+ML architecture describes details of the ML model like used layers, 
+activation functions, loss function, and backpropagation 
+- 
+ML architecture contains defined hyperparameter ranges and initial 
+values for training start 
+- 
+resource consumption objectives are defined 
+- 
+ML architecture contains allocated ML requirements 
+04-52 Hardware architecture • 
+Describes the initial floorplan and the overall hardware structure  
+• 
+Identifies the required hardware components 
+• 
+Includes the rationale for chosen options of hardware architecture 
+• 
+Identifies own developed and supplied hardware components  
+• 
+Identifies the required internal and external hardware component 
+interfaces  
+• 
+Specifies the interfaces of the hardware components 
+• 
+Specifies the dynamic behavior  
+• 
+Identifies the relationship and dependency between hardware 
+components 
+• 
+Describes all hardware variants to be developed 
+• 
+Describes power supply, thermal and grounding concepts 
+04-53 Hardware detailed 
+design 
+• 
+Describes the interconnections between the hardware parts 
+• 
+Specifies the interfaces of the hardware parts 
+• 
+Specifies the dynamic behavior (examples are: transitions between 
+electrical states of hardware parts, power-up and power-down 
+sequences, frequencies, modulations, signal delays, debounce times, 
+filters, short circuit behavior, self-protection) 
+• 
+Describes the conclusions and decisions based on e.g., analysis 
+reports, datasheets, application notes 
+• 
+Describes the constraints for layout 
+04-54 Hardware Schematics • 
+Identifies the hardware parts 
+• 
+Specifies the connections of the hardware parts 
+• 
+Specifies the unique identification of all hardware parts 
+• 
+Specifies unique variant identification 
+04-55 Hardware Layout 
+• 
+Specifies the placement of the hardware parts and labels 
+• 
+Specifies manufacturing data e.g., circuit paths (width, routing), vias, 
+testing points, number of layers, drillings, material of the PCB, shape, 
+soldering resist mask, PCB coating 
+
+--- PAGE 127 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+127
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+Specifies a unique layout identification 
+04-56 Hardware element 
+interface 
+• 
+is defined by output, input, type, and electrical characteristics including 
+signal tolerances. 
+• 
+Examples of interfaces are 
+- 
+high level interfaces like SPI, I2C, CAN, LIN, Ethernet 
+- 
+electrical interconnections 
+- 
+thermal interfaces between hardware elements (heat dissipation) 
+06-04 Training material 
+• 
+Updated and available for new releases 
+• 
+Coverage of system, application, operations, maintenance as 
+appropriate to the application 
+• 
+Course listings and availability 
+06-50 Integration sequence 
+instruction 
+• 
+Identification of required physical elements (e.g., hardware, 
+mechanical, wiring elements), and software executables and 
+application parameters (being a technical implementation solution for 
+configurability-oriented requirements) 
+• 
+necessary sequence or ordering of integration 
+• 
+preconditions for starting system integration 
+06-51 Tailoring guideline 
+• 
+Criteria for tailoring, 
+• 
+Proceeding of tailoring describing how to derive and document the 
+defined process from the standard process including responsibility for 
+tailoring and corresponding approval 
+• 
+Requirements for the defined process to ensure integrity and 
+consistency of the defined process 
+• 
+Subset of process assets that is essential for the defined process 
+06-52 Backup and recovery 
+mechanism 
+information 
+• 
+Description / confirmation of existing backup and recovery mechanisms 
+• 
+References to corresponding procedures or regulations 
+07-04 Process metric 
+• 
+Measurements about the process' performance: 
+- 
+ability to produce sufficient work products 
+- 
+adherence to the process 
+- 
+time it takes to perform process 
+- 
+defects related to the process 
+• 
+Measures the impact of process change 
+• 
+Measures the efficiency of the process 
+07-05 Project metric 
+• 
+Monitors key processes and critical tasks, provides status information 
+to the project on: 
+- 
+project performance against established plan 
+- 
+resource utilization against established plan 
+- 
+time schedule against established plan 
+- 
+process quality against quality expectations and/or criteria 
+- 
+product quality against quality expectations and/or criteria 
+- 
+highlight product performance problems, trends 
+• 
+Measures the results of project activities: 
+- 
+tasks are performed on schedule 
+- 
+product's development is within the resource commitments 
+allocated 
+• 
+References any goals established 
+
+--- PAGE 128 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+128
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+07-06 Quality metric 
+• 
+Measures quality attributes of the work products defined: 
+- 
+functionality 
+- 
+reliability 
+- 
+usability 
+- 
+efficiency 
+- 
+maintainability 
+- 
+portability 
+• 
+Measures quality attributes of the "end customer" quality perception 
+Note: Refer ISO/IEC 25010 for detailed information on measurement 
+of product quality. 
+07-08 Service level metric 
+• 
+Real time metrics taken while a system is operational, it measures the 
+system's performance or expected service level 
+• 
+Identifies aspects such as: 
+- 
+capacity 
+- 
+throughput 
+- 
+operational performance 
+- 
+operational service 
+- 
+service outage time 
+- 
+up time 
+- 
+job run time 
+
+--- PAGE 129 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+129
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+07-51 Measurement result 
+Result of gathering qualitative or quantitative data, e.g.,  
+Process metric 
+• 
+Measurements about the process' performance: 
+- 
+ability to produce sufficient work products 
+- 
+adherence to the process 
+- 
+time it takes to perform process 
+- 
+defects related to the process 
+• 
+Measures the impact of process change 
+• 
+Measures the efficiency of the process 
+Project metric 
+• 
+Monitors key processes and critical tasks, provides status information 
+to the project on: 
+- 
+project performance against established plan 
+- 
+resource utilization against established plan 
+- 
+time schedule against established plan 
+- 
+process quality against quality expectations and/or criteria 
+- 
+product quality against quality expectations and/or criteria 
+- 
+highlight product performance problems, trends 
+• 
+Measures the results of project activities: 
+• 
+tasks are performed on schedule 
+• 
+product's development is within the resource commitments allocated 
+• 
+References any goals established 
+Quality metric 
+• 
+Measures quality attributes of the work products defined: 
+- 
+functionality 
+- 
+reliability 
+- 
+usability 
+- 
+efficiency 
+- 
+maintainability 
+- 
+portability 
+• 
+Measures quality attributes of the "end customer" quality 
+perceptionService level metric 
+• 
+Benchmarking data 
+• 
+Customer satisfaction survey 
+07-61 Quantitative process 
+metric 
+• 
+Quantitatively measurable indicators that match information needs 
+derived from business goals 
+• 
+Relation of the quantitatively measurable indicators to process 
+elements in process descriptions or repositories and tools 
+• 
+Process measurement metrics for the calculation of the quantitatively 
+measurable indicators, based on data from related process elements, 
+repositories, or tools 
+07-62 Process analysis 
+technique 
+• 
+Methods for statistical analysis of process data 
+• 
+Frequency of data collection. 
+07-63 Process control limits 
+• 
+Quantitative control limits for the quantitative process metrics 
+07-64 Process measurement 
+data 
+• 
+Data collected across process instances 
+• 
+Attributes of data, e.g., timestamps 
+
+--- PAGE 130 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+130
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+Relation to process measurement metrics 
+• 
+Storage and retrieval  
+• 
+Effective controls over access 
+15-57 Quantitative process 
+analysis results 
+• 
+Deviations, and distributions, of the quantitative performance of 
+individual process instances performance from the established 
+quantitative control limits (special causes of variations) 
+08-66 Measures against 
+deviations in 
+quantitative process 
+analysis 
+• 
+Definition of counter measures actions to address each assignable 
+cause of special causes of variation, or common causes of variation 
+• 
+Effective implementation of these counter measures 
+15-58 Common cause of 
+variation analysis 
+results 
+• 
+Identification of common causes  
+- 
+deviations of the quantitative performance of all process instances 
+from the established quantitative control limits 
+- 
+distributions of the quantitative performance of all process 
+instances within established quantitative control limits 
+08-53 Scope of work 
+• 
+Summary of deliverables for a project 
+• 
+Intended use for the deliverables 
+• 
+Main functions to be realized 
+• 
+Target delivery date and major milestones 
+• 
+Work products and activities that are not in scope of the project as 
+needed 
+• 
+Target markets 
+• 
+Applicable standards and legal requirements 
+• 
+Reuse options 
+• 
+Integration of third party deliveries 
+08-54 Feasibility analysis 
+• 
+Statement about the ability of the project to achieve the project 
+objectives with available resources 
+08-55 Risk measure 
+• 
+Identifies  
+- 
+the risk to be mitigated, avoided, or shared (transferred) 
+- 
+the activities to mitigate, avoid, or share (transfer) the risk 
+- 
+the originator of the measure 
+- 
+criteria for successful implementation 
+- 
+criteria for cancellation of activities 
+- 
+frequency of monitoring 
+• 
+Risk treatment alternatives: 
+- 
+treatment option selected- avoid/reduce/transfer 
+- 
+alternative descriptions 
+- 
+recommended alternative(s) 
+- 
+justifications 
+08-56 Schedule 
+• 
+Identifies the activities to be performed 
+• 
+Identifies the expected, and actual, start and completion date for 
+required activities against progress/completion of activities 
+• 
+Identifies dependencies between activities and critical path 
+• 
+Has a mapping to scheduled resources and input data 
+• 
+Identifies resource allocation, resource workload, and critical resources 
+NOTE: A schedule is consistent with the defined work packages, see 14-
+10 
+
+--- PAGE 131 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+131
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+08-57 Validation Measure 
+Selection Set 
+• 
+Include criteria for re-validation in the case of changes (regression). 
+• 
+Identification of validation measures, also for regression 
+08-58 Verification Measure 
+Selection Set 
+• 
+Include criteria for re-verification in the case of changes (regression). 
+• 
+Identification of verification measures, also for regression testing 
+08-59 Validation Measure 
+• 
+A validation measure can be a test case, a measurement, a simulation, 
+an emulation, or an end user survey 
+• 
+The specification of a validation measure includes 
+- 
+pass/fail criteria for validation measures (completion and end 
+criteria) 
+- 
+a definition of entry and exit criteria for the validation measures, 
+and abort and re-start criteria 
+• 
+Techniques 
+• 
+Necessary validation environment & infrastructure 
+• 
+Necessary sequence or ordering 
+08-60 Verification Measure 
+• 
+A verification measure can be a test case, a measurement, a 
+calculation, a simulation, a review, an optical inspection, or an analysis 
+• 
+The specification of a verification measure includes 
+- 
+pass/fail criteria for verification measures (test completion and 
+ending criteria) 
+- 
+a definition of entry and exit criteria for the verification measures, 
+and abort and re-start criteria 
+• 
+Techniques (e.g., black-box and/or white-box-testing, equivalence 
+classes and boundary values, fault injection for Functional Safety, 
+penetration testing for Cybersecurity, back-to- back testing for model-
+based development, ICT) 
+• 
+Necessary verification environment & infrastructure 
+• 
+Necessary sequence or ordering 
+08-61 Resource allocation 
+• 
+Detailed / named resources are allocated to process tasks 
+• 
+Overall resource workload is considered (e.g., allocation of resources to 
+multiple projects) 
+NOTE: Work breakdown structure may be used to refine the detailed 
+resource allocation 
+NOTE: A resource allocation may be integrated in a/ be a part of the 
+schedule, see 08-56 
+NOTE: Resources to be allocated are e.g., personnel/human resources 
+for project roles and physical and material resources such as 
+(special/limited) equipment, tool, licenses, test hardware, test vehicle, 
+climate chambers etc. 
+08-62 Communication matrix • 
+List of relevant process internal / external stakeholders 
+• 
+Roles and contact information of the parties involved 
+• 
+Definition of required interfaces between stakeholders 
+• 
+Communication subject 
+• 
+Communication means and frequency 
+• 
+Documentation needs of the communication (e.g., type of 
+communication record) 
+08-63 Process Monitoring 
+Method 
+• 
+Measures including criteria for monitoring effectiveness, suitability, and 
+adequacy of the standard process 
+
+--- PAGE 132 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+132
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+Method for collecting and analyzing the monitoring measures 
+08-64 ML test approach 
+• 
+The ML test approach describes 
+- 
+ML test scenarios with distribution of data characteristics (e.g., 
+gender, weather conditions, street conditions within the ODD) 
+defined by ML requirements 
+- 
+quantity of each ML test scenario inside the test data set 
+- 
+expected test result per test datum 
+- 
+pass/fail criteria for the ML testing 
+- 
+entry and exit criteria for the ML testing 
+- 
+the required ML testing infrastructure and environment 
+configuration 
+08-65 ML training and 
+validation approach 
+• 
+The ML Training and Validation approach describes at least: 
+- 
+entry and exit criteria of the ML training 
+- 
+approaches for hyperparameter tuning / optimization to be used in 
+the training 
+- 
+approach for data set creation and modification 
+- 
+training environment, including required training hardware (e.g., 
+GPU, or supercomputer to be used) 
+- 
+interface adapter for provision of input data and storage of output 
+data 
+- 
+if required, actions to organize the data set and training 
+environment 
+• 
+The ML training and validation approach may additionally include 
+robustification methods like random dropout 
+10-00 Process description 
+• 
+Process description of a standard or defined process (e.g., after 
+tailoring), including: 
+- 
+scope and the intended use of the process  
+- 
+process activities including description and dependencies 
+- 
+entry and exit criteria such as input information needed and 
+expected outputs for activities 
+- 
+Roles assigned to process activities (e.g., as RASIC ) or work 
+products 
+- 
+guidelines 
+- 
+templates  
+- 
+specific methods/work instructions 
+10-50 Role description 
+• 
+Name/identifier (unique within the organization) 
+• 
+Assigned activities (e.g., as RASIC) 
+• 
+Responsibilities and authorities 
+• 
+Required competencies, skills, and experience 
+10-51 Qualification method 
+description 
+• 
+Training courses  
+• 
+Training materials  
+• 
+Mentoring/coaching concepts 
+• 
+Self-learning material 
+10-52 Process resource and 
+infrastructure 
+description 
+• 
+Required facilities 
+• 
+Required tools and corresponding licenses 
+• 
+Required networks 
+• 
+Required services 
+• 
+Required samples 
+11-03 Release note 
+• 
+Coverage for key elements (as appropriate to the application): 
+• 
+Description of what is new or changed (including features removed) 
+
+--- PAGE 133 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+133
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+System information and requirements 
+• 
+Identification of conversion programs and instructions 
+• 
+Release numbering implementation may include: 
+- 
+the major release number 
+- 
+the feature release number 
+- 
+the defect repair number 
+- 
+the alpha or beta release; and the iteration within the alpha or beta 
+release 
+• 
+Identification of the component list (version identification included): 
+- 
+hardware / software / product elements, libraries, etc. 
+- 
+associated documentation list 
+• 
+New/changed parameter information (e.g., for application parameters or 
+global variables) and/or commands. Note that application parameters 
+are a technical implementation solution for configurability-oriented 
+requirements) 
+• 
+Backup and recovery information 
+• 
+List of open known problems, faults, warning information, etc. 
+• 
+Identification of verification and diagnostic procedures 
+• 
+Technical support information 
+• 
+Copyright and license information 
+• 
+The release note may include an introduction, the environmental 
+requirements, installation procedures, product invocation, new feature 
+identification and a list of defect resolutions, known defects and 
+workarounds 
+11-04 Product release 
+package 
+• 
+Includes the hardware/software/product 
+• 
+Includes and associated release elements such as: 
+- 
+system hardware/software/product elements 
+- 
+associated customer documentation 
+- 
+application parameter definitions defined 
+- 
+command language defined 
+- 
+installation instructions 
+- 
+release letter 
+11-05  Software Unit 
+Can be 
+• 
+a representation of a software element at the lowest level in a 
+conceptual model, which is decided not to be further subdivided and 
+that is a part of a software component, or 
+• 
+a representation of a software unit under verification such as 
+commented source code, auto-code, an object file, a library, an 
+executable, or an executable model as input to verification 
+ 
+11-06  Integrated System 
+• 
+Integrated product 
+• 
+Application parameter files (being a technical implementation solution 
+for configurability-oriented requirements) 
+• 
+All configured elements for the product release are included 
+11-50 Deployed ML model 
+• 
+It is derived from the trained ML model (see 01-53) and is to be 
+integrated into the target system. 
+• 
+It may differ from the trained ML model which often requires powerful 
+hardware and uses interpretative languages. 
+12-03 Reuse candidate 
+• 
+Identifies the product to be reused 
+
+--- PAGE 134 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+134
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+Identifies the responsible person for the products to be reused 
+• 
+Identifies the reuse goals and objectives 
+• 
+Identifies the list of reuse assets 
+• 
+Identifies the issues/risks of reusing the component including specific 
+requirements (hardware, software, resource and other reuse 
+components) 
+• 
+Identifies the person who will be qualifying the reuse candidate 
+13-06 Delivery evidence 
+• 
+Evidence of items shipped/delivered electronically to customer 
+• 
+Identification of: 
+- 
+to whom it was sent 
+- 
+address, where delivered 
+- 
+delivery date 
+- 
+receipt of delivered product 
+13-07 Problem  
+• 
+Identifies the submitter of the problem  
+• 
+Identifies the group/person(s) responsible for providing problem 
+resolution 
+• 
+Includes a description of the problem 
+• 
+Identifies classification of the problem (criticality, urgency, relevance 
+etc.) 
+• 
+Identifies the status of the problem 
+- 
+States such as “open”, “in review”, “in implementation”, “closed”, 
+“rejected”, “cancelled”, … 
+- 
+Transitions between states with conditions and authorities 
+• 
+Identifies the expected closure date 
+13-08 Baseline 
+• 
+Identifies a state of one or a set of work products and artifacts which 
+are consistent and complete 
+• 
+Basis for next process steps and/or delivery 
+• 
+Is unique and may not be changed 
+NOTE: This should be established before a release to identify consistent 
+and complete delivery 
+13-09 Meeting support 
+evidence 
+• 
+Agenda and minutes that are records that define: 
+- 
+purpose of meeting 
+- 
+attendees 
+- 
+date, place held 
+- 
+reference to previous minutes 
+- 
+what was accomplished 
+- 
+identifies issues raised 
+- 
+any open issues 
+- 
+next meeting if any 
+13-13 Product release 
+approval 
+• 
+Content information of what is to be shipped or delivered 
+• 
+Identification of: 
+- 
+for whom it is intended 
+- 
+the address where to deliver 
+- 
+the date released 
+- 
+Evidence of supplier approval 
+13-14 Progress status 
+• 
+Status of a plan(s) (actual against planned) such as: 
+- 
+status of actual activities/work packages against planned 
+activities/work package 
+- 
+status of actual results against established objectives/goals 
+
+--- PAGE 135 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+135
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+- 
+status of actual resources allocation against planned resources 
+- 
+status of actual cost against budget estimates 
+- 
+status of actual time against planned schedule 
+- 
+status of actual quality against planned quality 
+• 
+Record of any deviations from planned activities and reason why 
+13-16 Change request 
+• 
+Identifies purpose of change 
+• 
+Identifies requester contact information 
+• 
+Impacted system(s) 
+• 
+Impact to operations of existing system(s) defined 
+• 
+Impact to associated documentation defined 
+• 
+Criticality of the request, due date 
+• 
+Information supporting the tracking of change requests to closure 
+- 
+progress status attribute (e.g., open, allocated, implemented, 
+closed) 
+- 
+time stamp of status change 
+- 
+person who changed a status 
+- 
+rationale for changing a status 
+13-18 Quality conformance 
+evidence 
+• 
+Identifies what tasks/activities/process produce the information 
+• 
+Identifies when the data was collected 
+• 
+Identifies source of any associated data 
+• 
+Identifies the associated quality criteria 
+• 
+Identifies any associated measurements using the information 
+13-19 Review evidence 
+• 
+Provides the context information about the review: 
+- 
+what was reviewed 
+- 
+lists reviewers who attended and their area of responsibility 
+- 
+status of the review 
+• 
+Provides information about the scope of the review: 
+- 
+checklists 
+- 
+review criteria 
+- 
+requirements 
+- 
+compliance to standards 
+• 
+Effort information about: 
+- 
+preparation time spent for the review 
+- 
+time spent in the review 
+• 
+Review findings: 
+- 
+non-conformances 
+- 
+improvement suggestions 
+13-24 Validation results 
+• 
+Validation data, logs, feedback, or documentation 
+• 
+Validation measure passed 
+• 
+Validation measure not passed 
+• 
+Validation measure not executed, and a rationale 
+• 
+Information about the validation execution (date, participants etc.) 
+• 
+Abstraction or summary of validation results 
+13-25 Verification results 
+• 
+Verification data and logs 
+• 
+Verification measure passed  
+• 
+Verification measure not passed  
+• 
+Verification measure not executed, and a rationale 
+• 
+Information about the verification execution (date, “object-under-
+verification”, etc.) 
+
+--- PAGE 136 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+136
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+Abstraction or summary of verification results 
+13-50 ML test results 
+• 
+Test data and logs 
+• 
+Test data with correct results  
+• 
+Test data with incorrect results 
+• 
+Test data not executed, and a rationale 
+• 
+Information about the test execution (date, participants, model version 
+etc.) 
+• 
+Abstraction or summary of ML test results 
+13-51 Consistency Evidence • 
+Demonstrates bidirectional traceability between artifacts or information 
+in artifacts, throughout all phases of the life cycle, by e.g., 
+- 
+tool links 
+- 
+hyperlinks 
+- 
+editorial references 
+- 
+naming conventions 
+• 
+Evidence that the content of the referenced or mapped information 
+coheres semantically along the traceability chain, e.g., by 
+- 
+performing pair working or group work 
+- 
+performing by peers, e.g., spot checks 
+- 
+maintaining revision histories in documents 
+- 
+providing change commenting (via e.g., meta-information) of 
+database or repository entries 
+Note: This evidence can be accompanied by e.g., Definition of Done 
+(DoD) approaches. 
+13-52 Communication 
+Evidence 
+• 
+All forms of interpersonal communication such as 
+- 
+e-mails, also automatically generated ones 
+- 
+tool-supported workflows 
+- 
+meeting, verbally or via meeting minutes (e.g., daily standups) 
+- 
+podcast 
+- 
+blog 
+- 
+videos 
+- 
+forum 
+- 
+live chat 
+- 
+wikis 
+- 
+photo protocol 
+13-55 Process resource and 
+infrastructure 
+documentation 
+• 
+Information on availability, allocation, and usage of  
+- 
+Facilities 
+- 
+Tools and corresponding licenses 
+- 
+Networks 
+- 
+Services 
+- 
+Samples 
+• 
+for non-standard and critical resources and infrastructure. 
+14-01 Change history 
+• 
+Historical records of all changes made to an object (document, file, 
+software component, etc.): 
+- 
+description of change 
+- 
+version information about changed object 
+- 
+date of change 
+- 
+change requester information 
+- 
+change control record information 
+14-02 Corrective action 
+• 
+Identifies the initial problem 
+
+--- PAGE 137 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+137
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+Identifies the ownership for completion of defined action 
+• 
+Defines a solution (series of actions to fix problem) 
+• 
+Identifies the open date and target closure date 
+• 
+Contains a status indicator 
+• 
+Indicates follow up audit actions 
+14-10 Work package 
+• 
+Defines activities to be performed 
+• 
+Documents ownership for activities e.g., by domains 
+• 
+Documents critical dependencies to other work packages 
+• 
+Documents input and output work products 
+• 
+Documents the critical dependencies between defined work products 
+• 
+Information needed to perform these activities 
+• 
+Estimates of effort, duration 
+NOTE: The work package descriptions may be integrated into the/be 
+a part of a schedule, see 08-56 
+14-50 Stakeholder groups list • 
+Identifies: 
+• 
+involved parties 
+• 
+weight/importance of each stakeholder group 
+• 
+representative(s) for each stakeholder group 
+• 
+information needs of each stakeholder group 
+14-53 Role Assignment 
+• 
+Assignment of person(s) to roles 
+- 
+required competencies vs existing competencies 
+- 
+required skills vs existing skills 
+- 
+required experience and trainings based on identified 
+competencies / skills gap 
+14-54 Hardware Bill of 
+materials 
+• 
+Uniquely identifies type, supplier, and amount of the complete set of all 
+hardware parts of the hardware 
+15-06 Project status 
+• 
+Status of in regards to progress and consistency of schedule, work item 
+content, tasks, resources (human resources, infrastructure, 
+hardware/materials, budget), skills and competence of human 
+resources 
+• 
+planned progress and expenditure against dates/deadlines and actual 
+expenditure 
+• 
+reasons for variance from planned progress 
+• 
+threats to continued progress 
+• 
+issues which may affect the ability of the project to achieve its goals 
+• 
+contingency actions 
+15-07 Reuse analysis 
+evidence 
+• 
+Identification of reuse opportunities 
+• 
+Identification of constraints for reuse 
+• 
+Identification of regression test cases 
+• 
+Identification of reuse infrastructure 
+• 
+Identification of known defects 
+15-09 Risk status 
+• 
+Identifies the status, or the change, of an identified risk: 
+- 
+risk statement 
+- 
+risk source 
+- 
+risk impact and risk probability 
+- 
+categories and risk thresholds, e.g., for prioritization or setting a 
+status 
+- 
+risk treatment activities in progress 
+
+--- PAGE 138 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+138
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+15-12 Problem status 
+• 
+Indicates progress of problem resolution  
+• 
+Status of problem e.g., 
+- 
+by problem categories/classification 
+- 
+by problem resolution stage 
+15-13 Assessment/audit 
+report 
+• 
+States the purpose of assessment 
+• 
+Method used for assessment 
+• 
+Requirements used for the assessment 
+• 
+Assumptions and limitations 
+• 
+Identifies the context and scope information required: 
+- 
+date of assessment 
+- 
+organizational unit assessed 
+- 
+sponsor information 
+- 
+assessment team 
+- 
+attendees 
+- 
+scope/coverage 
+- 
+assesses and information 
+- 
+assessment tool used 
+• 
+Records the result: 
+- 
+Data 
+- 
+identifies the gaps, potentials, weaknesses or non-conformances 
+that require corrective actions 
+15-16 Improvement 
+opportunity 
+• 
+Identifies what the problem is 
+• 
+Identifies what the cause of a problem is 
+• 
+Suggest what could be done to fix the problem 
+• 
+Identifies the value (expected benefit) in performing the improvement 
+• 
+Identifies the penalty for not making the improvement 
+15-51 Analysis Results 
+• 
+Identification of the object under analysis. 
+• 
+The analysis criteria used, e.g.: 
+- 
+selection criteria or prioritization scheme used 
+- 
+decision criteria 
+- 
+quality criteria 
+• 
+The analysis results, e.g.: 
+- 
+what was decided/selected 
+- 
+reason for the selection 
+- 
+assumptions made 
+- 
+potential negative impact 
+• 
+Aspects of the analysis may include 
+- 
+correctness 
+- 
+understandability 
+- 
+verifiability 
+- 
+feasibility 
+- 
+validity 
+15-52 Verification Results 
+• 
+Verification data and logs 
+• 
+Verification measure passed 
+• 
+Verification measure not passed 
+• 
+Verification measure not executed 
+• 
+information about the test execution (date, tester name etc.) 
+• 
+Abstraction or summary of verification results 
+
+--- PAGE 139 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+139
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+15-54 Tailoring 
+documentation 
+• 
+Applied criteria for tailoring, 
+• 
+Evidence that the defined process is tailored from the standard process 
+according to the defined criteria 
+15-55 Problem analysis 
+evidence 
+• 
+Author and involved parties 
+• 
+Date of the analysis 
+• 
+Context and root cause of the problem 
+• 
+Analysis result may include 
+- 
+Impact 
+- 
+Potential negative impact 
+- 
+Affected parties 
+- 
+Potential solution (if known) 
+15-56 Configuration status 
+• 
+Summary of configuration management records including relevant 
+status 
+• 
+Analysis of the configuration management overall state 
+• 
+Identification of baselines made 
+16-03 Configuration 
+management system 
+• 
+Supports the configuration management for the scope of the 
+configuration item list contents 
+• 
+Correct configuration of products 
+• 
+Can recreate any release or test configuration 
+• 
+Ability to report configuration status 
+• 
+Has to cover all relevant tools 
+16-06 Process repository 
+• 
+Contains process descriptions 
+• 
+Supports multiple presentations of process assets 
+16-50 Organizational 
+structure  
+• 
+Disciplinary reporting line 
+• 
+Organizational units and sub-units, if applicable 
+16-52 ML data management 
+system 
+• 
+The ML data management system is part of the configuration 
+management system (see 16-03) and 
+• 
+Supports data management activities like data collection, description, 
+ingestion, exploration, profiling, labeling/annotation, selection, 
+structuring and cleansing 
+• 
+Provides the data for different purposes, e.g., training, testing 
+• 
+Supports the relevant sources of ML data 
+17-00 Requirement 
+• 
+An expectation of functions and capabilities (e.g., non-functional 
+requirements), or one of its interfaces 
+• 
+from a black-box perspective 
+• 
+that is verifiable, does not imply a design or implementation decision, is 
+unambiguous, and does not introduce contradictions to other 
+requirements. 
+• 
+A requirements statement that implies, or represents, a design or 
+implementation decision is called “Design Constraint”. 
+• 
+Examples for requirements aspects at the system level are thermal 
+characteristics such as 
+- 
+heat dissipation 
+- 
+dimensions 
+- 
+weight 
+- 
+materials 
+• 
+Examples of aspects related to requirements about system interfaces 
+are 
+- 
+connectors 
+
+--- PAGE 140 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+140
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+- 
+cables 
+- 
+housing 
+• 
+Examples for requirements at the hardware level are 
+- 
+lifetime and mission profile, lifetime robustness 
+- 
+maximum price 
+- 
+storage and transportation requirements 
+- 
+functional behavior of analog or digital circuits and logic 
+- 
+quiescent current, voltage impulse responsiveness to crank, start-
+stop, drop-out, load dump 
+- 
+temperature, maximum hardware heat dissipation 
+- 
+power consumption depending on the operating state such as 
+sleep-mode, start-up, reset conditions 
+- 
+frequencies, modulation, signal delays, filters, control loops 
+- 
+power-up and power-down sequences, accuracy and precision of 
+signal acquisition or signal processing time 
+- 
+computing resources such as memory space and CPU clock 
+tolerances 
+- 
+maximum abrasive wear and shearing forces for e.g., pins or 
+soldering joints 
+- 
+requirements resulting from lessons learned 
+- 
+safety related requirements derived from the technical safety 
+concept 
+17-05 Requirements for work 
+products  
+• 
+Requirements for content and structure, storage and control 
+- 
+Identifies documentation specific meta data, such as id, date, 
+author information, ownership, access rights, review and approval 
+status with, where applicable, status model and workflow, or others 
+- 
+Identifies requirements on documentation structure, e.g., table of 
+content or figures or other formal aspects  
+- 
+May be provided by documentation templates 
+- 
+May be based on tool specific templates 
+- 
+Defines the storage location such as data repository, tool, 
+versioning system 
+- 
+Requirements for versioning 
+- 
+Requirements for baselining 
+- 
+Distribution of the documents  
+- 
+Maintenance and disposal of the documents 
+- 
+May be specific for certain types of documents 
+17-54 Requirement Attribute • 
+Meta-attributes that support structuring and definition of release scopes 
+of requirements. 
+• 
+Can be realized by means of tools. 
+NOTE: usage of requirements attributes may further support analysis of 
+requirements. 
+17-55 Resource needs 
+• 
+Identification of required resources for process performance 
+• 
+Staff including competencies, skills and authorities needs 
+• 
+Material, equipment, and infrastructure 
+• 
+Time and budget 
+NOTE: Needs are derived from Work Breakdown structure and schedule 
+17-57 Special Characteristics • 
+Special Characteristics in terms of relevant standards such as IATF 
+16949, VDA 6.x Guidelines, ISO 26262. 
+
+--- PAGE 141 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+141
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+• 
+Special Characteristics according to IATF 16949:2016-10 [15], 
+Chapters 8.3.3.3, are product characteristics or production process 
+parameters that may have an impact on safety or compliance with 
+official regulations, the fit, the function, the performance or further 
+processing of the product. 
+• 
+Special characteristics shall be verifiable according to VDA vol. 1 
+NOTE: A typical method for identifying and rate special characteristics is 
+an FMEA. 
+18-00 Standard 
+• 
+Identification of to whom/what they apply 
+• 
+Expectations for conformance are identified 
+• 
+Conformance to requirements can be demonstrated 
+• 
+Provisions for tailoring or exception to the requirements are included 
+18-06 Product release 
+criteria 
+• 
+Defines expectations for product release: 
+- 
+release type and status 
+- 
+required elements of the release 
+- 
+product completeness including documentation 
+- 
+adequacy and coverage of testing 
+- 
+limit for open defects 
+- 
+change control status 
+18-07 Quality criteria 
+• 
+Defines the expectations for work products and process performance 
+• 
+Including thresholds/tolerance levels, required measurements, required 
+checkpoints 
+• 
+Defines what is an adequate work product (required elements, 
+completeness expected, accuracy, etc.) 
+• 
+Defines what constitutes the completeness of the defined tasks 
+• 
+Defines what constitutes the performance of the defined tasks 
+• 
+Establishes expected performance attributes  
+18-52 Escalation path 
+• 
+Defined mechanisms to report and confirm escalation relevant issues 
+• 
+Identifies stakeholders to be included in the escalation path 
+• 
+Identifies levels of escalation 
+18-53 Configuration item 
+selection criteria 
+• 
+Identify types of work products to be subject to configuration control 
+18-57 Change analysis 
+criteria 
+• 
+Defines analysis criteria, such as 
+- 
+resource requirements 
+- 
+scheduling issues 
+- 
+risks 
+- 
+benefits 
+18-58 Process performance 
+objectives 
+• 
+Objectives for the process of creating the process outcomes and 
+capability level 2 achievements, and corresponding evaluation criteria 
+• 
+Assumptions and constraints, if applicable 
+• 
+Used as the basis for deriving a detailed planning 
+• 
+Examples: 
+- 
+Effort, costs, or budget targets (e.g., min/max limits) 
+- 
+Process-specific deadlines in line with milestones, or frequency of 
+activities (o e.g., dates for deliveries to the customer, quality gates) 
+- 
+Metrics (e.g., max. number of open change requests per release, 
+max. ratio of configuration items in status “in work” at certain 
+milestones before next delivery / release date) 
+
+--- PAGE 142 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+142
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ID 
+Name 
+Characteristics 
+18-59 Review and approval 
+criteria for work 
+products 
+• 
+Specifies for each type of work products review and approval needs 
+- 
+If and when a review is required 
+- 
+Who shall review it 
+- 
+Who shall approve it 
+- 
+Review method(s) to be used  
+- 
+Criteria for approval 
+18-70 Business goals 
+• 
+Explanation of the business goals 
+• 
+Requirements for the business needs 
+• 
+Associations to other goals 
+• 
+Reasons for the existence of the goals and needs, level of degree of 
+the need and effect on the business not having that need 
+• 
+Conditions, constraints, assumptions  
+• 
+Timeframe for achievement 
+• 
+Authorization at the highest level 
+18-80 Improvement 
+opportunity 
+ 
+• 
+Cause of the improvement need, e.g., 
+- 
+from qualitative or quantitative process performance analysis, 
+evaluations, and monitoring 
+- 
+industry best practice review, state-of-the-art observations, market 
+studies etc. 
+• 
+Improvement objectives derived from organizational business goals and 
+improvement needs 
+• 
+Organizational scope 
+• 
+Process scope 
+• 
+Activities to be performed to keep all those affected by the improvement 
+informed 
+• 
+Priorities 
+18-81 Improvement 
+evaluation results 
+ 
+• 
+Operational impacts of identified changes on the product(s) and 
+processes 
+• 
+Expected benefit 
+• 
+Conditions, constraints, assumptions 
+19-01 Process performance 
+strategy 
+• 
+The operational approach to achieve the process outcomes, consistent 
+with the Process Performance Objectives (18-58), e.g.: 
+- 
+proceedings, including the monitoring of the performance of the 
+process 
+- 
+methodology 
+• 
+scope(s) of the strategy within the process, e.g.: 
+- 
+development sites 
+- 
+application domain-specific differences (e.g., software drivers 
+versus. powertrain software) 
+- 
+disciplines (e.g., different configuration management approaches 
+for software and hardware, or combined approaches) 
+- 
+options due to socio-cultural differences 
+19-50 ML data quality 
+approach 
+• 
+The ML data quality approach 
+• 
+Defines Quality criteria (see 18-07) e.g., the relevant data sources, 
+reliability and consistency of labelling, completeness against ML data 
+requirementsv 
+• 
+Describes analysis activities of the data 
+• 
+Describes activities to ensure the quality of the data to avoid issues 
+e.g., data bias, bad labeling 
+Table B.2 — Information Item Characteristics 
+
+--- PAGE 143 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+143
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex C Key concepts and guidance 
+The following sections describe the key concepts that have been introduced in the Automotive 
+SPICE PRM resp. PAM 3.1. They relate to the terminology described in Annex C Terminology. 
+Annex C.1 The "Plug-in" concept 
+The following figure shows the basic principle of the "plug-in" concept. The top-level comprises all 
+system engineering processes organized in a system "V". Depending on the product to be developed 
+the corresponding engineering disciplines with their domain-specific processes (e.g., hardware 
+engineering HWE or software engineering SWE) can be added to the assessment scope. All other 
+processes such as management processes and supporting processes are domain-independent and 
+are therefore designed in a way that they can be applied to both the system level and the domain 
+levels. 
+SYS.1
+SYS.2
+SYS.3
+SYS.5
+SYS.4
+System level
+HWE.1
+HWE.2
+HWE.3
+HWE.4
+SWE.1
+SWE.2
+SWE.3
+SWE.5
+SWE.4
+SWE.6
+Domain level
+ACQ.4
+MAN.3
+SUP.8
+SUP.1
+SUP.9
+SUP.10
+ SYS : System engineering
+ SWE : Software engineering 
+ HWE : Hardware engineering
+Automotive SPICE 4.0 PRM/PAM
+Examplary processes for other domains, neither developed 
+by VDA nor part of Automotive SPICE PRM/PAM
+Domain specific 
+PAM extension
+ 
+Figure C.1 — The "Plug-in" concept 
+ 
+ 
+
+--- PAGE 144 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+144
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex C.2 "Element", "Component", and "Unit" 
+The following figure depicts the relationships between system elements, software components, and 
+software units which are used consistently in the engineering processes. See the Terminology in 
+Annex C to learn about the definitions of these terms. 
+Software
+Component
+Software Unit
+SYS.2
+System Requirements 
+Analysis
+SYS.3
+System Architectural 
+Design
+SYS.4
+System Integration and 
+Integration Verification
+SYS.5
+System Verification
+SWE.1
+Software Requirements 
+Analysis
+SWE.2
+Software Architectural 
+Design
+SWE.3
+Software Detailed Design 
+and Unit Construction
+SWE.4
+Software Unit Verification
+SWE.5
+Software Component Verification 
+and Integration Verification
+SWE.6
+Software Verification
+Element
+ 
+Figure C.2 — Element, component, and unit 
+ 
+ 
+
+--- PAGE 145 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+145
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex C.3 Integration of Machine Learning Engineering Processes 
+The following figure shows how the Machine Learning Engineering Processes are integrated within 
+the engineering V-Cycle perspective. Usually, the MLE “Machine Learning Engineering” processes 
+are used in a highly iterative way. 
+Within the Software Architecture software elements shall be identified which need to be developed 
+with machine learning. For these ML-based software elements the MLE processes apply, for other 
+software components SWE.3 “Software Detailed Design & Unit Construction” and SWE.4 “Software 
+Unit Verification” applies. After the successful testing of the ML-based software elements they need 
+to be integrated with the other software components by applying SWE.5 “Software Integration & 
+Integration Test”. 
+ 
+ 
+Figure C.3 — Integration of MLE Processes 
+The second figure shows the interdependencies within the MLE “Machine Learning Engineering” 
+process group and to the SUP.11 “Machine Learning Data Management”.  
+With MLE.1 “Machine Learning Requirements Analysis”, machine learning related Software 
+requirements allocated to the ML-based software elements need to be refined into a set of ML 
+requirements. These requirements must contain ML data requirements which are input for the 
+SUP.11 “Machine Learning Data Management” and other ML requirements which are input for the 
+other MLE “Machine Learning Engineering” processes. 
+By applying the SUP.11 “Machine Learning Data Management” process ML data with assured quality 
+and integrity, which fulfill the ML data requirements, are collected, processed, and made available 
+to all affected parties. 
+The other ML requirements should be used within the MLE.2 “Machine Learning Architecture” 
+process to develop an ML architecture supporting training and deployment. Therefore, the ML 
+architecture must contain all necessary ML architectural elements like hyperparameter ranges and 
+initial values, details of the ML model, and possible other software parts which are necessary for 
+MLE.3 “Machine Learning Training”. These other software parts should be developed according to 
+SWE.3 “Software Detailed Design & Unit Construction” and SWE.4 “Software Unit Verification”.  
+Performing MLE.3 “Machine Learning Training” should start with specifying an ML training and 
+validation approach. Based on this approach a training and validation dataset need to be created 
+
+--- PAGE 146 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+146
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+from the ML data pool provided by SUP.11 “Machine Learning Data Management” which is then 
+used iteratively to optimize the ML model weights and hyperparameter values. When training exit 
+criteria are reached the trained model should be agreed and communicated to all affected parties. 
+MLE.4 “Machine Learning Model Testing” focuses on testing the agreed trained model to ensure 
+compliance with the ML requirements. Therefore, an ML test approach needs to be specified and an 
+ML test dataset must be created from the provided ML data pool.  
+The ML test approach defines besides other details the distribution of data characteristics (e.g., sex, 
+weather conditions, street conditions within the ODD) defined by ML requirements. The test dataset 
+contains different test scenarios applying the required distribution of data characteristics e.g., driving 
+during rain on a gravel road. 
+After successful testing the trained model, a deployed model is derived and tested as well. The 
+deployed model will be integrated into the target system and may differ from the trained model which 
+often requires powerful hardware and uses interpretative languages. Finally, the agreed test results 
+and the deployed model must be communicated to all affected parties, so that the deployed model 
+can be integrated with the other software units by applying SWE.5 “Software Integration and 
+Integration Test”. 
+ 
+ 
+Figure C.4 — Interdependencies within MLE and SUP.11 
+ 
+ 
+
+--- PAGE 147 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+147
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex C.4 Example of an ML Architecture 
+The following figure shows an example of an ML architecture, describing the overall structure of the 
+ML-based software element and the interfaces within the ML-based software element and to other 
+software elements. The ML architecture typically consists of an ML model and other ML architectural 
+elements, which are other (classical) software components developed according to SWE.3 “Software 
+Detailed Design & Unit Construction” and SWE.4 “Software Unit Verification” and provided to train, 
+deploy and test the ML model. Furthermore, the ML architecture describes details of the ML model 
+like used layers, activation functions, loss function, and backpropagation.  
+ 
+ 
+Figure C.5 — Example of an ML Architecture 
+During training, hyperparameters (see appendix c #hyperparameters) defining the ML model will 
+change therefore it is recommended to define ranges of hyperparameter values and initial values for 
+training start are defined. Because developing an ML-based software element is highly iterativ 
+changes in the ML architecture might come up.  
+Furthermore, the ML architecture used for training can differ from the architecture of the deployed 
+model, which will be integrated with the other software elements, these differences are part of the 
+ML architecture as well. 
+ 
+ML architecture
+= ML Architectural Element
+Preprocessing 
+component(s) 
+(classical soŌware)
+- vectorizaƟon
+- normalizaƟon
+- data augmentaƟon
+- robusƟﬁcaƟon 
+approaches
+Postprocessing 
+component(s)
+(classical soŌware)
+- interpretaƟon
+- monitoring
+ML model
+Loss 
+funcƟon
+Layer 1
+Layer …
+Layer k
+Output
+= Details of the ML Model
+= Interfaces
+BackpropagaƟon
+
+--- PAGE 148 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+148
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex C.5 Traceability and consistency 
+SYS.2 BP5
+SWE.1 BP5
+SYS.5 BP4
+SYS.3 BP4
+SWE.1 BP5
+SYS.4 BP4
+SWE.6 BP4
+SWE.5 BP6
+SWE.4 BP4
+SWE.3 BP4
+SWE.3 BP4
+SWE.6 BP4
+SWE.5 BP6
+SYS.4 BP4
+SYS.5 BP4
+SUP.10 BP4
+SWE.2 BP4
+Consistency and bidirectional traceability
+bidirectional traceability
+Stakeholder
+requirements
+System requirements
+System architecture
+SW requirements
+SW architecture
+SW detailed design
+SW Unit
+Unit verification
+results
+Change requests
+Integration
+verification results
+Verification results
+Verification 
+measures
+Verification 
+measures
+System integration
+verification results
+System verification 
+results
+Verification 
+measures
+Verification 
+measures
+Verification 
+measures
+SWE.5 BP6
+SWE.4 BP4
+Affected work 
+products
+Validation 
+measures
+Validation results
+VAL.1 BP4
+VAL.1 BP4
+Problem reports
+SUP.10 BP4
+SWE.3 BP4
+ 
+Figure C.2 — Consistency and traceability between system and software work products  
+SYS.2 BP5
+HWE.1 BP5
+SYS.5 BP4
+SYS.3 BP4
+HWE.1 BP5
+SYS.4 BP4
+HWE.4 BP5
+HWE.3 BP5
+HWE.4 BP5
+HWE.3 BP5
+SYS.4 BP4
+SYS.5 BP4
+SUP.10 BP4
+HWE.2 BP5
+Consistency and bidirectional traceability
+bidirectional traceability
+Stakeholder
+requirements
+System requirements
+System architecture
+HW requirements
+HW design
+Change requests
+Integration
+verification results
+Verification results
+Verification 
+measures
+Verification 
+measures
+System integration
+verification results
+System verification 
+results
+Verification 
+measures
+Verification 
+measures
+Affected work 
+products
+Validation 
+measures
+Validation results
+VAL.1 BP4
+VAL.1 BP4
+Problem reports
+SUP.10 BP4
+ 
+Figure C.3 — Consistency and traceability between system and hardware work products  
+
+--- PAGE 149 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+149
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SW requirements
+       ML requirements
+MLE.1 BP5
+ML architecture 
+MLE.2 BP6
+MLE.3 BP4
+ML data 
+requirements
+SW architecture
+MLE.1 BP5
+ML training and 
+validation data set  
+ML test approach
+MLE.4 BP6
+ML test data set
+MLE.4 BP6
+ML test results
+MLE.4 BP6
+Consistency and bidirectional traceability
+bidirectional traceability
+ 
+Figure C.4 — Consistency and traceability between ML work products  
+ 
+ 
+
+--- PAGE 150 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+150
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex C.6 "Agree" and "Summarize and Communicate" 
+The information flow on the left side of the "V" is ensured through a base practice "Communicate 
+agreed ‘work product x’". The term "agreed" here means that there is a joint understanding between 
+affected parties of what is meant by the content of the work product. 
+The information flow on the right side of the "V" is ensured through a base practice "Summarize and 
+communicate results". The term "Summarize" refers to abstracted information resulting from test 
+executions made available to all affected parties. 
+These communication-oriented base practices do not require a planning-based approach, nor a 
+formal approval, confirmation, or release, as this is targeted at by GP 2.1.6 on capability level 2. At 
+capability level 1 the communication-oriented base practices mean that the work products (or their 
+content) are to be disseminated to affected parties.  
+An overview of these aspects is shown in the following figure: 
+SYS.2
+System Requirements 
+Analysis
+SYS.3
+System Architectural 
+Design
+SYS.4
+System Integration and 
+Integration Verification
+SYS.5
+System Verification
+SWE.1
+Software Requirements 
+Analysis
+SWE.2
+Software Architectural 
+Design
+SWE.3
+Software Detailed Design 
+and Unit Construction
+SWE.4
+Software Unit Verification 
+and Integration Verification
+SWE.5
+Software Integration and 
+Integration Verification
+SWE.6
+Software Verification
+BP: “Communicate agreed…“
+BP: “Summarize and communicate…“
+MLE.1
+Machine Learning 
+Requirements Analysis
+MLE.2
+Machine Learning 
+Architecture
+MLE.3
+Machine Learning Training
+MLE.4
+Machine Learning Model 
+Testing
+ 
+Figure C.5 — Agree, summarize and communicate 
+ 
+ 
+
+--- PAGE 151 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+151
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex C.7 Key Changes in Automotive SPICE 4.0 
+Terminology – “Measure” vs. “Metric” 
+ In the English literature the term “measure” can mean both 
+• 
+“to find the size, quantity, etc. of something in standard units, ‘size/quantity’” and “… to judge 
+the importance, value or effect of something”, respectively  
+• 
+“a plan of action or something done” 
+ 
+In PAM v3.1, both meanings were inconsistently used in e.g.: 
+• 
+MAN.5.BP6 
+• 
+MAN.6 
+• 
+PIM.3.BP7 Note 10 
+• 
+work product characteristics 07-00 “Measure“ and 07-xx 
+ 
+In the assessment practice, this sometimes led to misconceptions with interpreting these 
+assessment indicators and, thus, to varying assessment results. Since it was one of the 
+objectives for Automotive SPICE 4.0 to use terminology more homogeneously, the decision was 
+to consistently use the following terms and meaning: 
+• 
+Quantitative measurement    –  “metric 
+• 
+“A plan of action”        –  “measure”  
+• 
+“To act in an operational manner” –  “action” 
+Terminology – “Affected Party” (Level 1) vs. “Involved Party” (Level 2) 
+Processes at capability level 1 use the term “affected party” in the context of BP “Communicate”. 
+This is to indicate that for every process instance A there is a downstream process instance B that 
+requires the technical (i.e., capability level 1) output of A as a necessary input. Otherwise, process 
+instance B would not be able to proceed, or update its output. 
+In contrast, “involved party” at capability level 2 includes, but goes beyond “affected parties”. For 
+example, there may be a stakeholder who 
+• 
+is passively kept in the information loop (e.g., a line manager, steering committee); 
+• 
+is providing input (e.g., a deadline, a particular resource) and only requiring a commitment, 
+but no further active involvement. 
+Affected parties thus are a subset of involved parties. 
+ 
+ 
+
+--- PAGE 152 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+152
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Terminology – “Verification” instead of “Testing” 
+The former Automotive SPICE V3.1 process SUP.2 Verification has been removed in favor of 
+advancing the respective SWE and SYS processes from pure testing to verification. The motivation 
+for this was: 
+• 
+SUP.2 was vague in regards to what ‘verification‘ should consider in contrast to testing 
+processes 
+• 
+Especially at the system level, testing is not the only verification approach. Rather, 
+measurements (e.g., geometrical tolerances), calculations or analyses (e.g., strength/stress 
+calculation using an FEM method), or simulations instead of using physical samples are other 
+types of verification. The same is true for mechanical or hardware development. Therefore, 
+the umbrella term verification now forms he center of those processes‘ purposes. 
+• 
+The process SWE.4 ‘Unit Verification’ has already been an exception as a SW unit can be 
+verified coherently by means of a combination of static analysis, testing, or code reviews (a 
+view that is also inherent in ISO 26262-6 clause 9). 
+ 
+ 
+
+--- PAGE 153 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+153
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Annex D Reference standards 
+Annex D provides a list of reference standards and guidelines that support implementation of the 
+Automotive SPICE PAM / PRM. 
+ 
+ISO/IEC 33001:2015 
+Information technology -- Process assessment – 
+Concepts and terminology 
+ISO/IEC 33002:2015 
+Information technology -- Process assessment – 
+Requirements for performing process assessment 
+ISO/IEC 33003:2015 
+Information technology -- Process assessment – 
+Requirements for process measurement frameworks  
+ISO/IEC 33004:2019 
+Information technology -- Process assessment – 
+Requirements for process reference, process assessment and 
+maturity models  
+ISO/IEC 33020:2019 
+Information technology -- Process assessment – 
+Process measurement framework for assessment of process 
+capability 
+ISO/IEC/IEEE 24765:2017 
+Systems and software engineering -- Vocabulary 
+ISO/IEC/IEEE 29148:2018 
+Systems and software engineering – Life cycle processes – 
+Requirements engineering 
+INCOSE Guide for Writing 
+Requirements 
+https://www.incose.org/ 
+PAS 1883:2020 
+Operational design domain (ODD) taxonomy for an automated 
+driving system (ADS) 
+ISO 26262:2018 
+Road vehicles — Functional safety, Second edition 
+2018-12 
+Table D.1 — Reference standards 

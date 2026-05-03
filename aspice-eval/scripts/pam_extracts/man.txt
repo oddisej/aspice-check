@@ -1,0 +1,558 @@
+
+--- PAGE 89 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+89
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.9. Management process group (MAN) 
+4.9.1. MAN.3 Project Management 
+Process ID 
+MAN.3 
+Process name 
+Project Management 
+Process purpose 
+The purpose is to identify and control the activities, and establish resources necessary for a 
+project to develop a product, in the context of the project’s requirements and constraints. 
+Process outcomes 
+1) The scope of the work for the project is defined. 
+2) The feasibility of achieving the goals of the project with available resources and constraints 
+is evaluated. 
+3) The activities and resources necessary to complete the work are sized and estimated. 
+4) Interfaces within the project, and with other projects and organizational units, are identified 
+and monitored. 
+5) Plans for the execution of the project are developed, implemented and maintained. 
+6) Progress of the project is monitored and reported. 
+7) Adjustment is performed when project goals are not achieved. 
+ 
+Base Practices  
+MAN.3.BP1: Define the scope of work. Identify the project's goals, motivation and boundaries. 
+MAN.3.BP2: Define project life cycle. Define the life cycle for the project, which is appropriate 
+to the scope, context, and complexity of the project. Define a release scope for relevant 
+milestones. 
+Note 1: This may include the alignment of the project life cycle with the customer's development 
+process. 
+MAN.3.BP3: Evaluate feasibility of the project. Evaluate the feasibility of achieving the goals 
+of the project with respect to time, project estimates, and available resources. 
+Note 2: The evaluation of feasibility may consider technical constraints of the project. 
+MAN.3.BP4: Define and monitor work packages. Define and monitor work packages and their 
+dependencies according to defined project life cycle and estimations.  
+Note 3: The structure and the size of the work packages support an adequate progress monitoring. 
+Note 4: Work packages may be organized in a work breakdown structure. 
+
+--- PAGE 90 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+90
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+MAN.3.BP5: Define and monitor project estimates and resources. Define and monitor 
+project estimates of effort and resources based on project's goals, project risks, motivation and 
+boundaries. 
+Note 5: Examples of necessary resources are budget, people, product samples, or infrastructure  
+Note 6: Project risks (using MAN.5) may be considered. 
+Note 7: Estimations and resources may include engineering, management and supporting 
+processes. 
+MAN.3.BP6: Define and monitor required skills, knowledge, and experience. Identify and 
+monitor the required skills, knowledge, and experience for the project in line with the estimates 
+and work packages. 
+Note 8: Training, mentoring or coaching of individuals may be applied to resolve deviations from 
+required skills and knowledge. 
+MAN.3.BP7: Define and monitor project interfaces and agreed commitments. Identify and 
+agree interfaces of the project with affected stakeholders and monitor agreed commitments. 
+Define an escalation mechanism for commitments that are not fulfilled. 
+Note 9: Affected stakeholders may include other projects, organizational units, sub-contractors, and 
+service providers. 
+MAN.3.BP8: Define and monitor project schedule. Allocate resources to work packages and 
+schedule each activity of the project. Monitor the performance of activities against schedule. 
+MAN.3.BP9: Ensure consistency. Regularly adjust estimates, resources, skills, work packages 
+and their dependencies, schedules, plans, interfaces, and commitments for the project to ensure 
+consistency with the scope of work. 
+Note 10: This may include the consideration of critical dependencies, that are an input for risk 
+management. 
+MAN.3.BP10: Review and report progress of the project. Regularly review and report the 
+status of the project and the fulfillment of work packages against estimated effort and duration to 
+all affected parties. Prevent recurrence of identified problems. 
+Note 11: Project reviews may be executed at regular intervals by the management. Project reviews 
+may contribute to identify best practices and lessons learned.  
+Note 12: Refer to SUP.9 for resolution of problems 
+ 
+MAN.3 Project Management 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Outcome 7 
+Output Information Items 
+08-53 Scope of work 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+08-54 Feasibility analysis 
+ 
+X 
+ 
+X 
+ 
+ 
+ 
+14-10 Work package 
+ 
+ 
+X 
+X 
+X 
+ 
+ 
+
+--- PAGE 91 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+91
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+13-52 Communication evidence 
+ 
+X 
+X 
+ 
+ 
+ 
+ 
+13-16 Change request 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+13-51 Consistency evidence 
+ 
+X 
+ 
+ 
+ 
+ 
+X 
+14-02 Corrective action 
+ 
+ 
+ 
+ 
+ 
+X 
+X 
+18-52 Escalation path 
+ 
+ 
+ 
+X 
+ 
+X 
+X 
+08-56 Schedule 
+ 
+ 
+X 
+ 
+X 
+ 
+X 
+14-50 Stakeholder groups list 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+15-06 Project status 
+ 
+ 
+ 
+X 
+ 
+X 
+ 
+Base Practices  
+BP1: Define the scope of work 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+BP2: Define project life cycle 
+X 
+X 
+ 
+ 
+ 
+ 
+ 
+BP3: Evaluate feasibility of the project 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+BP4: Define and monitor work packages 
+ 
+ 
+X 
+X 
+X 
+ 
+X 
+BP5: Define and monitor project estimates and resources 
+ 
+X 
+X 
+ 
+ 
+ 
+X 
+BP6: Define and monitor required skills, knowledge, and 
+experience 
+ 
+ 
+X 
+ 
+ 
+ 
+X 
+BP7: Define and monitor project interfaces and agreed 
+commitments 
+ 
+ 
+X 
+ 
+X 
+ 
+X 
+BP8: Define and monitor project schedule 
+ 
+ 
+ 
+ 
+ 
+X 
+X 
+BP9: Ensure consistency 
+ 
+ 
+X 
+X 
+X 
+ 
+X 
+BP10: Review and report progress of the project 
+ 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+4.9.2. MAN.5 Risk Management 
+Process ID 
+MAN.5 
+Process name 
+Risk Management 
+Process purpose 
+The purpose is to Regularly identify, analyze, treat and monitor process related risks and 
+product related risks. 
+Process outcomes 
+1) The sources of risks are identified and regularly updated. 
+2) Potential undesirable events are identified as they develop during the conduct of the project. 
+3) Risks are analyzed and the priority in which to apply resources to treatment of these risks is 
+determined. 
+4) Risk measures are defined, applied, and assessed to determine changes in the status of risk 
+
+--- PAGE 92 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+92
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+and the progress of the risk treatment activities. 
+5) Appropriate treatment is taken to correct or avoid the impact of risk based on its priority, 
+probability, and consequence or other defined risk threshold. 
+ 
+Base Practices  
+MAN.5.BP1: Identify sources of risks. Identify and regularly update the sources of risks with 
+affected parties. 
+Note 1: Risks may include technical, economical, and schedule risks. 
+Note 2: Risks may include the suppliers’ deliverables and services. 
+Note 3: The risk sources may vary across the entire project life cycle. 
+MAN.5.BP2: Identify potential undesirable events. Identify potential undesirable events within 
+the scope of the risk management for the project.  
+MAN.5.BP3: Determine risks. Determine the probability and severity of the undesirable events 
+to support priorities for the mitigation of the risks. 
+Note 4: Different methods may be used to analyze technical risks of a system, for example, 
+functional analysis, simulation, FMEA, FTA etc. 
+MAN.5.BP4: Define risk treatment options. For each risk select a treatment option to accept, 
+mitigate, avoid, or share (transfer) the risk. 
+MAN.5.BP5: Define and perform risk treatment activities. Define and perform risk activities 
+for risk treatment options.  
+MAN.5.BP6: Monitor risks. Regularly re-evaluate the risk related to the identified potential 
+undesirable events to determine changes in the status of a risk and to evaluate the progress of 
+the risk treatment activities. 
+Note 5: Risks of high priority may need to be communicated to and monitored by higher levels of 
+management. 
+MAN.5.BP7: Take corrective action. When risk treatment activities are not effective, take 
+appropriate corrective action. 
+Note 6: Corrective actions may involve reevaluation of risks, developing and implementing new 
+mitigation concepts or adjusting the existing concepts. 
+ 
+MAN.5 Risk Management 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Output Information Items 
+15-51 Analysis results 
+X 
+X 
+X 
+ 
+X 
+15-09 Risk status 
+X 
+ 
+X 
+X 
+X 
+08-55 Risk measure 
+ 
+ 
+ 
+X 
+X 
+
+--- PAGE 93 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+93
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+14-02 Corrective action 
+ 
+ 
+ 
+X 
+X 
+Base Practices  
+BP1: Identify sources of risks 
+X 
+ 
+ 
+ 
+ 
+BP2: Identify potential undesirable events 
+ 
+X 
+ 
+ 
+ 
+BP3: Determine risks 
+ 
+ 
+X 
+ 
+ 
+BP4: Define risk treatment options 
+ 
+ 
+ 
+X 
+X 
+BP5: Define and perform risk treatment activities. 
+ 
+ 
+ 
+X 
+X 
+BP6: Monitor risks 
+ 
+ 
+ 
+X 
+ 
+BP7: Take corrective action 
+ 
+ 
+ 
+ 
+X 
+ 
+4.9.3. MAN.6 Measurement 
+Process ID 
+MAN.6 
+Process name 
+Measurement 
+Process purpose 
+The purpose is to Collect and analyze data relating to the development results and processes 
+implemented within the organization and its projects, to support effective management of the 
+processes. 
+Process outcomes 
+1) The measurement information needs that are necessary to evaluate the achievement of 
+process objectives and the achievement of desired work products are identified. 
+2) An appropriate set of metrics, driven by the information needs are identified and/or 
+developed. 
+3) Measurement activities are identified and performed. 
+4) The required metrics are collected, stored, analyzed, and the results interpreted. 
+5) Metrics are used to support decisions and provide an objective basis for communication. 
+ 
+Base Practices  
+MAN.6.BP1: Identify information needs. Identify the measurement information needs that are 
+necessary to evaluate the achievement of process objectives and work products. 
+Note 1: Information needs may change over time. Therefore, the measurement process may be 
+used in an iterative way. 
+MAN.6.BP2: Specify metrics. Identify and develop an appropriate set of metrics based on 
+measurement information needs.  
+Note 2: Metrics may be related to processes or development results. 
+
+--- PAGE 94 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+94
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+MAN.6.BP3: Collect and store metrics. Collect and store both base and derived metrics, 
+including any context information necessary to verify and understand the metrics.  
+Note 3: Base metrics in the context of this process are directly gathered metrics like “number of 
+defects found” or “number of lines of code”, where derived metrics are two or more metrics that are 
+brought in relation to each other like “number of defects found per line of code”. 
+MAN.6.BP4: Analyze collected metrics. Analyze, interpret and review measured values to 
+support decision-making. 
+MAN.6.BP5: Communicate analysis results. Communicate analysis results to all affected 
+parties. 
+MAN.6.BP6: Use metrics for decision-making. Make accessible and use information from 
+collected metrics and analysis results for any decision-making process for which it is relevant. 
+ 
+MAN.6 Measurement 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Output Information Items 
+03-03 Benchmarking data  
+ 
+ 
+ 
+X 
+X 
+03-04 Customer satisfaction data  
+ 
+ 
+ 
+X 
+X 
+03-06 Process performance information  
+ 
+ 
+ 
+X 
+X 
+07-51 Measurement result 
+ 
+X 
+X 
+X 
+X 
+15-51 Analysis results  
+X 
+ 
+ 
+X 
+X 
+Base Practices  
+BP1: Identify information needs 
+X 
+ 
+ 
+ 
+ 
+BP2: Specify metrics 
+ 
+X 
+X 
+ 
+ 
+BP3: Collect and store metrics 
+ 
+ 
+X 
+X 
+ 
+BP4: Analyze collected metrics 
+ 
+ 
+ 
+X 
+X 
+BP5: Communicate measurement information 
+ 
+ 
+ 
+ 
+X 
+BP6: Use metrics for decision-making 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 

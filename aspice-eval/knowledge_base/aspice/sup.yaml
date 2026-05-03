@@ -1,0 +1,483 @@
+process_group:
+  code: "SUP"
+  name: "Support"
+
+processes:
+  # ============================================================
+  # SUP.1 — Quality Assurance
+  # ============================================================
+  - process_id: "SUP.1"
+    process_name: "Quality Assurance"
+    process_purpose: >-
+      The purpose of the Quality Assurance Process is to provide independent and objective
+      assurance that work products and processes comply with defined criteria and that non-
+      conformances are resolved and further prevented.
+    process_outcomes:
+      - id: 1
+        description: "Quality assurance is performed independently and objectively without conflicts of interest."
+      - id: 2
+        description: "Criteria for the quality of work products and process performance are defined."
+      - id: 3
+        description: "Conformance of work products and process performance with the defined criteria and targets is verified, documented and communicated to the relevant parties."
+      - id: 4
+        description: "Non-conformances are tracked, resolved, and further prevented."
+      - id: 5
+        description: "Non-conformances are escalated to appropriate levels of management."
+      - id: 6
+        description: "Management ensures that escalated non-conformances are resolved."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Ensure independence of quality assurance"
+        description: >-
+          Ensure that quality assurance is performed independently and objectively without
+          conflicts of interest.
+        notes:
+          - "Note 1: Possible inputs for evaluating the independence may be assignment to financial and/or organizational structure as well as responsibility for processes that are subject to quality assurance (no self-monitoring)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Define criteria for quality assurance"
+        description: >-
+          Define quality criteria for work products as well as for process tasks and their
+          performance.
+        notes:
+          - "Note 2: Quality criteria may consider internal and external inputs such as customer requirements, standards, milestones, etc."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Assure quality of work products"
+        description: >-
+          Identify work products subject to quality assurance according to the quality criteria.
+          Perform appropriate activities to evaluate the work products against the defined
+          quality criteria and document the results.
+        notes:
+          - "Note 3: Quality assurance activities may include reviews, problem analysis and lessons learned that improve the work products for further use."
+        maps_to_outcomes: [3, 4]
+      - bp_id: "BP4"
+        title: "Assure quality of process activities"
+        description: >-
+          Identify processes subject to quality assurance according to the quality criteria.
+          Perform appropriate activities to evaluate the processes against their defined
+          quality criteria and associated target values and document the results.
+        notes:
+          - "Note 4: Quality assurance activities may include process assessments, problem analysis, regular check of methods, tools, and the adherence to defined processes, and consideration of lessons learned."
+        maps_to_outcomes: [3, 4]
+      - bp_id: "BP5"
+        title: "Summarize and communicate quality assurance activities and results"
+        description: >-
+          Regularly report performance, non-conformances, and trends of quality assurance
+          activities to all affected parties.
+        maps_to_outcomes: [3, 4, 5]
+      - bp_id: "BP6"
+        title: "Ensure resolution of non-conformances"
+        description: >-
+          Analyze, track, correct, resolve, and further prevent non-conformances found in
+          quality assurance activities.
+        notes:
+          - "Note 5: Non-conformances detected in work products may be entered into the problem resolution management process (SUP.9)."
+          - "Note 6: Non-conformances detected in the process definition or implementation may be entered into a process improvement process (PIM.3)."
+        maps_to_outcomes: [4, 6]
+      - bp_id: "BP7"
+        title: "Escalate non-conformances"
+        description: >-
+          Escalate relevant non-conformances to appropriate levels of management and other
+          relevant stakeholders to facilitate their resolution.
+        notes:
+          - "Note 7: The decision whether to escalate non-conformances may be based on criteria such as delay of resolution, urgency, and risk."
+        maps_to_outcomes: [5, 6]
+    output_information_items:
+      - item_id: "16-50"
+        name: "Organizational structure"
+        maps_to_outcomes: [1, 5]
+      - item_id: "18-52"
+        name: "Escalation path"
+        maps_to_outcomes: [5, 6]
+      - item_id: "18-07"
+        name: "Quality criteria"
+        maps_to_outcomes: [2, 3, 4]
+      - item_id: "13-52"
+        name: "Communication evidence"
+        maps_to_outcomes: [3, 4, 5]
+      - item_id: "13-18"
+        name: "Quality conformance evidence"
+        maps_to_outcomes: [3, 4]
+      - item_id: "13-19"
+        name: "Review evidence"
+        maps_to_outcomes: [3, 4]
+      - item_id: "14-02"
+        name: "Corrective action"
+        maps_to_outcomes: [4, 6]
+
+  # ============================================================
+  # SUP.8 — Configuration Management
+  # ============================================================
+  - process_id: "SUP.8"
+    process_name: "Configuration Management"
+    process_purpose: >-
+      The purpose of the Configuration Management Process is to establish and maintain the integrity
+      of relevant configuration items and baselines, and make them available to affected parties.
+    process_outcomes:
+      - id: 1
+        description: "Selection criteria for configuration items are defined and applied."
+      - id: 2
+        description: "Configuration item properties are defined."
+      - id: 3
+        description: "Configuration management is established."
+      - id: 4
+        description: "Modifications are controlled."
+      - id: 5
+        description: "Baselining is applied."
+      - id: 6
+        description: "The status of the configuration items is recorded and reported."
+      - id: 7
+        description: "The completeness and consistency of the baselines is ensured."
+      - id: 8
+        description: "The availability of backup and recovery mechanisms is verified."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Identify configuration items"
+        description: >-
+          Define selection criteria for identifying relevant work products to be subject to
+          configuration management. Identify and document configuration items according to
+          the defined selection criteria.
+        notes:
+          - "Note 1: Configuration items are representing work products or group of work products which are subject to configuration management as a single entity."
+          - "Note 2: Configuration items may vary in complexity, size, and type, ranging from an entire system including all system, hardware, and software documentation down to a single element or document."
+          - "Note 3: The selection criteria may be applied to single work products or a group of work products."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Define configuration item properties"
+        description: >-
+          Define the necessary properties needed for the modification and control of
+          configuration items.
+        notes:
+          - "Note 4: The configuration item properties may be defined for single configuration items or a group of items."
+          - "Note 5: Configuration item properties may include a status model (e.g., Under Work, Tested, Released, etc.), storage location, access rights, etc."
+          - "Note 6: The application of properties may be implemented by attributes of configuration items."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Establish configuration management"
+        description: >-
+          Establish configuration management mechanisms for control of identified configuration
+          items including the configuration item properties, including mechanisms for controlling
+          parallel modifications of configuration items.
+        notes:
+          - "Note 7: This may include specific mechanisms for different configuration item types, such as branch and merge management, or checkout control."
+        maps_to_outcomes: [3, 4]
+      - bp_id: "BP4"
+        title: "Control modifications"
+        description: >-
+          Control modifications using the configuration management mechanisms.
+        notes:
+          - "Note 8: This may include the application of a defined status model for configuration items."
+        maps_to_outcomes: [4]
+      - bp_id: "BP5"
+        title: "Establish baselines"
+        description: >-
+          Define and establish baselines for internal purposes, and for external product
+          delivery, for all relevant configuration items.
+        maps_to_outcomes: [5]
+      - bp_id: "BP6"
+        title: "Summarize and communicate configuration status"
+        description: >-
+          Record, summarize, and communicate the status of configuration items and established
+          baselines to affected parties in order to support the monitoring of progress and status.
+        notes:
+          - "Note 9: Regular communication of the configuration status, e.g., based on a defined status model supports project management, quality activities, and dedicated project phases such as software integration."
+        maps_to_outcomes: [6]
+      - bp_id: "BP7"
+        title: "Ensure completeness and consistency"
+        description: >-
+          Ensure that the information about configuration items is correct and complete
+          including configuration item properties. Ensure the completeness and consistency
+          of baselines.
+        notes:
+          - "Note 10: Completeness and consistency of a baseline means that all required configuration items are included and consistent, and have the required status. This can be used to support e.g., project gate approval."
+        maps_to_outcomes: [7]
+      - bp_id: "BP8"
+        title: "Verify backup and recovery mechanisms availability"
+        description: >-
+          Verify the availability of appropriate backup and recovery mechanisms for the
+          configuration management including the controlled configuration items. Initiate
+          measures in case of insufficient backup and recovery mechanisms.
+        notes:
+          - "Note 11: Backup and recovery mechanisms may be defined and implemented by organizational units outside the project team. This may include references to corresponding procedures or regulations."
+        maps_to_outcomes: [8]
+    output_information_items:
+      - item_id: "18-53"
+        name: "Configuration item selection criteria"
+        maps_to_outcomes: [1]
+      - item_id: "01-52"
+        name: "Configuration item list"
+        maps_to_outcomes: [1, 2, 7]
+      - item_id: "16-03"
+        name: "Configuration management system"
+        maps_to_outcomes: [3, 4, 5]
+      - item_id: "13-08"
+        name: "Baseline"
+        maps_to_outcomes: [5, 7]
+      - item_id: "14-01"
+        name: "Change history"
+        maps_to_outcomes: [3, 4, 6]
+      - item_id: "15-56"
+        name: "Configuration status"
+        maps_to_outcomes: [6]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [7]
+      - item_id: "06-52"
+        name: "Backup and recovery mechanism information"
+        maps_to_outcomes: [8]
+
+  # ============================================================
+  # SUP.9 — Problem Resolution Management
+  # ============================================================
+  - process_id: "SUP.9"
+    process_name: "Problem Resolution Management"
+    process_purpose: >-
+      The purpose of the Problem Resolution Management Process is to ensure that problems are
+      identified, recorded, analyzed, and their resolution is managed and controlled.
+    process_outcomes:
+      - id: 1
+        description: "Problems are uniquely identified, recorded and classified."
+      - id: 2
+        description: "Problems are analyzed and assessed to determine an appropriate solution."
+      - id: 3
+        description: "Problem resolution is initiated."
+      - id: 4
+        description: "Problems are tracked to closure."
+      - id: 5
+        description: "The status of problems including trends identified are reported to stakeholders."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Identify and record the problem"
+        description: >-
+          Each problem is uniquely identified, described and recorded. A status is assigned
+          to each problem to facilitate tracking. Supporting information is provided to
+          reproduce and diagnose the problem.
+        notes:
+          - "Note 1: Problems may relate to e.g., product, resources, or methods."
+          - "Note 2: Example values for the problem status are \"new\", \"solved\", \"closed\", etc."
+          - "Note 3: Supporting information may include e.g, the origin of the problem, how it can be reproduced, environmental information, by whom it has been detected."
+          - "Note 4: Unique identification supports traceability to changes made as needed by the change request management process (SUP.10)."
+        maps_to_outcomes: [1, 4]
+      - bp_id: "BP2"
+        title: "Determine the cause and the impact of the problem"
+        description: >-
+          Analyze the problem, determine its cause, including common causes if existing,
+          and impact. Involve relevant parties. Categorize the problem.
+        notes:
+          - "Note 5: Problem categorization (e.g., light, medium, severe) may be based on severity, criticality, urgency, etc."
+        maps_to_outcomes: [1, 2]
+      - bp_id: "BP3"
+        title: "Authorize urgent resolution action"
+        description: >-
+          Obtain authorization for immediate action if a problem requires an urgent resolution
+          according to the categorization.
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Raise alert notifications"
+        description: >-
+          If according to the categorization the problem has a high impact on other systems
+          or other affected parties, an alert notification needs to be raised accordingly.
+        maps_to_outcomes: [3]
+      - bp_id: "BP5"
+        title: "Initiate problem resolution"
+        description: >-
+          Initiate appropriate actions according to the categorization to resolve the problem
+          long-term, including review of those actions or initiate a change request. This
+          includes synchronization and consistency with short-term urgent resolution actions,
+          if applicable.
+        maps_to_outcomes: [3]
+      - bp_id: "BP6"
+        title: "Track problems to closure"
+        description: >-
+          Track the status of problems to closure including all related change requests.
+          The closure of problems is accepted by relevant stakeholders.
+        maps_to_outcomes: [4, 5]
+      - bp_id: "BP7"
+        title: "Report the status of problem resolution activities"
+        description: >-
+          Collect and analyze problem resolution management data, identify trends, and
+          initiate related actions. Regularly report the results of data analysis, the
+          identified trends and the status of problem resolution activities to relevant
+          stakeholders.
+        notes:
+          - "Note 6: Collected data may contain information about where the problems occurred, how and when they were found, what their impacts were, etc."
+        maps_to_outcomes: [5]
+    output_information_items:
+      - item_id: "13-07"
+        name: "Problem"
+        maps_to_outcomes: [1, 2, 3, 4]
+      - item_id: "15-55"
+        name: "Problem analysis evidence"
+        maps_to_outcomes: [2]
+      - item_id: "15-12"
+        name: "Problem status"
+        maps_to_outcomes: [5]
+
+  # ============================================================
+  # SUP.10 — Change Request Management
+  # ============================================================
+  - process_id: "SUP.10"
+    process_name: "Change Request Management"
+    process_purpose: >-
+      The purpose of the Change Request Management Process is to ensure that change requests
+      are recorded, analyzed, tracked, approved, and implemented.
+    process_outcomes:
+      - id: 1
+        description: "Requests for changes are recorded and identified."
+      - id: 2
+        description: "Change requests are analyzed, dependencies and relationships to other change requests are identified, and the impact is estimated."
+      - id: 3
+        description: "Change requests are approved before implementation and prioritized accordingly."
+      - id: 4
+        description: "Bidirectional traceability is established between change requests and affected work products."
+      - id: 5
+        description: "Implementation of change requests is confirmed."
+      - id: 6
+        description: "Change requests are tracked to closure and status of change requests is communicated to affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Identify and record the change requests"
+        description: >-
+          The scope for application of change requests is identified. Each change request is
+          uniquely identified, described, and recorded, including the initiator and reason of
+          the change request. A status is assigned to each change request to facilitate tracking.
+        notes:
+          - "Note 1: Change requests may be used for changes related to e.g., product, process, methods."
+          - "Note 2: Example values for the change request status are \"open\", \"under investigation\", \"implemented\", etc."
+          - "Note 3: The change request handling may differ across the product life cycle e.g., during prototype construction and series development."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Analyze and assess change requests"
+        description: >-
+          Change requests are analyzed by relevant parties according to analysis criteria.
+          Work products affected by the change request and dependencies to other change
+          requests are determined. The impact of the change requests is assessed.
+        notes:
+          - "Note 4: Examples for analysis criteria are: resource requirements, scheduling issues, risks, benefits, etc."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Approve change requests before implementation"
+        description: >-
+          Change requests are prioritized and approved for implementation based on analysis
+          results and availability of resources.
+        notes:
+          - "Note 5: A Change Control Board (CCB) is an example mechanism used to approve change requests."
+          - "Note 6: Prioritization of change requests may be done by allocation to releases."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Establish bidirectional traceability"
+        description: >-
+          Establish bidirectional traceability between change requests and work products
+          affected by the change requests. In case that the change request is initiated by
+          a problem, establish bidirectional traceability between change requests and the
+          corresponding problem reports.
+        maps_to_outcomes: [4]
+      - bp_id: "BP5"
+        title: "Confirm the implementation of change requests"
+        description: >-
+          The implementation of change requests is confirmed before closure by relevant
+          stakeholders.
+        maps_to_outcomes: [5]
+      - bp_id: "BP6"
+        title: "Track change requests to closure"
+        description: >-
+          Change requests are tracked to closure. The status of change requests is
+          communicated to all affected parties.
+        notes:
+          - "Note 7: Examples for informing affected parties can be daily standup meetings or tool-supported workflows."
+        maps_to_outcomes: [6]
+    output_information_items:
+      - item_id: "18-57"
+        name: "Change analysis criteria"
+        maps_to_outcomes: [2]
+      - item_id: "13-16"
+        name: "Change request"
+        maps_to_outcomes: [1, 2, 3, 5, 6]
+      - item_id: "13-51"
+        name: "Consistency evidence"
+        maps_to_outcomes: [4]
+
+  # ============================================================
+  # SUP.11 — Machine Learning Data Management
+  # ============================================================
+  - process_id: "SUP.11"
+    process_name: "Machine Learning Data Management"
+    process_purpose: >-
+      The purpose is to define and align ML data with ML data requirements, maintain the integrity
+      and quality of the ML data, and make them available to affected parties.
+    process_outcomes:
+      - id: 1
+        description: "A ML data management system including an ML data lifecycle is established."
+      - id: 2
+        description: "A ML data quality approach is developed including ML data quality criteria."
+      - id: 3
+        description: "Collected ML data are processed for consistency with ML data requirements."
+      - id: 4
+        description: "ML data are verified against defined ML data quality criteria and updated as needed."
+      - id: 5
+        description: "ML data are agreed and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Establish an ML data management system"
+        description: >-
+          Establish an ML data management system which supports ML data management activities,
+          relevant sources of ML data, ML data life cycle including a status model, and
+          interfaces to affected parties.
+        notes:
+          - "Note 1: Supported ML data management activities may include data collection, labeling/annotation, and structuring."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Develop an ML data quality approach"
+        description: >-
+          Develop an approach to ensure that the quality of ML data is analyzed based on
+          defined ML data quality criteria and activities are performed to support avoidance
+          of biases of data.
+        notes:
+          - "Note 2: Examples of ML data quality criteria are relevant data sources, reliability and consistency of labelling, completeness against ML data requirements."
+          - "Note 3: The ML data management system should support the quality criteria and activities of the ML data quality approach."
+          - "Note 4: Biases to avoid may include sampling bias (e.g., gender, age) and feedback loop bias."
+          - "Note 5: For creation of ML data sets see MLE.3.BP2 and MLE.4.BP2."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Collect ML data"
+        description: >-
+          Relevant sources for raw data are identified and continuously monitored for changes.
+          The raw data is collected according to the ML data requirements.
+        notes:
+          - "Note 6: The identification and collection of ML data might be an organizational responsibility."
+          - "Note 7: Continuous monitoring should include the ODD and may lead to changes of the ML requirements."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Process ML data"
+        description: >-
+          The raw data are processed (annotated, analyzed, and structured) according to the
+          ML data requirements.
+        maps_to_outcomes: [3]
+      - bp_id: "BP5"
+        title: "Assure quality of ML data"
+        description: >-
+          Perform the activities according to the ML data quality approach to ensure that
+          the ML data meets the defined ML data quality criteria.
+        notes:
+          - "Note 8: These activities may include sample-based reviews or statistical methods."
+        maps_to_outcomes: [4]
+      - bp_id: "BP6"
+        title: "Communicate agreed processed ML data"
+        description: >-
+          Inform all affected parties about the agreed processed ML data and provide them
+          to the affected parties.
+        maps_to_outcomes: [5]
+    output_information_items:
+      - item_id: "16-52"
+        name: "ML data management system"
+        maps_to_outcomes: [1]
+      - item_id: "19-50"
+        name: "ML data quality approach"
+        maps_to_outcomes: [2]
+      - item_id: "03-53"
+        name: "ML data"
+        maps_to_outcomes: [3, 4]
+      - item_id: "13-52"
+        name: "Communication evidence"
+        maps_to_outcomes: [5]

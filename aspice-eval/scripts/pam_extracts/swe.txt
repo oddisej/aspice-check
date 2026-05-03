@@ -1,0 +1,1122 @@
+
+--- PAGE 45 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+45
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.4. Software engineering process group (SWE) 
+4.4.1. SWE.1 Software Requirements Analysis 
+Process ID 
+SWE.1 
+Process name 
+Software Requirements Analysis 
+Process purpose 
+The purpose is to establish a structured and analyzed set of software requirements consistent 
+with the system requirements, and the system architecture. 
+Process outcomes 
+1) Software requirements are specified. 
+2) Software requirements are structured and prioritized. 
+3) Software requirements are analyzed for correctness and technical feasibility. 
+4) The impact of software requirements on the operating environment is analyzed. 
+5) Consistency and bidirectional traceability are established between software requirements 
+and system requirements. 
+6) Consistency and bidirectional traceability are established between software requirements 
+and system architecture. 
+7) The software requirements are agreed and communicated to all affected parties. 
+ 
+Base Practices  
+SWE.1.BP1: Specify software requirements. Use the system requirements and the system 
+architecture to identify and document the functional and non-functional requirements for the 
+software according to defined characteristics for requirements. 
+Note 1: Characteristics of requirements are defined in standards such as ISO IEEE 29148, ISO 
+26262-8:2018, or the INCOSE Guide for Writing Requirements. 
+Note 2: Examples for defined characteristics of requirements shared by technical standards are 
+verifiability (i.e., verification criteria being inherent in the requirements text), 
+unambiguity/comprehensibility, freedom from design and implementation, and not contradicting any 
+other requirement). 
+Note 3: In case of software-only development, the system requirements and the system architecture 
+refer to a given operating environment. In that case, stakeholder requirements can be used as the 
+basis for identifying the required functions and capabilities of the software. 
+Note 4: The hardware-software-interface (HSI) definition puts in context hardware and therefore it is 
+an interface decision at the system design level. If such a HSI exists, then it may provide input to 
+software requirements. 
+
+--- PAGE 46 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+46
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SWE.1.BP2: Structure software requirements. Structure and prioritize the software 
+requirements.  
+Note 5: Examples for structuring criteria can be grouping (e.g., by functionality) or expressing 
+product variants. 
+Note 6: Prioritization can be done according to project or stakeholder needs via e.g., definition of 
+release scopes. Refer to SPL.2.BP1. 
+SWE.1.BP3: Analyze software requirements. Analyze the specified software requirements 
+including their interdependencies to ensure correctness, technical feasibility, and to support 
+project management regarding project estimates. 
+Note 7: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates. 
+Note 8: Technical feasibility can be evaluated based on e.g., platform or product line, or by 
+prototyping. 
+SWE.1.BP4: Analyze the impact on the operating environment. Analyze the impact that the 
+software requirements will have on elements in the operating environment.  
+SWE.1.BP5: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between software requirements and system 
+architecture. Ensure consistency and establish bidirectional traceability between software 
+requirements and system requirements. 
+Note 9: Redundant traceability is not intended.  
+Note 10: There may be non-functional system requirements that the software requirements do not 
+trace to. Examples are process requirements or requirements related to later software product 
+lifecycle phases such as incident handling. Such requirements are still subject to verification. 
+Note 11: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, 
+does not necessarily mean that the information is consistent with each other. 
+Note 12: In case of software development only, the system requirements and system architecture 
+refer to a given operating environment. In that case, consistency and bidirectional traceability can be 
+ensured between stakeholder requirements and software requirements. 
+SWE.1.BP6: Communicate agreed software requirements and impact on the operating 
+environment. Communicate the agreed software requirements, and the results of the analysis 
+of impact on the operating environment, to all affected parties. 
+ 
+SWE.1 Software Requirements Analysis 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Outcome 7 
+Output Information Items 
+17-00 Requirement 
+X 
+X 
+ 
+ 
+ 
+ 
+ 
+17-54 Requirement Attribute 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+15-51 Analysis Results 
+ 
+ 
+X 
+X 
+ 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+
+--- PAGE 47 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+47
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Base Practices 
+BP1: Specify software requirements 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+BP2: Structure software requirements 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+BP3: Analyze software requirements 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+BP4: Analyze the impact on the operating environment 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+BP5: Ensure consistency and establish bidirectional 
+traceability 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+BP6: Communicate agreed software requirements and impact 
+on the operating environment 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+4.4.2. SWE.2 Software Architectural Design 
+Process ID 
+SWE.2 
+Process name 
+Software Architectural Design 
+Process purpose 
+The purpose is to establish an analyzed software architecture, comprising static and dynamic 
+aspects, consistent with the software requirements. 
+Process outcomes 
+1) A software architecture is designed including static and dynamic aspects. 
+2) The software architecture is analyzed against defined criteria. 
+3) Consistency and bidirectional traceability are established between software architecture and 
+software requirements. 
+4) The software architecture is agreed and communicated to all affected parties. 
+ 
+Base Practices  
+SWE.2.BP1: Specify static aspects of the software architecture. Specify and document the 
+static aspects of the software architecture with respect to the functional and non-functional 
+software requirements, including external interfaces and a defined set of software components 
+with their interfaces and relationships.  
+Note 1: The hardware-software-interface (HSI) definition puts in context the hardware design and 
+therefore is an aspect of system design (SYS.3). 
+SWE.2.BP2: Specify dynamic aspects of the software architecture. Specify and document 
+the dynamic aspects of the software architecture with respect to the functional and non-
+functional software requirements, including the behavior of the software components and their 
+interaction in different software modes, and concurrency aspects. 
+Note 2: Examples for concurrency aspects are application-relevant interrupt handling, preemptive 
+processing, multi-threading. 
+Note 3: Examples for behavioral descriptions are natural language or semi-formal notation (e.g, 
+SysML, UML). 
+
+--- PAGE 48 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+48
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SWE.2.BP3: Analyze software architecture. Analyze the software architecture regarding 
+relevant technical design aspects and to support project management regarding project 
+estimates. Document a rationale for the software architectural design decision. 
+Note 4: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates. 
+Note 5: The analysis may include the suitability of pre-existing software components for the current 
+application. 
+Note 6: Examples of methods suitable for analyzing technical aspects are prototypes, simulations, 
+qualitative analyses. 
+Note 7: Examples of technical aspects are functionality, timings, and resource consumption (e.g, 
+ROM, RAM, external / internal EEPROM or Data Flash or CPU load). 
+Note 8: Design rationales can include arguments such as proven-in-use, reuse of a software 
+framework or software product line, a make-or-buy decision, or found in an evolutionary way (e.g, 
+set-based design). 
+SWE.2.BP4: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between the software architecture and the 
+software requirements. 
+Note 9: There may be non-functional software requirements that the software architectural design 
+does not trace to. Examples are development process requirements. Such requirements are still 
+subject to verification. 
+Note 10: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g, the existence of links, 
+does not necessarily mean that the information is consistent with each other. 
+SWE.2.BP5: Communicate agreed software architecture. Communicate the agreed software 
+architecture to all affected parties. 
+ 
+SWE.2 Software Architectural Design 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Output Information Items 
+04-04 Software Architecture 
+X 
+ 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+X 
+15-51 Analysis Results 
+ 
+X 
+ 
+ 
+Base Practices 
+BP1: Specify static aspects of software architecture 
+X 
+ 
+ 
+ 
+BP2: Specify dynamic aspects of software architecture 
+X 
+ 
+ 
+ 
+BP3: Analyze software architecture 
+ 
+X 
+ 
+ 
+BP4: Ensure consistency and establish bidirectional traceability 
+ 
+ 
+X 
+ 
+BP5: Communicate agreed software architecture 
+ 
+ 
+ 
+X 
+
+--- PAGE 49 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+49
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.4.3. SWE.3 Software Detailed Design and Unit Construction 
+Process ID 
+SWE.3 
+Process name 
+Software Detailed Design and Unit Construction 
+Process purpose 
+The purpose is to establish a software detailed design, comprising static and dynamic aspects, 
+consistent with the software architecture, and to construct software units consistent with the 
+software detailed design. 
+Process outcomes 
+1) A detailed design is specified including static and dynamic aspects. 
+2) Software units as specified in the software detailed design are produced. 
+3) Consistency and bidirectional traceability are established between software detailed design 
+and software architecture; and consistency and bidirectional traceability are established 
+between source code and software detailed design; and consistency and bidirectional 
+traceability are established between the software detailed design and the software 
+requirements. 
+4) The source code and the agreed software detailed design are communicated to all affected 
+parties. 
+ 
+Base Practices  
+SWE.3.BP1: Specify the static aspects of the detailed design. For each software component 
+specify the behavior of its software units, their static structure and relationships, their interfaces 
+including 
+ 
+• 
+valid data value ranges for inputs and outputs (from the application domain perspective), 
+and  
+• 
+physical or measurement units applicable to inputs and outputs (from the application 
+domain perspective). 
+ 
+Note 1: The boundary of a software unit is independent from the software unit’s representation in the 
+source code, code file structure, or model-based implementation, respectively. It is rather driven by 
+the semantics of the application domain perspective. Therefore, a software unit may be, at the code 
+level, represented by a single subroutine or a set of subroutines. 
+Note 2: Examples of valid data value ranges with applicable physical units from the application 
+domain perspective are ‘0..200 [m/s]’, ‘0..3.8 [A]’ or ‘1..100 [N]’. For mapping such application 
+domain value ranges to programming language-level data types (such as unsigned Integer with a 
+value range of 0..65535) refer to BP2. 
+Note 3: Examples of a measurement unit are ‘%’ or ‘‰’. 
+Note 4: A counter is an example of a parameter, or a return value, to which neither a physical nor a 
+measurement unit is applicable. 
+Note 5: The hardware-software-interface (HSI) definition puts in context the hardware design and 
+therefore is an aspect of system design (SYS.3). 
+
+--- PAGE 50 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+50
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SWE.3.BP2: Specify dynamic aspects of the detailed design. Specify and document the 
+dynamic aspects of the detailed design with respect to the software architecture, including the 
+interactions between relevant software units to fulfill the component’s dynamic behavior. 
+Note 6: Examples for behavioral descriptions are natural language or semi-formal notation (e.g, 
+SysML, UML). 
+SWE.3.BP3: Develop software units. Develop and document the software units consistent 
+with the detailed design, and according to coding principles. 
+Note 7: Examples for coding principles at capability level 1 are not to use implicit type conversions, 
+only one entry and one exit point in subroutines, and range checks (design-by-contract, defensive 
+programming). Further examples see e.g, ISO 26262-6 clause 8.4.5 together with table 6. 
+SWE.3.BP4: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between the software detailed design and the 
+software architecture. Ensure consistency and establish bidirectional traceability between the 
+developed software units and the software detailed design. Ensure consistency and establish 
+traceability between the software detailed design and the software requirements. 
+Note 8: Redundancy should be avoided by establishing a combination of these approaches. 
+Note 9: Examples for tracing a software unit in the detailed design to a software requirement directly 
+are communication matrices or basis software aspects such as a list of diagnosis identifiers inherent 
+in an Autosar configuration. 
+Note 10: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, 
+does not necessarily mean that the information is consistent with each other. 
+SWE.3.BP5: Communicate agreed software detailed design and developed software 
+units. Communicate the agreed software detailed design and developed software units to all 
+affected parties. 
+ 
+SWE.3 Software Detailed Design and Unit Construction 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Output Information Items 
+04-05 Software Detailed Design 
+X 
+ 
+ 
+ 
+11-05 Software Unit 
+X 
+X 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+X 
+Base Practices 
+BP1: Specify the static aspects of the detailed design 
+X 
+ 
+ 
+ 
+BP2: Specify the dynamic aspects of the detailed design 
+X 
+ 
+ 
+ 
+BP3: Develop software units 
+ 
+X 
+ 
+ 
+BP4: Ensure consistency and establish bidirectional traceability 
+ 
+ 
+X 
+ 
+
+--- PAGE 51 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+51
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+BP5: Communicate agreed software detailed design and developed 
+software units 
+ 
+ 
+ 
+X 
+4.4.4. SWE.4 Software Unit Verification 
+Process ID 
+SWE.4 
+Process name 
+Software Unit Verification 
+Process purpose 
+The purpose is to verify that software units are consistent with the software detailed design. 
+Process outcomes 
+1) Verification measures for software unit verification are specified. 
+2) Software unit verification measures are selected according to the release scope, including 
+criteria for regression verification. 
+3) Software units are verified using the selected verification measures, and results are 
+recorded. 
+4) Consistency and bidirectional traceability are established between verification measures and 
+software units; and bidirectional traceability is established between verification results and 
+verification measures. 
+5) Results of the software unit verification are summarized and communicated to all affected 
+parties. 
+ 
+Base Practices  
+SWE.4.BP1: Specify software unit verification measures. Specify verification measures for 
+each software unit defined in the software detailed design, including 
+• 
+pass/fail criteria for verification measures, 
+• 
+entry and exit criteria for verification measures, and 
+• 
+the required verification infrastructure. 
+Note 1: Examples for unit verification measures are static analysis, code reviews, and unit testing. 
+Note 2: Static analysis can be done based on MISRA rulesets and other coding standards. 
+SWE.4.BP2: Select software unit verification measures. Document the selection of 
+verification measures considering selection criteria including criteria for regression verification. 
+The documented selection of verification measures shall have sufficient coverage according to 
+the release scope. 
+SWE.4.BP3: Verify software units. Perform software unit verification using the selected 
+verification measures. Record the verification results including pass/fail status and 
+corresponding verification measure data. 
+Note 3: See SUP.9 for handling of verification results that deviate from expected results. 
+
+--- PAGE 52 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+52
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SWE.4.BP4: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between verification measures and the 
+software units defined in the detailed design. Establish bidirectional traceability between the 
+verification results and the verification measures. 
+Note 4: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, 
+does not necessarily mean that the information is consistent with each other. 
+SWE.4.BP5: Summarize and communicate results. Summarize the results of software unit 
+verification and communicate them to all affected parties.  
+Note 5: Providing all necessary information from the test case execution in a summary enables other 
+parties to judge the consequences. 
+ 
+SWE.4 Software Unit Verification 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Output Information Items 
+08-60 Verification Measure 
+X 
+ 
+ 
+ 
+ 
+03-50 Verification Measure Data 
+ 
+ 
+X 
+ 
+ 
+08-58 Verification Measure Selection Set 
+ 
+X 
+ 
+ 
+ 
+15-52 Verification Results 
+ 
+ 
+X 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+ 
+X 
+Base Practices 
+BP1: Specify software unit verification measures 
+X 
+ 
+ 
+ 
+ 
+BP2: Select software unit verification measures 
+ 
+X 
+ 
+ 
+ 
+BP3: Verify software units 
+ 
+ 
+X 
+ 
+ 
+BP4: Ensure consistency and establish bidirectional traceability for 
+software unit verification 
+ 
+ 
+ 
+X 
+ 
+BP5: Summarize and communicate results 
+ 
+ 
+ 
+ 
+X 
+4.4.5. SWE.5 Software Component Verification and Integration Verification 
+Process ID 
+SWE.5 
+Process name 
+Software Component Verification and Integration Verification 
+Process purpose 
+
+--- PAGE 53 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+53
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+The purpose is to verify that software components are consistent with the software architectural 
+design, and to integrate software elements and verify that the integrated software elements are 
+consistent with the software architecture and software detailed design. 
+Process outcomes 
+1) Verification measures are specified for software integration verification of the integrated 
+software elements based on the software architecture and detailed design, including the 
+interfaces of, and interactions between, the software components. 
+2) Verification measures for software components are specified to provide evidence for 
+compliance of the software components with the software components’ behavior and 
+interfaces. 
+3) Software elements are integrated up to a complete integrated software. 
+4) Verification measures are selected according to the release scope considering criteria, 
+including criteria for regression verification. 
+5) Software components are verified using the selected verification measures, and the results 
+of the integration verification are recorded. 
+6) Integrated software elements are verified using the selected verification measures, and the 
+results of the integration verification are recorded. 
+7) Consistency and bidirectional traceability are established between verification measures and 
+the software architecture and detailed design; and bidirectional traceability is established 
+between verification results and verification measures. 
+8) The results of software component verification and software elements integration verification 
+are summarized and communicated to all affected parties 
+ 
+Base Practices  
+SWE.5.BP1: Specify software integration verification measures. Specify verification 
+measures, based on a defined sequence and preconditions for the integration of software 
+elements, against the defined static and dynamic aspects of the software architecture, including 
+• 
+techniques for the verification measures, 
+• 
+pass/fail criteria for verification measures, 
+• 
+entry and exit criteria for verification measures, and 
+• 
+the required verification infrastructure and environment setup. 
+ 
+Note 1: Examples on which the software integration verification measures may focus on are the 
+correct dataflow and dynamic interaction between software components together with their timing 
+dependencies, the correct interpretation of data by all software components using an interface, and 
+the compliance to resource consumption objectives. 
+Note 2: The software integration verification measure may be supported by using hardware debug 
+interfaces or simulation environments (e.g, Software-in-the-Loop-Simulation). 
+
+--- PAGE 54 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+54
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SWE.5.BP2: Specify verification measures for verifying software component behavior. 
+Specify verification measures for software component verification against the defined software 
+components’ behavior and their interfaces in the software architecture, including 
+• 
+techniques for the verification measures, 
+• 
+entry and exit criteria for verification measures, 
+• 
+pass/fail criteria for verification measures, and 
+• 
+the required verification infrastructure and environment setup. 
+Note 3: Verification measures are related to software components but not to the software units since 
+software unit verification is addressed in the process SWE.4 Software Unit Verification. 
+SWE.5.BP3: Select verification measures. Document the selection of integration verification 
+measures for each integration step considering selection criteria including criteria for regression 
+verification. The documented selection of verification measures shall have sufficient coverage 
+according to the release scope. 
+Note 4: Examples for selection criteria can be the need for continuous integration /continuous 
+development regression verification (due to e.g, changes to the software architectural or detailed 
+design), or the intended use of the delivered product release (e.g, test bench, test track, public road 
+etc.). 
+SWE.5.BP4: Integrate software elements and perform integration verification. Integrate the 
+software elements until the software is fully integrated according to the specified interfaces and 
+interactions between the Software elements, and according to the defined sequence and 
+defined preconditions. Perform the selected integration verification measures. Record the 
+verification measure data including pass/fail status and corresponding verification measure data. 
+Note 5: Examples for preconditions for starting software integration are qualification of pre-existing 
+software components, off-the-shelf software components, open-source-software, or auto-code 
+generated software. 
+Note 6: Defined preconditions may allow e.g, big-bang-integration of all software components, 
+continuous integration, as well as stepwise integration (e.g, across software units and/or software 
+components up to the fully integrated software) with accompanying verification measures. 
+Note 7: See SUP.9 for handling deviations of verification results deviate expected results. 
+SWE.5.BP5: Perform software component verification. Perform the selected verification 
+measures for verifying software component behavior. Record the verification results including 
+pass/fail status and corresponding verification measure data. 
+Note 8: See SUP.9 for handling verification results that deviate from expected results. 
+SWE.5.BP6: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between verification measures and the static 
+and dynamic aspects of the software architecture and detailed design. Establish bidirectional 
+traceability between verification results and verification measures. 
+Note 9: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, 
+does not necessarily mean that the information is consistent with each other. 
+
+--- PAGE 55 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+55
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SWE.5.BP7: Summarize and communicate results. Summarize the software component 
+verification and the software integration verification results and communicate them to all affected 
+parties. 
+Note 10: Providing all necessary information from the test case execution in a summary enables 
+other parties to judge the consequences. 
+ 
+SWE.5 Software Component Verification and 
+Integration Verification 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Outcome 7 
+Outcome 8 
+Output Information Items 
+08-60 Verification Measure 
+X 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+06-50 Integration Sequence Instruction 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+03-50 Verification Measure Data 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+08-58 Verification Measure Selection Set 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+15-52 Verification Results 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+01-03 Software Component 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+01-50 Integrated Software 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+Base Practices 
+BP1: Specify software integration verification measures  
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BP2: Specify verification measures for verifying software 
+component behavior 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+BP3: Select verification measures 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+BP4: Integrate software elements and perform 
+integration verification 
+ 
+ 
+X 
+ 
+ 
+X 
+ 
+ 
+BP5: Perform software component verification 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+BP6: Ensure consistency and establish bidirectional 
+traceability 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+BP7: Summarize and communicate results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 56 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+56
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.4.6. SWE.6 Software Verification 
+Process ID 
+SWE.6 
+Process name 
+Software Verification 
+Process purpose 
+The purpose of the Software Verification process is to ensure that the integrated software is 
+verified to be consistent with the software requirements.  
+Process outcomes 
+1) Verification measures are specified for software verification of the software based on the 
+software requirements. 
+2) Verification measures are selected according to the release scope considering criteria, 
+including criteria for regression verification. 
+3) The integrated software is verified using the selected verification measures and the results of 
+software verification are recorded. 
+4) Consistency and bidirectional traceability are established between verification measures and 
+software requirements; and bidirectional traceability is established between verification 
+results and verification measures. 
+5) Results of the software verification are summarized and communicated to all affected 
+parties. 
+ 
+Base Practices  
+SWE.6.BP1: Specify verification measures for software verification. Specify the verification 
+measures for software verification suitable to provide evidence for compliance of the integrated 
+software with the functional and non-functional information in the software requirements, 
+including 
+• 
+techniques for the verification measures, 
+• 
+pass/fail criteria for verification measures, 
+• 
+a definition of entry and exit criteria for the verification measures, 
+• 
+necessary sequence of verification measures, and 
+• 
+the required verification infrastructure and environment setup. 
+ 
+Note 1: The selection of appropriate techniques for verification measures may depend on the 
+content of the respective software requirement (e.g, boundary values and equivalence classes for 
+data range-oriented requirements, positive/sunny-day-test vs. negative testing such as fault 
+injection), or on requirements-based testing vs. “error guessing based on knowledge or experience”. 
+
+--- PAGE 57 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+57
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SWE.6.BP2: Select verification measures. Document the selection of verification measures 
+considering selection criteria including criteria for regression verification. The documented 
+selection of verification measures shall have sufficient coverage according to the release scope. 
+Note 2: Examples for selection criteria can be prioritization of requirements, continuous 
+development, the need for regression verification (due to e.g., changes to the software 
+requirements), or the intended use of the delivered product release (test bench, test track, public 
+road etc.) 
+SWE.6.BP3: Verify the integrated software. Perform the verification of the integrated software 
+using the selected verification measures. Record the verification results including pass/fail status 
+and corresponding verification measure data. 
+Note 3: See SUP.9 for handling verification results that deviate from expected results.  
+SWE.6.BP4: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between verification measures and software 
+requirements. Establish bidirectional traceability between verification results and verification 
+measures. 
+Note 4: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, 
+does not necessarily mean that the information is consistent with each other. 
+SWE.6.BP5: Summarize and communicate results. Summarize the software verification 
+results and communicate them to all affected parties.  
+Note 5: Providing all necessary information from the test case execution in a summary enables other 
+parties to judge the consequences. 
+ 
+SWE.6 Software Verification 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Output Information Items 
+08-60 Verification Measure 
+X 
+ 
+ 
+ 
+ 
+03-50 Verification Measure Data 
+ 
+ 
+X 
+ 
+ 
+08-58 Verification Measure Selection Set 
+ 
+X 
+ 
+ 
+ 
+15-52 Verification Results 
+ 
+ 
+X 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+ 
+X 
+Base Practices 
+BP1: Specify verification measures for software verification 
+X 
+ 
+ 
+ 
+ 
+BP2: Select verification measures 
+ 
+X 
+ 
+ 
+ 
+BP3: Verify the integrated software 
+ 
+ 
+X 
+ 
+ 
+BP4: Ensure consistency and establish bidirectional traceability. 
+ 
+ 
+ 
+X 
+ 
+
+--- PAGE 58 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+58
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+BP5: Summarize and communicate results 
+ 
+ 
+ 
+ 
+X 
+4.5. Validation process group (VAL) 
+4.5.1. VAL.1 Validation 
+Process ID 
+VAL.1 
+Process name 
+Validation 
+Process purpose 
+The purpose is to provide evidence that the end product, allowing direct end user interaction, 
+satisfies the intended use expectations in its operational target environment. 
+Process outcomes 
+1) Validation measures are selected considering criteria for regression verification. 
+2) The product is validated using the selected validation measures and the results of validation 
+are recorded. 
+3) Consistency and unidirectional traceability are established between validation measures and 
+stakeholder requirements; and consistency and bidirectional traceability is established 
+between validation results and validation measures. 
+4) Results of the validation are summarized and communicated to all affected parties. 
+ 

@@ -1,0 +1,895 @@
+
+--- PAGE 79 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+79
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.8. 
+Supporting process group (SUP) 
+4.8.1. SUP.1 Quality Assurance 
+Process ID 
+SUP.1 
+Process name 
+Quality Assurance 
+Process purpose 
+The purpose of the Quality Assurance Process is to provide independent and objective 
+assurance that work products and processes comply with defined criteria and that non-
+conformances are resolved and further prevented. 
+Process outcomes 
+1) Quality assurance is performed independently and objectively without conflicts of interest. 
+2) Criteria for the quality of work products and process performance are defined. 
+3) Conformance of work products and process performance with the defined criteria and 
+targets is verified, documented and communicated to the relevant parties. 
+4) Non-conformances are tracked, resolved, and further prevented. 
+5) Non-conformances are escalated to appropriate levels of management. 
+6) Management ensures that escalated non-conformances are resolved. 
+ 
+Base Practices  
+SUP.1.BP1: Ensure independence of quality assurance. Ensure that quality assurance is 
+performed independently and objectively without conflicts of interest. 
+Note 1: Possible inputs for evaluating the independence may be assignment to financial and/or 
+organizational structure as well as responsibility for processes that are subject to quality assurance 
+(no self-monitoring). 
+SUP.1.BP2: Define criteria for quality assurance. Define quality criteria for work products as 
+well as for process tasks and their performance.  
+Note 2: Quality criteria may consider internal and external inputs such as customer requirements, 
+standards, milestones, etc. 
+SUP.1.BP3: Assure quality of work products. Identify work products subject to quality 
+assurance according to the quality criteria. Perform appropriate activities to evaluate the work 
+products against the defined quality criteria and document the results. 
+Note 3: Quality assurance activities may include reviews, problem analysis and lessons learned that 
+improve the work products for further use. 
+
+--- PAGE 80 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+80
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SUP.1.BP4: Assure quality of process activities. Identify processes subject to quality 
+assurance according to the quality criteria. Perform appropriate activities to evaluate the 
+processes against their defined quality criteria and associated target values and document the 
+results. 
+NOTE 4: Quality assurance activities may include process assessments, problem analysis, regular 
+check of methods, tools, and the adherence to defined processes, and consideration of lessons 
+learned. 
+SUP.1.BP5: Summarize and communicate quality assurance activities and results. 
+Regularly report performance, non-conformances, and trends of quality assurance activities to 
+all affected parties. 
+SUP.1.BP6: Ensure resolution of non-conformances. Analyze, track, correct, resolve, and 
+further prevent non-conformances found in quality assurance activities. 
+NOTE 5: Non-conformances detected in work products may be entered into the problem resolution 
+management process (SUP.9). 
+NOTE 6: Non-conformances detected in the process definition or implementation may be entered 
+into a process improvement process (PIM.3). 
+SUP.1.BP7: Escalate non-conformances. Escalate relevant non-conformances to appropriate 
+levels of management and other relevant stakeholders to facilitate their resolution. 
+NOTE 7: The decision whether to escalate non-conformances may be based on criteria such as 
+delay of resolution, urgency, and risk. 
+ 
+SUP.1 
+Quality Assurance 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Output Information Items 
+ 
+ 
+ 
+ 
+ 
+ 
+16-50 Organizational structure  
+X 
+ 
+ 
+ 
+X 
+ 
+18-52 Escalation path 
+ 
+ 
+ 
+ 
+X 
+X 
+18-07 Quality criteria  
+ 
+X 
+X 
+X 
+ 
+ 
+13-52 Communication evidence 
+ 
+ 
+X 
+X 
+X 
+ 
+13-18 Quality conformance evidence 
+ 
+ 
+X 
+X 
+ 
+ 
+13-19 Review evidence 
+ 
+ 
+X 
+X 
+ 
+ 
+14-02 Corrective action 
+ 
+ 
+ 
+X 
+ 
+X 
+Base Practices 
+ 
+ 
+ 
+ 
+ 
+ 
+BP1: Ensure independence of quality assurance. 
+X 
+ 
+ 
+ 
+ 
+ 
+BP2: Define criteria for quality assurance. 
+ 
+X 
+ 
+ 
+ 
+ 
+BP3: Assure quality of work products. 
+ 
+ 
+X 
+X 
+ 
+ 
+BP4: Assure quality of process activities. 
+ 
+ 
+X 
+X 
+ 
+ 
+
+--- PAGE 81 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+81
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+BP5: Summarize and communicate quality assurance activities 
+and results. 
+ 
+ 
+X 
+X 
+X 
+ 
+BP6: Ensure resolution of non-conformances. 
+ 
+ 
+ 
+X 
+ 
+X 
+BP7: Escalate non-conformances. 
+ 
+ 
+ 
+ 
+X 
+X 
+4.8.2. SUP.8 Configuration Management 
+Process ID 
+SUP.8 
+Process name 
+Configuration Management 
+Process purpose 
+The purpose of the Configuration Management Process is to establish and maintain the integrity 
+of relevant configuration items and baselines, and make them available to affected parties. 
+Process outcomes 
+1) Selection criteria for configuration items are defined and applied. 
+2) Configuration item properties are defined. 
+3) Configuration management is established. 
+4) Modifications are controlled. 
+5) Baselining is applied. 
+6) The status of the configuration items is recorded and reported. 
+7) The completeness and consistency of the baselines is ensured. 
+8) The availability of backup and recovery mechanisms is verified. 
+ 
+Base Practices  
+SUP.8.BP1: Identify configuration items. Define selection criteria for identifying relevant work 
+products to be subject to configuration management. Identify and document configuration items 
+according to the defined selection criteria.  
+NOTE 1: Configuration items are representing work products or group of work products which are 
+subject to configuration management as a single entity. 
+NOTE 2: Configuration items may vary in complexity, size, and type, ranging from an entire system 
+including all system, hardware, and software documentation down to a single element or document. 
+NOTE 3: The selection criteria may be applied to single work products or a group of work products. 
+SUP.8.BP2: Define configuration item properties. Define the necessary properties needed for 
+the modification and control of configuration items.  
+NOTE 4: The configuration item properties may be defined for single configuration items or a group 
+of items. 
+NOTE 5: Configuration item properties may include a status model (e.g., Under Work, Tested, 
+Released, etc.), storage location, access rights, etc. 
+NOTE 6: The application of properties may be implemented by attributes of configuration items. 
+
+--- PAGE 82 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+82
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SUP.8.BP3: Establish configuration management. Establish configuration management 
+mechanisms for control of identified configuration items including the configuration item 
+properties, including mechanisms for controlling parallel modifications of configuration items. 
+NOTE 7: This may include specific mechanisms for different configuration item types, such as 
+branch and merge management, or checkout control. 
+SUP.8.BP4: Control modifications. Control modifications using the configuration management 
+mechanisms. 
+NOTE 8: This may include the application of a defined status model for configuration items. 
+SUP.8.BP5: Establish baselines. Define and establish baselines for internal purposes, and for 
+external product delivery, for all relevant configuration items.  
+SUP.8.BP6: Summarize and communicate configuration status. Record, summarize, and 
+communicate the status of configuration items and established baselines to affected parties in 
+order to support the monitoring of progress and status.  
+NOTE 9: Regular communication of the configuration status, e.g., based on a defined status model 
+supports project management, quality activities, and dedicated project phases such as software 
+integration. 
+SUP.8.BP7: Ensure completeness and consistency. Ensure that the information about 
+configuration items is correct and complete including configuration item properties. Ensure the 
+completeness and consistency of baselines.  
+NOTE 10: Completeness and consistency of a baseline means that all required configuration items 
+are included and consistent, and have the required status. This can be used to support e.g., project 
+gate approval. 
+SUP.8.BP8: Verify backup and recovery mechanisms availability. Verify the availability of 
+appropriate backup and recovery mechanisms for the configuration management including the 
+controlled configuration items. Initiate measures in case of insufficient backup and recovery 
+mechanisms.  
+NOTE 11: Backup and recovery mechanisms may be defined and implemented by organizational 
+units outside the project team. This may include references to corresponding procedures or 
+regulations. 
+ 
+SUP.8 Configuration Management 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Outcome 7 
+Outcome 8 
+Output Information Items 
+ 
+ 
+ 
+18-53 Configuration item selection criteria 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+01-52 Configuration item list 
+X 
+X 
+ 
+ 
+ 
+ 
+X 
+ 
+16-03 Configuration management system 
+ 
+ 
+X 
+X 
+X 
+ 
+ 
+ 
+13-08 Baseline 
+ 
+ 
+ 
+ 
+X 
+ 
+X 
+ 
+
+--- PAGE 83 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+83
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+14-01 Change history 
+ 
+ 
+X 
+X 
+ 
+X 
+ 
+ 
+15-56 Configuration status 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+06-52 Backup and recovery mechanism information 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+Base Practices  
+ 
+ 
+ 
+BP1: Identify configuration items 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BP2: Define configuration item properties 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+BP3: Establish configuration management 
+ 
+ 
+X 
+X 
+ 
+ 
+ 
+ 
+BP4: Control modifications 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+BP5: Establish baselines 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+BP6: Summarize and communicate configuration status 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+BP7: Ensure completeness and consistency 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+BP8: Verify backup and recovery mechanisms availability 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+4.8.3. SUP.9 Problem Resolution Management 
+Process ID 
+SUP.9 
+Process name 
+Problem Resolution Management 
+Process purpose 
+The purpose of the Problem Resolution Management Process is to ensure that problems are 
+identified, recorded, analyzed, and their resolution is managed and controlled. 
+Process outcomes 
+1) Problems are uniquely identified, recorded and classified. 
+2) Problems are analyzed and assessed to determine an appropriate solution. 
+3) Problem resolution is initiated. 
+4) Problems are tracked to closure. 
+5) The status of problems including trends identified are reported to stakeholders. 
+ 
+Base Practices  
+
+--- PAGE 84 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+84
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SUP.9.BP1: Identify and record the problem. Each problem is uniquely identified, described 
+and recorded. A status is assigned to each problem to facilitate tracking. Supporting information 
+is provided to reproduce and diagnose the problem. 
+NOTE 1: Problems may relate to e.g., product, resources, or methods.  
+NOTE 2: Example values for the problem status are “new”, “solved”, “closed”, etc. 
+NOTE 3: Supporting information may include e.g, the origin of the problem, how it can be 
+reproduced, environmental information, by whom it has been detected. 
+NOTE 4: Unique identification supports traceability to changes made as needed by the change 
+request management process (SUP.10). 
+SUP.9.BP2: Determine the cause and the impact of the problem. Analyze the problem, 
+determine its cause, including common causes if existing, and impact. Involve relevant parties. 
+Categorize the problem. 
+NOTE 5: Problem categorization (e.g., light, medium, severe) may be based on severity, criticality, 
+urgency, etc. 
+SUP.9.BP3: Authorize urgent resolution action. Obtain authorization for immediate action if a 
+problem requires an urgent resolution according to the categorization. 
+SUP.9.BP4: Raise alert notifications. If according to the categorization the problem has a high 
+impact on other systems or other affected parties, an alert notification needs to be raised 
+accordingly. 
+SUP.9.BP5: Initiate problem resolution. Initiate appropriate actions according to the 
+categorization to resolve the problem long-term, including review of those actions or initiate a 
+change request. This includes synchronization and consistency with short-term urgent resolution 
+actions, if applicable. 
+SUP.9.BP6: Track problems to closure. Track the status of problems to closure including all 
+related change requests. The closure of problems is accepted by relevant stakeholders. 
+SUP.9.BP7: Report the status of problem resolution activities. Collect and analyze problem 
+resolution management data, identify trends, and initiate related actions. Regularly report the 
+results of data analysis, the identified trends and the status of problem resolution activities to 
+relevant stakeholders. 
+NOTE 6: Collected data may contain information about where the problems occurred, how and when 
+they were found, what their impacts were, etc. 
+ 
+SUP.9 Problem Resolution Management 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Output Information Items 
+13-07 Problem 
+X 
+X 
+X 
+X 
+ 
+15-55 Problem analysis evidence 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 85 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+85
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+15-12 Problem status 
+ 
+ 
+ 
+ 
+X 
+Base Practices  
+BP1: Identify and record the problem 
+X 
+ 
+ 
+X 
+ 
+BP2: Determine the cause and the impact of the problem 
+X 
+X 
+ 
+ 
+ 
+BP3: Authorize urgent resolution action 
+ 
+ 
+X 
+ 
+ 
+BP4: Raise alert notifications 
+ 
+ 
+X 
+ 
+ 
+BP5: Initiate problem resolution 
+ 
+ 
+X 
+ 
+ 
+BP6: Track problems to closure 
+ 
+ 
+ 
+X 
+X 
+BP7: Report the status of problem resolution activities 
+ 
+ 
+ 
+ 
+X 
+ 
+4.8.4. SUP.10 Change Request Management 
+Process ID 
+SUP.10 
+Process name 
+Change Request Management 
+Process purpose 
+The purpose of the Change Request Management Process is to ensure that change requests 
+are recorded, analyzed, tracked, approved, and implemented. 
+Process outcomes 
+1) Requests for changes are recorded and identified. 
+2) Change requests are analyzed, dependencies and relationships to other change requests 
+are identified, and the impact is estimated. 
+3) Change requests are approved before implementation and prioritized accordingly. 
+4) Bidirectional traceability is established between change requests and affected work 
+products. 
+5) Implementation of change requests is confirmed. 
+6) Change requests are tracked to closure and status of change requests is communicated to 
+affected parties. 
+ 
+Base Practices  
+SUP.10.BP1: Identify and record the change requests. The scope for application of change 
+requests is identified. Each change request is uniquely identified, described, and recorded, 
+including the initiator and reason of the change request. A status is assigned to each change 
+request to facilitate tracking. 
+NOTE 1: Change requests may be used for changes related to e.g., product, process, methods.  
+NOTE 2: Example values for the change request status are “open”, “under investigation”, 
+“implemented”, etc. 
+NOTE 3: The change request handling may differ across the product life cycle e.g., during prototype 
+
+--- PAGE 86 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+86
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+construction and series development 
+SUP.10.BP2: Analyze and assess change requests. Change requests are analyzed by 
+relevant parties according to analysis criteria. Work products affected by the change request and 
+dependencies to other change requests are determined. The impact of the change requests is 
+assessed.  
+NOTE 4: Examples for analysis criteria are: resource requirements, scheduling issues, risks, 
+benefits, etc. 
+SUP.10.BP3: Approve change requests before implementation. Change requests are 
+prioritized and approved for implementation based on analysis results and availability of 
+resources. 
+NOTE 5: A Change Control Board (CCB) is an example mechanism used to approve change 
+requests. 
+NOTE 6: Prioritization of change requests may be done by allocation to releases. 
+SUP.10.BP4: Establish bidirectional traceability. Establish bidirectional traceability between 
+change requests and work products affected by the change requests. In case that the change 
+request is initiated by a problem, establish bidirectional traceability between change requests 
+and the corresponding problem reports. 
+SUP.10.BP5: Confirm the implementation of change requests. The implementation of 
+change requests is confirmed before closure by relevant stakeholders.  
+SUP.10.BP6: Track change requests to closure. Change requests are tracked to closure. The 
+status of change requests is communicated to all affected parties. 
+NOTE 7: Examples for informing affected parties can be daily standup meetings or tool-supported 
+workflows. 
+ 
+SUP.10 Change Request Management 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Output Information Items 
+18-57 Change analysis criteria 
+ 
+X 
+ 
+ 
+ 
+ 
+13-16 Change request 
+X 
+X 
+X 
+ 
+X 
+X 
+13-51 Consistency evidence 
+ 
+ 
+ 
+X 
+ 
+ 
+Base Practices  
+BP1: Identify and record the change requests 
+X 
+ 
+ 
+ 
+ 
+ 
+BP2: Analyze and assess change requests 
+ 
+X 
+ 
+ 
+ 
+ 
+BP3: Approve change requests before implementation 
+ 
+ 
+X 
+ 
+ 
+ 
+BP4: Establish bidirectional traceability 
+ 
+ 
+ 
+X 
+ 
+ 
+BP5: Confirm the implementation of change requests 
+ 
+ 
+ 
+ 
+X 
+ 
+
+--- PAGE 87 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+87
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+BP6: Track change requests to closure 
+ 
+ 
+ 
+ 
+ 
+X 
+4.8.5. SUP.11 Machine Learning Data Management  
+Process ID  
+SUP.11 
+Process name  
+Machine Learning Data Management 
+Process purpose  
+The purpose is to define and align ML data with ML data requirements, maintain the integrity 
+and quality of the ML data, and make them available to affected parties.  
+Process outcomes  
+1) A ML data management system including an ML data lifecycle is established. 
+2) A ML data quality approach is developed including ML data quality criteria. 
+3) Collected ML data are processed for consistency with ML data requirements. 
+4) ML data are verified against defined ML data quality criteria and updated as needed. 
+5) ML data are agreed and communicated to all affected parties. 
+ 
+Base Practices  
+SUP.11.BP1: Establish an ML data management system. Establish an ML data management 
+system which supports 
+• 
+ML data management activities, 
+• 
+relevant sources of ML data, 
+• 
+ML data life cycle including a status model, and 
+• 
+interfaces to affected parties.  
+Note 1: Supported ML data management activities may include data collection, labeling/annotation, 
+and structuring. 
+SUP.11.BP2: Develop an ML data quality approach. Develop an approach to ensure that the 
+quality of ML data is analyzed based on defined ML data quality criteria and activities are 
+performed to support avoidance of biases of data. 
+Note 2: Examples of ML data quality criteria are relevant data sources, reliability and consistency of 
+labelling, completeness against ML data requirements. 
+Note 3: The ML data management system should support the quality criteria and activities of the ML 
+data quality approach. 
+Note 4: Biases to avoid may include sampling bias (e.g., gender, age) and feedback loop bias. 
+Note 5: For creation of ML data sets see MLE.3.BP2 and MLE.4.BP2. 
+
+--- PAGE 88 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+88
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SUP.11.BP3: Collect ML data. Relevant sources for raw data are identified and continuously 
+monitored for changes. The raw data is collected according to the ML data requirements. 
+Note 6: The identification and collection of ML data might be an organizational responsibility.  
+Note 7: Continuous monitoring should include the ODD and may lead to changes of the ML 
+requirements. 
+SUP.11.BP4: Process ML data. The raw data are processed (annotated, analyzed, and 
+structured) according to the ML data requirements. 
+SUP.11.BP5: Assure quality of ML data. Perform the activities according to the ML data 
+quality approach to ensure that the ML data meets the defined ML data quality criteria.  
+Note 8: These activities may include sample-based reviews or statistical methods. 
+SUP.11.BP6: Communicate agreed processed ML data. Inform all affected parties about the 
+agreed processed ML data and provide them to the affected parties. 
+ 
+SUP.11 Machine Learning Data Management  
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Output Information Items 
+16-52 ML data management system 
+X 
+ 
+ 
+ 
+ 
+19-50 ML data quality approach 
+ 
+X 
+ 
+ 
+ 
+03-53 ML data 
+ 
+ 
+X 
+X 
+ 
+13-52 Communication evidence 
+ 
+ 
+ 
+ 
+X 
+Base Practices 
+BP1: Establish an ML data management system 
+X 
+ 
+ 
+ 
+ 
+BP2: Develop an ML data quality approach 
+ 
+X 
+ 
+ 
+ 
+BP3: Collect ML data 
+ 
+ 
+X 
+ 
+ 
+BP4: Process ML data 
+ 
+ 
+X 
+ 
+ 
+BP5: Assure quality of ML data 
+ 
+ 
+ 
+X 
+ 
+BP6: Communicate agreed processed ML data 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 

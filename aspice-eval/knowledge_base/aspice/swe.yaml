@@ -1,0 +1,1197 @@
+process_group:
+  code: "SWE"
+  name: "Software Engineering"
+
+processes:
+  # ============================================================
+  # SWE.1 — Software Requirements Analysis
+  # ============================================================
+  - process_id: "SWE.1"
+    process_name: "Software Requirements Analysis"
+    process_purpose: >-
+      The purpose is to establish a structured and analyzed set of software requirements
+      consistent with the system requirements, and the system architecture.
+    process_outcomes:
+      - id: 1
+        description: "Software requirements are specified."
+      - id: 2
+        description: "Software requirements are structured and prioritized."
+      - id: 3
+        description: "Software requirements are analyzed for correctness and technical feasibility."
+      - id: 4
+        description: "The impact of software requirements on the operating environment is analyzed."
+      - id: 5
+        description: "Consistency and bidirectional traceability are established between software requirements and system requirements."
+      - id: 6
+        description: "Consistency and bidirectional traceability are established between software requirements and system architecture."
+      - id: 7
+        description: "The software requirements are agreed and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify software requirements"
+        description: >-
+          Use the system requirements and the system architecture to identify and document
+          the functional and non-functional requirements for the software according to defined
+          characteristics for requirements.
+        notes:
+          - "Note 1: Characteristics of requirements are defined in standards such as ISO IEEE 29148, ISO 26262-8:2018, or the INCOSE Guide for Writing Requirements."
+          - "Note 2: Examples for defined characteristics of requirements shared by technical standards are verifiability (i.e., verification criteria being inherent in the requirements text), unambiguity/comprehensibility, freedom from design and implementation, and not contradicting any other requirement)."
+          - "Note 3: In case of software-only development, the system requirements and the system architecture refer to a given operating environment. In that case, stakeholder requirements can be used as the basis for identifying the required functions and capabilities of the software."
+          - "Note 4: The hardware-software-interface (HSI) definition puts in context hardware and therefore it is an interface decision at the system design level. If such a HSI exists, then it may provide input to software requirements."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Structure software requirements"
+        description: >-
+          Structure and prioritize the software requirements.
+        notes:
+          - "Note 5: Examples for structuring criteria can be grouping (e.g., by functionality) or expressing product variants."
+          - "Note 6: Prioritization can be done according to project or stakeholder needs via e.g., definition of release scopes. Refer to SPL.2.BP1."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Analyze software requirements"
+        description: >-
+          Analyze the specified software requirements including their interdependencies
+          to ensure correctness, technical feasibility, and to support project management
+          regarding project estimates.
+        notes:
+          - "Note 7: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates."
+          - "Note 8: Technical feasibility can be evaluated based on e.g., platform or product line, or by prototyping."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Analyze the impact on the operating environment"
+        description: >-
+          Analyze the impact that the software requirements will have on elements in the
+          operating environment.
+        maps_to_outcomes: [4]
+      - bp_id: "BP5"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between software
+          requirements and system architecture. Ensure consistency and establish bidirectional
+          traceability between software requirements and system requirements.
+        notes:
+          - "Note 9: Redundant traceability is not intended."
+          - "Note 10: There may be non-functional system requirements that the software requirements do not trace to. Examples are process requirements or requirements related to later software product lifecycle phases such as incident handling. Such requirements are still subject to verification."
+          - "Note 11: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+          - "Note 12: In case of software development only, the system requirements and system architecture refer to a given operating environment. In that case, consistency and bidirectional traceability can be ensured between stakeholder requirements and software requirements."
+        maps_to_outcomes: [5, 6]
+      - bp_id: "BP6"
+        title: "Communicate agreed software requirements and impact on the operating environment"
+        description: >-
+          Communicate the agreed software requirements, and the results of the analysis
+          of impact on the operating environment, to all affected parties.
+        maps_to_outcomes: [7]
+    output_information_items:
+      - item_id: "17-00"
+        name: "Requirement"
+        maps_to_outcomes: [1, 2]
+      - item_id: "17-54"
+        name: "Requirement Attribute"
+        maps_to_outcomes: [2]
+      - item_id: "15-51"
+        name: "Analysis Results"
+        maps_to_outcomes: [3, 4]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [5, 6]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [7]
+
+  # ============================================================
+  # SWE.2 — Software Architectural Design
+  # ============================================================
+  - process_id: "SWE.2"
+    process_name: "Software Architectural Design"
+    process_purpose: >-
+      The purpose is to establish an analyzed software architecture, comprising static
+      and dynamic aspects, consistent with the software requirements.
+    process_outcomes:
+      - id: 1
+        description: "A software architecture is designed including static and dynamic aspects."
+      - id: 2
+        description: "The software architecture is analyzed against defined criteria."
+      - id: 3
+        description: "Consistency and bidirectional traceability are established between software architecture and software requirements."
+      - id: 4
+        description: "The software architecture is agreed and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify static aspects of the software architecture"
+        description: >-
+          Specify and document the static aspects of the software architecture with respect
+          to the functional and non-functional software requirements, including external
+          interfaces and a defined set of software components with their interfaces and
+          relationships.
+        notes:
+          - "Note 1: The hardware-software-interface (HSI) definition puts in context the hardware design and therefore is an aspect of system design (SYS.3)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Specify dynamic aspects of the software architecture"
+        description: >-
+          Specify and document the dynamic aspects of the software architecture with respect
+          to the functional and non-functional software requirements, including the behavior
+          of the software components and their interaction in different software modes, and
+          concurrency aspects.
+        notes:
+          - "Note 2: Examples for concurrency aspects are application-relevant interrupt handling, preemptive processing, multi-threading."
+          - "Note 3: Examples for behavioral descriptions are natural language or semi-formal notation (e.g, SysML, UML)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP3"
+        title: "Analyze software architecture"
+        description: >-
+          Analyze the software architecture regarding relevant technical design aspects and
+          to support project management regarding project estimates. Document a rationale
+          for the software architectural design decision.
+        notes:
+          - "Note 4: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates."
+          - "Note 5: The analysis may include the suitability of pre-existing software components for the current application."
+          - "Note 6: Examples of methods suitable for analyzing technical aspects are prototypes, simulations, qualitative analyses."
+          - "Note 7: Examples of technical aspects are functionality, timings, and resource consumption (e.g, ROM, RAM, external / internal EEPROM or Data Flash or CPU load)."
+          - "Note 8: Design rationales can include arguments such as proven-in-use, reuse of a software framework or software product line, a make-or-buy decision, or found in an evolutionary way (e.g, set-based design)."
+        maps_to_outcomes: [2]
+      - bp_id: "BP4"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between the software
+          architecture and the software requirements.
+        notes:
+          - "Note 9: There may be non-functional software requirements that the software architectural design does not trace to. Examples are development process requirements. Such requirements are still subject to verification."
+          - "Note 10: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g, the existence of links, does not necessarily mean that the information is consistent with each other."
+        maps_to_outcomes: [3]
+      - bp_id: "BP5"
+        title: "Communicate agreed software architecture"
+        description: >-
+          Communicate the agreed software architecture to all affected parties.
+        maps_to_outcomes: [4]
+    output_information_items:
+      - item_id: "04-04"
+        name: "Software Architecture"
+        maps_to_outcomes: [1]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [3]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [4]
+      - item_id: "15-51"
+        name: "Analysis Results"
+        maps_to_outcomes: [2]
+
+  # ============================================================
+  # SWE.3 — Software Detailed Design and Unit Construction
+  # ============================================================
+  - process_id: "SWE.3"
+    process_name: "Software Detailed Design and Unit Construction"
+    process_purpose: >-
+      The purpose is to establish a software detailed design, comprising static and dynamic
+      aspects, consistent with the software architecture, and to construct software units
+      consistent with the software detailed design.
+    process_outcomes:
+      - id: 1
+        description: "A detailed design is specified including static and dynamic aspects."
+      - id: 2
+        description: "Software units as specified in the software detailed design are produced."
+      - id: 3
+        description: >-
+          Consistency and bidirectional traceability are established between software detailed
+          design and software architecture; and consistency and bidirectional traceability are
+          established between source code and software detailed design; and consistency and
+          bidirectional traceability are established between the software detailed design and
+          the software requirements.
+      - id: 4
+        description: "The source code and the agreed software detailed design are communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify the static aspects of the detailed design"
+        description: >-
+          For each software component specify the behavior of its software units, their static
+          structure and relationships, their interfaces including valid data value ranges for
+          inputs and outputs (from the application domain perspective), and physical or
+          measurement units applicable to inputs and outputs (from the application domain
+          perspective).
+        notes:
+          - "Note 1: The boundary of a software unit is independent from the software unit's representation in the source code, code file structure, or model-based implementation, respectively. It is rather driven by the semantics of the application domain perspective. Therefore, a software unit may be, at the code level, represented by a single subroutine or a set of subroutines."
+          - "Note 2: Examples of valid data value ranges with applicable physical units from the application domain perspective are '0..200 [m/s]', '0..3.8 [A]' or '1..100 [N]'. For mapping such application domain value ranges to programming language-level data types (such as unsigned Integer with a value range of 0..65535) refer to BP2."
+          - "Note 3: Examples of a measurement unit are '%' or '\u2030'."
+          - "Note 4: A counter is an example of a parameter, or a return value, to which neither a physical nor a measurement unit is applicable."
+          - "Note 5: The hardware-software-interface (HSI) definition puts in context the hardware design and therefore is an aspect of system design (SYS.3)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Specify dynamic aspects of the detailed design"
+        description: >-
+          Specify and document the dynamic aspects of the detailed design with respect to
+          the software architecture, including the interactions between relevant software units
+          to fulfill the component's dynamic behavior.
+        notes:
+          - "Note 6: Examples for behavioral descriptions are natural language or semi-formal notation (e.g, SysML, UML)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP3"
+        title: "Develop software units"
+        description: >-
+          Develop and document the software units consistent with the detailed design, and
+          according to coding principles.
+        notes:
+          - "Note 7: Examples for coding principles at capability level 1 are not to use implicit type conversions, only one entry and one exit point in subroutines, and range checks (design-by-contract, defensive programming). Further examples see e.g, ISO 26262-6 clause 8.4.5 together with table 6."
+        maps_to_outcomes: [2]
+      - bp_id: "BP4"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between the software
+          detailed design and the software architecture. Ensure consistency and establish
+          bidirectional traceability between the developed software units and the software
+          detailed design. Ensure consistency and establish traceability between the software
+          detailed design and the software requirements.
+        notes:
+          - "Note 8: Redundancy should be avoided by establishing a combination of these approaches."
+          - "Note 9: Examples for tracing a software unit in the detailed design to a software requirement directly are communication matrices or basis software aspects such as a list of diagnosis identifiers inherent in an Autosar configuration."
+          - "Note 10: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+        maps_to_outcomes: [3]
+      - bp_id: "BP5"
+        title: "Communicate agreed software detailed design and developed software units"
+        description: >-
+          Communicate the agreed software detailed design and developed software units to
+          all affected parties.
+        maps_to_outcomes: [4]
+    output_information_items:
+      - item_id: "04-05"
+        name: "Software Detailed Design"
+        maps_to_outcomes: [1]
+      - item_id: "11-05"
+        name: "Software Unit"
+        maps_to_outcomes: [1, 2]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [3]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [4]
+
+  # ============================================================
+  # SWE.4 — Software Unit Verification
+  # ============================================================
+  - process_id: "SWE.4"
+    process_name: "Software Unit Verification"
+    process_purpose: >-
+      The purpose is to verify that software units are consistent with the software
+      detailed design.
+    process_outcomes:
+      - id: 1
+        description: "Verification measures for software unit verification are specified."
+      - id: 2
+        description: "Software unit verification measures are selected according to the release scope, including criteria for regression verification."
+      - id: 3
+        description: "Software units are verified using the selected verification measures, and results are recorded."
+      - id: 4
+        description: >-
+          Consistency and bidirectional traceability are established between verification
+          measures and software units; and bidirectional traceability is established between
+          verification results and verification measures.
+      - id: 5
+        description: "Results of the software unit verification are summarized and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify software unit verification measures"
+        description: >-
+          Specify verification measures for each software unit defined in the software
+          detailed design, including pass/fail criteria for verification measures, entry and
+          exit criteria for verification measures, and the required verification infrastructure.
+        notes:
+          - "Note 1: Examples for unit verification measures are static analysis, code reviews, and unit testing."
+          - "Note 2: Static analysis can be done based on MISRA rulesets and other coding standards."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Select software unit verification measures"
+        description: >-
+          Document the selection of verification measures considering selection criteria
+          including criteria for regression verification. The documented selection of
+          verification measures shall have sufficient coverage according to the release scope.
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Verify software units"
+        description: >-
+          Perform software unit verification using the selected verification measures. Record
+          the verification results including pass/fail status and corresponding verification
+          measure data.
+        notes:
+          - "Note 3: See SUP.9 for handling of verification results that deviate from expected results."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between verification
+          measures and the software units defined in the detailed design. Establish
+          bidirectional traceability between the verification results and the verification
+          measures.
+        notes:
+          - "Note 4: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+        maps_to_outcomes: [4]
+      - bp_id: "BP5"
+        title: "Summarize and communicate results"
+        description: >-
+          Summarize the results of software unit verification and communicate them to all
+          affected parties.
+        notes:
+          - "Note 5: Providing all necessary information from the test case execution in a summary enables other parties to judge the consequences."
+        maps_to_outcomes: [5]
+    output_information_items:
+      - item_id: "08-60"
+        name: "Verification Measure"
+        maps_to_outcomes: [1]
+      - item_id: "03-50"
+        name: "Verification Measure Data"
+        maps_to_outcomes: [3]
+      - item_id: "08-58"
+        name: "Verification Measure Selection Set"
+        maps_to_outcomes: [2]
+      - item_id: "15-52"
+        name: "Verification Results"
+        maps_to_outcomes: [3]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [4]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [5]
+
+  # ============================================================
+  # SWE.5 — Software Component Verification and Integration Verification
+  # ============================================================
+  - process_id: "SWE.5"
+    process_name: "Software Component Verification and Integration Verification"
+    process_purpose: >-
+      The purpose is to verify that software components are consistent with the software
+      architectural design, and to integrate software elements and verify that the integrated
+      software elements are consistent with the software architecture and software detailed
+      design.
+    process_outcomes:
+      - id: 1
+        description: >-
+          Verification measures are specified for software integration verification of the
+          integrated software elements based on the software architecture and detailed design,
+          including the interfaces of, and interactions between, the software components.
+      - id: 2
+        description: >-
+          Verification measures for software components are specified to provide evidence for
+          compliance of the software components with the software components' behavior and
+          interfaces.
+      - id: 3
+        description: "Software elements are integrated up to a complete integrated software."
+      - id: 4
+        description: "Verification measures are selected according to the release scope considering criteria, including criteria for regression verification."
+      - id: 5
+        description: "Software components are verified using the selected verification measures, and the results of the integration verification are recorded."
+      - id: 6
+        description: "Integrated software elements are verified using the selected verification measures, and the results of the integration verification are recorded."
+      - id: 7
+        description: >-
+          Consistency and bidirectional traceability are established between verification
+          measures and the software architecture and detailed design; and bidirectional
+          traceability is established between verification results and verification measures.
+      - id: 8
+        description: "The results of software component verification and software elements integration verification are summarized and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify software integration verification measures"
+        description: >-
+          Specify verification measures, based on a defined sequence and preconditions for
+          the integration of software elements, against the defined static and dynamic aspects
+          of the software architecture, including techniques for the verification measures,
+          pass/fail criteria for verification measures, entry and exit criteria for verification
+          measures, and the required verification infrastructure and environment setup.
+        notes:
+          - "Note 1: Examples on which the software integration verification measures may focus on are the correct dataflow and dynamic interaction between software components together with their timing dependencies, the correct interpretation of data by all software components using an interface, and the compliance to resource consumption objectives."
+          - "Note 2: The software integration verification measure may be supported by using hardware debug interfaces or simulation environments (e.g, Software-in-the-Loop-Simulation)."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Specify verification measures for verifying software component behavior"
+        description: >-
+          Specify verification measures for software component verification against the
+          defined software components' behavior and their interfaces in the software
+          architecture, including techniques for the verification measures, entry and exit
+          criteria for verification measures, pass/fail criteria for verification measures,
+          and the required verification infrastructure and environment setup.
+        notes:
+          - "Note 3: Verification measures are related to software components but not to the software units since software unit verification is addressed in the process SWE.4 Software Unit Verification."
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Select verification measures"
+        description: >-
+          Document the selection of integration verification measures for each integration
+          step considering selection criteria including criteria for regression verification.
+          The documented selection of verification measures shall have sufficient coverage
+          according to the release scope.
+        notes:
+          - "Note 4: Examples for selection criteria can be the need for continuous integration /continuous development regression verification (due to e.g, changes to the software architectural or detailed design), or the intended use of the delivered product release (e.g, test bench, test track, public road etc.)."
+        maps_to_outcomes: [4]
+      - bp_id: "BP4"
+        title: "Integrate software elements and perform integration verification"
+        description: >-
+          Integrate the software elements until the software is fully integrated according to
+          the specified interfaces and interactions between the Software elements, and
+          according to the defined sequence and defined preconditions. Perform the selected
+          integration verification measures. Record the verification measure data including
+          pass/fail status and corresponding verification measure data.
+        notes:
+          - "Note 5: Examples for preconditions for starting software integration are qualification of pre-existing software components, off-the-shelf software components, open-source-software, or auto-code generated software."
+          - "Note 6: Defined preconditions may allow e.g, big-bang-integration of all software components, continuous integration, as well as stepwise integration (e.g, across software units and/or software components up to the fully integrated software) with accompanying verification measures."
+          - "Note 7: See SUP.9 for handling deviations of verification results deviate expected results."
+        maps_to_outcomes: [3, 6]
+      - bp_id: "BP5"
+        title: "Perform software component verification"
+        description: >-
+          Perform the selected verification measures for verifying software component
+          behavior. Record the verification results including pass/fail status and
+          corresponding verification measure data.
+        notes:
+          - "Note 8: See SUP.9 for handling verification results that deviate from expected results."
+        maps_to_outcomes: [5]
+      - bp_id: "BP6"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between verification
+          measures and the static and dynamic aspects of the software architecture and
+          detailed design. Establish bidirectional traceability between verification results
+          and verification measures.
+        notes:
+          - "Note 9: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+        maps_to_outcomes: [7]
+      - bp_id: "BP7"
+        title: "Summarize and communicate results"
+        description: >-
+          Summarize the software component verification and the software integration
+          verification results and communicate them to all affected parties.
+        notes:
+          - "Note 10: Providing all necessary information from the test case execution in a summary enables other parties to judge the consequences."
+        maps_to_outcomes: [8]
+    output_information_items:
+      - item_id: "08-60"
+        name: "Verification Measure"
+        maps_to_outcomes: [1, 2]
+      - item_id: "06-50"
+        name: "Integration Sequence Instruction"
+        maps_to_outcomes: [3]
+      - item_id: "03-50"
+        name: "Verification Measure Data"
+        maps_to_outcomes: [5]
+      - item_id: "08-58"
+        name: "Verification Measure Selection Set"
+        maps_to_outcomes: [4]
+      - item_id: "15-52"
+        name: "Verification Results"
+        maps_to_outcomes: [5, 6]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [7]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [8]
+      - item_id: "01-03"
+        name: "Software Component"
+        maps_to_outcomes: [3]
+      - item_id: "01-50"
+        name: "Integrated Software"
+        maps_to_outcomes: [3]
+
+  # ============================================================
+  # SWE.6 — Software Verification
+  # ============================================================
+  - process_id: "SWE.6"
+    process_name: "Software Verification"
+    process_purpose: >-
+      The purpose of the Software Verification process is to ensure that the integrated
+      software is verified to be consistent with the software requirements.
+    process_outcomes:
+      - id: 1
+        description: "Verification measures are specified for software verification of the software based on the software requirements."
+      - id: 2
+        description: "Verification measures are selected according to the release scope considering criteria, including criteria for regression verification."
+      - id: 3
+        description: "The integrated software is verified using the selected verification measures and the results of software verification are recorded."
+      - id: 4
+        description: >-
+          Consistency and bidirectional traceability are established between verification
+          measures and software requirements; and bidirectional traceability is established
+          between verification results and verification measures.
+      - id: 5
+        description: "Results of the software verification are summarized and communicated to all affected parties."
+    base_practices:
+      - bp_id: "BP1"
+        title: "Specify verification measures for software verification"
+        description: >-
+          Specify the verification measures for software verification suitable to provide
+          evidence for compliance of the integrated software with the functional and
+          non-functional information in the software requirements, including techniques for
+          the verification measures, pass/fail criteria for verification measures, a definition
+          of entry and exit criteria for the verification measures, necessary sequence of
+          verification measures, and the required verification infrastructure and environment
+          setup.
+        notes:
+          - "Note 1: The selection of appropriate techniques for verification measures may depend on the content of the respective software requirement (e.g, boundary values and equivalence classes for data range-oriented requirements, positive/sunny-day-test vs. negative testing such as fault injection), or on requirements-based testing vs. 'error guessing based on knowledge or experience'."
+        maps_to_outcomes: [1]
+      - bp_id: "BP2"
+        title: "Select verification measures"
+        description: >-
+          Document the selection of verification measures considering selection criteria
+          including criteria for regression verification. The documented selection of
+          verification measures shall have sufficient coverage according to the release scope.
+        notes:
+          - "Note 2: Examples for selection criteria can be prioritization of requirements, continuous development, the need for regression verification (due to e.g., changes to the software requirements), or the intended use of the delivered product release (test bench, test track, public road etc.)"
+        maps_to_outcomes: [2]
+      - bp_id: "BP3"
+        title: "Verify the integrated software"
+        description: >-
+          Perform the verification of the integrated software using the selected verification
+          measures. Record the verification results including pass/fail status and
+          corresponding verification measure data.
+        notes:
+          - "Note 3: See SUP.9 for handling verification results that deviate from expected results."
+        maps_to_outcomes: [3]
+      - bp_id: "BP4"
+        title: "Ensure consistency and establish bidirectional traceability"
+        description: >-
+          Ensure consistency and establish bidirectional traceability between verification
+          measures and software requirements. Establish bidirectional traceability between
+          verification results and verification measures.
+        notes:
+          - "Note 4: Bidirectional traceability supports consistency, and facilitates impact analysis of change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, does not necessarily mean that the information is consistent with each other."
+        maps_to_outcomes: [4]
+      - bp_id: "BP5"
+        title: "Summarize and communicate results"
+        description: >-
+          Summarize the software verification results and communicate them to all affected
+          parties.
+        notes:
+          - "Note 5: Providing all necessary information from the test case execution in a summary enables other parties to judge the consequences."
+        maps_to_outcomes: [5]
+    output_information_items:
+      - item_id: "08-60"
+        name: "Verification Measure"
+        maps_to_outcomes: [1]
+      - item_id: "03-50"
+        name: "Verification Measure Data"
+        maps_to_outcomes: [3]
+      - item_id: "08-58"
+        name: "Verification Measure Selection Set"
+        maps_to_outcomes: [2]
+      - item_id: "15-52"
+        name: "Verification Results"
+        maps_to_outcomes: [3]
+      - item_id: "13-51"
+        name: "Consistency Evidence"
+        maps_to_outcomes: [4]
+      - item_id: "13-52"
+        name: "Communication Evidence"
+        maps_to_outcomes: [5]
+
+# ============================================================
+# Generic Practices — Capability Levels 2–5
+# ============================================================
+generic_practices:
+  # ----------------------------------------------------------
+  # PA 2.1 — Process Performance Management
+  # ----------------------------------------------------------
+  PA_2_1:
+    process_attribute_id: "PA 2.1"
+    process_attribute_name: "Process performance management"
+    capability_level: 2
+    scope: >-
+      The performance management process attribute is a measure of the extent to which
+      the performance of the process is managed.
+    achievements:
+      - id: 1
+        description: "Strategy for the performance of the process is defined based on identified objectives."
+      - id: 2
+        description: "Performance of the process is planned."
+      - id: 3
+        description: "Performance of the process is monitored and adjusted to meet the planning."
+      - id: 4
+        description: "Needs for human resources including responsibilities and authorities for performing the process are determined."
+      - id: 5
+        description: "Needs for physical and material resources are determined."
+      - id: 6
+        description: "Persons performing the process are prepared for executing their responsibilities."
+      - id: 7
+        description: "Physical and material resources for performing the process are identified, made available, allocated and used."
+      - id: 8
+        description: "Interfaces between the involved parties are managed to ensure both effective communication and the assignment of responsibilities."
+    practices:
+      - gp_id: "GP 2.1.1"
+        title: "Identify the objectives and define a strategy for the performance of the process"
+        description: >-
+          The scope of the process activities including the management of process performance
+          and the management of work products are determined. Corresponding results to be
+          achieved are determined. Process performance objectives and associated criteria are
+          identified. Assumptions and constraints are considered when identifying the
+          performance objectives. Approach and methodology for the process performance is
+          determined.
+        notes:
+          - "Note 1: Budget targets and delivery dates to the customer, targets for test coverage and process lead time are examples for process performance objectives."
+          - "Note 2: Performance objectives are the basis for planning and monitoring."
+          - "Note 3: A process performance strategy may not necessarily be documented specifically for each process. Elements applicable for multiple processes may be documented jointly, e.g, as part of a common project handbook or in a joint test strategy."
+        maps_to_achievements: [1]
+      - gp_id: "GP 2.1.2"
+        title: "Plan the performance of the process"
+        description: >-
+          The planning for the performance of the process is established according to the
+          defined objectives, criteria, and strategy. Process activities and work packages are
+          defined. Estimates for work packages are identified using appropriate methods.
+        notes:
+          - "Note 4: Schedule and milestones are defined."
+        maps_to_achievements: [2]
+      - gp_id: "GP 2.1.3"
+        title: "Determine resource needs"
+        description: >-
+          The required amount of human resources, and experience, knowledge and skill needs
+          for the process performance are determined based on the planning. The needs for
+          physical and material resources are determined based on the planning. Required
+          responsibilities and authorities to perform the process, and to manage the
+          corresponding work products are determined.
+        notes:
+          - "Note 5: Physical and material resources may include equipment, laboratories, materials, tools, licenses etc."
+          - "Note 6: The definition of responsibilities and authorities does not necessarily require formal role descriptions."
+        maps_to_achievements: [4, 5]
+      - gp_id: "GP 2.1.4"
+        title: "Identify and make available resources"
+        description: >-
+          The individuals performing and managing the process are identified and allocated
+          according to the determined needs. The individuals performing and managing the
+          process are being qualified to execute their responsibilities. The other resources,
+          necessary for performing the process are identified, made available, allocated and
+          used according to the determined needs.
+        notes:
+          - "Note 7: Qualification of individuals may include training, mentoring, or coaching."
+        maps_to_achievements: [6, 7]
+      - gp_id: "GP 2.1.5"
+        title: "Monitor and adjust the performance of the process"
+        description: >-
+          Process performance is monitored to identify deviations from the planning.
+          Appropriate actions in case of deviations from the planning are taken. The planning
+          is adjusted as necessary.
+        maps_to_achievements: [3]
+      - gp_id: "GP 2.1.6"
+        title: "Manage the interfaces between involved parties"
+        description: >-
+          The individuals and groups including required external parties involved in the
+          process performance are determined. Responsibilities are assigned to the relevant
+          individuals or parties. Communication mechanisms between the involved parties are
+          determined. Effective communication between the involved parties is established and
+          maintained.
+        maps_to_achievements: [8]
+    output_information_items:
+      - item_id: "19-01"
+        name: "Process performance strategy"
+        maps_to_achievements: [1]
+      - item_id: "18-58"
+        name: "Process performance objectives"
+        maps_to_achievements: [1]
+      - item_id: "14-10"
+        name: "Work package"
+        maps_to_achievements: [2]
+      - item_id: "08-56"
+        name: "Schedule"
+        maps_to_achievements: [2, 3]
+      - item_id: "13-14"
+        name: "Progress status"
+        maps_to_achievements: [3]
+      - item_id: "17-55"
+        name: "Resource needs"
+        maps_to_achievements: [4, 5]
+      - item_id: "08-61"
+        name: "Resource allocation"
+        maps_to_achievements: [6, 7]
+      - item_id: "08-62"
+        name: "Communication matrix"
+        maps_to_achievements: [8]
+      - item_id: "13-52"
+        name: "Communication evidence"
+        maps_to_achievements: [8]
+
+  # ----------------------------------------------------------
+  # PA 2.2 — Work Product Management
+  # ----------------------------------------------------------
+  PA_2_2:
+    process_attribute_id: "PA 2.2"
+    process_attribute_name: "Work product management"
+    capability_level: 2
+    scope: >-
+      The work product management process attribute is a measure of the extent to which
+      the work products produced by the process are appropriately managed.
+    achievements:
+      - id: 1
+        description: "Requirements for the work products of the process are defined."
+      - id: 2
+        description: "Requirements for storage and control of the work products are defined."
+      - id: 3
+        description: "The work products are appropriately identified, stored, and controlled."
+      - id: 4
+        description: "The work products are reviewed and adjusted as necessary to meet requirements."
+    practices:
+      - gp_id: "GP 2.2.1"
+        title: "Define the requirements for the work products"
+        description: >-
+          The requirements for the content and structure of the work products to be produced
+          are defined. Quality criteria for the work products are identified. Appropriate
+          review and approval criteria for the work products are defined.
+        notes:
+          - "Note 1: Possible sources of documentation requirements may be e.g., best practices or lessons learned from other projects, standards, organization requirements, customer requirements, etc."
+          - "Note 2: There may be types of work products for which no review or approval is required, thus then there would be no need to define the corresponding criteria."
+        maps_to_achievements: [1]
+      - gp_id: "GP 2.2.2"
+        title: "Define the requirements for storage and control of the work products"
+        description: >-
+          Requirements for the storage and control of the work products are defined,
+          including their identification and distribution.
+        notes:
+          - "Note 3: Possible sources for the identification of requirements for storage and control may be e.g., legal requirements, data policies, best practices from other projects, tool related requirements, etc."
+          - "Note 4: Examples for work product storage are files in a file system, ticket in a tool, Wiki entry, paper documents etc."
+          - "Note 5: Where status of a work product is required in base practices, this should be managed via a defined status model."
+        maps_to_achievements: [2]
+      - gp_id: "GP 2.2.3"
+        title: "Identify, store and control the work products"
+        description: >-
+          The work products to be controlled are identified. The work products are stored and
+          controlled in accordance with the requirements. Change control is established for
+          work products. Versioning and baselining of the work products is performed in
+          accordance with the requirements for storage and control of the work products. The
+          work products including the revision status are made available through appropriate
+          mechanisms.
+        maps_to_achievements: [3]
+      - gp_id: "GP 2.2.4"
+        title: "Review and adjust work products"
+        description: >-
+          The work products are reviewed against the defined requirements and criteria.
+          Resolution of issues arising from work products reviews is ensured.
+        maps_to_achievements: [4]
+    output_information_items:
+      - item_id: "17-05"
+        name: "Requirements for work products"
+        maps_to_achievements: [1, 2]
+      - item_id: "18-59"
+        name: "Review and approval criteria for work products"
+        maps_to_achievements: [1]
+      - item_id: "18-07"
+        name: "Quality criteria"
+        maps_to_achievements: [1]
+      - item_id: "13-19"
+        name: "Review evidence"
+        maps_to_achievements: [4]
+      - item_id: "13-08"
+        name: "Baseline"
+        maps_to_achievements: [3]
+      - item_id: "16-00"
+        name: "Repository"
+        maps_to_achievements: [3]
+
+  # ----------------------------------------------------------
+  # PA 3.1 — Process Definition
+  # ----------------------------------------------------------
+  PA_3_1:
+    process_attribute_id: "PA 3.1"
+    process_attribute_name: "Process definition"
+    capability_level: 3
+    scope: >-
+      The process definition process attribute is a measure of the extent to which a
+      standard process is maintained to support the deployment of the defined process.
+    achievements:
+      - id: 1
+        description: "A standard process is developed, established, and maintained that describes the fundamental elements that must be incorporated into a defined process."
+      - id: 2
+        description: "The required inputs and the expected outputs for the standard process are defined."
+      - id: 3
+        description: "Roles, responsibilities, authorities, and required competencies for performing the standard process are defined."
+      - id: 4
+        description: "Tailoring guidelines for deriving the defined process from the standard process are defined."
+      - id: 5
+        description: "Required physical and material resources and process infrastructure needs are determined as part of the standard process."
+      - id: 6
+        description: "Suitable methods and required activities for monitoring the effectiveness, suitability and adequacy of the process are determined."
+    practices:
+      - gp_id: "GP 3.1.1"
+        title: "Establish and maintain the standard process"
+        description: >-
+          A suitable standard process is developed including required activities and their
+          interactions. Inputs and outputs of the standard process are defined including the
+          corresponding entry and exit criteria to determine the interactions and sequence
+          with other processes. Process performance roles are identified and assigned to the
+          standard process activities including their type of involvement, responsibilities,
+          and authorities. Suitable guidance, procedures, and templates are provided to
+          support the execution of the process as needed. Appropriate tailoring guidelines
+          including predefined unambiguous criteria as well as predefined and unambiguous
+          proceedings are defined based on identified deployment needs and context of the
+          standard process. The standard process is maintained according to corresponding
+          feedback from the monitoring of the deployed processes.
+        notes:
+          - "Note 1: An example for describing the involvement of the process roles in the activities is a RASI/RASIC representation."
+          - "Note 2: Procedures may also include description of specific methods to be used."
+          - "Note 3: For guidance on how to perform process improvements see the Process Improvement process (PIM.3)."
+        maps_to_achievements: [1, 2, 3, 4]
+      - gp_id: "GP 3.1.2"
+        title: "Determine the required competencies"
+        description: >-
+          Required competencies, skills, and experience for performing the standard process
+          are determined for the identified roles. Appropriate qualification methods to
+          acquire the necessary competencies and skills are determined, maintained, and made
+          available for the identified roles.
+        notes:
+          - "Note 4: Qualification methods are e.g., trainings, mentoring, self-study."
+          - "Note 5: Preparation includes e.g., identification or definition of trainings, mentoring concepts, self-learning material."
+        maps_to_achievements: [3]
+      - gp_id: "GP 3.1.3"
+        title: "Determine the required resources"
+        description: >-
+          Required physical and material resources and process infrastructure needs for
+          performing the standard process are determined.
+        notes:
+          - "Note 6: This may include e.g., facilities, tools, licenses, networks, services, and samples supporting the establishment of the required work environment."
+        maps_to_achievements: [5]
+      - gp_id: "GP 3.1.4"
+        title: "Determine suitable methods to monitor the standard process"
+        description: >-
+          Methods and required activities for monitoring the effectiveness and adequacy of
+          the standard process are determined. Appropriate criteria and information needed to
+          monitor the standard process are defined.
+        notes:
+          - "Note 7: Methods and activities to gather feedback regarding the standard process may be lessons learned, process compliance checks, internal audits, management reviews, change requests, reflection of state-of-the-art such as applicable international standards, etc."
+          - "Note 8: Information about process performance may be of qualitative or quantitative nature."
+        maps_to_achievements: [6]
+    output_information_items:
+      - item_id: "06-51"
+        name: "Tailoring guideline"
+        maps_to_achievements: [4]
+      - item_id: "08-63"
+        name: "Process monitoring method"
+        maps_to_achievements: [6]
+      - item_id: "10-00"
+        name: "Process description"
+        maps_to_achievements: [1, 2]
+      - item_id: "10-50"
+        name: "Role description"
+        maps_to_achievements: [3]
+      - item_id: "10-51"
+        name: "Qualification method description"
+        maps_to_achievements: [3]
+      - item_id: "10-52"
+        name: "Process resource and infrastructure description"
+        maps_to_achievements: [5]
+
+  # ----------------------------------------------------------
+  # PA 3.2 — Process Deployment
+  # ----------------------------------------------------------
+  PA_3_2:
+    process_attribute_id: "PA 3.2"
+    process_attribute_name: "Process deployment"
+    capability_level: 3
+    scope: >-
+      The process deployment process attribute is a measure of the extent to which the
+      standard process is deployed as a defined process to achieve its process outcomes.
+    achievements:
+      - id: 1
+        description: "A defined process is deployed based upon an appropriately selected and/or tailored standard process."
+      - id: 2
+        description: "Assignment of persons necessary for performing the defined process to roles is performed and communicated."
+      - id: 3
+        description: "Required education, training and experience is ensured and monitored for the person(s) assigned to the roles."
+      - id: 4
+        description: "Required resources for performing the defined process are made available, allocated, and maintained."
+      - id: 5
+        description: "Appropriate information is collected and analyzed as a basis for understanding the behavior of the process."
+    practices:
+      - gp_id: "GP 3.2.1"
+        title: "Deploy a defined process that satisfies the context specific requirements of the use of the standard process"
+        description: >-
+          The defined process is appropriately selected and/or tailored from the standard
+          process. Conformance of defined process with standard process requirements and
+          tailoring criteria is verified. The defined process is used as managed process to
+          achieve the process outcomes.
+        notes:
+          - "Note 1: Changes in the standard process may require updates of the defined process."
+        maps_to_achievements: [1]
+      - gp_id: "GP 3.2.2"
+        title: "Ensure required competencies for the defined roles"
+        description: >-
+          Human resources are allocated to the defined roles according to the required
+          competencies and skills. Assignment of persons to roles and corresponding
+          responsibilities and authorities for performing the defined process are communicated.
+          Gaps in competencies and skills are identified, and corresponding qualification
+          measures are initiated and monitored. Availability and usage of the project staff
+          are measured and monitored.
+        maps_to_achievements: [2, 3]
+      - gp_id: "GP 3.2.3"
+        title: "Ensure required resources to support the performance of the defined process"
+        description: >-
+          Required information to perform the defined process is made available, allocated
+          and used. Required physical and material resources, process infrastructure and work
+          environment are made available, allocated and used. Availability and usage of
+          resources are measured and monitored.
+        maps_to_achievements: [4]
+      - gp_id: "GP 3.2.4"
+        title: "Monitor the performance of the defined process"
+        description: >-
+          Information is collected and analyzed according to the determined process monitoring
+          methods to understand the effectiveness and adequacy of the defined process.
+          Results of the analysis are made available to all effected parties and used to
+          identify where continual improvement of the standard and/or defined process can be
+          made.
+        notes:
+          - "Note 2: For guidance on how to perform process improvements see the Process Improvement process (PIM.3)."
+        maps_to_achievements: [5]
+    output_information_items:
+      - item_id: "10-00"
+        name: "Process description"
+        maps_to_achievements: [1]
+      - item_id: "15-54"
+        name: "Tailoring documentation"
+        maps_to_achievements: [1]
+      - item_id: "14-53"
+        name: "Role assignment"
+        maps_to_achievements: [2, 3]
+      - item_id: "13-55"
+        name: "Process resource and infrastructure documentation"
+        maps_to_achievements: [4]
+      - item_id: "03-06"
+        name: "Process performance information"
+        maps_to_achievements: [5]
+
+  # ----------------------------------------------------------
+  # PA 4.1 — Quantitative Analysis
+  # ----------------------------------------------------------
+  PA_4_1:
+    process_attribute_id: "PA 4.1"
+    process_attribute_name: "Quantitative analysis"
+    capability_level: 4
+    scope: >-
+      The quantitative analysis process attribute is a measure of the extent to which
+      information needs are defined, relationships between process elements are identified
+      and data are collected.
+    achievements:
+      - id: 1
+        description: "Process information needs in support of relevant defined quantitative business goals are established."
+      - id: 2
+        description: "Measurable relationships between process elements that contribute to the process performance, and data collection techniques and data collection frequency, are identified."
+      - id: 3
+        description: "Process measurement objectives are derived from process information needs."
+      - id: 4
+        description: "Techniques for analyzing the collected data are selected."
+      - id: 5
+        description: "Quantitative control limits for process performance in support of relevant business goals are established."
+      - id: 6
+        description: "Results of measurement are collected, validated and reported in order to monitor the extent to which the quantitative targets/objectives for process performance are met."
+    practices:
+      - gp_id: "GP 4.1.1"
+        title: "Identify business goals"
+        description: >-
+          Business goals are identified that are supported by the quantitatively measured
+          process.
+        maps_to_achievements: [1]
+      - gp_id: "GP 4.1.2"
+        title: "Establish process information needs"
+        description: >-
+          Stakeholders of the identified business goals and the quantitatively measured
+          process are identified, and their information needs are defined and agreed.
+        maps_to_achievements: [1]
+      - gp_id: "GP 4.1.3"
+        title: "Identify measurable relationships between process elements"
+        description: >-
+          Identify the relationships between process elements, or sets of process elements,
+          which contribute to the process information needs.
+        notes:
+          - "Note 1: Examples of process elements are work products, activities, tasks."
+        maps_to_achievements: [2]
+      - gp_id: "GP 4.1.4"
+        title: "Derive process measurement approach and select analysis techniques"
+        description: >-
+          Based on the measurable relationships of process elements, or set of process
+          elements, the process measurement metrics are derived to satisfy the established
+          process information needs. Frequency of data collection is defined. Select analysis
+          techniques, appropriate to collected data. Algorithms and methods to create derived
+          measurement results from base measures are defined, as appropriate. Verification
+          mechanism for base and derived measures is defined.
+        notes:
+          - "Note 2: Typically, the standard process definition is extended to include the collection of data for process measurement."
+        maps_to_achievements: [3, 4]
+      - gp_id: "GP 4.1.5"
+        title: "Establish quantitative control limits"
+        description: >-
+          Establish quantitative control limits for the derived metrics. Agreement with
+          process stakeholders is established.
+        maps_to_achievements: [5]
+      - gp_id: "GP 4.1.6"
+        title: "Collect product and process measurement results through performing the defined process"
+        description: >-
+          Data collection mechanisms are created for all identified metrics. Required data is
+          collected across process instances of within the defined frequency and recorded.
+          Measurement results are analyzed and reported to the identified stakeholders.
+        notes:
+          - "Note 3: A product measure can contribute to a process measure, e.g., the productivity of testing characterized by the number of defects found in a given timeframe in relation to the product defect rate in the field."
+        maps_to_achievements: [6]
+    output_information_items:
+      - item_id: "18-70"
+        name: "Business goals"
+        maps_to_achievements: [1, 2]
+      - item_id: "07-61"
+        name: "Quantitative process metric"
+        maps_to_achievements: [2, 3]
+      - item_id: "07-62"
+        name: "Process analysis techniques"
+        maps_to_achievements: [4]
+      - item_id: "07-63"
+        name: "Process control limits"
+        maps_to_achievements: [5]
+      - item_id: "07-64"
+        name: "Process measurement data"
+        maps_to_achievements: [6]
+
+  # ----------------------------------------------------------
+  # PA 4.2 — Quantitative Control
+  # ----------------------------------------------------------
+  PA_4_2:
+    process_attribute_id: "PA 4.2"
+    process_attribute_name: "Quantitative control"
+    capability_level: 4
+    scope: >-
+      The quantitative control process attribute is a measure of the extent to which
+      objective data are used to manage process performance that is predictable.
+    achievements:
+      - id: 1
+        description: "Variations in process performance are identified."
+      - id: 2
+        description: "Assignable causes of process variation are determined through analysis of the collected quantitative data."
+      - id: 3
+        description: "Distributions that characterize the performance of the process are established."
+      - id: 4
+        description: "Corrective actions are taken to address assignable causes of variation."
+    practices:
+      - gp_id: "GP 4.2.1"
+        title: "Identify variations in process performance"
+        description: >-
+          Deviations in the performance of process instances from the established
+          quantitative control limits are determined based on the collected quantitative
+          measurement data.
+        maps_to_achievements: [1]
+      - gp_id: "GP 4.2.2"
+        title: "Identify causes of variation"
+        description: >-
+          The determined deviations in process performance are analyzed to identify potential
+          cause(s) of variation using the defined analysis techniques. Distributions are used
+          to quantitatively understand the variation of process performance under the
+          influence of potential causes of variation. Consequences of process variation are
+          analyzed.
+        maps_to_achievements: [2, 3]
+      - gp_id: "GP 4.2.3"
+        title: "Identify and implement corrective actions to address assignable causes"
+        description: >-
+          Results are provided to those responsible for taking action. Corrective actions are
+          determined and implemented to address each assignable cause of variation. Corrective
+          action results are monitored and evaluated to determine their effectiveness.
+        notes:
+          - "Note 1: Assignable cause may indicate a possible problem in the defined process."
+        maps_to_achievements: [4]
+    output_information_items:
+      - item_id: "15-57"
+        name: "Quantitative process analysis results"
+        maps_to_achievements: [1, 2, 3]
+      - item_id: "08-66"
+        name: "Measures against deviations in quantitative process analysis"
+        maps_to_achievements: [4]
+
+  # ----------------------------------------------------------
+  # PA 5.1 — Process Innovation
+  # ----------------------------------------------------------
+  PA_5_1:
+    process_attribute_id: "PA 5.1"
+    process_attribute_name: "Process innovation"
+    capability_level: 5
+    scope: >-
+      The process innovation process attribute is a measure of the extent to which changes
+      to the process are identified from investigations of innovative approaches to the
+      definition and deployment of the process.
+    achievements:
+      - id: 1
+        description: "Process innovation objectives are defined that support the relevant business goals."
+      - id: 2
+        description: "Quantitative data are analyzed to identify opportunities for innovation."
+      - id: 3
+        description: "Innovation opportunities derived from new technologies and process concepts are identified."
+    practices:
+      - gp_id: "GP 5.1.1"
+        title: "Define the process innovation objectives for the process that support the relevant business goals"
+        description: >-
+          New business visions and goals are analyzed to give guidance for new process
+          objectives and potential areas of process innovation. Quantitative and qualitative
+          process innovation objectives are defined and documented.
+        maps_to_achievements: [1]
+      - gp_id: "GP 5.1.2"
+        title: "Analyze quantitative data of the process"
+        description: >-
+          Common causes of variation in process performance across process instances are
+          identified and analyzed to get a quantitative understanding of their impact.
+        maps_to_achievements: [2]
+      - gp_id: "GP 5.1.3"
+        title: "Identify innovation opportunities"
+        description: >-
+          Identify opportunities for innovation based on the quantitative understanding of
+          the analyzed data. Industry best practices, new technologies and process concepts
+          are identified and evaluated. Feedback on opportunities for innovation is actively
+          sought. Emergent risks are considered in evaluating improvement opportunities.
+        maps_to_achievements: [3]
+    output_information_items:
+      - item_id: "18-80"
+        name: "Improvement opportunity"
+        maps_to_achievements: [1, 3]
+      - item_id: "15-58"
+        name: "Common cause of variation analysis results"
+        maps_to_achievements: [2]
+
+  # ----------------------------------------------------------
+  # PA 5.2 — Process Innovation Implementation
+  # ----------------------------------------------------------
+  PA_5_2:
+    process_attribute_id: "PA 5.2"
+    process_attribute_name: "Process innovation implementation"
+    capability_level: 5
+    scope: >-
+      The process innovation process implementation attribute is a measure of the extent
+      to which changes to the definition, management and performance of the process
+      achieves the relevant process innovation objectives.
+    achievements:
+      - id: 1
+        description: "Impact of all proposed changes is assessed against the objectives of the defined process and standard process."
+      - id: 2
+        description: "Implementation of all agreed changes is managed to ensure that any disruption to the process performance is understood and acted upon."
+      - id: 3
+        description: "Effectiveness of process change on the basis of quantitative performance and innovation feedback is evaluated."
+    practices:
+      - gp_id: "GP 5.2.1"
+        title: "Define and assess the impact of proposed changes"
+        description: >-
+          Specified changes are assessed against product quality and process performance
+          requirements and goals. Impact of changes to other defined and standard processes
+          is considered. Objective priorities for process innovation are established.
+          Commitment to innovation is demonstrated by organizational management including
+          other relevant stakeholders.
+        maps_to_achievements: [1]
+      - gp_id: "GP 5.2.2"
+        title: "Implement agreed process changes"
+        description: >-
+          A mechanism is established for incorporating accepted changes into the defined and
+          standard process(es) effectively and completely. Process changes are implemented
+          and effectively communicated to all affected parties.
+        maps_to_achievements: [2]
+      - gp_id: "GP 5.2.3"
+        title: "Evaluate the effectiveness of process change"
+        description: >-
+          Performance and capability of the changed process are measured and compared with
+          historical data. Performance and capability of the changed process are analyzed to
+          determine whether the process performance has improved with respect to common
+          causes of variations. Other feedback is recorded, such as opportunities for further
+          innovation of the standard process. A mechanism is available for documenting and
+          reporting analysis results to stakeholders of standard and defined process.
+        maps_to_achievements: [3]
+    output_information_items:
+      - item_id: "18-81"
+        name: "Improvement evaluation results"
+        maps_to_achievements: [1, 3]
+      - item_id: "08-66"
+        name: "Measures against deviations in quantitative process analysis"
+        maps_to_achievements: [2, 3]

@@ -1,0 +1,1261 @@
+
+--- PAGE 99 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+99
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+5. Process capability levels and process attributes 
+The definition of process capability indicators for each process attribute is an integral part of a meas-
+urement framework. Process capability indicators such as generic practices and information items 
+are the means to support the judgment of the degree of achievement of the associated process 
+attribute. 
+This chapter defines the generic practices and information items and their mapping to the process 
+attributes for each capability level defined in the measurement framework [3.2]. 
+Note: Due to lack of a defined process attribute for process capability level 0, no generic practices and 
+information items are defined. 
+Process capability 
+level 
+Process attribute ID 
+Each process attribute is identified with a unique identifier and 
+name. A process attribute scope statement is provided, and 
+process achievements are defined. 
+Process attribute 
+name  
+Process attribute 
+scope 
+Process 
+achievements 
+Process attribute acievement 
+indicators 
+Generic practices 
+A set of generic practices for the process attribute providing a 
+definition of the activities to be performed to accomplish the 
+process attribute scope and fulfill the process achievements. 
+The generic practice headers are summarized at the end of a 
+process to demonstrate their relationship to the process 
+attribute achievements. 
+Output information 
+items 
+The output information items that are relevant to accomplish 
+the process attribute scope and fulfill the process 
+achievements are summarized at the end of a process attribute 
+section to demonstrate their relationship to the process 
+achievements. 
+Note: Refer to Annex B for the characteristics of each 
+information item. 
+Table 22 — Template for the process description 
+5.1. 
+Process capability level 0: Incomplete process 
+The process is not implemented or fails to achieve its process purpose. At this level there is little or 
+no evidence of any systematic achievement of the process purpose. 
+ 
+ 
+
+--- PAGE 100 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+100
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+5.2. Process capability Level 1: Performed process 
+The implemented process achieves its process purpose. The following process attribute 
+demonstrates the achievement of this level. 
+5.2.1. PA 1.1 Process performance process attribute 
+Process attribute ID 
+PA 1.1 
+Process attribute name 
+Process performance process attribute 
+Process attribute scope 
+The process performance process attribute is a measure of the extent to which the process 
+purpose is achieved. 
+Process attribute achievements 
+1) The process achieves its defined outcomes. 
+ 
+Generic practices  
+GP 1.1.1 Achieve the process outcomes  
+Achieve the intent of the base practices. 
+Produce work products that evidence the process outcomes. 
+ 
+PA 1.1 
+Process performance process attribute 
+Achievement a 
+Output Information Items 
+ 
+Process specific information items, as described in chapter 4 
+X 
+Generic practices 
+ 
+GP 1.1.1 Achieve the process outcomes 
+X 
+ 
+5.3. Process capability Level 2: Managed process 
+The following process attributes, together with the previously defined process attribute, demonstrate 
+the achievement of this level. 
+
+--- PAGE 101 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+101
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+5.3.1. PA 2.1 Process performance management process attribute 
+Process attribute ID 
+PA 2.1 
+Process attribute name 
+Process performance management process attribute 
+Process attribute scope 
+The performance management process attribute is a measure of the extent to which the 
+performance of the process is managed. 
+Process attribute achievements 
+1) Strategy for the performance of the process is defined based on identified objectives. 
+2) Performance of the process is planned. 
+3) Performance of the process is monitored and adjusted to meet the planning. 
+4) Needs for human resources including responsibilities and authorities for performing the 
+process are determined. 
+5) Needs for physical and material resources are determined. 
+6) Persons performing the process are prepared for executing their responsibilities. 
+7) Physical and material resources for performing the process are identified, made available, 
+allocated and used. 
+8) Interfaces between the involved parties are managed to ensure both effective 
+communication and the assignment of responsibilities. 
+ 
+ 
+Generic practices  
+GP 2.1.1: Identify the objectives and define a strategy for the performance of the process.  
+The scope of the process activities including the management of process performance and the 
+management of work products are determined. 
+Corresponding results to be achieved are determined. 
+Process performance objectives and associated criteria are identified. 
+Note 1: Budget targets and delivery dates to the customer, targets for test coverage and process 
+lead time are examples for process performance objectives. 
+Note 2: Performance objectives are the basis for planning and monitoring. 
+Assumptions and constraints are considered when identifying the performance objectives. 
+Approach and methodology for the process performance is determined. 
+Note 3: A process performance strategy may not necessarily be document-ed specifically for each 
+process. Elements applicable for multiple processes may be documented jointly, e.g, as part of a 
+common project handbook or in a joint test strategy.  
+
+--- PAGE 102 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+102
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 2.1.2: Plan the performance of the process. 
+The planning for the performance of the process is established according to the defined 
+objectives, criteria, and strategy. 
+Process activities and work packages are defined. 
+Estimates for work packages are identified using appropriate methods. 
+Note 4: Schedule and milestones are defined. 
+GP 2.1.3: Determine resource needs.  
+The required amount of human resources, and experience, knowledge and skill needs for the for 
+process performance are determined based on the planning. 
+The needs for physical and material resources are determined based on the planning. 
+Note 5: Physical and material resources may include equipment, laboratories, materials, tools, 
+licenses etc.  
+Required responsibilities and authorities to perform the process, and to manage the 
+corresponding work products are determined. 
+Note 6: The definition of responsibilities and authorities does not necessarily require formal role 
+descriptions. 
+GP 2.1.4: Identify and make available resources. 
+The individuals performing and managing the process are identified and allocated according to 
+the determined needs. 
+The individuals performing and managing the process are being qualified to execute their 
+responsibilities. 
+Note 7: Qualification of individuals may include training, mentoring, or coaching. 
+The other resources, necessary for performing the process are identified, made available, 
+allocated and used according to the determined needs. 
+GP 2.1.5: Monitor and adjust the performance of the process.  
+Process performance is monitored to identify deviations from the planning. 
+Appropriate actions in case of deviations from the planning are taken. 
+The planning is adjusted as necessary. 
+GP 2.1.6: Manage the interfaces between involved parties. 
+The individuals and groups including required external parties involved in the process 
+performance are determined. 
+Responsibilities are assigned to the relevant individuals or parties. 
+Communication mechanisms between the involved parties are determined. 
+Effective communication between the involved parties is established and maintained. 
+ 
+
+--- PAGE 103 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+103
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+PA 2.1 Process Performance Management 
+Achievement 1 
+Achievement 2 
+Achievement 3 
+Achievement 4 
+Achievement 5 
+Achievement 6 
+Achievement 7 
+Achievement 8 
+Output Information Items 
+19-01 Process performance strategy 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+18-58 Process performance objectives 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+14-10 Work package 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+08-56 Schedule 
+ 
+X 
+X 
+ 
+ 
+ 
+ 
+ 
+13-14 Progress status 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+17-55 Resource needs 
+ 
+ 
+ 
+X 
+X 
+ 
+ 
+ 
+08-61 Resource allocation 
+ 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+08-62 Communication matrix 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+13-52 Communication evidence 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+Generic Practices 
+GP 2.1.1: Identify the objectives and define a strategy 
+for the performance of the process 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GP 2.1.2: Plan the performance of the process 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+GP 2.1.3: Determine resource needs 
+ 
+ 
+ 
+X 
+X 
+ 
+ 
+ 
+GP 2.1.4: Identify and make available resources 
+ 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+GP 2.1.5: Monitor and adjust the performance of the 
+process 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+GP 2.1.6: Manage the interfaces between involved 
+parties 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 104 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+104
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+5.3.2. PA 2.2 Work product management process attribute 
+Process attribute ID 
+PA 2.2 
+Process attribute name 
+Work product management process attribute 
+Process attribute scope 
+The work product management process attribute is a measure of the extent to which the work 
+products produced by the process are appropriately managed. 
+Process attribute achievements 
+1) Requirements for the work products of the process are defined. 
+2) Requirements for storage and control of the work products are defined. 
+3) The work products are appropriately identified, stored, and controlled. 
+4) The work products are reviewed and adjusted as necessary to meet requirements. 
+ 
+Generic practices  
+GP 2.2.1 Define the requirements for the work products.  
+The requirements for the content and structure of the work products to be produced are defined. 
+Quality criteria for the work products are identified. 
+Appropriate review and approval criteria for the work products are defined. 
+Note 1: Possible sources of documentation requirements may be e.g., best practices or lessons 
+learned from other projects, standards, organization requirements, customer requirements, etc.  
+ 
+Note 2: There may be types of work products for which no review or approval is required, thus then 
+there would be no need to define the corresponding criteria.  
+GP 2.2.2 Define the requirements for storage and control of the work products. 
+Requirements for the storage and control of the work products are defined, including their 
+identification and distribution. 
+Note 3: Possible sources for the identification of requirements for storage and control may be e.g., 
+legal requirements, data policies, best practices from other projects, tool related requirements, etc. 
+Note 4: Examples for work product storage are files in a file system, ticket in a tool, Wiki entry, paper 
+documents etc. 
+Note 5: Where status of a work product is required in base practices, this should be managed via a 
+defined status model. 
+
+--- PAGE 105 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+105
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 2.2.3 Identify, store and control the work products.  
+The work products to be controlled are identified. 
+The work products are stored and controlled in accordance with the requirements. 
+Change control is established for work products. 
+Versioning and baselining of the work products is performed in accordance with the 
+requirements for storage and control of the work products. 
+The work products including the revision status are made available through appropriate 
+mechanisms. 
+GP 2.2.4 Review and adjust work products. 
+The work products are reviewed against the defined requirements and criteria. 
+Resolution of issues arising from work products reviews is ensured. 
+ 
+PA 2.2 Work product management process attribute 
+Achievement 1 
+Achievement 2 
+Achievement 3 
+Achievement 4 
+Output Information Items 
+17-05 Requirements for work products 
+X 
+X 
+ 
+ 
+18-59 Review and approval criteria for work products 
+X 
+ 
+ 
+ 
+18-07 Quality criteria 
+X 
+ 
+ 
+ 
+13-19 Review evidence 
+ 
+ 
+ 
+X 
+13-08 Baseline 
+ 
+ 
+X 
+ 
+16-00 Repository 
+ 
+ 
+X 
+ 
+Generic Practices 
+GP 2.2.1 Define the requirements for the work products 
+X 
+ 
+ 
+ 
+GP 2.2.2 Define the requirements for storage and control of the work 
+products 
+ 
+X 
+ 
+ 
+GP 2.2.3 Identify, store and control the work products 
+ 
+ 
+X 
+ 
+GP 2.2.4 Review and adjust work products. 
+ 
+ 
+ 
+X 
+ 
+5.4. Process capability Level 3: Established process 
+The following process attributes, together with the previously defined process attributes, demon-
+strate the achievement of this level. 
+
+--- PAGE 106 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+106
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+5.4.1. PA 3.1 Process definition process attribute 
+Process attribute ID 
+PA 3.1 
+Process attribute name 
+Process definition process attribute 
+Process attribute scope 
+The process definition process attribute is a measure of the extent to which a standard process 
+is maintained to support the deployment of the defined process. 
+Process attribute achievements 
+1) A standard process is developed, established, and maintained that describes the 
+fundamental elements that must be incorporated into a defined process. 
+2) The required inputs and the expected outputs for the standard process are defined. 
+3) Roles, responsibilities, authorities, and required competencies for performing the standard 
+process are defined. 
+4) Tailoring guidelines for deriving the defined process from the standard process are defined. 
+5) Required physical and material resources and process infrastructure needs are determined 
+as part of the standard process. 
+6) Suitable methods and required activities for monitoring the effectiveness, suitability and 
+adequacy of the process are determined. 
+ 
+Generic practices  
+GP 3.1.1 Establish and maintain the standard process. 
+A suitable standard process is developed including required activities and their interactions. 
+Inputs and outputs of the standard process are defined including the corresponding entry and 
+exit criteria to determine the interactions and sequence with other processes. 
+Process performance roles are identified and assigned to the standard process activities 
+including their type of involvement, responsibilities, and authorities. 
+Note 1: An example for describing the involvement of the process roles in the activities is a 
+RASI/RASIC representation. 
+Suitable guidance, procedures, and templates are provided to support the execution of the 
+process as needed. 
+Note 2: Procedures may also include description of specific methods to be used. 
+Appropriate tailoring guidelines including predefined unambiguous criteria as well as predefined 
+and unambiguous proceedings are defined based on identified deployment needs and context of 
+the standard process.  
+The standard process is maintained according to corresponding feedback from the monitoring of 
+the deployed processes. 
+Note 3: For guidance on how to perform process improvements see the Process Improvement 
+process (PIM.3). 
+
+--- PAGE 107 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+107
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 3.1.2 Determine the required competencies. 
+Required competencies, skills, and experience for performing the standard process are 
+determined for the identified roles. 
+Appropriate qualification methods to acquire the necessary competencies and skills are 
+determined, maintained, and made available for the identified roles. 
+Note 4: Qualification methods are e.g., trainings, mentoring, self-study. 
+Note 5: Preparation includes e.g., identification or definition of trainings, mentoring concepts, self-
+learning material. 
+GP 3.1.3 Determine the required resources. 
+Required physical and material resources and process infrastructure needs for performing the 
+standard process are determined.  
+Note 6: This may include e.g., facilities, tools, licenses, networks, services, and samples supporting 
+the establishment of the required work environment. 
+GP 3.1.4 Determine suitable methods to monitor the standard process. 
+Methods and required activities for monitoring the effectiveness and adequacy of the standard 
+process are determined. 
+Note 7: Methods and activities to gather feedback regarding the standard process may be lessons 
+learned, process compliance checks, internal audits, management reviews, change requests, 
+reflection of state-of-the-art such as applicable international standards, etc. 
+Appropriate criteria and information needed to monitor the standard process are defined. 
+Note 8: Information about process performance may be of qualitative or quantitative nature. 
+ 
+PA 3.1 Process definition process attribute 
+Achievement 1 
+Achievement 2 
+Achievement 3 
+Achievement 4 
+Achievement 5 
+Achievement 6 
+Output Information Items 
+06-51 Tailoring guideline 
+ 
+ 
+ 
+X 
+ 
+ 
+08-63 Process monitoring method 
+ 
+ 
+ 
+ 
+ 
+X 
+10-00 Process description 
+X 
+X 
+ 
+ 
+ 
+ 
+10-50 Role description 
+ 
+ 
+X 
+ 
+ 
+ 
+10-51 Qualification method description 
+ 
+ 
+X 
+ 
+ 
+ 
+10-52 Process resource and infrastructure description 
+ 
+ 
+ 
+ 
+X 
+ 
+Generic Practices 
+GP 3.1.1 Establish and maintain the standard process 
+X 
+X 
+X 
+X 
+ 
+ 
+GP 3.1.2 Determine the required competencies 
+ 
+ 
+X 
+ 
+ 
+ 
+GP 3.1.3 Determine the required resources 
+ 
+ 
+ 
+ 
+X 
+ 
+
+--- PAGE 108 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+108
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 3.1.4 Determine suitable methods to monitor the standard 
+process 
+ 
+ 
+ 
+ 
+ 
+X 
+5.4.2. PA 3.2 Process deployment process attribute 
+Process attribute ID 
+PA 3.2 
+Process attribute name 
+Process deployment process attribute 
+Process attribute scope 
+The process deployment process attribute is a measure of the extent to which the standard 
+process is deployed as a defined process to achieve its process outcomes. 
+Process attribute achievements 
+1) A defined process is deployed based upon an appropriately selected and/or tailored 
+standard process. 
+2) Assignment of persons necessary for performing the defined process to roles is performed 
+and communicated. 
+3) Required education, training and experience is ensured and monitored for the person(s) 
+assigned to the roles. 
+4) Required resources for performing the defined process are made available, allocated, and 
+maintained. 
+5) Appropriate information is collected and analyzed as a basis for understanding the behavior 
+of the process. 
+ 
+Generic practices  
+GP 3.2.1 Deploy a defined process that satisfies the context specific requirements of the 
+use of the standard process. 
+The defined process is appropriately selected and/or tailored from the standard process. 
+Conformance of defined process with standard process requirements and tailoring criteria is 
+verified. 
+The defined process is used as managed process to achieve the process outcomes. 
+Note 1: Changes in the standard process may require updates of the defined process. 
+GP 3.2.2 Ensure required competencies for the defined roles.  
+Human resources are allocated to the defined roles according to the required competencies and 
+skills. 
+Assignment of persons to roles and corresponding responsibilities and authorities for performing 
+the defined process are communicated. 
+Gaps in competencies and skills are identified, and corresponding qualification measures are 
+initiated and monitored. 
+
+--- PAGE 109 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+109
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Availability and usage of the project staff are measured and monitored. 
+GP 3.2.3 Ensure required resources to support the performance of the defined process. 
+Required information to perform the defined process is made available, allocated and used. 
+Required physical and material resources, process infrastructure and work environment are 
+made available, allocated and used. 
+Availability and usage of resources are measured and monitored. 
+GP 3.2.4 Monitor the performance of the defined process. 
+Information is collected and analyzed according to the determined process monitoring methods 
+to understand the effectiveness and adequacy of the defined process. 
+Results of the analysis are made available to all effected parties and used to identify where 
+continual improvement of the standard and/or defined process can be made. 
+Note 2: For guidance on how to perform process improvements see the Process Improvement 
+process (PIM.3). 
+ 
+PA 3.2 Process deployment process attribute 
+Achievement 1 
+Achievement 2 
+Achievement 3 
+Achievement 4 
+Achievement 5 
+Output Information Items 
+10-00 Process description 
+X 
+ 
+ 
+ 
+ 
+15-54 Tailoring documentation 
+X 
+ 
+ 
+ 
+ 
+14-53 Role assignment 
+ 
+X 
+X 
+ 
+ 
+13-55 Process resource and infrastructure documentation 
+ 
+ 
+ 
+X 
+ 
+03-06 Process performance information 
+ 
+ 
+ 
+ 
+X 
+Generic Practices 
+GP 3.2.1 Deploy a defined process 
+X 
+ 
+ 
+ 
+ 
+GP 3.2.2 Ensure required competencies 
+ 
+X 
+X 
+ 
+ 
+GP 3.2.3 Ensure required resources 
+ 
+ 
+ 
+X 
+ 
+GP 3.2.4 Monitor the performance of the defined process 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 110 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+110
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+5.5. Process capability Level 4: Predictable process 
+The following process attributes, together with the previously defined process attributes, demon-
+strate the achievement of this level. 
+5.5.1. PA 4.1 Quantitative analysis process attribute 
+Process attribute ID 
+PA 4.1 
+Process attribute name 
+Quantitative analysis process attribute 
+Process attribute scope 
+The quantitative analysis process attribute is a measure of the extent to which information needs 
+are defined, relationships between process elements are identified and data are collected. 
+Process attribute achievements 
+1) Process information needs in support of relevant defined quantitative business goals are 
+established. 
+2) Measurable relationships between process elements that contribute to the process 
+performance, and data collection techniques and data collection frequency, are identified. 
+3) Process measurement objectives are derived from process information needs. 
+4) Techniques for analyzing the collected data are selected. 
+5) Quantitative control limits for process performance in support of relevant business goals are 
+established. 
+6) Results of measurement are collected, validated and reported in order to monitor the extent 
+to which the quantitative targets/objectives for process performance are met. 
+Note: Information needs typically reflect management, technical, project, process or product needs. 
+ 
+Generic practices  
+GP 4.1.1 Identify business goals. 
+Business goals are identified that are supported by the quantitatively measured process. 
+GP 4.1.2 Establish process information needs. 
+Stakeholders of the identified business goals and the quantitatively measured process are 
+identified, and their information needs are defined and agreed. 
+GP 4.1.3 Identify measurable relationships between process elements. 
+Identify the relationships between process elements, or sets of process elements, which 
+contribute to the process information needs. 
+Note 1: Examples of process elements are work products, activities, tasks. 
+
+--- PAGE 111 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+111
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 4.1.4 Derive process measurement approach and select analysis techniques. 
+Based on the measurable relationships of process elements, or set of process elements, the 
+process measurement metrics are derived to satisfy the established process information needs. 
+Frequency of data collection is defined. 
+Select analysis techniques, appropriate to collected data. 
+Algorithms and methods to create derived measurement results from base measures are 
+defined, as appropriate. 
+Verification mechanism for base and derived measures is defined. 
+Note 2: Typically, the standard process definition is extended to include the collection of data for 
+process measurement. 
+GP 4.1.5 Establish quantitative control limits. 
+Establish quantitative control limits for the derived metrics. Agreement with process 
+stakeholders is established. 
+GP 4.1.6 Collect product and process measurement results through performing the 
+defined process. 
+Data collection mechanisms are created for all identified metrics. 
+Required data is collected across process instances of within the defined frequency and 
+recorded. 
+Measurement results are analyzed and reported to the identified stakeholders. 
+Note 3: A product measure can contribute to a process measure, e.g., the productivity of testing 
+characterized by the number of defects found in a given timeframe in relation to the product defect 
+rate in the field. 
+ 
+PA 4.1 Quantitative analysis process attribute 
+Achievement 1 
+Achievement 2 
+Achievement 3 
+Achievement 4 
+Achievement 5 
+Achievement 6 
+Output Information Items  
+18-70 Business goals 
+X 
+X 
+ 
+ 
+ 
+ 
+07-61 Quantitative process metric 
+ 
+X 
+X 
+ 
+ 
+ 
+07-62 Process analysis techniques 
+ 
+ 
+ 
+X 
+ 
+ 
+07-63 Process control limits 
+ 
+ 
+ 
+ 
+X 
+ 
+07-64 Process measurement data 
+ 
+ 
+ 
+ 
+ 
+X 
+Generic Practices 
+GP 4.1.1 Identify business goals 
+X 
+ 
+ 
+ 
+ 
+ 
+GP 4.1.2 Establish process information needs 
+X 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 112 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+112
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 4.1.3 Identify measurable relationships between process 
+elements 
+ 
+X 
+ 
+ 
+ 
+ 
+GP 4.1.4 Derive process measurement approach and select 
+analysis techniques 
+ 
+ 
+X 
+X 
+ 
+ 
+GP 4.1.5 Establish quantitative control limits 
+ 
+ 
+ 
+ 
+X 
+ 
+GP 4.1.6 Collect product and process measurement results through 
+performing the de-fined process 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+5.5.2. PA 4.2 Quantitative control process attribute 
+Process attribute ID 
+PA 4.2 
+Process attribute name 
+Quantitative control process attribute 
+Process attribute scope 
+The quantitative control process attribute is a measure of the extent to which objective data are 
+used to manage process performance that is predictable. 
+Process attribute achievements 
+1) Variations in process performance are identified. 
+2) Assignable causes of process variation are determined through analysis of the collected 
+quantitative data. 
+3) Distributions that characterize the performance of the process are established. 
+4) Corrective actions are taken to address assignable causes of variation. 
+ 
+Generic practices  
+GP 4.2.1 Identify variations in process performance. 
+Deviations in the performance of process instances from the established quantitative control 
+limits are determined based on the collected quantitative measurement data. 
+GP 4.2.2 Identify causes of variation. 
+The determined deviations in process performance are analyzed to identify potential cause(s) of 
+variation using the defined analysis techniques. 
+Distributions are used to quantitatively understand the variation of process performance under 
+the influence of potential causes of variation. 
+Consequences of process variation are analyzed. 
+
+--- PAGE 113 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+113
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 4.2.3 Identify and implement corrective actions to address assignable causes. 
+Results are provided to those responsible for taking action. 
+Corrective actions are determined and implemented to address each assignable cause of 
+variation. 
+Corrective action results are monitored and evaluated to determine their effectiveness. 
+Note 1: Assignable cause may indicate a possible problem in the defined process. 
+ 
+PA 4.2 Quantitative control process attribute 
+Achievement 1 
+Achievement 2 
+Achievement 3 
+Achievement 4 
+Output Information Items 
+15-57 Quantitative process analysis results 
+X 
+X 
+X 
+ 
+08-66 Measures against deviations in quantitative process analysis 
+ 
+ 
+ 
+X 
+Generic Practices 
+GP 4.2.1 Identify variations in process performance 
+X 
+ 
+ 
+ 
+GP 4.2.2 Identify causes of variation 
+ 
+X 
+X 
+ 
+GP 4.2.3 Identify and implement corrective actions to address 
+assignable causes 
+ 
+ 
+ 
+X 
+ 
+ 
+
+--- PAGE 114 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+114
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+5.6. Process capability Level 5: Innovating process 
+The following process attributes, together with the previously defined process attributes, demon-
+strate the achievement of this level. 
+5.6.1. PA 5.1 Process innovation process attribute 
+Process attribute ID 
+PA 5.1 
+Process attribute name 
+Process innovation process attribute 
+Process attribute scope 
+The process innovation process attribute is a measure of the extent to which changes to the 
+process are identified from investigations of innovative approaches to the definition and 
+deployment of the process. 
+Process attribute achievements 
+1) Process innovation objectives are defined that support the relevant business goals. 
+2) Quantitative data are analyzed to identify opportunities for innovation. 
+3) Innovation opportunities derived from new technologies and process concepts are identified. 
+ 
+Generic practices  
+GP 5.1.1 Define the process innovation objectives for the process that support the 
+relevant business goals. 
+New business visions and goals are analyzed to give guidance for new process objectives and 
+potential areas of process innovation. 
+Quantitative and qualitative process innovation objectives are defined and documented. 
+GP 5.1.2 Analyze quantitative data of the process. 
+Common causes of variation in process performance across process instances are identified 
+and analyzed to get a quantitative understanding of their impact. 
+GP 5.1.3 Identify innovation opportunities. 
+Identify opportunities for innovation based on the quantitative understanding of the analyzed 
+data. 
+Industry best practices, new technologies and process concepts are identified and evaluated. 
+Feedback on opportunities for innovation is actively sought. 
+Emergent risks are considered in evaluating improvement opportunities. 
+ 
+
+--- PAGE 115 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+115
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+PA 5.1 Process innovation process attribute 
+Achievement 1 
+Achievement 2 
+Achievement 3 
+Output Information Items 
+18-80 Improvement opportunity 
+X 
+ 
+X 
+15-58 Common cause of variation analysis results 
+ 
+X 
+ 
+Generic Practices 
+GP 5.1.1 Define the process innovation objectives for the process that support the 
+relevant business goals 
+X 
+ 
+ 
+GP 5.1.2 Analyze quantitative data of the process 
+ 
+X 
+ 
+GP 5.1.3 Identify innovation opportunities 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 116 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+116
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ 
+5.6.2. PA 5.2 Process innovation implementation process attribute 
+Process attribute ID 
+PA 5.2 
+Process attribute name 
+Process innovation implementation process attribute 
+Process attribute scope 
+The process innovation process implementation attribute is a measure of the extent to which 
+changes to the definition, management and performance of the process achieves the relevant 
+process innovation objectives. 
+Process attribute achievements 
+1) Impact of all proposed changes is assessed against the objectives of the defined process 
+and standard process. 
+2) Implementation of all agreed changes is managed to ensure that any disruption to the 
+process performance is understood and acted upon. 
+3) Effectiveness of process change on the basis of quantitative performance and innovation 
+feedback is evaluated. 
+ 
+Generic practices  
+GP 5.2.1 Define and assess the impact of proposed changes. 
+Specified changes are assessed against product quality and process performance requirements 
+and goals. 
+Impact of changes to other defined and standard processes is considered. 
+Objective priorities for process innovation are established. 
+Commitment to innovation is demonstrated by organizational management including other 
+relevant stakeholders. 
+GP 5.2.2 Implement agreed process changes. 
+A mechanism is established for incorporating accepted changes into the defined and standard 
+process(es) effectively and completely. 
+Process changes are implemented and effectively communicated to all affected parties. 
+
+--- PAGE 117 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+117
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+GP 5.2.3 Evaluate the effectiveness of process change. 
+Performance and capability of the changed process are measured and compared with historical 
+data. 
+Performance and capability of the changed process are analyzed to determine whether the 
+process performance has improved with respect to common causes of variations. 
+Other feedback is recorded, such as opportunities for further innovation of the standard process. 
+A mechanism is available for documenting and reporting analysis results to stakeholders of 
+standard and defined process. 
+ 
+PA 5.2 Process innovation implementation attribute 
+Achievement a 
+Achievement b 
+Achievement c 
+Output Information Items 
+18-81 Improvement evaluation results 
+X 
+ 
+X 
+08-66 Measures against deviations in quantitative process analysis 
+ 
+X 
+X 
+Generic Practices 
+GP 5.2.1 Define and assess the impact of proposed changes 
+X 
+ 
+ 
+GP 5.2.2 Implement agreed process changes 
+ 
+X 
+ 
+GP 5.2.3 Evaluate the effectiveness of process change 
+ 
+ 
+X 
+ 

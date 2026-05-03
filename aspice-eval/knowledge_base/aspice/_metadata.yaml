@@ -1,0 +1,62 @@
+standard:
+  name: "Automotive SPICE"
+  short_name: "ASPICE"
+  version: "4.0"
+  release_date: "2023-12"
+  source_references:
+    - title: "VDA Automotive SPICE Guidelines"
+      url: "https://www.automotivespice.com"
+    - title: "Wikipedia — Automotive SPICE"
+      url: "https://en.wikipedia.org/wiki/Automotive_SPICE"
+  license_note: >
+    Knowledge base content is derived from the Automotive SPICE PAM v4.0
+    (publicly available from vda-qmc.de). Base practice and generic practice
+    descriptions are reproduced under the PAM copyright release notice for
+    use in process assessment tooling.
+kb_version: "2.0.0"
+last_updated: "2026-05-01"
+process_groups:
+  - code: "SWE"
+    name: "Software Engineering"
+    processes: ["SWE.1", "SWE.2", "SWE.3", "SWE.4", "SWE.5", "SWE.6"]
+  - code: "SYS"
+    name: "System Engineering"
+    processes: ["SYS.1", "SYS.2", "SYS.3", "SYS.4", "SYS.5"]
+  - code: "MAN"
+    name: "Management"
+    processes: ["MAN.3", "MAN.5", "MAN.6"]
+  - code: "SUP"
+    name: "Support"
+    processes: ["SUP.1", "SUP.8", "SUP.9", "SUP.10", "SUP.11"]
+capability_levels:
+  - level: 0
+    name: "Incomplete"
+    process_attributes: []
+  - level: 1
+    name: "Performed"
+    process_attributes: ["PA 1.1"]
+  - level: 2
+    name: "Managed"
+    process_attributes: ["PA 2.1", "PA 2.2"]
+  - level: 3
+    name: "Established"
+    process_attributes: ["PA 3.1", "PA 3.2"]
+  - level: 4
+    name: "Predictable"
+    process_attributes: ["PA 4.1", "PA 4.2"]
+  - level: 5
+    name: "Innovating"
+    process_attributes: ["PA 5.1", "PA 5.2"]
+rating_scale:
+  - rating: "Fully achieved"
+    abbreviation: "F"
+    range: "86-100%"
+  - rating: "Largely achieved"
+    abbreviation: "L"
+    range: "51-85%"
+  - rating: "Partially achieved"
+    abbreviation: "P"
+    range: "16-50%"
+  - rating: "Not achieved"
+    abbreviation: "N"
+    range: "0-15%"

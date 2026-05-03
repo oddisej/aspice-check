@@ -1,0 +1,1491 @@
+
+--- PAGE 24 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+24
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+3.3. 
+Process assessment model 
+The process assessment model offers indicators in order to identify whether the process outcomes 
+and the process attribute outcomes (achievements) are present or absent in the instantiated 
+processes of projects and organizational units. These indicators provide guidance for assessors in 
+accumulating the necessary objective evidence to support judgments of capability. They are not 
+intended to be regarded as a mandatory set of checklists to be followed. 
+3.3.1. Assessment indicators 
+According to ISO/IEC 33004, a process assessment model needs to define a set of assessment 
+indicators: 
+Assessment Indicators 
+A process assessment model shall be based on a set of assessment indicators that: 
+a) explicitly address the purpose and process outcomes, as defined in the selected process 
+reference model, of each of the processes within the scope of the process assessment model; 
+b) demonstrate the achievement of the process attributes within the scope of the process 
+assessment model; 
+c) demonstrate the achievement (where relevant) of the process quality levels within the scope of 
+the process assessment model. 
+The assessment indicators generally fall into three types: 
+a) practices that support achievement of either the process purpose or the specific process 
+attribute. 
+b) information items and their characteristics that demonstrate the respective achievements. 
+c) resources and infrastructure that support the respective achievements. 
+[ISO/IEC 33004:2015, 6.3.1] 
+In this assessment model, only practices and information items are used. 
+Practices are representing activity-oriented indicators, where information items are representing 
+result-oriented indicators. Both practices and information items are used for judging objective 
+evidence to be collected and accumulated in the performance of an assessment. 
+As a first type of assessment indicator, practices are provided, which can be divided into two types: 
+1. Base practices (BP), applying to capability level 1 
+They provide an indication of the extent of achievement of the process outcomes. Base practices 
+relate to one or more process outcomes, thus being always process-specific and not generic.  
+2. Generic practices (GP), applying to capability levels 1 to 5 
+They provide an indication of the extent of process attribute achievement. Generic practices 
+relate to one or more process attribute achievements, thus applying to any process. 
+As a second type of assessment indicators, information items (II) including their characteristics 
+(IIC) are provided in Annex B. 
+These are meant to offer a good practice and state-of-the-art knowledge guide for the assessor. 
+Therefore, information items including their characteristics are supposed to be a quickly accessible 
+information source during an assessment. 
+
+--- PAGE 25 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+25
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Information item characteristics shall not be interpreted as a required structure of a corresponding 
+work products, which is defined by the project and organization, respectively. 
+Please refer to chapter 3.3.2 for understanding the difference between information items and work 
+products.  
+ISO 33004:2015 requires the mapping of assessment indicators to process attributes as shown in 
+figure 3. 
+The capability of a process on level 1 is only characterized by the measure of the extent to which 
+the process outcomes are achieved. According to ISO 33003:2015, a measurement framework 
+requires each level to reveal a process attribute. Therefore, the only process performance attribute 
+for capability Level 1 (PA.1.1) has a single generic practice (GP 1.1.1) pointing as an editorial 
+reference to the respective process performance indicators (see figure 3 and chapter 4). 
+Measurement framework
+• 
+Capability levels
+• 
+Process attributes
+• 
+Rating
+• 
+Scale
+• 
+Rating method
+• 
+Aggregation method
+• 
+Process capability level model
+Outcomes of 
+process 3
+Process assessment model
+(Automotive SPICE)
+• 
+Process capability indicators
+• 
+Process performance indicators
+Process reference model
+(Automotive SPICE)
+• 
+Domain and scopes
+• 
+Process purposes
+• 
+Process outcomes
+CL 1
+CL 2
+CL 3
+CL 4
+CL 5
+PA 5.2
+PA 5.1
+PA 4.2
+PA 4.1
+PA 3.2
+PA 3.1
+PA 2.2
+PA 2.1
+PA 1.1
+GP, II/IIC
+GP, II/IIC
+Outcomes of 
+process 1
+Outcomes of 
+process 2
+GP
+BP, II/IIC
+ 
+Figure 3 — Relationship between assessment indicators and process capability 
+ 
+The detailed mapping of base practices / indicators and generic practices / indicators to process 
+outcomes and achievements, is provided in corresponding tables in chapter 4 and 5, respectively. 
+3.3.2. Understanding information Items and work products 
+In order to judge the presence or absence of process outcomes and process attribute achievements 
+an assessment obtains objective evidence. All such evidence comes either from the examination of 
+work products related to a specific output of the processes assessed, or from statements made by 
+the performers and managers of the processes. Sources for such evidence is either repository 
+content of the assessed processes, or testimony provided by the performers and managers of the 
+assessed processes. 
+As described in chapter 3.3.1, this process assessment model provides information items serving as 
+indicators to guide the assessor when judging a process attribute achievement. 
+
+--- PAGE 26 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+26
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+3.3.2.1. Information items versus work products 
+ISO/IEC 33001 provides the following definition of the term “information item”: 
+information item 
+separately identifiable body of information that is produced, stored, and delivered for human use 
+Note 1 to entry: An information item can be produced in several versions during a system, software, or service 
+life cycle. Syn: information product. 
+[ISO/IEC 33001:2015, 3.1.4] 
+Note: Human use includes the information stored, managed and processed by a tool. 
+One common definition of the term “work product” is: 
+work product 
+artifact resulting from the execution of a process 
+[ISO/IEC/IEEE 24765:2017] 
+Both terms are used in different context in an assessment: 
+• 
+Information items are defining relevant pieces of information used by the assessors to judge 
+the achievement of process attributes. 
+• 
+Work products are produced by the organization assessed when performing, managing, 
+establishing, analyzing and innovating processes. 
+Information items (together with their characteristics) are provided as guidance for “what to look for” 
+when examining the work products available in the assessed organization. The extent of 
+implementation of an information item (in line with its defined characteristics) in a related work 
+product serves as objective evidence supporting the assessment of a particular process. A 
+documented process and assessor judgment is needed to ensure that the process context 
+(application domain, business purpose, development methodology, size of the organization, etc.) is 
+considered when using this information. 
+Information items shall therefore not be mistaken for the work product generated by the assessed 
+organization itself. There is no 1:1 relationship between an information item and the work product 
+taken as sample evidence by the assessor when assessing the achievement of a process outcome 
+and process attribute achievements. An output generated by a process may comprise multiple 
+information item characteristics and multiple outputs may also contain the same information item 
+characteristics. 
+Information item characteristics should be considered as indicators when considering whether, given 
+the context, a work product is contributing to the intended purpose of the process. Context-sensitivity 
+means that assessor judgment is needed to ensure that the actual context (application domain, 
+business purpose, development methodology, size of the organization, etc.) is considered when 
+using the information items. 
+3.3.2.2. Types of work products 
+A work product to be considered as evidence when rating a process attribute may not necessary be 
+outputs from the processes assessed but can also be originated from other processes of the 
+organization. Once such a work product is used in the performance of a process under assessment, 
+it may be considered by the assessor as objective evidence.  
+In a lot of cases work products are comprising documentation aspects, such as specifications, 
+reports, records, architectural designs, software code etc. 
+
+--- PAGE 27 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+27
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Examples of work products not comprising any documentation aspects are software binaries, raw 
+data, or a physical electronic hardware. 
+3.3.3. Understanding the level of abstraction of a PAM 
+The term "process" can be understood at three levels of abstraction. Note that these levels of 
+abstractions are not meant to define a strict black-or-white split, nor is it the aim to provide a scientific 
+classification schema – the message here is to understand that, in practice, when it comes to the 
+term "process" there are different abstraction levels, and that a PAM resides at the highest. 
+ 
+Process Assessment Model(s)
+Methods
+Execution
+The "What"
+(Goals of the process)
+(How to achieve the goals)
+The "How"
+(Performing the tasks to achieve 
+the goals by using the methods)
+The "Doing"
+• What is to be done
+• Why it has to be done
+• What are the technical dependencies
+• Methods, tools, templates, metrics
+• Definitions of logical order, concrete 
+workflows
+• Authority and competence definitions
+• Tailoring
+• Setup
+• Performance according to the tailored 
+method
+ 
+Figure 4 — Possible levels of abstraction for the term "process" 
+ 
+Capturing experience acquired during product development (i.e., at the DOING level) in order to 
+share this experience with others means creating a HOW level. However, a HOW is always specific 
+to a particular context such as a company, an organizational unit, or a product line. For example, the 
+HOW of a project, organizational unit, or company A is potentially not applicable as is to a project, 
+organizational unit, or company B. However, both might be expected to adhere the principles 
+represented by PAM indicators for process outcomes and process attribute achievements. These 
+indicators are at the WHAT level while deciding on solutions for concrete templates, proceedings, 
+and tooling etc. is left to the HOW level. 
+3.3.4. Why a PRM and PAM are not a lifecycle model or development process blueprint 
+A lifecycle model defines phases and activities in a logical timely order, possibly including cycles or 
+loops, and parallelization. For example, some standards such as ISO 26262 or ISO/SAE 21434 are 
+centered around a lifecycle model (neither of these standards in fact represents a PRM according to 
+ISO/IEC 33004). Companies, organizational units, or projects will interpret such general lifecycle 
+models given in standards, and then detail it out into roles, organizational interactions and interfaces, 
+
+--- PAGE 28 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+28
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+tools or tool chains, work instructions, and artifacts. Lifecycle models therefore are a concept at the 
+HOW level (see Section 3.3.3). 
+In contrast, a PRM/PAM according to ISO/IEC 33004 (formerly ISO/IEC 15504-2) is at the level of 
+the WHAT by abstracting from any HOW level, see Figure 4 in Section 3.3.3. In Automotive SPICE®, 
+this has been, and is, indicated by the process MAN.3 Project Management requiring in BP2 “Define 
+project life cycle”. A PRM/PAM groups a set of coherent and related characteristics of a particular 
+technical topic and calls it ‘process’. In different terms, a process in a PRM represents a ‘distinct 
+conceptual silo’. In this respect, a PRM/PAM 
+• 
+neither predefines, nor discourages, any order in which PRM processes or Base Practices 
+are to be performed. Ultimately, in Automotive SPICE consistency must be fulfilled as 
+required by the traceability/consistency Base Practices in MAN.3 or SYS.x, SWE.x, and 
+HWE.x; 
+• 
+does not predefine any particular work product structure, or work product blueprints. For 
+example, the process SYS.2 does not mean that there shall be exactly one system 
+requirements specification containing everything provided by the stakeholders. 
+As a consequence, it is the assessor’s responsibility to perform a mapping of elements in such a 
+HOW level to the Assessment Indicators in the PAM, see Figure 5. 
+Process Assessment Model(s)
+Methods
+Execution
+Performing interviews on the actual "Doing", 
+Investigating work products and tool 
+repositories, …
+Reading through the defined "How"
+1
+2
+3
+… mapping the information to the indicators ...
+… and determine the capability profile.
+ 
+Figure 5 — Performing a process assessment for determining process capability 
+ 
+In this respect, a PRM or PAM further is not supposed to represent a product element hierarchy 
+either. 
+ 
+ 
+ 
+
+--- PAGE 29 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+29
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4. Process reference model and performance indicators (Level 1) 
+The processes in the process dimension can be drawn from the Automotive SPICE process 
+reference model, which is incorporated in the tables below indicated by a red bar at the left side. 
+Each table related to one process in the process dimension contains the process reference model 
+(indicated by a red bar) and the process performance indicators necessary to define the process 
+assessment model. The process performance indicators consist of base practices (indicated by a 
+green bar) and output information items (indicated by a blue bar). 
+ 
+Process reference 
+model 
+Process ID 
+The individual processes are identified with a unique process 
+identifier and a process name. A process purpose statement is 
+provided, and process outcomes are defined to represent the 
+process dimension of the Automotive SPICE process reference 
+model. The background coloring of process ID’s and names 
+are indicating the assignment to the corresponding process 
+group. 
+Process name  
+Process purpose 
+Process outcomes 
+Process performance indicators 
+Base Practices 
+A set of base practices for the process providing a definition of 
+the activities to be performed to accomplish the process 
+purpose and fulfill the process outcomes. 
+The base practice headers are summarized at the end of a 
+process to demonstrate their relationship to the process 
+outcomes. 
+Output information 
+items 
+The output information items that are relevant to accomplish 
+the process purpose and fulfill the process outcomes 
+summarized at the end of a process to demonstrate their 
+relationship to the process outcomes. 
+Note: Refer to Annex B for the characteristics of each 
+information item. 
+Table 21 — Template for the process description 
+ 
+ 
+
+--- PAGE 30 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+30
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.1. Acquisition process group (ACQ) 
+4.1.1. ACQ.4 Supplier Monitoring 
+Process ID 
+ACQ.4 
+Process name 
+Supplier Monitoring 
+Process purpose 
+The purpose is to track and assess the performance of an external contract-based supplier 
+company against agreed commitments. 
+Process outcomes 
+1) Joint activities, as agreed between the customer and the supplier, are performed. 
+2) All information, agreed upon for exchange, is communicated regularly between the customer 
+and the supplier. 
+3) Performance of the supplier is monitored against the agreements. 
+4) Changes to the agreement, if needed, are negotiated between the customer and the supplier 
+and documented in the agreement. 
+ 
+Base Practices  
+ACQ.4.BP1: Agree on and maintain joint activities, joint interfaces, and information to be 
+exchanged. Establish and maintain an agreement on information to be exchanged, on joint 
+activities, joint interfaces, responsibilities, type and frequency of joint activities, communications, 
+meetings, status reports, and reviews. 
+ACQ.4.BP2: Exchange all agreed information. Use the defined joint interfaces between 
+customer and supplier for the exchange of all agreed information. 
+ACQ.4.BP3: Review development work products with the supplier. Review development 
+work products with the supplier on the agreed regular basis, covering technical aspects, 
+problems and risks. Track open measures.  
+Note 1: see SUP.9 for management of problems 
+ACQ.4.BP4: Review progress of the supplier. Review progress of the supplier regarding 
+schedule, quality, and cost on the agreed regular basis. Track open measures to closure and 
+perform risk mitigation activities. 
+Note 2: see MAN.5 for management of risks 
+ACQ.4.BP5: Act to correct deviations. Take action when agreed objectives are not achieved. 
+Negotiate changes to objectives and document them in the agreements. 
+ 
+ 
+ 
+
+--- PAGE 31 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+31
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+ACQ.4 Supplier Monitoring 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Output Information Items 
+02-01 Commitment/Agreement 
+X 
+X 
+X 
+X 
+13-52 Communication evidence 
+X 
+X 
+X 
+ 
+13-09 Meeting support evidence 
+X 
+X 
+ 
+ 
+13-14 Progress status 
+ 
+X 
+X 
+ 
+13-16 Change request 
+ 
+ 
+ 
+X 
+13-19 Review evidence 
+ 
+X 
+ 
+ 
+14-02 Corrective action 
+ 
+ 
+ 
+X 
+15-51 Analysis results 
+ 
+ 
+X 
+ 
+Base Practices 
+BP1: Agree on and maintain joint processes, joint interfaces, and information 
+to be exchanged 
+X 
+X 
+ 
+X 
+BP2: Exchange all agreed information 
+X 
+X 
+X 
+ 
+BP3: Review development work products with the supplier 
+X 
+ 
+X 
+X 
+BP4: Review progress of the supplier 
+X 
+ 
+X 
+X 
+BP5: Act to correct deviations 
+ 
+ 
+X 
+X 
+4.2. Supply process group (SPL)  
+4.2.1. SPL.2 Product Release 
+Process ID 
+SPL.2 
+Process name 
+Product Release 
+Process purpose 
+The purpose is to control the release of a product to the intended customer. 
+Process outcomes 
+1) The contents of the product releases are determined. 
+2) The release package is assembled from configured items. 
+3) The release documentation is defined and produced. 
+4) Release approval is performed against defined criteria. 
+5) The release package is made available to the intended customer. 
+ 
+
+--- PAGE 32 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+32
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Base Practices  
+SPL.2.BP1: Define the functional content of releases. Define the functionality to be included 
+and the release criteria for each release. 
+Note 1: This may include the hardware elements, software elements, and extra application 
+parameter files (influencing the identified system functionality) that are needed for the release. 
+SPL.2.BP2: Define release package. Define the release as well as supporting tools and 
+information. 
+Note 2: The release package may include also programming tools.  
+SPL.2.BP3: Ensure unique identification of releases. Ensure a unique identification of the 
+release based upon the intended purpose and expectations of the release.  
+Note 3: Unique identification may be realized by a classification and numbering scheme for product 
+releases. 
+SPL.2.BP4: Build the release from items under configuration control. Build the release 
+from items under configuration control to ensure integrity. 
+Note 4: This practice may be supported by the SUP.8 Configuration Management Process. 
+SPL.2.BP5: Ensure release approval before delivery. Criteria for the release are satisfied 
+before delivery takes place. 
+SPL.2.BP6: Provide a release note. A release is accompanied by information detailing key 
+characteristics of the release. 
+Note 5: The release note may include information about legal aspects like relevant target markets, 
+legislation that is considered etc. See also VAL.1 Validation. 
+SPL2.BP7: Communicate the type, service level and duration of support for a release. 
+Identify and communicate the type, service level and duration of support for a release.  
+SPL.2.BP8: Deliver the release package to the intended customer. Deliver the release package 
+to the intended customer. 
+Note 6: The intended customer may be an internal organizational unit or an external organization. 
+ 
+SPL.2 Product Release 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Output Information Items 
+11-03 Release note 
+X 
+ 
+X 
+X 
+X 
+11-04 Product release package 
+ 
+X 
+X 
+ 
+ 
+13-06 Delivery evidence 
+ 
+ 
+X 
+ 
+X 
+13-13 Product release approval 
+ 
+ 
+ 
+X 
+X 
+18-06 Product release criteria 
+X 
+X 
+ 
+X 
+ 
+
+--- PAGE 33 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+33
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Base Practices 
+BP1: Define the functional content of releases 
+X 
+ 
+ 
+ 
+ 
+BP2: Define release package 
+X 
+ 
+ 
+ 
+ 
+BP3: Establish a product release classification and numbering scheme 
+ 
+ 
+X 
+ 
+ 
+BP4: Build the release from configured items 
+ 
+X 
+ 
+ 
+ 
+BP5: Ensure product release approval before delivery 
+ 
+ 
+ 
+X 
+ 
+BP6: Provide a release note 
+ 
+ 
+X 
+ 
+X 
+BP7: Communicate the type, service level and duration of support for a 
+release 
+ 
+ 
+X 
+ 
+X 
+BP8: Deliver the release package to the intended customer 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 34 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+34
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.3. System engineering process group (SYS) 
+4.3.1. SYS.1 Requirements Elicitation 
+Process ID 
+SYS.1 
+Process name 
+Requirements Elicitation 
+Process purpose 
+The purpose is to gather, analyze, and track evolving stakeholder needs and requirements 
+throughout the lifecycle of the product and/or service to establish a set of agreed requirements. 
+Process outcomes 
+1) Continuing communication with the stakeholder is established. 
+2) Stakeholder expectations are understood, and requirements are defined and agreed. 
+3) Stakeholder requirements changes arising from stakeholder needs are analyzed to enable 
+associated risk assessment and impact management. 
+4) Determination of stakeholder requirements status is ensured for all affected parties. 
+ 
+Base Practices  
+SYS.1.BP1: Obtain stakeholder expectations and requests. Obtain and define stakeholder 
+expectations and requests through direct solicitation of stakeholder input, and through review of 
+stakeholder business proposals (where relevant) and other documents containing inputs to 
+stakeholder requirements, and consideration of the target operating and hardware environment. 
+Note 1: Documenting the stakeholder, or the source of a stakeholder requirement, supports 
+stakeholder requirements agreement and change analysis (see BP2 and BP3). 
+SYS.1.BP2: Agree on requirements. Formalize the stakeholder’s expectations and requests 
+into requirements. Reach a common understanding of the set of stakeholder requirements 
+among affected parties by obtaining an explicit agreement from all affected parties. 
+Note 2: Examples of affected parties are customers, suppliers, design partners, joint venture 
+partners, or outsourcing parties. 
+Note 3: The agreed stakeholder requirements may be based on feasibility studies and/or cost and 
+schedule impact analysis. 
+SYS.1.BP3: Analyze stakeholder requirements changes. Analyze all changes made to the 
+stakeholder requirements against the agreed stakeholder requirements. Assess the impact and 
+risks, and initiate appropriate change control and mitigation actions. 
+Note 4: Requirements changes may arise from different sources as for instance changing 
+technology, stakeholder needs, or legal constraints. 
+Note 5: Refer to SUP.10 Change Request Management, if required. 
+
+--- PAGE 35 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+35
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SYS.1.BP4: Communicate requirements status. Ensure all affected parties can be aware of 
+the status and disposition of their requirements including changes and can communicate 
+necessary information and data. 
+ 
+SYS.1 Requirements Elicitation 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Output Information Items 
+15-51 Analysis Results 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+X 
+X 
+ 
+ 
+17-00 Requirement 
+ 
+X 
+ 
+ 
+17-54 Requirement Attribute 
+ 
+X 
+X 
+X 
+Base Practices 
+BP1: Obtain stakeholder expectations and requests 
+X 
+ 
+ 
+ 
+BP2: Agree on requirements 
+ 
+X 
+ 
+ 
+BP3: Analyze stakeholder requirements changes 
+ 
+ 
+X 
+ 
+BP4: Communicate requirements status 
+X 
+ 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 36 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+36
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.3.2. SYS.2 System Requirements Analysis 
+Process ID 
+SYS.2 
+Process name 
+System Requirements Analysis 
+Process purpose 
+The purpose is to establish a structured and analyzed set of system requirements consistent 
+with the stakeholder requirements. 
+Process outcomes 
+1) System requirements are specified. 
+2) System requirements are structured and prioritized. 
+3) System requirements are analyzed for correctness and technical feasibility. 
+4) The impact of system requirements on the operating environment is analyzed. 
+5) Consistency and bidirectional traceability are established between system requirements and 
+stakeholder requirements. 
+6) The system requirements are agreed and communicated to all affected parties. 
+ 
+Base Practices  
+SYS.2.BP1: Specify system requirements. Use the stakeholder requirements to identify and 
+document the functional and non-functional requirements for the system according to 
+defined characteristics for requirements. 
+Note 1: Characteristics of requirements are defined in standards such as ISO IEEE 29148, ISO 
+26262-8:2018, or the INCOSE Guide For Writing Requirements. 
+Note 2: Examples for defined characteristics of requirements shared by technical standards are 
+verifiability (i.e., verification criteria being inherent in the requirements text), 
+unambiguity/comprehensibility, freedom from design and implementation, and not contradicting any 
+other requirement). 
+SYS.2.BP2: Structure system requirements. Structure and prioritize the system requirements. 
+Note 3: Examples for structuring criteria can be grouping (e.g., by functionality) or product variants 
+identification. 
+Note 4: Prioritization can be done according to project or stakeholder needs via e.g., definition of 
+release scopes. Please refer to SPL.2.BP1. 
+SYS.2.BP3: Analyze system requirements. Analyze the specified system requirements 
+including their interdependencies to ensure correctness, technical feasibility, and to support 
+project management regarding project estimates.  
+Note 5: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates. 
+Note 6: Technical feasibility can be evaluated based on e.g., platform or product line, or by means of 
+prototype development or product demonstrators. 
+
+--- PAGE 37 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+37
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SYS.2.BP4: Analyze the impact on the system context. Analyze the impact that the system 
+requirements will have on elements in the relevant system context. 
+SYS.2.BP5: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between system requirements and 
+stakeholder requirements. 
+Note 7: Bidirectional traceability supports consistency, facilitates impact analyses of change 
+requests, and supports the demonstration of coverage of stakeholder requirements. Traceability 
+alone, e.g., the existence of links, does not necessarily mean that the information is consistent with 
+each other. 
+Note 8: There may be non-functional stakeholder requirements that the system requirements do not 
+trace to. Examples are process requirements. Such stakeholder requirements are still subject to 
+verification. 
+SYS.2.BP6: Communicate agreed system requirements and impact on the system 
+context. Communicate the agreed system requirements, and results of the impact analysis on 
+the system context, to all affected parties. 
+ 
+SYS.2 System Requirements Analysis 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Output Information Items 
+17-00 Requirement 
+X 
+X 
+ 
+ 
+ 
+ 
+17-54 Requirement Attribute 
+ 
+X 
+X 
+ 
+ 
+ 
+15-51 Analysis Results 
+ 
+ 
+X 
+X 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+ 
+ 
+X 
+Base Practices 
+BP1: Specify system requirements 
+X 
+ 
+ 
+ 
+ 
+ 
+BP2: Structure system requirements 
+ 
+X 
+ 
+ 
+ 
+ 
+BP3: Analyze system requirements 
+ 
+ 
+X 
+ 
+ 
+ 
+BP4: Analyze the impact on the system context 
+ 
+ 
+ 
+X 
+ 
+ 
+BP5: Ensure consistency and establish bidirectional traceability 
+ 
+ 
+ 
+ 
+X 
+ 
+BP6: Communicate agreed system requirements and impact on 
+the system context 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 38 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+38
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.3.3. SYS.3 System Architectural Design 
+Process ID 
+SYS.3 
+Process name 
+System Architectural Design 
+Process purpose 
+The purpose is to establish an analyzed system architecture, comprising static and dynamic 
+aspects, consistent with the system requirements. 
+Process outcomes 
+1) A system architecture is designed including a definition of the system elements with their 
+behavior, their interfaces, their relationships, and their interactions. 
+2) The system architecture is analyzed against defined criteria, and special characteristics are 
+identified. 
+3) Consistency and bidirectional traceability are established between system architecture and 
+system requirements. 
+4) The agreed system architecture and the special characteristics are communicated to all 
+affected parties. 
+ 
+Base Practices  
+SYS.3.BP1: Specify static aspects of the system architecture. Specify and document the 
+static aspects of the system architecture with respect to the functional and non-functional 
+system requirements, including external interfaces and a defined set of system elements with 
+their interfaces and relationships. 
+SYS.3.BP2: Specify dynamic aspects of the system architecture. Specify and document the 
+dynamic aspects of the system architecture with respect to the functional and non-functional 
+system requirements including the behavior of the system elements and their interaction in 
+different system modes. 
+Note 1: Examples of interactions of system elements are timing diagrams reflecting inertia of 
+mechanical components, processing times of ECUs, and signal propagation times of bus systems. 
+
+--- PAGE 39 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+39
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SYS.3.BP3: Analyze system architecture. Analyze the system architecture regarding relevant 
+technical design aspects related to the product lifecycle, and to support project management 
+regarding project estimates, and derive special characteristics for non-software system 
+elements. Document a rationale for the system architectural design decisions. 
+Note 2: See MAN.3.BP3 for project feasibility and MAN.3.BP5 for project estimates. 
+Note 3: Examples for product lifecycle phases are production, maintenance & repair, 
+decommissioning. 
+Note 4: Examples for technical aspects are manufacturability for production, suitability of pre-existing 
+system elements to be reused, or availability of system elements. 
+Note 5: Examples for methods being suitable for analyzing technical aspects are prototypes, 
+simulations, and qualitative analyses (e.g., FMEA approaches) 
+Note 6: Examples of design rationales are proven-in-use, reuse of a product platform or product 
+line), a make-or-buy decision, or found in an evolutionary way (e.g., set-based design). 
+SYS.3.BP4: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between the elements of the system 
+architecture and the system requirements that represent properties or characteristics of the 
+physical end product. 
+Note 7: Bidirectional traceability further supports consistency, and facilitates impact analysis of 
+change requests, and demonstration of verification coverage. Traceability alone, e.g., the existence 
+of links, does not necessarily mean that the information is consistent with each other. 
+Note 8: There may be non-functional requirements that the system architectural design does not 
+trace to. Examples are do not address, or represent, direct properties or characteristics of the 
+physical end product. Such requirements are still subject to verification. 
+SYS.3.BP5: Communicate agreed system architecture. Communicate the agreed system 
+architecture, including the special characteristics, to all affected parties. 
+ 
+SYS.3 System Architectural Design 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Output Information Items 
+04-06 System Architecture 
+X 
+ 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+X 
+15-51 Analysis Results 
+ 
+X 
+ 
+ 
+17-57 Special Characteristics 
+ 
+X 
+ 
+ 
+Base Practices 
+BP1: Specify static aspects of system architecture 
+X 
+ 
+ 
+ 
+BP2: Specify dynamic aspects of system architecture 
+X 
+ 
+ 
+ 
+BP3: Analyze the system architecture 
+ 
+X 
+ 
+ 
+BP4: Ensure consistency and establish bidirectional traceability 
+ 
+ 
+X 
+ 
+
+--- PAGE 40 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+40
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+BP5: Communicate agreed system architecture 
+ 
+ 
+ 
+X 
+4.3.4. SYS.4 System Integration and Integration Verification 
+Process ID 
+SYS.4 
+Process name 
+System Integration and Integration Verification 
+Process purpose 
+The purpose is to integrate systems elements and verify that the integrated system elements are 
+consistent with the system architecture. 
+Process outcomes 
+1) Verification measures are specified for system integration verification of the integrated 
+system elements based on the system architecture, including the interfaces of, and 
+interactions between, system elements. 
+2) System elements are integrated up to a complete integrated system consistent with the 
+release scope. 
+3) Verification measures are selected according to the release scope considering criteria, 
+including criteria for regression verification. 
+4) Integrated system elements are verified using the selected verification measures, and the 
+results of the system integration verification are recorded. 
+5) Consistency and bidirectional traceability are established between verification measures and 
+the elements of the system architecture. 
+6) Bidirectional traceability between verification results and verification measures is 
+established. 
+7) Results of the system integration and integration verification are summarized and 
+communicated to all affected parties. 
+ 
+ 
+ 
+
+--- PAGE 41 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+41
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+Base Practices  
+SYS.4.BP1: Specify verification measures for system integration. Specify the verification 
+measures, based on a defined sequence and preconditions for the integration of system 
+elements against the system static and dynamic aspects of the system architecture, including 
+• 
+techniques for the verification measures, 
+• 
+pass/fail criteria for verification measures, 
+• 
+a definition of entry and exit criteria for the verification measures, and 
+• 
+the required verification infrastructure and environment setup. 
+Note 1: Examples on what a verification measure may focus are the timing dependencies of the 
+correct signal flow between interfacing system elements, or interactions between hardware and 
+software, as specified in the system architecture. The system integration test cases may focus on 
+• 
+the correct signal flow between system items, 
+• 
+the timeliness and timing dependencies of signal flow between system items, 
+• 
+the correct interpretation of signals by all system items using an interface, and/or 
+• 
+the dynamic interaction between system items. 
+SYS.4.BP2: Select verification measures. Document the selection of verification measures for 
+each integration step considering selection criteria including criteria for regression verification. 
+The documented selection of verification measures shall have sufficient coverage according to 
+the release scope. 
+Note 2: Examples for selection criteria can be prioritization of requirements, the need for regression 
+verification (due to e.g., changes to the system architectural design or to system components), or 
+the intended use of the delivered product release (e.g., test bench, test track, public road etc.) 
+SYS.4.BP3: Integrate system elements and perform integration verification. Integrate the 
+system elements until the system is fully integrated according to the specified interfaces and 
+interactions between the system elements, and according to the defined sequence and defined 
+preconditions. Perform the selected system integration verification measures. Record the 
+verification measure data including pass/fail status and corresponding verification measure data. 
+Note 3: Examples for preconditions for starting system integration can be successful system element 
+verification or qualification of pre-existing system elements. 
+Note 4: See SUP.9 for handling verification results that deviate from expected results 
+SYS.4.BP4: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between verification measures and the 
+system architecture. Establish bidirectional traceability between verification results and 
+verification measures. 
+Note 5: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, 
+does not necessarily mean that the information is consistent with each other. 
+
+--- PAGE 42 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+42
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SYS.4.BP5: Summarize and communicate results. Summarize the system integration and 
+integration verification results and communicate them to all affected parties. 
+Note 6: Providing all necessary information from the test case execution in a summary enables other 
+parties to judge the consequences. 
+ 
+SYS.4 System Integration and Integration Verification 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Outcome 7 
+Output Information Items 
+08-60 Verification Measure 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+06-50 Integration Sequence Instruction 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+03-50 Verification Measure Data 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+08-58 Verification Measure Selection Set 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+15-52 Verification Results 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+11-06 Integrated System 
+ 
+X 
+ 
+ 
+ 
+ 
+ 
+Base Practices 
+BP1: Specify verification measures for system integration 
+X 
+ 
+ 
+ 
+ 
+ 
+ 
+BP2: Select verification measures 
+ 
+ 
+X 
+ 
+ 
+ 
+ 
+BP3: Integrate system elements and perform integration 
+verification. 
+ 
+X 
+ 
+X 
+ 
+ 
+ 
+BP4: Ensure consistency and establish bidirectional 
+traceability 
+ 
+ 
+ 
+ 
+X 
+X 
+ 
+BP5: Summarize and communicate results 
+ 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
+
+--- PAGE 43 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+43
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+4.3.5. SYS.5 System Verification 
+Process ID 
+SYS.5 
+Process name 
+System Verification 
+Process purpose 
+The purpose is to ensure that the system is verified to be consistent with the system 
+requirements. 
+Process outcomes 
+1) Verification measures are specified for system verification of the system based on the system 
+requirements. 
+2) Verification measures are selected according to the release scope considering criteria, 
+including criteria for regression verification. 
+3) The integrated system is verified using the selected verification measures and the results of 
+system verification are recorded. 
+4) Consistency and bidirectional traceability are established between verification measures and 
+system requirements. 
+5) Bidirectional traceability is established between verification results and verification measures. 
+6) Verification results are summarized and communicated to all affected parties. 
+ 
+Base Practices  
+SYS.5.BP1: Specify verification measures for system verification. Specify the verification 
+measures for system verification suitable to provide evidence for compliance with the functional 
+and non-functional information in the system requirements, including 
+• 
+techniques for the verification measures, 
+• 
+pass/fail criteria for verification measures, 
+• 
+a definition of entry and exit criteria for the verification measures, 
+• 
+necessary sequence of verification measures, and 
+• 
+the required verification infrastructure and environment setup. 
+Note 1: The system verification measures may cover aspects such as thermal, environmental, 
+robustness/lifetime, and EMC. 
+SYS.5.BP2: Select verification measures. Document the selection of verification measures 
+considering selection criteria including criteria for regression verification. The selection of 
+verification measures shall have sufficient coverage according to the release scope. 
+Note 2: Examples for criteria for selection can be prioritization of requirements, the need for 
+regression verification (due to e.g., changes to the system requirements), the intended use of the 
+delivered product release (test bench, test track, public road etc.) 
+
+--- PAGE 44 ---
+ 
+ 
+ 
+ 
+© VDA Quality Management Center 
+44
+ 
+ 
+ 
+PUBLIC 
+PUBLIC 
+SYS.5.BP3: Perform verification of the integrated system. Perform the verification of the 
+integrated system using the selected verification measures. Record the verification results 
+including pass/fail status and corresponding verification measure data. 
+Note 3: See SUP.9 for handling verification results that deviate from expected results 
+SYS.5.BP4: Ensure consistency and establish bidirectional traceability. Ensure 
+consistency and establish bidirectional traceability between verification measures and system 
+requirements. Establish bidirectional traceability between verification results and verification 
+measures. 
+Note 4: Bidirectional traceability supports consistency, and facilitates impact analysis of change 
+requests, and demonstration of verification coverage. Traceability alone, e.g., the existence of links, 
+does not necessarily mean that the information is consistent with each other.  
+SYS.5.BP5: Summarize and communicate results. Summarize the system verification results 
+and communicate them to all affected parties.  
+Note 5: Providing all necessary information from the test case execution in a summary enables other 
+parties to judge the consequences. 
+ 
+SYS.5 System Verification 
+Outcome 1 
+Outcome 2 
+Outcome 3 
+Outcome 4 
+Outcome 5 
+Outcome 6 
+Output Information Item 
+08-60 Verification Measure 
+X 
+ 
+ 
+ 
+ 
+ 
+03-50 Verification Measure Data 
+ 
+ 
+X 
+ 
+ 
+ 
+08-58 Verification Measure Selection Set 
+ 
+X 
+ 
+ 
+ 
+ 
+15-52 Verification Results 
+ 
+ 
+X 
+ 
+ 
+ 
+13-51 Consistency Evidence 
+ 
+ 
+ 
+X 
+X 
+ 
+13-52 Communication Evidence 
+ 
+ 
+ 
+ 
+ 
+X 
+Base Practices 
+BP1: Specify verification measures for system verification 
+X 
+ 
+ 
+ 
+ 
+ 
+BP2: Select verification measures 
+ 
+X 
+ 
+ 
+ 
+ 
+BP3: Perform verification of the integrated system 
+ 
+ 
+X 
+ 
+ 
+ 
+BP4: Ensure consistency and establish bidirectional traceability. 
+ 
+ 
+ 
+X 
+X 
+ 
+BP5: Summarize and communicate results 
+ 
+ 
+ 
+ 
+ 
+X 
+ 
+ 
+ 
