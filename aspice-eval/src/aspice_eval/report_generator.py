@@ -238,19 +238,19 @@ class MarkdownReportRenderer(ReportRenderer):
                         lines.append(f"  - **Rating:** {cr.rating}")
 
                         if cr.evidence_found:
-                            lines.append(
-                                f"  - **Evidence:** {'; '.join(cr.evidence_found)}"
-                            )
+                            lines.append("  - **Evidence:**")
+                            for ev in cr.evidence_found:
+                                lines.append(f"    - {ev}")
 
                         if cr.gaps:
-                            lines.append(
-                                f"  - **Gaps:** {'; '.join(cr.gaps)}"
-                            )
+                            lines.append("  - **Gaps:**")
+                            for gap in cr.gaps:
+                                lines.append(f"    - {gap}")
 
                         if cr.recommendations:
-                            lines.append(
-                                f"  - **Recommendations:** {'; '.join(cr.recommendations)}"
-                            )
+                            lines.append("  - **Recommendations:**")
+                            for rec in cr.recommendations:
+                                lines.append(f"    - {rec}")
 
         return "\n".join(lines)
 
