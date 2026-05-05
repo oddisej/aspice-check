@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "confluence-ai"
+version = "0.1.0"
+description = "General-purpose AI-powered Confluence toolkit — export, publish, and describe pages"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Confluence AI Contributors"},
+]
+keywords = ["confluence", "markdown", "export", "publish", "ai", "gliffy"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Text Processing :: Markup",
+    "Typing :: Typed",
+]
+dependencies = [
+    "click>=8.1.0",
+    "atlassian-python-api>=3.41.0",
+    "pyyaml>=6.0",
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "hypothesis>=6.90.0",
+    "pytest-mock",
+]
+anthropic = ["anthropic>=0.30.0"]
+openai = ["openai>=1.0.0"]
+bedrock = ["boto3>=1.28.0", "botocore[crt]>=1.28.0"]
+all = ["anthropic>=0.30.0", "openai>=1.0.0", "boto3>=1.28.0", "botocore[crt]>=1.28.0"]
+
+[project.scripts]
+confluence-export = "confluence_ai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+confluence_ai = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.hypothesis]
+database_backend = "directory"
