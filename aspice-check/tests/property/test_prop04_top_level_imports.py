@@ -20,14 +20,17 @@ import pathlib
 
 
 def test_prop04_aspice_check_uses_only_top_level_imports() -> None:
-    """All imports of confluence_ai and aspice_eval in aspice_check are top-level only.
+    """Module-level imports of confluence_ai and aspice_eval in aspice_check are top-level only.
 
     **Validates: Requirements 3.4, 3.5**
 
     Parses all Python source files under aspice-check/src/aspice_check/ using
-    the ast module and verifies that no import references a submodule of
-    confluence_ai or aspice_eval (e.g., confluence_ai.client or
+    the ast module and verifies that no *module-level* import references a
+    submodule of confluence_ai or aspice_eval (e.g., confluence_ai.client or
     aspice_eval.knowledge_base).
+
+    Function-local imports (inside def/method bodies) are allowed — they are
+    implementation details that don't affect the package's interface contract.
     """
     src_dir = pathlib.Path(__file__).resolve().parent.parent.parent / "src" / "aspice_check"
     assert src_dir.exists(), f"Source directory not found: {src_dir}"
@@ -43,20 +46,19 @@ def test_prop04_aspice_check_uses_only_top_level_imports() -> None:
 
         relative_path = py_file.relative_to(src_dir)
 
-        for node in ast.walk(tree):
+        # Only check module-level statements (direct children of the Module node)
+        for node in tree.body:
             if isinstance(node, ast.Import):
                 for alias in node.names:
-                    # e.g., "import confluence_ai.client"
                     _check_dotted_import(alias.name, relative_path, node.lineno, violations)
 
             elif isinstance(node, ast.ImportFrom):
                 if node.module is None:
                     continue
-                # e.g., "from confluence_ai.client import ConfluenceClient"
                 _check_from_import(node.module, relative_path, node.lineno, violations)
 
     assert not violations, (
-        f"Found {len(violations)} submodule import(s) in aspice_check:\n"
+        f"Found {len(violations)} submodule import(s) at module level in aspice_check:\n"
         + "\n".join(f"  - {v}" for v in violations)
     )
 

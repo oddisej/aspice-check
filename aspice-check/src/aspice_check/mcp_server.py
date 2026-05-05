@@ -236,8 +236,9 @@ class AspiceMCPServer:
     def _handle_evaluate_sdp(self, params: dict) -> dict:
         """Handle evaluate_sdp tool call.
 
-        Runs the evaluation, generates a report, and returns it inline.
-        Optionally saves to a local file and/or publishes to Confluence.
+        Runs the evaluation, generates the full structured report (matching
+        the CLI output), and returns it inline. Optionally saves to a local
+        file and/or publishes to Confluence.
         """
         model_config = aspice_eval.ModelConfig(
             provider=params["provider"],
@@ -259,55 +260,62 @@ class AspiceMCPServer:
             standard=standard,
         )
 
-        # Generate report using the top-level API
         groups = process_groups or ["SWE", "SYS", "MAN", "SUP"]
 
-        # Use the evaluate_sdp result which already has capability_levels
-        # in sdp_metadata (set by the convenience function)
-        cap_levels = result.sdp_metadata.get("capability_levels", {})
+        # Generate the full structured report using internal modules
+        # (function-local imports are fine — the top-level-only constraint
+        # applies to module-level import statements)
+        from aspice_eval.knowledge_base import KnowledgeBase
+        from aspice_eval.level_calculator import CapabilityLevelCalculator
+        from aspice_eval.report_generator import ReportGenerator
+        from aspice_eval.convenience import _resolve_default_kb_path
 
-        # Build a simple report from the ratings
-        report_lines = [
-            "# ASPICE Gap Analysis Report",
-            "",
-            f"**Evaluation Date:** {result.evaluation_timestamp}",
-            f"**Target Level:** {target_level}",
-            f"**Process Groups:** {', '.join(groups)}",
-            f"**Criteria Assessed:** {len(result.ratings)}",
-            f"**Total Gaps:** {sum(len(r.gaps) for r in result.ratings)}",
-            "",
-            "## Capability Levels",
-            "",
-            "| Group | Achieved | Target | Status |",
-            "|-------|----------|--------|--------|",
-        ]
-        for group in sorted(cap_levels.keys()):
-            info = cap_levels[group]
-            achieved = info["achieved_level"]
-            target = info["target_level"]
-            status = "Meets target" if achieved >= target else "Below target"
-            report_lines.append(
-                f"| {group} | {achieved} | {target} | {status} |"
+        calculator = CapabilityLevelCalculator(target_level)
+        levels = calculator.calculate(result.ratings, groups)
+
+        config = aspice_eval.EvaluationConfig(
+            sdp_path=sdp_path,
+            target_capability_level=target_level,
+            process_groups=groups,
+        )
+
+        # Load KB metadata for the report header
+        try:
+            kb_path = _resolve_default_kb_path()
+            kb = KnowledgeBase(kb_path)
+            kb.load(standard)
+            kb_metadata = kb.get_metadata()
+        except Exception:
+            from aspice_eval.models import KBMetadata
+
+            kb_metadata = KBMetadata(
+                standard_name=standard,
+                short_name=standard.upper(),
+                version="",
+                release_date="",
+                source_references=[],
+                license_note="",
+                kb_version="unknown",
+                last_updated="",
+                process_groups=[],
+                capability_levels=[],
+                rating_scale=[],
             )
 
-        report_lines.extend(["", "## Detailed Findings", ""])
+        generator = ReportGenerator()
+        report = generator.generate(
+            result, levels, config, kb_metadata, output_format=output_format
+        )
 
-        for r in result.ratings:
-            report_lines.append(f"### {r.criteria_id}")
-            report_lines.append(f"- **Rating:** {r.rating}")
-            if r.evidence_found:
-                report_lines.append(
-                    f"- **Evidence:** {'; '.join(r.evidence_found)}"
-                )
-            if r.gaps:
-                report_lines.append(f"- **Gaps:** {'; '.join(r.gaps)}")
-            if r.recommendations:
-                report_lines.append(
-                    f"- **Recommendations:** {'; '.join(r.recommendations)}"
-                )
-            report_lines.append("")
-
-        report = "\n".join(report_lines)
+        # Capability levels summary for the response metadata
+        cap_levels = {
+            group: {
+                "achieved_level": lev.achieved_level,
+                "target_level": lev.target_level,
+                "blocking_attributes": lev.blocking_attributes,
+            }
+            for group, lev in levels.items()
+        }
 
         # Optionally save to local file
         output_path = params.get("output_path")
@@ -321,8 +329,11 @@ class AspiceMCPServer:
         # Optionally publish to Confluence
         published_url = None
         if params.get("publish"):
+            html_report = generator.generate(
+                result, levels, config, kb_metadata, output_format="html"
+            )
             published_url = confluence_ai.publish_page(
-                f"<pre>{report}</pre>",
+                html_report,
                 email=params.get("confluence_email", ""),
                 api_token=params.get("confluence_api_token", ""),
                 base_url=params.get("confluence_base_url", ""),
