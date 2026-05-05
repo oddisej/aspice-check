@@ -11,7 +11,11 @@ from __future__ import annotations
 
 EVALUATE_SDP_SCHEMA: dict = {
     "name": "evaluate_sdp",
-    "description": "Evaluate an SDP document against ASPICE knowledge base criteria",
+    "description": (
+        "Evaluate an SDP document against ASPICE knowledge base criteria "
+        "and return a gap analysis report. Optionally saves the report to "
+        "a local file and/or publishes it back to Confluence."
+    ),
     "inputSchema": {
         "type": "object",
         "properties": {
@@ -48,6 +52,48 @@ EVALUATE_SDP_SCHEMA: dict = {
                 "type": "string",
                 "default": "aspice",
                 "description": "Knowledge base standard identifier",
+            },
+            "output_path": {
+                "type": "string",
+                "description": (
+                    "Local file path to save the generated report. "
+                    "If omitted, the report is only returned inline."
+                ),
+            },
+            "output_format": {
+                "type": "string",
+                "enum": ["markdown", "html"],
+                "default": "markdown",
+                "description": "Report format (markdown or html)",
+            },
+            "publish": {
+                "type": "boolean",
+                "default": False,
+                "description": "If true, publish the report to Confluence (requires confluence_* fields)",
+            },
+            "confluence_base_url": {
+                "type": "string",
+                "description": "Confluence base URL (e.g. https://acme.atlassian.net/wiki)",
+            },
+            "confluence_space_key": {
+                "type": "string",
+                "description": "Confluence space key where the report page will be created/updated",
+            },
+            "confluence_page_title": {
+                "type": "string",
+                "description": "Title for the published report page",
+            },
+            "confluence_parent_page_id": {
+                "type": "string",
+                "description": "Parent page ID (optional, makes the report a child page)",
+            },
+            "confluence_email": {
+                "type": "string",
+                "description": "Confluence email (required if publish=true)",
+            },
+            "confluence_api_token": {
+                "type": "string",
+                "description": "Confluence API token (required if publish=true)",
             },
         },
         "required": ["provider", "model"],

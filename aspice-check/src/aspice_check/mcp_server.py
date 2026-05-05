@@ -234,23 +234,120 @@ class AspiceMCPServer:
     # ------------------------------------------------------------------
 
     def _handle_evaluate_sdp(self, params: dict) -> dict:
-        """Handle evaluate_sdp tool call."""
+        """Handle evaluate_sdp tool call.
+
+        Runs the evaluation, generates a report, and returns it inline.
+        Optionally saves to a local file and/or publishes to Confluence.
+        """
         model_config = aspice_eval.ModelConfig(
             provider=params["provider"],
             model_name=params["model"],
         )
+
+        sdp_path = params.get("sdp_path", "")
+        target_level = params.get("target_level", 3)
+        process_groups = params.get("process_groups")
+        standard = params.get("standard", "aspice")
+        output_format = params.get("output_format", "markdown")
+
+        # Run evaluation
         result = aspice_eval.evaluate_sdp(
-            sdp_path=params.get("sdp_path", ""),
+            sdp_path=sdp_path,
             model_config=model_config,
-            target_level=params.get("target_level", 3),
-            process_groups=params.get("process_groups"),
-            standard=params.get("standard", "aspice"),
+            target_level=target_level,
+            process_groups=process_groups,
+            standard=standard,
         )
-        return {
+
+        # Generate report using the top-level API
+        groups = process_groups or ["SWE", "SYS", "MAN", "SUP"]
+
+        # Use the evaluate_sdp result which already has capability_levels
+        # in sdp_metadata (set by the convenience function)
+        cap_levels = result.sdp_metadata.get("capability_levels", {})
+
+        # Build a simple report from the ratings
+        report_lines = [
+            "# ASPICE Gap Analysis Report",
+            "",
+            f"**Evaluation Date:** {result.evaluation_timestamp}",
+            f"**Target Level:** {target_level}",
+            f"**Process Groups:** {', '.join(groups)}",
+            f"**Criteria Assessed:** {len(result.ratings)}",
+            f"**Total Gaps:** {sum(len(r.gaps) for r in result.ratings)}",
+            "",
+            "## Capability Levels",
+            "",
+            "| Group | Achieved | Target | Status |",
+            "|-------|----------|--------|--------|",
+        ]
+        for group in sorted(cap_levels.keys()):
+            info = cap_levels[group]
+            achieved = info["achieved_level"]
+            target = info["target_level"]
+            status = "Meets target" if achieved >= target else "Below target"
+            report_lines.append(
+                f"| {group} | {achieved} | {target} | {status} |"
+            )
+
+        report_lines.extend(["", "## Detailed Findings", ""])
+
+        for r in result.ratings:
+            report_lines.append(f"### {r.criteria_id}")
+            report_lines.append(f"- **Rating:** {r.rating}")
+            if r.evidence_found:
+                report_lines.append(
+                    f"- **Evidence:** {'; '.join(r.evidence_found)}"
+                )
+            if r.gaps:
+                report_lines.append(f"- **Gaps:** {'; '.join(r.gaps)}")
+            if r.recommendations:
+                report_lines.append(
+                    f"- **Recommendations:** {'; '.join(r.recommendations)}"
+                )
+            report_lines.append("")
+
+        report = "\n".join(report_lines)
+
+        # Optionally save to local file
+        output_path = params.get("output_path")
+        if output_path:
+            import os
+
+            os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(report)
+
+        # Optionally publish to Confluence
+        published_url = None
+        if params.get("publish"):
+            published_url = confluence_ai.publish_page(
+                f"<pre>{report}</pre>",
+                email=params.get("confluence_email", ""),
+                api_token=params.get("confluence_api_token", ""),
+                base_url=params.get("confluence_base_url", ""),
+                space_key=params.get("confluence_space_key", ""),
+                title=params.get(
+                    "confluence_page_title", "ASPICE Gap Analysis Report"
+                ),
+                parent_page_id=params.get("confluence_parent_page_id"),
+            )
+
+        # Return the full report inline plus metadata
+        response: dict = {
+            "report": report,
             "ratings_count": len(result.ratings),
+            "gaps_count": sum(len(r.gaps) for r in result.ratings),
             "evaluation_timestamp": result.evaluation_timestamp,
             "token_usage": result.token_usage,
+            "capability_levels": cap_levels,
         }
+        if output_path:
+            response["saved_to"] = output_path
+        if published_url:
+            response["published_url"] = published_url
+
+        return response
 
     def _handle_validate_kb(self, params: dict) -> dict:
         """Handle validate_kb tool call."""
