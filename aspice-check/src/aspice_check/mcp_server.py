@@ -26,6 +26,7 @@ from aspice_check.mcp_tools import (
     EVALUATE_SDP_SCHEMA,
     EXPORT_PAGE_SCHEMA,
     LIST_STANDARDS_SCHEMA,
+    PUBLISH_PAGE_SCHEMA,
     VALIDATE_KB_SCHEMA,
 )
 
@@ -45,6 +46,7 @@ class AspiceMCPServer:
             "list_standards": self._handle_list_standards,
             "export_page": self._handle_export_page,
             "describe_image": self._handle_describe_image,
+            "publish_page": self._handle_publish_page,
         }
         self._tool_schemas: dict[str, dict] = {
             schema["name"]: schema for schema in ALL_TOOL_SCHEMAS
@@ -326,24 +328,6 @@ class AspiceMCPServer:
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(report)
 
-        # Optionally publish to Confluence
-        published_url = None
-        if params.get("publish"):
-            html_report = generator.generate(
-                result, levels, config, kb_metadata, output_format="html"
-            )
-            published_url = confluence_ai.publish_page(
-                html_report,
-                email=params.get("confluence_email", ""),
-                api_token=params.get("confluence_api_token", ""),
-                base_url=params.get("confluence_base_url", ""),
-                space_key=params.get("confluence_space_key", ""),
-                title=params.get(
-                    "confluence_page_title", "ASPICE Gap Analysis Report"
-                ),
-                parent_page_id=params.get("confluence_parent_page_id"),
-            )
-
         # Return the full report inline plus metadata
         response: dict = {
             "report": report,
@@ -355,8 +339,6 @@ class AspiceMCPServer:
         }
         if output_path:
             response["saved_to"] = output_path
-        if published_url:
-            response["published_url"] = published_url
 
         return response
 
@@ -418,6 +400,48 @@ class AspiceMCPServer:
         )
         description = describer.describe(params["image_path"], context)
         return {"description": description}
+
+    def _handle_publish_page(self, params: dict) -> dict:
+        """Handle publish_page tool call.
+
+        Publishes content to Confluence. Accepts either a local file path
+        (reads and converts Markdown to simple HTML) or inline HTML content.
+        """
+        import os
+
+        html_content = params.get("html_content", "")
+        file_path = params.get("file_path")
+
+        if file_path:
+            if not os.path.exists(file_path):
+                raise FileNotFoundError(f"File not found: {file_path}")
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            # If it's a Markdown file, wrap in <pre> for basic rendering
+            # (Confluence will convert via its storage format API)
+            if file_path.endswith(".md"):
+                # Simple Markdown-to-HTML: wrap in pre for now
+                # The publish_page function handles conversion via Confluence API
+                html_content = f"<pre>{content}</pre>"
+            else:
+                html_content = content
+
+        if not html_content:
+            raise ValueError(
+                "Either 'file_path' or 'html_content' must be provided"
+            )
+
+        url = confluence_ai.publish_page(
+            html_content,
+            email=params["email"],
+            api_token=params["api_token"],
+            base_url=params["base_url"],
+            space_key=params["space_key"],
+            title=params["title"],
+            parent_page_id=params.get("parent_page_id"),
+        )
+
+        return {"published_url": url, "title": params["title"]}
 
 
 # ---------------------------------------------------------------------------

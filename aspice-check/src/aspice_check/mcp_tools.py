@@ -66,35 +66,6 @@ EVALUATE_SDP_SCHEMA: dict = {
                 "default": "markdown",
                 "description": "Report format (markdown or html)",
             },
-            "publish": {
-                "type": "boolean",
-                "default": False,
-                "description": "If true, publish the report to Confluence (requires confluence_* fields)",
-            },
-            "confluence_base_url": {
-                "type": "string",
-                "description": "Confluence base URL (e.g. https://acme.atlassian.net/wiki)",
-            },
-            "confluence_space_key": {
-                "type": "string",
-                "description": "Confluence space key where the report page will be created/updated",
-            },
-            "confluence_page_title": {
-                "type": "string",
-                "description": "Title for the published report page",
-            },
-            "confluence_parent_page_id": {
-                "type": "string",
-                "description": "Parent page ID (optional, makes the report a child page)",
-            },
-            "confluence_email": {
-                "type": "string",
-                "description": "Confluence email (required if publish=true)",
-            },
-            "confluence_api_token": {
-                "type": "string",
-                "description": "Confluence API token (required if publish=true)",
-            },
         },
         "required": ["provider", "model"],
     },
@@ -209,11 +180,67 @@ DESCRIBE_IMAGE_SCHEMA: dict = {
     },
 }
 
+PUBLISH_PAGE_SCHEMA: dict = {
+    "name": "publish_page",
+    "description": (
+        "Publish content to Confluence Cloud as a page. Accepts either a "
+        "local file path (Markdown or HTML) or inline HTML content. "
+        "Updates existing pages with the same title instead of creating duplicates."
+    ),
+    "inputSchema": {
+        "type": "object",
+        "properties": {
+            "file_path": {
+                "type": "string",
+                "description": (
+                    "Path to a local Markdown or HTML file to publish. "
+                    "If provided, file content is read and used as the page body."
+                ),
+            },
+            "html_content": {
+                "type": "string",
+                "description": (
+                    "Inline HTML content to publish (alternative to file_path)."
+                ),
+            },
+            "email": {
+                "type": "string",
+                "description": "Confluence account email",
+            },
+            "api_token": {
+                "type": "string",
+                "description": "Confluence API token",
+            },
+            "base_url": {
+                "type": "string",
+                "description": (
+                    "Confluence Cloud base URL "
+                    "(e.g. https://acme.atlassian.net/wiki)"
+                ),
+            },
+            "space_key": {
+                "type": "string",
+                "description": "Confluence space key",
+            },
+            "title": {
+                "type": "string",
+                "description": "Page title (used for deduplication — updates if exists)",
+            },
+            "parent_page_id": {
+                "type": "string",
+                "description": "Parent page ID to create the page under (optional)",
+            },
+        },
+        "required": ["email", "api_token", "base_url", "space_key", "title"],
+    },
+}
+
 ALL_TOOL_SCHEMAS: list[dict] = [
     EVALUATE_SDP_SCHEMA,
     VALIDATE_KB_SCHEMA,
     LIST_STANDARDS_SCHEMA,
     EXPORT_PAGE_SCHEMA,
     DESCRIBE_IMAGE_SCHEMA,
+    PUBLISH_PAGE_SCHEMA,
 ]
 """All MCP tool schemas in a single list for server registration."""
