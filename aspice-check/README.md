@@ -168,11 +168,46 @@ Invalid parameters return a structured error with code `-32602`:
 
 ## Installation
 
+### From the monorepo (development)
+
+Install all three packages in editable mode from the repo root:
+
+```bash
+pip install -e ./confluence-ai
+pip install -e ./aspice-eval
+pip install -e ./aspice-check
+```
+
+This registers the `aspice-analyze` and `aspice-mcp` commands in your environment. Verify:
+
+```bash
+which aspice-mcp
+# → /path/to/venv/bin/aspice-mcp
+```
+
+### From PyPI (once published)
+
 ```bash
 pip install aspice-check
 ```
 
-This installs both `confluence-ai` and `aspice-eval` as dependencies, plus the `aspice-analyze` and `aspice-mcp` CLI commands.
+This pulls in `confluence-ai` and `aspice-eval` automatically.
+
+### Making `aspice-mcp` available to MCP clients
+
+MCP clients launch the server as a subprocess, so the `aspice-mcp` command must be resolvable from the client's environment. Two options:
+
+1. **Use the absolute path** in your MCP config (works regardless of PATH):
+   ```json
+   { "command": "/path/to/venv/bin/aspice-mcp" }
+   ```
+
+2. **Activate the venv** before launching the client, or install into the system Python so `aspice-mcp` is on the global PATH.
+
+To find the path after installing:
+```bash
+which aspice-mcp
+```
 
 Requires Python 3.10+.
 
