@@ -163,18 +163,44 @@ The server exposes `evaluate_sdp`, `validate_kb`, `list_standards`, `export_page
 
 ## Quick Start
 
-```bash
-# Install everything from GitHub
-pip install "confluence-ai[bedrock] @ git+https://github.com/oddisej/aspice-check.git#subdirectory=confluence-ai"
-pip install "aspice-eval[bedrock] @ git+https://github.com/oddisej/aspice-check.git#subdirectory=aspice-eval"
-pip install "aspice-check @ git+https://github.com/oddisej/aspice-check.git#subdirectory=aspice-check"
+### From PyPI
 
-# Credentials
+```bash
+# For MCP server / AI agent usage (recommended)
+pipx install "aspice-check[bedrock]"
+
+# Or with pip in a venv
+pip install "aspice-check[bedrock]"
+```
+
+This single command installs everything: `confluence-ai`, `aspice-eval`, boto3, and registers `aspice-mcp` + `aspice-analyze` commands.
+
+**Other AI providers:**
+```bash
+pip install "aspice-check[openai]"      # OpenAI GPT-4o
+pip install "aspice-check[anthropic]"   # Anthropic Claude (direct API)
+pip install "aspice-check[all]"         # All providers
+```
+
+### From GitHub (development)
+
+```bash
+pip install -e "./confluence-ai[bedrock]"
+pip install -e "./aspice-eval[bedrock]"
+pip install -e ./aspice-check
+```
+
+### Credentials
+
+```bash
 export CONFLUENCE_EMAIL="your.email@company.com"
 export CONFLUENCE_API_TOKEN="your-token"
 export AWS_DEFAULT_REGION="eu-west-1"
+```
 
-# Run the full pipeline
+### Run the CLI pipeline
+
+```bash
 aspice-analyze \
   "https://your-instance.atlassian.net/wiki/spaces/SPACE/pages/12345/Your+SDP+Page" \
   --target-level 1 \
@@ -207,9 +233,14 @@ The `aspice-mcp` server exposes 6 tools to any MCP-compatible AI assistant:
 ### Install
 
 ```bash
-pip install -e ./confluence-ai
-pip install -e ./aspice-eval
-pip install -e ./aspice-check
+# From PyPI (recommended)
+pipx install "aspice-check[bedrock]"
+
+# Or in a venv
+pip install "aspice-check[bedrock]"
+
+# Verify
+which aspice-mcp
 ```
 
 ### Configure your MCP client
