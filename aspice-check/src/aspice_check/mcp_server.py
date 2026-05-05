@@ -417,12 +417,12 @@ class AspiceMCPServer:
                 raise FileNotFoundError(f"File not found: {file_path}")
             with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
-            # If it's a Markdown file, wrap in <pre> for basic rendering
-            # (Confluence will convert via its storage format API)
+            # If it's a Markdown file, convert to HTML using the report
+            # generator's built-in converter (same one the CLI uses)
             if file_path.endswith(".md"):
-                # Simple Markdown-to-HTML: wrap in pre for now
-                # The publish_page function handles conversion via Confluence API
-                html_content = f"<pre>{content}</pre>"
+                from aspice_eval.report_generator import HTMLReportRenderer
+
+                html_content = HTMLReportRenderer._markdown_to_html(content)
             else:
                 html_content = content
 
