@@ -191,6 +191,69 @@ All AI-powered features go through a pluggable provider interface. Built-in prov
 
 Register your own provider by subclassing the relevant ABC and calling `register_describer()` or `register_evaluator()`.
 
+## MCP Server Setup
+
+The `aspice-mcp` server exposes 6 tools to any MCP-compatible AI assistant:
+
+| Tool | Description |
+|------|-------------|
+| `export_page` | Export a Confluence page to Markdown with AI image descriptions |
+| `evaluate_sdp` | Run ASPICE gap analysis and generate a report (saves locally) |
+| `publish_page` | Publish a local file or HTML to Confluence |
+| `validate_kb` | Validate a knowledge base for schema/completeness |
+| `list_standards` | List available KB standards |
+| `describe_image` | Generate an AI description of an image |
+
+### Install
+
+```bash
+pip install -e ./confluence-ai
+pip install -e ./aspice-eval
+pip install -e ./aspice-check
+```
+
+### Configure your MCP client
+
+Add to your client's MCP config (paths vary by client):
+
+**Kiro** (`.kiro/settings/mcp.json`):
+```json
+{
+  "mcpServers": {
+    "aspice": {
+      "command": "/path/to/venv/bin/aspice-mcp",
+      "args": [],
+      "env": {
+        "CONFLUENCE_EMAIL": "user@company.com",
+        "CONFLUENCE_API_TOKEN": "your-token",
+        "AWS_DEFAULT_REGION": "us-west-2"
+      }
+    }
+  }
+}
+```
+
+**Claude Desktop** (`claude_desktop_config.json`):
+```json
+{
+  "mcpServers": {
+    "aspice": {
+      "command": "/path/to/venv/bin/aspice-mcp",
+      "args": []
+    }
+  }
+}
+```
+
+Find the path with `which aspice-mcp` after installing.
+
+### Typical workflow
+
+1. **Export** a Confluence page → get local Markdown with AI-described diagrams
+2. **Evaluate** the exported page → get a gap analysis report saved locally
+3. **Review** the report file
+4. **Publish** the report back to Confluence as a child page
+
 ## Key Capabilities
 
 - **ASPICE v4.0 knowledge base** with criteria for SWE, SYS, MAN, SUP process groups across capability levels 0–5
