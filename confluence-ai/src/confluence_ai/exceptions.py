@@ -151,3 +151,47 @@ class FileSystemError(ExporterError):
         self.operation = operation
         msg = message or f"Filesystem error: could not {operation} {path!r}."
         super().__init__(msg)
+
+
+class CalendarNotFoundError(ExporterError):
+    """Raised when a calendar ID is not found or the user lacks access."""
+
+    def __init__(
+        self,
+        calendar_id: str,
+        status_code: int | None = None,
+        message: str | None = None,
+    ) -> None:
+        self.calendar_id = calendar_id
+        self.status_code = status_code
+        if message:
+            msg = message
+        elif status_code == 403:
+            msg = (
+                f"Access denied for calendar {calendar_id!r} (HTTP 403). "
+                "The authenticated user may lack read permission."
+            )
+        else:
+            msg = (
+                f"Calendar {calendar_id!r} not found"
+                f"{f' (HTTP {status_code})' if status_code else ''}."
+            )
+        super().__init__(msg)
+
+
+class CalendarAPIError(ExporterError):
+    """Raised when the Team Calendars REST API returns an unexpected error."""
+
+    def __init__(
+        self,
+        endpoint: str,
+        status_code: int | None = None,
+        message: str | None = None,
+    ) -> None:
+        self.endpoint = endpoint
+        self.status_code = status_code
+        msg = message or (
+            f"Calendar API error at {endpoint!r}"
+            f"{f' (HTTP {status_code})' if status_code else ''}."
+        )
+        super().__init__(msg)

@@ -6,6 +6,7 @@ API response models, configuration models, and result models.
 
 from __future__ import annotations
 
+import datetime
 from dataclasses import dataclass, field
 
 
@@ -230,4 +231,77 @@ class ExportResult:
     markdown_path: str
     images_downloaded: int
     descriptions_generated: int
+    warnings: list[str] = field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# Calendar Models
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class DateRange:
+    """Inclusive start, exclusive end — matches most calendar APIs."""
+
+    start: datetime.datetime
+    end: datetime.datetime
+
+
+@dataclass
+class SubCalendar:
+    """A child calendar nested under a parent Team Calendar."""
+
+    calendar_id: str
+    name: str
+    type: str  # e.g., "custom", "leaves", "travel", "rota"
+    color: str = ""
+    description: str = ""
+
+
+@dataclass
+class Calendar:
+    """A Confluence Team Calendar (parent)."""
+
+    calendar_id: str
+    name: str
+    type: str
+    space_key: str = ""
+    description: str = ""
+    sub_calendars: list[SubCalendar] = field(default_factory=list)
+
+
+@dataclass
+class Event:
+    """A single calendar occurrence."""
+
+    event_id: str
+    summary: str
+    start: datetime.datetime  # tz-aware
+    end: datetime.datetime  # tz-aware
+    all_day: bool = False
+    description: str = ""
+    location: str = ""
+    organizer: str = ""
+    sub_calendar_id: str = ""
+    sub_calendar_name: str = ""
+
+
+@dataclass
+class CalendarMetadata:
+    """Metadata block for the export output."""
+
+    calendar_id: str
+    calendar_name: str
+    export_timestamp: str  # ISO 8601 UTC
+    exporter_version: str
+    date_range: DateRange
+    event_count: int = 0
+
+
+@dataclass
+class CalendarExportResult:
+    """Returned by export_calendar()."""
+
+    output_path: str
+    event_count: int
     warnings: list[str] = field(default_factory=list)
