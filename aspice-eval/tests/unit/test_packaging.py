@@ -9,27 +9,12 @@ Requirements: 11.1, 11.2, 11.3, 11.4, 11.5
 from __future__ import annotations
 
 import importlib.metadata
-import pathlib
 
 import pytest
 
 
 class TestEntryPoints:
     """Test that CLI entry points are resolvable."""
-
-    def test_aspice_analyze_entry_point(self) -> None:
-        """aspice-analyze entry point is registered."""
-        eps = importlib.metadata.entry_points()
-        # In Python 3.12+, entry_points() returns a SelectableGroups
-        if hasattr(eps, "select"):
-            console_scripts = eps.select(group="console_scripts")
-        else:
-            console_scripts = eps.get("console_scripts", [])
-
-        names = [ep.name for ep in console_scripts]
-        assert "aspice-analyze" in names, (
-            f"aspice-analyze not found in console_scripts: {names}"
-        )
 
     def test_aspice_eval_entry_point(self) -> None:
         """aspice-eval entry point is still registered."""
@@ -80,25 +65,43 @@ class TestKnowledgeBasePackageData:
 
     def test_kb_directory_exists(self) -> None:
         """knowledge_base/ directory exists relative to the package."""
-        from aspice_eval.analyze import _resolve_kb_path
+        import pathlib as _pathlib
+        import importlib.resources as _pkg_resources
 
-        kb_path = _resolve_kb_path()
-        assert pathlib.Path(kb_path).exists()
+        pkg_root = _pathlib.Path(str(_pkg_resources.files("aspice_eval")))
+        kb_path = pkg_root.parent.parent / "knowledge_base"
+        assert kb_path.exists() or (pkg_root / "knowledge_base").exists()
 
     def test_kb_contains_aspice_metadata(self) -> None:
         """knowledge_base/aspice/_metadata.yaml exists."""
-        from aspice_eval.analyze import _resolve_kb_path
+        import pathlib as _pathlib
+        import importlib.resources as _pkg_resources
 
-        kb_path = _resolve_kb_path()
-        metadata = pathlib.Path(kb_path) / "aspice" / "_metadata.yaml"
-        assert metadata.exists()
+        pkg_root = _pathlib.Path(str(_pkg_resources.files("aspice_eval")))
+        candidates = [
+            pkg_root.parent.parent / "knowledge_base",
+            pkg_root / "knowledge_base",
+        ]
+        for kb_path in candidates:
+            metadata = kb_path / "aspice" / "_metadata.yaml"
+            if metadata.exists():
+                return
+        pytest.fail("knowledge_base/aspice/_metadata.yaml not found")
 
     def test_kb_contains_criteria_files(self) -> None:
         """knowledge_base/aspice/ contains YAML criteria files."""
-        from aspice_eval.analyze import _resolve_kb_path
+        import pathlib as _pathlib
+        import importlib.resources as _pkg_resources
 
-        kb_path = _resolve_kb_path()
-        aspice_dir = pathlib.Path(kb_path) / "aspice"
-        yaml_files = list(aspice_dir.glob("*.yaml"))
-        # Should have at least _metadata.yaml + swe.yaml + sys.yaml + man.yaml + sup.yaml
-        assert len(yaml_files) >= 5
+        pkg_root = _pathlib.Path(str(_pkg_resources.files("aspice_eval")))
+        candidates = [
+            pkg_root.parent.parent / "knowledge_base",
+            pkg_root / "knowledge_base",
+        ]
+        for kb_path in candidates:
+            aspice_dir = kb_path / "aspice"
+            if aspice_dir.exists():
+                yaml_files = list(aspice_dir.glob("*.yaml"))
+                assert len(yaml_files) >= 5
+                return
+        pytest.fail("knowledge_base/aspice/ directory not found")
