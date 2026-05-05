@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import sys
 from typing import Any
 
@@ -376,8 +377,8 @@ class AspiceMCPServer:
         result = confluence_ai.export_page(
             page_url=params["page_url"],
             output_dir=params["output_dir"],
-            email=params["email"],
-            api_token=params["api_token"],
+            email=params.get("email") or os.environ.get("CONFLUENCE_EMAIL", ""),
+            api_token=params.get("api_token") or os.environ.get("CONFLUENCE_API_TOKEN", ""),
             ai_config=ai_config,
             output_format=params.get("output_format", "markdown"),
         )
@@ -433,8 +434,8 @@ class AspiceMCPServer:
 
         url = confluence_ai.publish_page(
             html_content,
-            email=params["email"],
-            api_token=params["api_token"],
+            email=params.get("email") or os.environ.get("CONFLUENCE_EMAIL", ""),
+            api_token=params.get("api_token") or os.environ.get("CONFLUENCE_API_TOKEN", ""),
             base_url=params["base_url"],
             space_key=params["space_key"],
             title=params["title"],

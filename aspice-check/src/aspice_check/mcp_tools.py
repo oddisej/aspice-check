@@ -121,11 +121,11 @@ EXPORT_PAGE_SCHEMA: dict = {
             },
             "email": {
                 "type": "string",
-                "description": "Confluence account email",
+                "description": "Confluence account email (falls back to CONFLUENCE_EMAIL env var)",
             },
             "api_token": {
                 "type": "string",
-                "description": "Confluence API token",
+                "description": "Confluence API token (falls back to CONFLUENCE_API_TOKEN env var)",
             },
             "ai_provider": {
                 "type": "string",
@@ -142,7 +142,7 @@ EXPORT_PAGE_SCHEMA: dict = {
                 "description": "Output format (markdown, json, or custom)",
             },
         },
-        "required": ["page_url", "output_dir", "email", "api_token"],
+        "required": ["page_url", "output_dir"],
     },
 }
 
@@ -205,11 +205,11 @@ PUBLISH_PAGE_SCHEMA: dict = {
             },
             "email": {
                 "type": "string",
-                "description": "Confluence account email",
+                "description": "Confluence account email (falls back to CONFLUENCE_EMAIL env var)",
             },
             "api_token": {
                 "type": "string",
-                "description": "Confluence API token",
+                "description": "Confluence API token (falls back to CONFLUENCE_API_TOKEN env var)",
             },
             "base_url": {
                 "type": "string",
@@ -231,7 +231,7 @@ PUBLISH_PAGE_SCHEMA: dict = {
                 "description": "Parent page ID to create the page under (optional)",
             },
         },
-        "required": ["email", "api_token", "base_url", "space_key", "title"],
+        "required": ["base_url", "space_key", "title"],
     },
 }
 
