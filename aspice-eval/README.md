@@ -62,9 +62,13 @@ To use the single-command `aspice-analyze` pipeline that exports from Confluence
 # From source (editable mode)
 pip install -e ".[analyze,bedrock,dev]"
 
-# From GitLab (no clone needed) — install both packages
+# From GitHub via HTTPS (no clone needed) — install both packages
 pip install "confluence-exporter[bedrock] @ git+https://github.com/oddisej/aspice-check.git#subdirectory=confluence-exporter"
 pip install "aspice-eval[analyze,bedrock] @ git+https://github.com/oddisej/aspice-check.git#subdirectory=aspice-eval"
+
+# Or from GitHub via SSH
+pip install "confluence-exporter[bedrock] @ git+ssh://git@github.com/oddisej/aspice-check.git#subdirectory=confluence-exporter"
+pip install "aspice-eval[analyze,bedrock] @ git+ssh://git@github.com/oddisej/aspice-check.git#subdirectory=aspice-eval"
 ```
 
 You may also need the CRT dependency for AWS SSO credentials:

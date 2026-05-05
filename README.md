@@ -47,9 +47,14 @@ Confluence SDP Page
 ## Quick Start
 
 ```bash
-# Install (from GitLab, no clone needed)
+# Install via HTTPS (no clone needed)
 pip install "confluence-exporter[bedrock] @ git+https://github.com/oddisej/aspice-check.git#subdirectory=confluence-exporter"
 pip install "aspice-eval[analyze,bedrock] @ git+https://github.com/oddisej/aspice-check.git#subdirectory=aspice-eval"
+pip install "botocore[crt]"
+
+# Or install via SSH
+pip install "confluence-exporter[bedrock] @ git+ssh://git@github.com/oddisej/aspice-check.git#subdirectory=confluence-exporter"
+pip install "aspice-eval[analyze,bedrock] @ git+ssh://git@github.com/oddisej/aspice-check.git#subdirectory=aspice-eval"
 pip install "botocore[crt]"
 
 # Set credentials
