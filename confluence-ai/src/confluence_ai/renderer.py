@@ -30,12 +30,13 @@ from confluence_ai.models import (
     TableNode,
     TextNode,
 )
+from confluence_ai.output_renderer import OutputRenderer, register_renderer
 
 if TYPE_CHECKING:
     pass
 
 
-class MarkdownRenderer:
+class MarkdownRenderer(OutputRenderer):
     """Renders ContentNode IR to Markdown with front-matter and image descriptions."""
 
     def render(
@@ -409,3 +410,10 @@ class MarkdownRenderer:
     def _render_horizontal_rule(self) -> str:
         """Render a horizontal rule."""
         return "\n---\n"
+
+
+# ---------------------------------------------------------------------------
+# Registration
+# ---------------------------------------------------------------------------
+
+register_renderer("markdown", MarkdownRenderer)

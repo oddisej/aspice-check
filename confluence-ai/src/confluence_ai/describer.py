@@ -65,10 +65,16 @@ _PLACEHOLDER_DESCRIPTION = "Image description unavailable"
 
 
 class ImageDescriber(ABC):
-    """Base class for AI-powered image description generation.
+    """Abstract base class for AI-powered image description generation.
 
     Subclasses must implement :meth:`describe` to call a specific
     multimodal AI provider.
+
+    :meth:`describe` is the sole override point for custom providers — the
+    default :meth:`describe_batch` implementation iterates and calls
+    :meth:`describe` for each image. Subclasses may override
+    :meth:`describe_batch` if they can batch efficiently at the provider
+    level, but this is not required.
     """
 
     def __init__(self, config: ImageDescriberConfig) -> None:
