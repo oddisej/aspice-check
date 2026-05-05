@@ -70,30 +70,59 @@ aspice-analyze \
 
 ## MCP Server — aspice-mcp
 
-An MCP (Model Context Protocol) server exposing evaluation and Confluence tools to AI assistants.
+An MCP (Model Context Protocol) server exposing evaluation and Confluence tools to AI assistants. It uses **stdio transport** (JSON-RPC 2.0) and works with any MCP-compatible client.
 
-### Starting the Server
+### Configuration
 
-```bash
-aspice-mcp
-```
+The server is configured in your MCP client's config file. The exact location depends on the client:
 
-The server communicates via **stdio transport** (JSON-RPC 2.0). Connect it to any MCP-compatible client (Claude Desktop, Copilot, custom agents).
+| Client | Config file |
+|--------|-------------|
+| Claude Desktop (macOS) | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json` |
+| Kiro | `.kiro/settings/mcp.json` (workspace) or `~/.kiro/settings/mcp.json` (global) |
+| VS Code (Copilot) | `.vscode/mcp.json` |
 
-### Configuration (Claude Desktop)
-
-Add to your Claude Desktop `claude_desktop_config.json`:
+Add the following to your config:
 
 ```json
 {
   "mcpServers": {
     "aspice": {
       "command": "aspice-mcp",
+      "args": [],
+      "env": {
+        "CONFLUENCE_EMAIL": "user@acme.com",
+        "CONFLUENCE_API_TOKEN": "your-token",
+        "AWS_DEFAULT_REGION": "us-east-1"
+      }
+    }
+  }
+}
+```
+
+The `env` block passes credentials to the server process. Tools that need Confluence access (`export_page`) or AI providers (`evaluate_sdp`, `describe_image`) will use these values. You can omit credentials here and pass them per-tool-call instead.
+
+If `aspice-mcp` is not on your `PATH` (e.g. installed in a virtualenv), use the full path:
+
+```json
+{
+  "mcpServers": {
+    "aspice": {
+      "command": "/path/to/venv/bin/aspice-mcp",
       "args": []
     }
   }
 }
 ```
+
+### Starting Manually (for testing)
+
+```bash
+aspice-mcp
+```
+
+The server reads JSON-RPC requests from stdin and writes responses to stdout. Logs go to stderr.
 
 ### Tool Inventory
 
@@ -116,6 +145,26 @@ Add to your Claude Desktop `claude_desktop_config.json`:
 **export_page** — `page_url` (required), `output_dir` (required), `email` (required), `api_token` (required), `ai_provider`, `ai_model`, `output_format`
 
 **describe_image** — `image_path` (required), `provider` (required), `model` (required), `is_gliffy`, `page_title`
+
+### Example Tool Call (JSON-RPC)
+
+```json
+{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "validate_kb", "arguments": {"kb_path": "/path/to/knowledge_base", "standard": "aspice"}}}
+```
+
+Response:
+
+```json
+{"jsonrpc": "2.0", "id": 1, "result": {"content": [{"type": "text", "text": "{\"is_valid\": true, ...}"}]}}
+```
+
+### Error Handling
+
+Invalid parameters return a structured error with code `-32602`:
+
+```json
+{"jsonrpc": "2.0", "id": 1, "error": {"code": -32602, "message": "Invalid params", "data": {"tool": "evaluate_sdp", "parameter": "provider", "actual_value": "gpt", "valid_values": ["bedrock", "openai", "anthropic"], "suggestion": "Use one of: bedrock, openai, anthropic"}}}
+```
 
 ## Installation
 
