@@ -14,6 +14,8 @@ import json
 import logging
 import os
 import sys
+from dataclasses import asdict
+from datetime import datetime
 from typing import Any
 
 import jsonschema
@@ -25,7 +27,9 @@ from aspice_check.mcp_tools import (
     ALL_TOOL_SCHEMAS,
     DESCRIBE_IMAGE_SCHEMA,
     EVALUATE_SDP_SCHEMA,
+    EXPORT_CALENDAR_SCHEMA,
     EXPORT_PAGE_SCHEMA,
+    LIST_CALENDARS_SCHEMA,
     LIST_STANDARDS_SCHEMA,
     PUBLISH_PAGE_SCHEMA,
     VALIDATE_KB_SCHEMA,
@@ -48,6 +52,8 @@ class AspiceMCPServer:
             "export_page": self._handle_export_page,
             "describe_image": self._handle_describe_image,
             "publish_page": self._handle_publish_page,
+            "list_calendars": self._handle_list_calendars,
+            "export_calendar": self._handle_export_calendar,
         }
         self._tool_schemas: dict[str, dict] = {
             schema["name"]: schema for schema in ALL_TOOL_SCHEMAS
@@ -443,6 +449,53 @@ class AspiceMCPServer:
         )
 
         return {"published_url": url, "title": params["title"]}
+
+    def _handle_list_calendars(self, params: dict) -> dict:
+        """Handle list_calendars tool call.
+
+        Lists available calendars in a Confluence space via the Team
+        Calendars plugin REST API.
+        """
+        from confluence_ai.calendar_client import CalendarClient
+
+        client = CalendarClient(
+            base_url=params["base_url"],
+            email=params.get("email") or os.environ.get("CONFLUENCE_EMAIL", ""),
+            api_token=params.get("api_token") or os.environ.get("CONFLUENCE_API_TOKEN", ""),
+        )
+        calendars = client.list_calendars(params["space_key"])
+        return {"calendars": [asdict(c) for c in calendars]}
+
+    def _handle_export_calendar(self, params: dict) -> dict:
+        """Handle export_calendar tool call.
+
+        Exports events from a Confluence Team Calendar to JSON or Markdown.
+        Parses optional start_date/end_date into a DateRange; leaves
+        date_range=None when either is missing (the library applies defaults).
+        """
+        from confluence_ai.models import DateRange
+
+        date_range = None
+        if params.get("start_date") and params.get("end_date"):
+            date_range = DateRange(
+                start=datetime.fromisoformat(params["start_date"]),
+                end=datetime.fromisoformat(params["end_date"]),
+            )
+
+        result = confluence_ai.export_calendar(
+            base_url=params["base_url"],
+            calendar_id=params["calendar_id"],
+            output_dir=params["output_dir"],
+            output_format=params.get("output_format", "json"),
+            date_range=date_range,
+            email=params.get("email") or os.environ.get("CONFLUENCE_EMAIL", ""),
+            api_token=params.get("api_token") or os.environ.get("CONFLUENCE_API_TOKEN", ""),
+        )
+        return {
+            "output_path": result.output_path,
+            "event_count": result.event_count,
+            "warnings": result.warnings,
+        }
 
 
 # ---------------------------------------------------------------------------

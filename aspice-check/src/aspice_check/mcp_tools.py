@@ -235,6 +235,87 @@ PUBLISH_PAGE_SCHEMA: dict = {
     },
 }
 
+EXPORT_CALENDAR_SCHEMA: dict = {
+    "name": "export_calendar",
+    "description": (
+        "Export events from a Confluence Team Calendar to JSON or Markdown. "
+        "Fetches events within an optional date range and writes the output file."
+    ),
+    "inputSchema": {
+        "type": "object",
+        "properties": {
+            "base_url": {
+                "type": "string",
+                "description": (
+                    "Confluence Cloud base URL "
+                    "(e.g. https://acme.atlassian.net/wiki)"
+                ),
+            },
+            "calendar_id": {
+                "type": "string",
+                "description": "The calendar or sub-calendar ID to export",
+            },
+            "output_dir": {
+                "type": "string",
+                "description": "Output directory path",
+            },
+            "output_format": {
+                "type": "string",
+                "enum": ["json", "markdown"],
+                "default": "json",
+                "description": "Output format (json or markdown)",
+            },
+            "start_date": {
+                "type": "string",
+                "description": "Start of date range in ISO 8601 format (optional)",
+            },
+            "end_date": {
+                "type": "string",
+                "description": "End of date range in ISO 8601 format (optional)",
+            },
+            "email": {
+                "type": "string",
+                "description": "Confluence account email (falls back to CONFLUENCE_EMAIL env var)",
+            },
+            "api_token": {
+                "type": "string",
+                "description": "Confluence API token (falls back to CONFLUENCE_API_TOKEN env var)",
+            },
+        },
+        "required": ["base_url", "calendar_id", "output_dir"],
+    },
+}
+
+LIST_CALENDARS_SCHEMA: dict = {
+    "name": "list_calendars",
+    "description": "List available calendars in a Confluence space",
+    "inputSchema": {
+        "type": "object",
+        "properties": {
+            "base_url": {
+                "type": "string",
+                "description": (
+                    "Confluence Cloud base URL "
+                    "(e.g. https://acme.atlassian.net/wiki)"
+                ),
+            },
+            "space_key": {
+                "type": "string",
+                "description": "Confluence space key to query",
+            },
+            "email": {
+                "type": "string",
+                "description": "Confluence account email (falls back to CONFLUENCE_EMAIL env var)",
+            },
+            "api_token": {
+                "type": "string",
+                "description": "Confluence API token (falls back to CONFLUENCE_API_TOKEN env var)",
+            },
+        },
+        "required": ["base_url", "space_key"],
+    },
+}
+
 ALL_TOOL_SCHEMAS: list[dict] = [
     EVALUATE_SDP_SCHEMA,
     VALIDATE_KB_SCHEMA,
@@ -242,5 +323,7 @@ ALL_TOOL_SCHEMAS: list[dict] = [
     EXPORT_PAGE_SCHEMA,
     DESCRIBE_IMAGE_SCHEMA,
     PUBLISH_PAGE_SCHEMA,
+    EXPORT_CALENDAR_SCHEMA,
+    LIST_CALENDARS_SCHEMA,
 ]
 """All MCP tool schemas in a single list for server registration."""
