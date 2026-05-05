@@ -5,11 +5,18 @@ by process group. Converts the structured YAML format (processes with
 base practices for CL1, generic practices for CL2-5) into flat
 CriteriaEntry objects for evaluation.
 
-Requirements: 1.1, 1.5, 2.1, 2.2, 8.3
+The loader is standard-agnostic: any subdirectory under ``kb_path/`` is
+treated as a standard identifier (e.g. ``aspice``, ``iso26262``,
+``nist-csf``). The criteria JSON Schema is shared by all standards but
+the ``_metadata.yaml`` format places no hard-coded ASPICE assumptions on
+the standard name, process group codes, or capability levels.
+
+Requirements: 1.1, 1.5, 2.1, 2.2, 8.3, 14.1, 14.2, 14.3, 14.4, 14.5, 14.6
 """
 
 from __future__ import annotations
 
+import logging
 import pathlib
 from typing import Any
 
@@ -22,6 +29,45 @@ from aspice_eval.models import (
     KBMetadata,
     ValidationResult,
 )
+
+logger = logging.getLogger(__name__)
+
+
+def _resolve_bundled_schema_path() -> pathlib.Path | None:
+    """Locate the bundled criteria JSON schema.
+
+    Searches package-relative locations (installed via ``package-data``)
+    and repository-relative locations (editable / source checkout).
+
+    Returns
+    -------
+    pathlib.Path | None
+        Path to ``criteria_schema.json`` if found, otherwise ``None``.
+    """
+    pkg_root = pathlib.Path(__file__).resolve().parent
+    candidates = [
+        # Installed package data (or symlink in src layout)
+        pkg_root / "knowledge_base" / "schema" / "criteria_schema.json",
+        # Repo layout: aspice-eval/knowledge_base/schema/...
+        pkg_root.parent.parent / "knowledge_base" / "schema" / "criteria_schema.json",
+    ]
+    try:
+        import importlib.resources as pkg_resources
+
+        traversable = (
+            pkg_resources.files("aspice_eval")
+            / "knowledge_base"
+            / "schema"
+            / "criteria_schema.json"
+        )
+        candidates.insert(0, pathlib.Path(str(traversable)))
+    except (ModuleNotFoundError, AttributeError, TypeError):
+        pass
+
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return None
 
 
 class KnowledgeBase:
@@ -248,6 +294,130 @@ class KnowledgeBase:
         )
 
     # ------------------------------------------------------------------
+    # Alternative constructors
+    # ------------------------------------------------------------------
+
+    @classmethod
+    def from_dict(
+        cls,
+        data: dict[str, Any],
+        *,
+        standard: str = "custom",
+    ) -> "KnowledgeBase":
+        """Build a KnowledgeBase from a pre-loaded dictionary.
+
+        Enables in-memory KB construction without filesystem access — useful
+        for loading criteria from databases, REST APIs, or test fixtures.
+        Every criteria file in ``data["criteria_files"]`` is validated against
+        the bundled criteria JSON Schema before being stored.
+
+        Parameters
+        ----------
+        data:
+            Dictionary with the following shape:
+
+            ``{"criteria_files": [<criteria_file_dict>, ...],
+               "metadata": <metadata_dict_or_None>}``
+
+            Each ``criteria_file_dict`` must conform to
+            ``knowledge_base/schema/criteria_schema.json`` — the same schema
+            the YAML files use. ``metadata`` follows the structure of
+            ``_metadata.yaml`` and is optional.
+        standard:
+            Standard identifier for this KB instance. Defaults to
+            ``"custom"``. Used only for reporting / introspection; no
+            filesystem path is constructed from it.
+
+        Returns
+        -------
+        KnowledgeBase
+            A fully-initialised KB ready for :meth:`get_criteria` /
+            :meth:`get_metadata` calls — no filesystem is touched.
+
+        Raises
+        ------
+        KBValidationError
+            If any entry in ``data["criteria_files"]`` fails schema
+            validation.
+        TypeError
+            If ``data`` is not a mapping.
+
+        Examples
+        --------
+        >>> from aspice_eval import KnowledgeBase
+        >>> data = {
+        ...     "criteria_files": [
+        ...         {
+        ...             "process_group": {"code": "SWE", "name": "Software Engineering"},
+        ...             "processes": [
+        ...                 {
+        ...                     "process_id": "SWE.1",
+        ...                     "process_name": "Requirements Analysis",
+        ...                     "process_purpose": "Establish software requirements.",
+        ...                     "process_outcomes": [
+        ...                         {"id": 1, "description": "Requirements are documented."},
+        ...                     ],
+        ...                     "base_practices": [
+        ...                         {
+        ...                             "bp_id": "BP1",
+        ...                             "title": "Specify requirements",
+        ...                             "description": "Document software requirements.",
+        ...                         },
+        ...                     ],
+        ...                     "output_information_items": [
+        ...                         {"item_id": "17-11", "name": "Software requirements"},
+        ...                     ],
+        ...                 },
+        ...             ],
+        ...         },
+        ...     ],
+        ...     "metadata": None,
+        ... }
+        >>> kb = KnowledgeBase.from_dict(data)
+        >>> criteria = kb.get_criteria(["SWE"], max_capability_level=1)
+        >>> len(criteria)
+        1
+        """
+        if not isinstance(data, dict):
+            raise TypeError(
+                f"KnowledgeBase.from_dict expects a dict, got {type(data).__name__}"
+            )
+
+        criteria_files = list(data.get("criteria_files", []))
+        metadata_raw = data.get("metadata")
+
+        instance = cls.__new__(cls)
+        # Skip __init__ filesystem check; populate state manually
+        instance._kb_path = pathlib.Path(".")  # sentinel; never accessed
+        instance._standard_dir = None
+        instance._criteria_files = []
+        instance._metadata_raw = metadata_raw
+        instance._standard = standard
+
+        schema_path = _resolve_bundled_schema_path()
+        instance._schema_path = schema_path
+
+        if criteria_files:
+            if schema_path is None:
+                raise KBValidationError(
+                    "Cannot validate criteria data: bundled criteria JSON "
+                    "Schema could not be located. Install the aspice-eval "
+                    "package or provide the schema on disk."
+                )
+            validator = KBValidator(schema_path, metadata_path=None)
+            for idx, criteria_file in enumerate(criteria_files):
+                try:
+                    validator.validate_schema(criteria_file)
+                except KBValidationError as exc:
+                    raise KBValidationError(
+                        f"criteria_files[{idx}] failed schema validation: {exc}",
+                        errors=list(exc.errors),
+                    ) from exc
+
+        instance._criteria_files = criteria_files
+        return instance
+
+    # ------------------------------------------------------------------
     # Private helpers
     # ------------------------------------------------------------------
 
@@ -336,3 +506,59 @@ class KnowledgeBase:
                 )
             )
         return entries
+
+
+# ---------------------------------------------------------------------------
+# Level-3 extensibility: custom KB loader registry
+# ---------------------------------------------------------------------------
+
+_KB_LOADERS: dict[str, type["KnowledgeBase"]] = {}
+
+
+def register_kb_loader(
+    standard_name: str,
+    loader_class: type["KnowledgeBase"],
+) -> None:
+    """Register a custom KnowledgeBase loader for a specific standard.
+
+    Level-3 KB extensibility: for standards whose structure does not fit
+    the ASPICE-shaped JSON Schema (e.g. NIST CSF Functions / Categories /
+    Subcategories, CMMI Maturity Levels), subclass :class:`KnowledgeBase`,
+    override ``load()`` / ``get_criteria()``, and register it here. The
+    convenience layer (``aspice_eval.evaluate_sdp``) consults this registry
+    before falling back to the default filesystem-backed loader.
+
+    Parameters
+    ----------
+    standard_name:
+        Standard identifier (e.g. ``"nist-csf"``, ``"cmmi"``).
+    loader_class:
+        A class that subclasses :class:`KnowledgeBase`.
+
+    Raises
+    ------
+    TypeError
+        If *loader_class* is not a subclass of :class:`KnowledgeBase`.
+    """
+    if not (
+        isinstance(loader_class, type)
+        and issubclass(loader_class, KnowledgeBase)
+    ):
+        raise TypeError(
+            f"loader_class must be a subclass of KnowledgeBase, "
+            f"got {loader_class!r}"
+        )
+    if standard_name in _KB_LOADERS:
+        logger.warning(
+            "Overwriting existing KB loader for standard %r", standard_name
+        )
+    _KB_LOADERS[standard_name] = loader_class
+
+
+def get_kb_loader(standard_name: str) -> type["KnowledgeBase"] | None:
+    """Return the registered loader class for *standard_name*, or ``None``.
+
+    Consumed by the convenience layer to select a custom loader when the
+    user passes ``standard=<custom>`` to :func:`aspice_eval.evaluate_sdp`.
+    """
+    return _KB_LOADERS.get(standard_name)
