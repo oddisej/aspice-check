@@ -41,8 +41,12 @@ class GapAnalysisEvaluator:
     criteria, sends it to an AI model via :meth:`_call_model`, and parses
     the JSON response into :class:`CriteriaRating` objects.
 
-    Subclass and override :meth:`_call_model` to integrate with a specific
-    LLM provider (OpenAI, Anthropic, Bedrock, etc.).
+    ``_call_model`` is the **single override point** for custom providers.
+    Subclass this class and implement ``_call_model`` to integrate with a
+    specific LLM provider (OpenAI, Anthropic, Bedrock, etc.) — the rest of
+    the evaluation pipeline (prompt construction, chunking, retry, and
+    response parsing) is implemented on the base class and inherited
+    unchanged.
 
     Parameters
     ----------
@@ -321,9 +325,12 @@ class GapAnalysisEvaluator:
     def _call_model(self, prompt: str) -> str:
         """Send a prompt to the AI model and return the raw response.
 
-        Override this method in subclasses to integrate with a specific
-        LLM provider. The default implementation raises ``AIModelError``
-        to signal that no provider is configured.
+        This is the single override point for custom evaluator providers.
+        Subclasses MUST implement this method to integrate with a specific
+        LLM provider (OpenAI, Anthropic, Bedrock, etc.). The rest of the
+        evaluation pipeline — prompt construction, chunking, retry, and
+        response parsing — is provided by the base class and should not
+        be overridden.
 
         Parameters
         ----------
@@ -337,14 +344,13 @@ class GapAnalysisEvaluator:
 
         Raises
         ------
-        AIModelError
-            If the model call fails.
+        NotImplementedError
+            Always, unless overridden in a subclass. Subclasses that wrap
+            a provider SDK should translate provider-specific exceptions
+            into :class:`~aspice_eval.exceptions.AIModelError`.
         """
-        raise AIModelError(
-            "No AI model provider configured. "
-            "Override _call_model() or use MockEvaluator for testing.",
-            provider=self._model_config.provider,
-            model_name=self._model_config.model_name,
+        raise NotImplementedError(
+            "Subclasses must implement _call_model()"
         )
 
     # ------------------------------------------------------------------
@@ -679,6 +685,9 @@ class MockEvaluator(GapAnalysisEvaluator):
 
     def _call_model(self, prompt: str) -> str:
         """Return a deterministic JSON response without calling any AI model.
+
+        Overrides the abstract base method so the evaluator can be used in
+        tests without a configured LLM provider.
 
         If ``custom_ratings`` were provided at construction, those are
         returned directly. Otherwise, a default rating is generated for
