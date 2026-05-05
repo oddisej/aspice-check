@@ -46,22 +46,32 @@ class TestEntryPoints:
 class TestDependencies:
     """Test that required dependencies are declared."""
 
-    def test_atlassian_python_api_dependency(self) -> None:
-        """atlassian-python-api is declared as a dependency."""
+    def test_core_dependencies(self) -> None:
+        """Core dependencies (pyyaml, jsonschema, click) are declared."""
         requires = importlib.metadata.requires("aspice-eval") or []
-        # Check that atlassian-python-api appears in requires
         dep_names = [r.split(">")[0].split("<")[0].split("=")[0].split(";")[0].strip().lower() for r in requires]
-        assert "atlassian-python-api" in dep_names, (
-            f"atlassian-python-api not in dependencies: {dep_names}"
+        assert "pyyaml" in dep_names, (
+            f"pyyaml not in dependencies: {dep_names}"
+        )
+        assert "jsonschema" in dep_names, (
+            f"jsonschema not in dependencies: {dep_names}"
+        )
+        assert "click" in dep_names, (
+            f"click not in dependencies: {dep_names}"
         )
 
-    def test_confluence_exporter_optional_dependency(self) -> None:
-        """confluence-exporter is declared as an optional dependency."""
+    def test_no_confluence_dependencies(self) -> None:
+        """aspice-eval SHALL NOT depend on Confluence libraries (Req 1.6, 1.7)."""
         requires = importlib.metadata.requires("aspice-eval") or []
-        # confluence-exporter should appear with an extra marker
-        ce_deps = [r for r in requires if "confluence-exporter" in r.lower()]
-        assert len(ce_deps) > 0, (
-            f"confluence-exporter not found in dependencies: {requires}"
+        all_deps_lower = " ".join(requires).lower()
+        assert "atlassian-python-api" not in all_deps_lower, (
+            "atlassian-python-api should not be in aspice-eval dependencies"
+        )
+        assert "confluence-exporter" not in all_deps_lower, (
+            "confluence-exporter should not be in aspice-eval dependencies"
+        )
+        assert "confluence-ai" not in all_deps_lower, (
+            "confluence-ai should not be in aspice-eval dependencies"
         )
 
 
