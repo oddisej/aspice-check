@@ -7,11 +7,12 @@ The report includes: Metadata, Executive Summary, Capability Level Summary,
 Detailed Findings (per-group, per-level, per-PA), Remediation Roadmap,
 and Traceability Matrix.
 
-Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 7.2
+Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 7.2, 15.3, 15.4, 15.5
 """
 
 from __future__ import annotations
 
+import re
 from collections import defaultdict
 from typing import Any
 
@@ -21,6 +22,11 @@ from aspice_eval.models import (
     EvaluationConfig,
     EvaluationResult,
     KBMetadata,
+)
+from aspice_eval.report_renderer import (
+    ReportRenderer,
+    get_report_renderer,
+    register_renderer,
 )
 
 # ---------------------------------------------------------------------------
@@ -38,10 +44,15 @@ _LEVEL_NAMES: dict[int, str] = {
 }
 
 
-class ReportGenerator:
-    """Generates structured Markdown gap analysis reports.
+# ---------------------------------------------------------------------------
+# Built-in Renderers
+# ---------------------------------------------------------------------------
 
-    Produces a complete Gap Analysis Report containing:
+
+class MarkdownReportRenderer(ReportRenderer):
+    """Renders evaluation results as a structured Markdown gap analysis report.
+
+    Produces a complete report containing:
 
     - **Metadata** — SDP path, target level, KB version, timestamp
     - **Executive Summary** — high-level compliance posture
@@ -51,38 +62,14 @@ class ReportGenerator:
     - **Traceability Matrix** — criteria-to-SDP-section mapping
     """
 
-    # ------------------------------------------------------------------
-    # Public API
-    # ------------------------------------------------------------------
-
-    def generate(
+    def render(
         self,
         evaluation: EvaluationResult,
         levels: dict[str, CapabilityLevelResult],
         config: EvaluationConfig,
         kb_metadata: KBMetadata,
-        output_format: str = "markdown",
     ) -> str:
-        """Generate a complete Gap Analysis Report.
-
-        Parameters
-        ----------
-        evaluation:
-            Per-criteria evaluation results.
-        levels:
-            Per-group capability level results.
-        config:
-            The evaluation configuration used.
-        kb_metadata:
-            Knowledge base metadata for the report header.
-        output_format:
-            Output format: ``"markdown"`` (default) or ``"html"``.
-
-        Returns
-        -------
-        str
-            Complete report as a Markdown or HTML string.
-        """
+        """Render evaluation results as Markdown."""
         sections: list[str] = [
             self._title(),
             self._metadata_section(config, kb_metadata, evaluation.evaluation_timestamp, evaluation.token_usage, evaluation.sdp_metadata),
@@ -92,11 +79,7 @@ class ReportGenerator:
             self._remediation_roadmap(evaluation),
             self._traceability_matrix(evaluation),
         ]
-        md_report = "\n\n".join(sections) + "\n"
-
-        if output_format == "html":
-            return self._markdown_to_html(md_report)
-        return md_report
+        return "\n\n".join(sections) + "\n"
 
     # ------------------------------------------------------------------
     # Section builders
@@ -321,9 +304,25 @@ class ReportGenerator:
 
         return "\n".join(lines)
 
-    # ------------------------------------------------------------------
-    # Format conversion
-    # ------------------------------------------------------------------
+
+class HTMLReportRenderer(ReportRenderer):
+    """Renders evaluation results as HTML by converting Markdown output.
+
+    Delegates to :class:`MarkdownReportRenderer` for content generation,
+    then converts the Markdown to HTML.
+    """
+
+    def render(
+        self,
+        evaluation: EvaluationResult,
+        levels: dict[str, CapabilityLevelResult],
+        config: EvaluationConfig,
+        kb_metadata: KBMetadata,
+    ) -> str:
+        """Render evaluation results as HTML."""
+        md_renderer = MarkdownReportRenderer()
+        md_report = md_renderer.render(evaluation, levels, config, kb_metadata)
+        return self._markdown_to_html(md_report)
 
     @staticmethod
     def _markdown_to_html(md: str) -> str:
@@ -335,8 +334,6 @@ class ReportGenerator:
         Produces clean HTML suitable for pasting into Confluence or
         other HTML-based documentation systems.
         """
-        import re
-
         html_lines: list[str] = []
         lines = md.split("\n")
         in_table = False
@@ -481,9 +478,70 @@ def _html_inline(text: str) -> str:
 
     Handles ``**bold**`` and emoji characters.
     """
-    import re
-
     # Bold: **text**
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
 
     return text
+
+
+# ---------------------------------------------------------------------------
+# Register built-in renderers
+# ---------------------------------------------------------------------------
+
+register_renderer("markdown", MarkdownReportRenderer)
+register_renderer("html", HTMLReportRenderer)
+
+
+# ---------------------------------------------------------------------------
+# Backward-compatible ReportGenerator wrapper
+# ---------------------------------------------------------------------------
+
+
+class ReportGenerator:
+    """Generates structured gap analysis reports.
+
+    Delegates to the registered :class:`ReportRenderer` for the requested
+    output format. Built-in formats are ``"markdown"`` and ``"html"``.
+
+    Custom renderers can be registered via
+    :func:`~aspice_eval.report_renderer.register_renderer`.
+    """
+
+    def generate(
+        self,
+        evaluation: EvaluationResult,
+        levels: dict[str, CapabilityLevelResult],
+        config: EvaluationConfig,
+        kb_metadata: KBMetadata,
+        output_format: str = "markdown",
+    ) -> str:
+        """Generate a complete Gap Analysis Report.
+
+        Parameters
+        ----------
+        evaluation:
+            Per-criteria evaluation results.
+        levels:
+            Per-group capability level results.
+        config:
+            The evaluation configuration used.
+        kb_metadata:
+            Knowledge base metadata for the report header.
+        output_format:
+            Output format name. Defaults to ``"markdown"``.
+            Use ``"html"`` for HTML output. Custom formats can be
+            registered via ``register_renderer()``.
+
+        Returns
+        -------
+        str
+            Complete report in the requested format.
+
+        Raises
+        ------
+        UnsupportedFormatError
+            If output_format is not a registered renderer name.
+        """
+        renderer_class = get_report_renderer(output_format)
+        renderer = renderer_class()
+        return renderer.render(evaluation, levels, config, kb_metadata)

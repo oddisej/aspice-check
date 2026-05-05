@@ -29,10 +29,11 @@ class KBValidationError(Exception):
 
 
 class UnsupportedFormatError(Exception):
-    """Raised when an SDP document has an unsupported file format.
+    """Raised when a file format or report format is unsupported.
 
     Carries the file path and the actual extension that was rejected,
-    along with a message identifying the expected Markdown format.
+    along with a message identifying the expected format. Also supports
+    listing available formats for renderer registry errors.
     """
 
     def __init__(
@@ -41,10 +42,12 @@ class UnsupportedFormatError(Exception):
         *,
         file_path: str = "",
         actual_extension: str = "",
+        supported_formats: list[str] | None = None,
     ) -> None:
         super().__init__(message)
         self.file_path = file_path
         self.actual_extension = actual_extension
+        self.supported_formats = supported_formats or []
 
 
 class InvalidConfigError(Exception):
