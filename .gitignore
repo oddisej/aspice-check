@@ -30,3 +30,9 @@ Thumbs.db
 
 # Generated output
 confluence-exporter/output/
+
+# Personal/internal documents
+coi_declaration.*
+create_coi_docx.py
+*.pdf
+~$*
