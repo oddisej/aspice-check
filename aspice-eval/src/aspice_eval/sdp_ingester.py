@@ -43,12 +43,16 @@ class SDPIngester:
 
         # Validate file extension
         ext = path.suffix.lower()
-        if ext != ".md":
+        supported = [".md"]
+        if ext not in supported:
+            supported_str = ", ".join(supported)
             raise UnsupportedFormatError(
-                f"Unsupported file format '{ext}' for SDP document '{sdp_path}'. "
-                f"Expected Markdown (.md) format.",
+                f"Unsupported file format '{ext}'. "
+                f"Supported formats: {supported_str}. "
+                f"Convert the document to Markdown (.md) before evaluation.",
                 file_path=str(path),
                 actual_extension=ext,
+                supported_formats=supported,
             )
 
         # Read file content
