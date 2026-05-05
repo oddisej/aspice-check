@@ -24,6 +24,7 @@ from confluence_ai.providers import create_describer, register_describer
 # --- Convenience functions ---
 from confluence_ai.export import export_page
 from confluence_ai.publish import publish_page
+from confluence_ai.calendar_export import export_calendar
 
 # --- Config & result models ---
 from confluence_ai.models import (      
@@ -33,9 +34,21 @@ from confluence_ai.models import (
     PageMetadata,
 )
 
+# --- Calendar models ---
+from confluence_ai.models import (
+    Calendar,
+    CalendarExportResult,
+    CalendarMetadata,
+    DateRange,
+    Event,
+    SubCalendar,
+)
+
 # --- Exceptions ---
 from confluence_ai.exceptions import (
     AuthenticationError,
+    CalendarAPIError,
+    CalendarNotFoundError,
     ConfluenceConnectionError,
     DownloadError,
     ExporterError,
@@ -67,11 +80,19 @@ __all__ = [
     # Convenience functions
     "export_page",
     "publish_page",
+    "export_calendar",
     # Models
     "ImageDescriberConfig",
     "ImageContext",
     "PageMetadata",
     "ExportResult",
+    # Calendar models
+    "Calendar",
+    "SubCalendar",
+    "Event",
+    "DateRange",
+    "CalendarMetadata",
+    "CalendarExportResult",
     # Exceptions
     "ExporterError",
     "InvalidURLError",
@@ -82,4 +103,6 @@ __all__ = [
     "DownloadError",
     "ImageDescriptionError",
     "FileSystemError",
+    "CalendarNotFoundError",
+    "CalendarAPIError",
 ]
