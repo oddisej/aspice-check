@@ -1,4 +1,4 @@
-# Implementation Plan: Confluence Calendar Export
+# Implementation Plan: Confluence Calendar Export — Page-Driven Discovery Rewrite
 
 ## Overview
 
@@ -6,12 +6,17 @@ Convert the feature design into a series of prompts for a code-generation LLM th
 
 Implementation language: **Python 3.10+** (matches the existing `confluence-ai` and `aspice-check` packages). All code uses `from __future__ import annotations`, `@dataclass` models, and `str | None` union syntax.
 
-The feature ships in two packages:
+This is a **delta update** to the existing implementation (Tasks 1–11 from the original spec are complete and committed). The changes replace the broken `?spaceKey=` calendar discovery with page-driven discovery via `subcalendars.json`, add mandatory headers, add `userTimeZoneId=UTC`, and implement parent → children auto-resolution in `get_events`.
 
-- `confluence-ai/src/confluence_ai/` — calendar library code (models, client, renderers, orchestration) plus tests under `confluence-ai/tests/{unit,property,integration}/`.
-- `aspice-check/src/aspice_check/` — MCP schema declarations and MCP server handlers.
+**Files being modified (not created from scratch):**
 
-Tasks are ordered for incremental validation: skeleton (models + exceptions) → client → renderers → orchestration → public API → MCP surface → property-based tests → integration. Each top-level task is a single self-contained commit.
+- `confluence-ai/src/confluence_ai/calendar_client.py` — major rewrite
+- `confluence-ai/src/confluence_ai/calendar_export.py` — minor update
+- `confluence-ai/src/confluence_ai/models.py` — add `parent_id` field
+- `aspice-check/src/aspice_check/mcp_tools.py` — update `LIST_CALENDARS_SCHEMA`
+- `aspice-check/src/aspice_check/mcp_server.py` — update `_handle_list_calendars`
+
+**Files unchanged:** `calendar_renderer.py`, `exceptions.py`, `__init__.py`
 
 Conventions:
 
@@ -24,237 +29,202 @@ Conventions:
 
 ## Tasks
 
-- [x] 1. Add calendar data models and exception classes
-  - [x] 1.1 Extend `confluence-ai/src/confluence_ai/models.py` with calendar dataclasses
-    - Add a new "Calendar Models" section at the bottom of the file
-    - Add `DateRange`, `SubCalendar`, `Calendar`, `Event`, `CalendarMetadata`, `CalendarExportResult` dataclasses matching the field definitions in design § Data Models
-    - Use `from __future__ import annotations` (already present) and `datetime` from stdlib
-    - Keep defaults aligned with the design (e.g., `Event.all_day: bool = False`, empty-string defaults for optional text fields, `list[...] = field(default_factory=list)` for sub_calendars / warnings)
-    - _Requirements: 2.3, 5.3, 8.2_
-  - [x] 1.2 Extend `confluence-ai/src/confluence_ai/exceptions.py` with calendar exceptions
-    - Add `CalendarNotFoundError(ExporterError)` with `calendar_id`, `status_code`, and `message` constructor parameters and the HTTP-403-aware default message defined in design § Error Handling
-    - Add `CalendarAPIError(ExporterError)` with `endpoint`, `status_code`, and `message` constructor parameters
-    - Both subclass `ExporterError` so existing `except ExporterError:` blocks cover them
+- [x] 1. Update data model — add `parent_id` to `SubCalendar`
+  - [x] 1.1 Add `parent_id: str = ""` field to the `SubCalendar` dataclass in `confluence-ai/src/confluence_ai/models.py`
+    - Add the field after `description` with default `""` so existing code that constructs `SubCalendar` without `parent_id` continues to work
+    - This field maps to the `parentId` value from the `subcalendars.json` response's `childSubCalendars[].subCalendar.parentId`
+    - _Requirements: 1.3, 2.2_
+
+- [x] 2. Rewrite `CalendarClient` for page-driven discovery and mandatory headers
+  - [x] 2.1 Add `_CALENDAR_HEADERS` class variable and update `__init__` to use `ConfluenceClient` + `URLParser`
+    - Add `_CALENDAR_HEADERS: ClassVar[dict[str, str]] = {"Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest"}` as a class-level constant
+    - Change `__init__` to construct an internal `ConfluenceClient` (from `confluence_ai.client`) for page fetching, and store a `URLParser` instance for URL parsing
+    - Keep the `atlassian.Confluence` session construction for the authenticated `requests.Session` (used for calendar REST calls)
+    - Store `self._confluence_client` and keep `self._session` and `self._base_url`
+    - _Requirements: 1.8, 2.8_
+  - [x] 2.2 Implement `_extract_parent_ids_from_body(storage_body: str) -> list[str]` helper
+    - Use regex to find all `<ac:structured-macro ac:name="calendar">` elements and extract the `<ac:parameter ac:name="id">` value from each
+    - Split comma-separated IDs, strip whitespace, deduplicate while preserving order, skip empty segments
+    - Return an empty list if no calendar macros are found
+    - _Requirements: 1.1, 1.4_
+  - [x] 2.3 Implement `_map_subcalendars_payload(payload: list[dict]) -> list[Calendar]` helper
+    - Map the `{payload: [{subCalendar: {...}, childSubCalendars: [{subCalendar: {...}}]}]}` response shape
+    - For each entry: create a `Calendar` from `entry["subCalendar"]` fields (`id` → `calendar_id`, `name`, `type`, `spaceKey` → `space_key`, `description`)
+    - For each child in `entry["childSubCalendars"]`: create a `SubCalendar` with `parent_id` set from `childSubCalendar["subCalendar"]["parentId"]`
+    - Populate `Calendar.sub_calendars` with the child list
+    - _Requirements: 1.2, 1.3_
+  - [x] 2.4 Implement `_is_parent_response(data: dict) -> bool` helper
+    - Return `True` iff `data.get("success") is True` and `"events" not in data`
+    - This detects the parent-calendar response pattern from `events.json`
+    - _Requirements: 2.2, 2.3_
+  - [x] 2.5 Implement `_sort_calendars_case_insensitive(cals: list[Calendar]) -> list[Calendar]` helper
+    - Sort the top-level list by `cal.name.casefold()`
+    - Within each calendar, sort `cal.sub_calendars` by `sc.name.casefold()`
+    - Return the sorted list (may sort in-place)
+    - _Requirements: 1.9, 1.10_
+  - [x] 2.6 Implement `list_calendars_from_page(self, page_url: str) -> list[Calendar]`
+    - Step 1: `URLParser.parse(page_url)` → extract `page_id` (raise `InvalidURLError` on bad URL)
+    - Step 2: `self._confluence_client.get_page(page_id)` → get `PageData` with `storage_format` and `space_key`
+    - Step 3: `_extract_parent_ids_from_body(page_data.storage_format)` → list of parent IDs
+    - Step 4: For each parent ID, call `self.list_subcalendars(parent_id, page_data.space_key)`
+    - Step 5: Collect all `Calendar` results, apply `_sort_calendars_case_insensitive`, return
+    - Return empty list if no calendar macros found (Requirement 1.6)
+    - Raise `PageNotFoundError` if page fetch fails, `AuthenticationError` on 401
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.9, 1.10_
+  - [x] 2.7 Implement `list_subcalendars(self, parent_id: str, space_key: str) -> Calendar`
+    - Perform `GET {base_url}/rest/calendar-services/1.0/calendar/subcalendars.json?include={parent_id}&calendarContext=spaceCalendars&viewingSpaceKey={space_key}`
+    - Include `_CALENDAR_HEADERS` on the request
+    - Parse response JSON; call `_map_subcalendars_payload(data.get("payload", []))` and return the first Calendar (or raise `CalendarNotFoundError` if payload is empty)
+    - Call `_handle_http_error` on non-2xx responses
+    - _Requirements: 1.2, 1.3, 1.8_
+  - [x] 2.8 Update `get_events` to use mandatory headers, `userTimeZoneId=UTC`, and parent → children auto-resolution
+    - Add `_CALENDAR_HEADERS` to the GET request for `events.json`
+    - Add `userTimeZoneId=UTC` query parameter to the URL
+    - After receiving the response: if `_is_parent_response(data)` is True, call `list_subcalendars(calendar_id, space_key)` to discover children, then recursively call `get_events` on each child, aggregate results, and deduplicate by `event_id` (first occurrence wins)
+    - The `space_key` for the subcalendars call is obtained from the parent's subcalendars.json response (`subCalendar.spaceKey`)
+    - If response has an `events` key (even empty list), return mapped events directly — no fallback
+    - _Requirements: 2.1, 2.2, 2.3, 2.8, 2.9_
+  - [x] 2.9 Update `_handle_http_error` to detect `BAD_START_DATETIME` in 500 responses
+    - If status is 500 and response body contains `BAD_START_DATETIME`, raise `CalendarAPIError` with hint message: "date range must use full ISO 8601 timestamps (YYYY-MM-DDTHH:MM:SSZ), not date-only"
+    - Keep existing 401/403/404/other mappings unchanged
+    - _Requirements: 2.8, 7.2_
+  - [x] 2.10 Remove the old `list_calendars(space_key)` method
+    - Delete the `list_calendars` method that used the broken `?spaceKey=` endpoint
+    - The old `_map_calendar` static method can be removed or refactored into `_map_subcalendars_payload`
+    - _Requirements: 1.1_
+
+- [x] 3. Checkpoint — Ensure CalendarClient rewrite compiles and existing unit tests are updated
+  - Ensure all tests pass, ask the user if questions arise.
+  - Update any existing unit tests in `confluence-ai/tests/unit/test_calendar_client_errors.py` and `test_calendar_client_passthrough.py` that reference the old `list_calendars(space_key)` method or old URL patterns
+
+- [x] 4. Update `calendar_export.py` for parent → children calendar name resolution
+  - [x] 4.1 Update `export_calendar` to handle parent calendar name resolution
+    - The `get_events` call now handles parent → children auto-resolution transparently (returns aggregated events)
+    - Update calendar name resolution: if events come from multiple sub-calendars (different `sub_calendar_name` values), use the parent calendar's name from `list_subcalendars` metadata; otherwise use the first event's `sub_calendar_name` as before; fall back to `calendar_id`
+    - No signature change — the function still accepts `calendar_id` (which may be a parent or child ID)
+    - _Requirements: 5.6, 2.2_
+
+- [x] 5. Update MCP tools schema and handler for page-driven discovery
+  - [x] 5.1 Update `LIST_CALENDARS_SCHEMA` in `aspice-check/src/aspice_check/mcp_tools.py`
+    - Replace `space_key` (required) with `page_url` (required, type string, description: "Full Confluence page URL containing calendar macros")
+    - Keep `base_url`, `email`, `api_token` parameters unchanged
+    - Update the schema description to: "List available calendars in a Confluence space by reading calendar macros from a page"
+    - _Requirements: 6.6, 6.7_
+  - [x] 5.2 Update `_handle_list_calendars` in `aspice-check/src/aspice_check/mcp_server.py`
+    - Change from `client.list_calendars(params["space_key"])` to `client.list_calendars_from_page(params["page_url"])`
+    - Keep the rest of the handler logic unchanged (CalendarClient construction, `asdict` serialization)
+    - _Requirements: 6.6, 6.7_
+
+- [x] 6. Checkpoint — Ensure MCP schema and handler changes work end-to-end
+  - Ensure all tests pass, ask the user if questions arise.
+  - Update the existing integration test in `confluence-ai/tests/integration/test_calendar_mcp_tools.py` to use `page_url` instead of `space_key` in the `list_calendars` tool call
+
+- [x] 7. Update existing unit tests for the rewritten CalendarClient
+  - [x] 7.1 Update `confluence-ai/tests/unit/test_calendar_client_errors.py`
+    - Update test setup to account for the new `__init__` that uses `ConfluenceClient` internally
+    - Keep error mapping assertions (401 → AuthenticationError, 403/404 → CalendarNotFoundError, 500 → CalendarAPIError)
+    - Add a test for the `BAD_START_DATETIME` hint on 500 responses
     - _Requirements: 7.1, 7.2, 7.3, 7.4_
-  - [x] 1.3 Write unit tests for the new exception classes
-    - Assert `CalendarNotFoundError` exposes `calendar_id` and `status_code` attributes
-    - Assert the HTTP 403 message branch names access-denied and quotes the calendar id
-    - Assert `CalendarAPIError` exposes `endpoint` and `status_code` attributes
-    - Assert both subclass `ExporterError`
-    - Place the file at `confluence-ai/tests/unit/test_calendar_exceptions.py`
-    - _Requirements: 7.3, 7.4_
+  - [x] 7.2 Update `confluence-ai/tests/unit/test_calendar_client_passthrough.py`
+    - Replace tests for the old `list_calendars(space_key)` URL with tests for `list_subcalendars` URL construction
+    - Assert `subcalendars.json` URL includes `include={parent_id}`, `calendarContext=spaceCalendars`, `viewingSpaceKey={space_key}`
+    - Assert `events.json` URL includes `userTimeZoneId=UTC` parameter
+    - Assert `_CALENDAR_HEADERS` are sent on every request
+    - _Requirements: 1.8, 2.8, 2.9_
+  - [x] 7.3 Add `confluence-ai/tests/unit/test_calendar_client_discovery.py` for page-driven discovery
+    - Mock `ConfluenceClient.get_page` to return a `PageData` with a storage body containing calendar macros
+    - Mock `list_subcalendars` to return Calendar objects
+    - Assert `list_calendars_from_page` returns the expected sorted calendar tree
+    - Test edge cases: page with no macros (returns empty list), page with comma-separated IDs, invalid page URL
+    - _Requirements: 1.1, 1.4, 1.5, 1.6, 1.9, 1.10_
 
-- [x] 2. Implement `CalendarClient` REST wrapper with unit tests for error mapping
-  - [x] 2.1 Create `confluence-ai/src/confluence_ai/calendar_client.py` skeleton
-    - Add module docstring referencing requirements 1.1–1.4, 2.1–2.6, 7.1–7.4
-    - Define `class CalendarClient` with `__init__(self, base_url: str, email: str, api_token: str)`
-    - In `__init__`, construct an internal `atlassian.Confluence` object (matching `ConfluenceClient`) purely to reuse its authenticated `requests.Session`; catch `requests.exceptions.ConnectionError` and raise `ConfluenceConnectionError`
-    - Expose `self._session` and `self._base_url` for use by the two endpoint methods
-    - _Requirements: 1.4, 7.1_
-  - [x] 2.2 Implement `CalendarClient.list_calendars(space_key)` and `_map_calendar`
-    - Perform `GET {base_url}/rest/calendar-services/1.0/calendar?spaceKey={space_key}` via the shared session
-    - Call `_handle_http_error` on non-2xx responses (401 → `AuthenticationError`, 403/404 → `CalendarNotFoundError`, else `CalendarAPIError`)
-    - Implement `_map_calendar(raw: dict) -> Calendar`: maps `subCalendarId` → `calendar_id`, preserves `name`/`type`/`spaceKey`/`description`, recursively maps nested `subCalendars` to `SubCalendar` instances in order
-    - Return `list[Calendar]`
-    - _Requirements: 1.1, 1.2, 1.3, 1.4, 7.1, 7.2_
-  - [x] 2.3 Implement `CalendarClient.get_events(calendar_id, date_range)` and `_map_event`
-    - Perform `GET {base_url}/rest/calendar-services/1.0/calendar/events.json?subCalendarId={calendar_id}&start={iso}&end={iso}` using `date_range.start.isoformat()` / `date_range.end.isoformat()`
-    - Call `_handle_http_error` on non-2xx responses, passing `calendar_id` so 404 maps to `CalendarNotFoundError`
-    - Implement `_map_event(raw: dict) -> Event`: maps `id` → `event_id`, `title` → `summary`, `allDay` → `all_day`, `organizer.email` or `organizer.displayName` → `organizer`, `subCalendarId`/`subCalendarName` → `sub_calendar_id`/`sub_calendar_name`; parse `start`/`end` as tz-aware `datetime` (normalise naive timestamps to UTC); default missing string fields to `""` and missing booleans to `False`
-    - Return a flat `list[Event]` from the response `events` array (recurring events are already expanded server-side)
-    - _Requirements: 2.1, 2.2, 2.3, 2.5, 2.6, 7.2_
-  - [x] 2.4 Implement `_handle_http_error(exc, *, calendar_id=None, endpoint=None)`
-    - Mirror the shape of `ConfluenceClient._handle_http_error`
-    - Map 401 → `AuthenticationError(base_url=self._base_url, status_code=401)`
-    - Map 403/404 → `CalendarNotFoundError(calendar_id=calendar_id or "", status_code=status)`
-    - All other non-2xx → `CalendarAPIError(endpoint=endpoint or "", status_code=status)`
-    - Translate `RequestsConnectionError` to `ConfluenceConnectionError`
-    - _Requirements: 1.3, 1.4, 2.5, 7.1, 7.2_
-  - [x] 2.5 Write unit tests for `CalendarClient` error mapping
-    - Use `pytest-mock` to stub the session's `get` method to return `Response` objects with 401 / 403 / 404 / 500 status codes
-    - Assert 401 raises `AuthenticationError`, 403 and 404 raise `CalendarNotFoundError` with the right `calendar_id`, 500 raises `CalendarAPIError` with the right `endpoint`
-    - Place the file at `confluence-ai/tests/unit/test_calendar_client_errors.py`
-    - _Requirements: 1.3, 1.4, 2.5, 7.1, 7.2_
-  - [x] 2.6 Write unit tests for `CalendarClient` query-string and sub-calendar passthrough
-    - Capture the URL passed to the stubbed session `get`; assert `spaceKey`, `subCalendarId`, `start`, `end` query params match inputs exactly
-    - Include a test that a sub-calendar ID is accepted as `calendar_id` (same parameter name)
-    - Place the file at `confluence-ai/tests/unit/test_calendar_client_passthrough.py`
-    - _Requirements: 2.1, 2.2_
-
-- [x] 3. Checkpoint - Ensure all client tests pass
+- [x] 8. Checkpoint — Ensure all unit tests pass with the rewritten client
   - Ensure all tests pass, ask the user if questions arise.
 
-- [x] 4. Implement JSON and Markdown calendar renderers
-  - [x] 4.1 Create `confluence-ai/src/confluence_ai/calendar_renderer.py` with `CalendarJSONRenderer`
-    - Implement `render(events: list[Event], metadata: CalendarMetadata) -> str`
-    - Emit `{ "metadata": {...}, "events": [...] }` with `indent=2`, `ensure_ascii=False` (matching the existing `JSONRenderer`)
-    - Serialise `datetime` fields via `isoformat()`, ensuring `tzinfo` is always set (normalise naive → UTC before serialising)
-    - Serialise `DateRange` as `{ "start": ISO8601, "end": ISO8601 }`
-    - Set `metadata.event_count = len(events)` before serialising (invariant 4)
-    - Include all `Event` fields: `event_id`, `summary`, `start`, `end`, `all_day`, `description`, `location`, `organizer`, `sub_calendar_id`, `sub_calendar_name`
-    - _Requirements: 3.1, 3.2, 3.3, 3.4_
-  - [x] 4.2 Add `CalendarMarkdownRenderer` to the same module
-    - Implement `render(events: list[Event], metadata: CalendarMetadata) -> str`
-    - Emit YAML front-matter block (`---\n...\n---\n`) containing `calendar_id`, `calendar_name`, `export_timestamp`, `exporter_version`, `date_range.start`/`date_range.end` (as `YYYY-MM-DD`), `event_count`
-    - Emit an H1 heading: `# {calendar_name}`
-    - Group events by `local_date(event.start)`; sort groups ascending by date; within a group sort ascending by `start` then `summary`
-    - All-day event line: `- **{summary}**  —  All day`
-    - Timed event line: `- **{summary}**  —  {HH:MM} – {HH:MM} {TZNAME}` using an en-dash (U+2013)
-    - Emit optional sub-bullets only when non-empty: `Location:`, `Organizer:`, `Description:` (first line; wrap multi-line descriptions in a blockquote)
-    - _Requirements: 4.1, 4.2, 4.3, 4.4_
-  - [x] 4.3 Write unit tests for the JSON renderer
-    - Assert the output round-trips through `json.loads` to a dict with `metadata` and `events` keys
-    - Assert `metadata.event_count` in the parsed output equals `len(events)`
-    - Assert `datetime` fields parse back via `datetime.fromisoformat` to the same UTC instant
-    - Place the file at `confluence-ai/tests/unit/test_calendar_renderer_json.py`
-    - _Requirements: 3.1, 3.2, 3.3, 3.4_
-  - [x] 4.4 Write unit tests for the Markdown renderer
-    - Assert the output starts with a `---\n` line and contains a closing `---\n`
-    - Assert the YAML block parses with `yaml.safe_load` to a dict with the required keys
-    - Assert an H1 `# {calendar_name}` line is present
-    - Assert all-day events render `"All day"` and no `HH:MM` substring; timed events render two `HH:MM` substrings and no `"All day"`
-    - Place the file at `confluence-ai/tests/unit/test_calendar_renderer_markdown.py`
-    - _Requirements: 4.1, 4.2, 4.3, 4.4_
-
-- [x] 5. Implement `export_calendar` orchestration
-  - [x] 5.1 Create `confluence-ai/src/confluence_ai/calendar_export.py`
-    - Define `export_calendar(*, base_url, calendar_id, output_dir, email, api_token, output_format="json", date_range=None) -> CalendarExportResult`
-    - Step 1: credential validation — raise `AuthenticationError(base_url, message="email required")` / `"api_token required"` on empty values
-    - Step 2: resolve default `DateRange` when `None`: `datetime.now(UTC) - 30 days` → `datetime.now(UTC) + 90 days`
-    - Step 3: construct `CalendarClient`
-    - Step 4: resolve `calendar_name` — after fetching events, use the first event's `sub_calendar_name` if present, else fall back to `calendar_id`
-    - Step 5: call `client.get_events(calendar_id, date_range)`
-    - Step 6: select renderer based on `output_format` (`"json"` → `CalendarJSONRenderer`, `"markdown"` → `CalendarMarkdownRenderer`); raise `ValueError` listing valid formats on unknown values
-    - Step 7: build `CalendarMetadata` with `export_timestamp = datetime.now(UTC).isoformat()`, `exporter_version = confluence_ai.__version__`, and `event_count = len(events)`
-    - Step 8: `os.makedirs(output_dir, exist_ok=True)`; compute filename via `_sanitize_calendar_name(calendar_name) + "." + ("json"|"md")`; write file with `encoding="utf-8"`
-    - Step 9: return `CalendarExportResult(output_path=..., event_count=len(events), warnings=[])`
-    - _Requirements: 5.1, 5.2, 5.3, 5.4_
-  - [x] 5.2 Add `_sanitize_calendar_name(name: str) -> str` helper to the same module
-    - Replace spaces with `_`; strip any character not in `[A-Za-z0-9_\-]` via `re.sub`
-    - Fall back to the literal `"calendar"` when the result would be empty
-    - _Requirements: 5.5_
-  - [x] 5.3 Write unit tests for `export_calendar` defaults and orchestration
-    - Mock `CalendarClient` via `pytest-mock`; assert that `date_range=None` resolves to now-30d → now+90d within a small tolerance
-    - Assert that `export_calendar` returns a `CalendarExportResult` with `os.path.exists(result.output_path)`, `event_count == len(events)`, `warnings` is a list
-    - Assert that `output_format="markdown"` writes a `.md` file and `output_format="json"` writes a `.json` file
-    - Assert that empty `email` / `api_token` raise `AuthenticationError`
-    - Place the file at `confluence-ai/tests/unit/test_calendar_export_defaults.py`
-    - _Requirements: 2.4, 5.1, 5.2, 5.3, 5.4, 5.5_
-
-- [x] 6. Expose new API in `confluence_ai/__init__.py`
-  - [x] 6.1 Extend `confluence-ai/src/confluence_ai/__init__.py` with the new public surface
-    - Import and re-export `export_calendar` from `confluence_ai.calendar_export`
-    - Import and re-export `Calendar`, `SubCalendar`, `Event`, `DateRange`, `CalendarMetadata`, `CalendarExportResult` from `confluence_ai.models`
-    - Import and re-export `CalendarNotFoundError`, `CalendarAPIError` from `confluence_ai.exceptions`
-    - Append every new name to `__all__`; do not remove or rename any existing entry
-    - _Requirements: 8.1, 8.2, 8.3_
-  - [x] 6.2 Write smoke tests for the public API surface
-    - Assert `from confluence_ai import export_calendar, Calendar, Event, DateRange, CalendarMetadata, CalendarExportResult, CalendarNotFoundError, CalendarAPIError` succeeds
-    - Assert each name is present in `confluence_ai.__all__`
-    - Assert no existing public name was removed (spot-check `export_page`, `publish_page`, `ExportResult`, `PageMetadata`)
-    - Place the file at `confluence-ai/tests/unit/test_public_api.py`
-    - _Requirements: 8.1, 8.2, 8.3_
-
-- [x] 7. Wire calendar tools into the aspice-check MCP server
-  - [x] 7.1 Add `EXPORT_CALENDAR_SCHEMA` and `LIST_CALENDARS_SCHEMA` to `aspice-check/src/aspice_check/mcp_tools.py`
-    - Follow the same dict shape as `EXPORT_PAGE_SCHEMA` (top-level `name`, `description`, `inputSchema`)
-    - `EXPORT_CALENDAR_SCHEMA` parameters: `base_url` (str, required), `calendar_id` (str, required), `output_dir` (str, required), `output_format` (enum `["json","markdown"]`, default `"json"`), `start_date` (str, ISO 8601, optional), `end_date` (str, ISO 8601, optional), `email` (str, optional), `api_token` (str, optional)
-    - `LIST_CALENDARS_SCHEMA` parameters: `base_url` (str, required), `space_key` (str, required), `email` (str, optional), `api_token` (str, optional)
-    - Append both schemas to `ALL_TOOL_SCHEMAS`
-    - _Requirements: 6.1, 6.2, 6.6_
-  - [x] 7.2 Register handlers in `aspice-check/src/aspice_check/mcp_server.py`
-    - Extend `self._tool_handlers` in `AspiceMCPServer.__init__` with `"list_calendars": self._handle_list_calendars` and `"export_calendar": self._handle_export_calendar`
-    - Update the module import list at the top of the file to include `EXPORT_CALENDAR_SCHEMA` and `LIST_CALENDARS_SCHEMA` from `aspice_check.mcp_tools`
-    - _Requirements: 6.1, 6.6_
-  - [x] 7.3 Implement `_handle_list_calendars(self, params: dict) -> dict`
-    - Construct `confluence_ai.calendar_client.CalendarClient(base_url=..., email=params.get("email") or os.environ.get("CONFLUENCE_EMAIL",""), api_token=params.get("api_token") or os.environ.get("CONFLUENCE_API_TOKEN",""))`
-    - Call `client.list_calendars(params["space_key"])`
-    - Return `{"calendars": [asdict(c) for c in calendars]}` (import `asdict` from `dataclasses` at module top)
-    - _Requirements: 6.3, 6.4, 6.6_
-  - [x] 7.4 Implement `_handle_export_calendar(self, params: dict) -> dict`
-    - Parse optional `start_date`/`end_date` into a `DateRange` via `datetime.fromisoformat`; leave `date_range=None` when either is missing
-    - Call `confluence_ai.export_calendar(...)` with base_url, calendar_id, output_dir, output_format (default `"json"`), date_range, email/api_token fallbacks via env vars
-    - Return `{"output_path": result.output_path, "event_count": result.event_count, "warnings": result.warnings}`
-    - Rely on the existing dispatcher's `_make_error_response` to translate exceptions into JSON-RPC error `-32603`
-    - _Requirements: 6.1, 6.3, 6.4, 6.5_
-
-- [x] 8. Checkpoint - Ensure implementation is wired end to end
-  - Ensure all tests pass, ask the user if questions arise.
-
-- [x] 9. Add property-based tests for the calendar feature
-  - [x] 9.1 Property 1 — Calendar response mapping preserves IDs, names, and sub-calendar structure
-    - **Property 1: Calendar response mapping preserves IDs, names, and sub-calendar structure**
-    - **Validates: Requirements 1.1, 1.2**
-    - Generate random plugin calendar JSON arrays (N parents × M_i sub-calendars) via `hypothesis` strategies
-    - Apply `CalendarClient._map_calendar` and assert every `calendar_id`/`name`/`type` equals the input and sub-calendar lists match in length and order
-    - Place the file at `confluence-ai/tests/property/test_prop01_calendar_mapping.py`
-  - [x] 9.2 Property 2 — Event response mapping is field-complete, timezone-aware, and one-per-occurrence
-    - **Property 2: Event response mapping is field-complete, timezone-aware, and one-per-occurrence**
-    - **Validates: Requirements 2.3, 2.6**
-    - Generate K raw event dicts (including duplicates for recurrence occurrences) via a `st_plugin_event_dict()` strategy
-    - Stub `CalendarClient.get_events` HTTP call to return those K events; assert K `Event` instances come back, each with non-None fields, tz-aware `start`/`end`, `end >= start`, and boolean `all_day`
-    - Place the file at `confluence-ai/tests/property/test_prop02_event_mapping.py`
-  - [x] 9.3 Property 3 — Date-range filtering returns only overlapping events
-    - **Property 3: Date-range filtering returns only overlapping events**
+- [x] 9. Add property-based tests for new/updated properties
+  - [x] 9.1 Write property test for `_map_subcalendars_payload` (Property 1)
+    - **Property 1: `_map_subcalendars_payload` preserves fields and sorts both levels case-insensitively**
+    - **Validates: Requirements 1.3, 1.9, 1.10**
+    - Generate random `subcalendars.json` payloads with N parents × M_i children using a `st_subcalendars_payload()` strategy
+    - Apply `_map_subcalendars_payload` then `_sort_calendars_case_insensitive`; assert field preservation, correct `parent_id` on children, and both levels sorted by `name.casefold()`
+    - Place the file at `confluence-ai/tests/property/test_prop01_subcalendars_mapping.py`
+  - [x] 9.2 Write property test for `_extract_parent_ids_from_body` (Property 2)
+    - **Property 2: Macro extraction returns all comma-separated IDs from every calendar macro**
+    - **Validates: Requirements 1.1, 1.4**
+    - Generate synthetic XHTML bodies with N calendar macros containing random comma-separated IDs
+    - Assert the returned list equals the in-order, deduplicated concatenation of all IDs
+    - Place the file at `confluence-ai/tests/property/test_prop02_macro_extraction.py`
+  - [x] 9.3 Update property test for event mapping (Property 3)
+    - **Property 3: Event response mapping is field-complete and timezone-aware**
+    - **Validates: Requirements 2.4**
+    - Update `confluence-ai/tests/property/test_prop03_event_mapping.py` (was `test_prop02_event_mapping.py`) to reference the current `_map_event` method
+    - Ensure the test still validates: all string fields are `str` (not None), `start`/`end` are tz-aware, `end >= start`, `all_day` is bool
+    - Rename file if needed to match new numbering
+  - [x] 9.4 Write property test for `get_events` passthrough (Property 4)
+    - **Property 4: `get_events` passes through the plugin's event list for a child calendar**
     - **Validates: Requirements 2.1**
-    - Generate a universe U of events and a `DateRange` R where `R.end > R.start`
-    - Stub the plugin response with U; assert the returned events are exactly those satisfying `e.end > R.start AND e.start < R.end`
-    - Place the file at `confluence-ai/tests/property/test_prop03_daterange_overlap.py`
-  - [x] 9.4 Property 4 — JSON render + parse round-trips events and metadata
-    - **Property 4: JSON render + parse round-trips events and metadata**
+    - Mock `events.json` to return `{"events": D}` for a child calendar; assert `get_events` returns exactly `len(D)` events in the same order with no filtering
+    - Place the file at `confluence-ai/tests/property/test_prop04_get_events_passthrough.py`
+  - [x] 9.5 Keep/update property test for JSON round-trip (Property 5)
+    - **Property 5: JSON render + parse round-trips events and metadata**
     - **Validates: Requirements 3.1, 3.2, 3.3, 3.4**
-    - Generate `CalendarMetadata` M and `list[Event]` E; render via `CalendarJSONRenderer`
-    - Parse with `json.loads`; assert `metadata` contains every field of M (dates compared by UTC instant); assert `events` has length `len(E)` and each element matches E by field (datetimes parsed via `datetime.fromisoformat`)
-    - Place the file at `confluence-ai/tests/property/test_prop04_json_roundtrip.py`
-  - [x] 9.5 Property 5 — Markdown front-matter parses to the original metadata
-    - **Property 5: Markdown front-matter parses to the original metadata**
+    - Existing `test_prop04_json_roundtrip.py` — rename to `test_prop05_json_roundtrip.py` if needed; no logic changes required (renderers are unchanged)
+  - [x] 9.6 Keep/update property test for Markdown front-matter (Property 6)
+    - **Property 6: Markdown front-matter parses to the original metadata**
     - **Validates: Requirements 4.1**
-    - Generate M and E, render via `CalendarMarkdownRenderer`
-    - Extract the `---\n...\n---\n` block, parse with `yaml.safe_load`; assert every required field (`calendar_id`, `calendar_name`, `export_timestamp`, `exporter_version`, `date_range.start`, `date_range.end`, `event_count`) equals M's values (dates compared as `YYYY-MM-DD`, `event_count` as int)
-    - Place the file at `confluence-ai/tests/property/test_prop05_markdown_frontmatter.py`
-  - [x] 9.6 Property 6 — Markdown events render grouped and chronologically ordered
-    - **Property 6: Markdown events render grouped and chronologically ordered**
+    - Existing `test_prop05_markdown_frontmatter.py` — rename to `test_prop06_markdown_frontmatter.py` if needed; no logic changes required
+  - [x] 9.7 Keep/update property test for Markdown ordering (Property 7)
+    - **Property 7: Markdown events render grouped and chronologically ordered**
     - **Validates: Requirements 4.2, 4.3**
-    - Generate `list[Event]` E in any input order; render markdown
-    - Parse `## YYYY-MM-DD` headers and their bullets; assert one header per distinct local date of `E[*].start`, headers strictly ascending, bullets within a group ascending by `start`, and every `e.summary` appears at least once in the output
-    - Place the file at `confluence-ai/tests/property/test_prop06_markdown_ordering.py`
-  - [x] 9.7 Property 7 — All-day vs timed event rendering dichotomy
-    - **Property 7: All-day vs timed event rendering dichotomy**
+    - Existing `test_prop06_markdown_ordering.py` — rename to `test_prop07_markdown_ordering.py` if needed; no logic changes required
+  - [x] 9.8 Keep/update property test for all-day dichotomy (Property 8)
+    - **Property 8: All-day vs timed event rendering dichotomy**
     - **Validates: Requirements 4.4**
-    - Generate individual `Event` instances with `all_day ∈ {True, False}`; render each and locate its bullet line in the output
-    - Assert: `all_day == True` → line contains `"All day"` and no `HH:MM` substring; `all_day == False` → line contains two `HH:MM` substrings separated by an en-dash and no `"All day"`
-    - Place the file at `confluence-ai/tests/property/test_prop07_allday_dichotomy.py`
-  - [x] 9.8 Property 8 — Calendar filename sanitization produces filesystem-safe names
-    - **Property 8: Calendar filename sanitization produces filesystem-safe names**
+    - Existing `test_prop07_allday_dichotomy.py` — rename to `test_prop08_allday_dichotomy.py` if needed; no logic changes required
+  - [x] 9.9 Keep/update property test for filename sanitization (Property 9)
+    - **Property 9: Calendar filename sanitization produces filesystem-safe names**
     - **Validates: Requirements 5.5**
-    - Generate arbitrary `str` inputs (including Unicode, control chars, whitespace); call `_sanitize_calendar_name`
-    - Assert `re.fullmatch(r"[A-Za-z0-9_\-]+", r)` matches OR `r == "calendar"`; assert no whitespace characters in `r`; assert every allowed character in input is preserved and spaces become `_` at the same relative position
-    - Place the file at `confluence-ai/tests/property/test_prop08_filename_sanitization.py`
-  - [x] 9.9 Property 9 — `export_calendar` result invariants
-    - **Property 9: `export_calendar` result invariants**
-    - **Validates: Requirements 5.3, 6.6**
-    - Generate a random list of events E; patch `CalendarClient` (via `pytest-mock`) to return E; call `export_calendar(...)` against a `tmp_path` output directory for both formats
-    - Assert `os.path.exists(result.output_path)`, `result.event_count == len(E)`, `result.warnings` is a `list`, and the file parses successfully (`json.loads` for JSON; contains a `---\n...\n---\n` YAML block for Markdown)
-    - Place the file at `confluence-ai/tests/property/test_prop09_export_result.py`
+    - Existing `test_prop08_filename_sanitization.py` — rename to `test_prop09_filename_sanitization.py` if needed; no logic changes required
+  - [x] 9.10 Keep/update property test for export result invariants (Property 10)
+    - **Property 10: `export_calendar` result invariants**
+    - **Validates: Requirements 5.3**
+    - Existing `test_prop09_export_result.py` — rename to `test_prop10_export_result.py` if needed; update mocks if CalendarClient constructor changed
+  - [x] 9.11 Write property test for parent → children fallback (Property 11)
+    - **Property 11: Parent → children fallback triggers on the no-events response and aggregates deduped child events**
+    - **Validates: Requirements 2.2, 2.3, 5.6**
+    - Generate a parent ID P with K children, each holding event lists (possibly overlapping by `event_id`)
+    - Mock initial `get_events(P)` to return `{"success": true}` (no `events` key); mock `list_subcalendars` to return children; mock child `get_events` calls
+    - Assert returned events equal the union of all children's events, deduplicated by `event_id` (first occurrence wins)
+    - Also test the non-trigger case: `{"events": []}` should NOT trigger fallback
+    - Place the file at `confluence-ai/tests/property/test_prop11_parent_fallback.py`
+  - [x] 9.12 Write property test for mandatory headers and parameters (Property 12)
+    - **Property 12: Every calendar REST request carries the required headers and parameters**
+    - **Validates: Requirements 1.8, 2.8, 2.9**
+    - Mock the session to record all request headers and URLs
+    - Invoke `list_calendars_from_page`, `list_subcalendars`, and `get_events`
+    - Assert every request has `X-Requested-With: XMLHttpRequest` and `Accept: application/json, text/javascript, */*; q=0.01`
+    - Assert `events.json` requests include `userTimeZoneId=UTC` in the query string
+    - Place the file at `confluence-ai/tests/property/test_prop12_request_invariants.py`
 
-- [x] 10. Add an integration test for the two MCP calendar tools
-  - [x] 10.1 Write `confluence-ai/tests/integration/test_calendar_mcp_tools.py`
-    - Instantiate `aspice_check.mcp_server.AspiceMCPServer()` directly
-    - Send a `tools/list` JSON-RPC request via `_handle_request`; assert both `list_calendars` and `export_calendar` appear in the returned tools array with their input schemas
-    - Patch `confluence_ai.calendar_client.CalendarClient.list_calendars` and `confluence_ai.export_calendar` with `pytest-mock` so no real HTTP is attempted
-    - Send a `tools/call` request for `list_calendars`; assert the result wraps `{"calendars": [...]}` in the MCP content envelope
-    - Send a `tools/call` request for `export_calendar` (writing to `tmp_path`); assert the result includes `output_path`, `event_count`, and `warnings`
-    - Send a `tools/call` with a missing required parameter; assert the response carries the `-32602` `Invalid params` error path from the existing dispatcher
-    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
+- [x] 10. Update integration test for MCP calendar tools
+  - [x] 10.1 Update `confluence-ai/tests/integration/test_calendar_mcp_tools.py`
+    - Change the `list_calendars` tool call to pass `page_url` instead of `space_key`
+    - Update the mock from `CalendarClient.list_calendars` to `CalendarClient.list_calendars_from_page`
+    - Assert the `tools/list` response shows the updated `LIST_CALENDARS_SCHEMA` with `page_url` as required
+    - Keep the `export_calendar` tool call tests unchanged (schema is the same)
+    - Assert missing `page_url` returns `-32602` validation error
+    - _Requirements: 6.6, 6.7, 6.8_
 
-- [x] 11. Final checkpoint - Ensure the whole feature is green
+- [-] 11. Final checkpoint — Ensure the whole feature is green
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
 
-- Tasks marked with `*` are optional and can be skipped for a faster MVP, but every correctness property in design § Correctness Properties is captured as its own optional sub-task here so it can be picked up individually.
+- Tasks marked with `*` are optional and can be skipped for a faster MVP, but every correctness property in design § Correctness Properties is captured as its own optional sub-task so it can be picked up individually.
 - Each top-level task is intended to be a single git commit using the workspace convention `feat(confluence-calendar-export): Task N — <short title>`.
-- Checkpoints (tasks 3, 8, 11) do not introduce new code; they are pauses to run the suite and surface questions before moving on.
+- Checkpoints (tasks 3, 6, 8, 11) do not introduce new code; they are pauses to run the suite and surface questions before moving on.
 - Property tests follow the repository's `test_propNN_*.py` naming convention and reuse the `ci` (100 examples) / `dev` (50 examples) Hypothesis profiles registered in `confluence-ai/tests/conftest.py`.
-- No CLI command is added in this feature, matching the existing `confluence-ai` surface (library + MCP only).
-- After all tasks are complete, the feature is exercised exclusively via `confluence_ai.export_calendar(...)` and the two new MCP tools (`list_calendars`, `export_calendar`) in `AspiceMCPServer`.
+- The renderers (`CalendarJSONRenderer`, `CalendarMarkdownRenderer`) are **unchanged** — no tasks needed.
+- The exceptions (`CalendarNotFoundError`, `CalendarAPIError`) are **unchanged** — no tasks needed.
+- The public API surface (`__init__.py`) is **unchanged** — no tasks needed.
+- After all tasks are complete, the feature uses page-driven discovery via `list_calendars_from_page(page_url)` and the MCP `list_calendars` tool accepts `page_url` instead of `space_key`.
