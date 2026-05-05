@@ -3,7 +3,7 @@
 Verifies that the correct query parameters are passed to the calendar REST
 API endpoints and that sub-calendar IDs are accepted as calendar_id.
 
-Requirements: 2.1, 2.2
+Requirements: 1.8, 2.1, 2.2, 2.8, 2.9
 """
 
 from __future__ import annotations
@@ -21,7 +21,8 @@ from confluence_ai.models import DateRange
 @pytest.fixture
 def client():
     """Create a CalendarClient with a mocked Confluence connection."""
-    with patch("confluence_ai.calendar_client.Confluence") as mock_confluence:
+    with patch("confluence_ai.calendar_client.Confluence") as mock_confluence, \
+         patch("confluence_ai.calendar_client.ConfluenceClient"):
         mock_instance = MagicMock()
         mock_instance._session = MagicMock()
         mock_confluence.return_value = mock_instance
@@ -42,76 +43,185 @@ def _make_success_response(json_data):
     return resp
 
 
-class TestListCalendarsQueryString:
-    """Verify list_calendars passes the correct spaceKey query parameter."""
+class TestListSubcalendarsQueryString:
+    """Verify list_subcalendars passes the correct query parameters."""
 
-    def test_space_key_passed_in_url(self, client):
-        client._session.get.return_value = _make_success_response([])
+    def test_include_param_passed_in_url(self, client):
+        payload = {
+            "success": True,
+            "payload": [
+                {
+                    "subCalendar": {
+                        "id": "parent-1",
+                        "name": "Team Calendar",
+                        "type": "custom",
+                        "spaceKey": "ENG",
+                        "description": "",
+                    },
+                    "childSubCalendars": [],
+                }
+            ],
+        }
+        client._session.get.return_value = _make_success_response(payload)
 
-        client.list_calendars("ENGINEERING")
+        client.list_subcalendars("parent-1", "ENG")
 
         called_url = client._session.get.call_args[0][0]
         parsed = urlparse(called_url)
         params = parse_qs(parsed.query)
-        assert params["spaceKey"] == ["ENGINEERING"]
+        assert params["include"] == ["parent-1"]
 
-    def test_space_key_with_special_characters(self, client):
-        client._session.get.return_value = _make_success_response([])
+    def test_viewing_space_key_passed_in_url(self, client):
+        payload = {
+            "success": True,
+            "payload": [
+                {
+                    "subCalendar": {
+                        "id": "parent-1",
+                        "name": "Team Calendar",
+                        "type": "custom",
+                        "spaceKey": "ENGINEERING",
+                        "description": "",
+                    },
+                    "childSubCalendars": [],
+                }
+            ],
+        }
+        client._session.get.return_value = _make_success_response(payload)
 
-        client.list_calendars("MY_SPACE")
+        client.list_subcalendars("parent-1", "ENGINEERING")
 
         called_url = client._session.get.call_args[0][0]
         parsed = urlparse(called_url)
         params = parse_qs(parsed.query)
-        assert params["spaceKey"] == ["MY_SPACE"]
+        assert params["viewingSpaceKey"] == ["ENGINEERING"]
+
+    def test_calendar_context_passed_in_url(self, client):
+        payload = {
+            "success": True,
+            "payload": [
+                {
+                    "subCalendar": {
+                        "id": "parent-1",
+                        "name": "Team Calendar",
+                        "type": "custom",
+                        "spaceKey": "ENG",
+                        "description": "",
+                    },
+                    "childSubCalendars": [],
+                }
+            ],
+        }
+        client._session.get.return_value = _make_success_response(payload)
+
+        client.list_subcalendars("parent-1", "ENG")
+
+        called_url = client._session.get.call_args[0][0]
+        parsed = urlparse(called_url)
+        params = parse_qs(parsed.query)
+        assert params["calendarContext"] == ["spaceCalendars"]
 
     def test_correct_endpoint_path(self, client):
-        client._session.get.return_value = _make_success_response([])
+        payload = {
+            "success": True,
+            "payload": [
+                {
+                    "subCalendar": {
+                        "id": "parent-1",
+                        "name": "Team Calendar",
+                        "type": "custom",
+                        "spaceKey": "ENG",
+                        "description": "",
+                    },
+                    "childSubCalendars": [],
+                }
+            ],
+        }
+        client._session.get.return_value = _make_success_response(payload)
 
-        client.list_calendars("ENG")
+        client.list_subcalendars("parent-1", "ENG")
 
         called_url = client._session.get.call_args[0][0]
         parsed = urlparse(called_url)
-        assert "/rest/calendar-services/1.0/calendar" in parsed.path
+        assert "/rest/calendar-services/1.0/calendar/subcalendars.json" in parsed.path
 
-    def test_maps_calendar_response(self, client):
-        raw_calendars = [
-            {
-                "subCalendarId": "cal-parent-1",
-                "name": "Team Leave",
-                "type": "custom",
-                "spaceKey": "ENG",
-                "description": "Out of office",
-                "subCalendars": [
-                    {
-                        "subCalendarId": "cal-sub-leaves",
-                        "name": "Leaves",
-                        "type": "leaves",
+    def test_headers_passed_on_request(self, client):
+        payload = {
+            "success": True,
+            "payload": [
+                {
+                    "subCalendar": {
+                        "id": "parent-1",
+                        "name": "Team Calendar",
+                        "type": "custom",
+                        "spaceKey": "ENG",
+                        "description": "",
                     },
-                    {
-                        "subCalendarId": "cal-sub-travel",
-                        "name": "Travel",
-                        "type": "travel",
+                    "childSubCalendars": [],
+                }
+            ],
+        }
+        client._session.get.return_value = _make_success_response(payload)
+
+        client.list_subcalendars("parent-1", "ENG")
+
+        call_kwargs = client._session.get.call_args[1]
+        assert call_kwargs["headers"]["X-Requested-With"] == "XMLHttpRequest"
+        assert "application/json" in call_kwargs["headers"]["Accept"]
+
+    def test_maps_subcalendar_response(self, client):
+        payload = {
+            "success": True,
+            "payload": [
+                {
+                    "subCalendar": {
+                        "id": "parent-1",
+                        "name": "Team Leave",
+                        "type": "custom",
+                        "spaceKey": "ENG",
+                        "description": "Out of office",
                     },
-                ],
-            }
-        ]
-        client._session.get.return_value = _make_success_response(raw_calendars)
+                    "childSubCalendars": [
+                        {
+                            "subCalendar": {
+                                "id": "child-leaves",
+                                "name": "Leaves",
+                                "type": "leaves",
+                                "parentId": "parent-1",
+                                "color": "#ff0000",
+                                "description": "Leave calendar",
+                            }
+                        },
+                        {
+                            "subCalendar": {
+                                "id": "child-travel",
+                                "name": "Travel",
+                                "type": "travel",
+                                "parentId": "parent-1",
+                                "color": "#00ff00",
+                                "description": "",
+                            }
+                        },
+                    ],
+                }
+            ],
+        }
+        client._session.get.return_value = _make_success_response(payload)
 
-        result = client.list_calendars("ENG")
+        result = client.list_subcalendars("parent-1", "ENG")
 
-        assert len(result) == 1
-        cal = result[0]
-        assert cal.calendar_id == "cal-parent-1"
-        assert cal.name == "Team Leave"
-        assert cal.type == "custom"
-        assert cal.space_key == "ENG"
-        assert cal.description == "Out of office"
-        assert len(cal.sub_calendars) == 2
-        assert cal.sub_calendars[0].calendar_id == "cal-sub-leaves"
-        assert cal.sub_calendars[0].name == "Leaves"
-        assert cal.sub_calendars[1].calendar_id == "cal-sub-travel"
-        assert cal.sub_calendars[1].name == "Travel"
+        assert result.calendar_id == "parent-1"
+        assert result.name == "Team Leave"
+        assert result.type == "custom"
+        assert result.space_key == "ENG"
+        assert result.description == "Out of office"
+        assert len(result.sub_calendars) == 2
+        assert result.sub_calendars[0].calendar_id == "child-leaves"
+        assert result.sub_calendars[0].name == "Leaves"
+        assert result.sub_calendars[0].parent_id == "parent-1"
+        assert result.sub_calendars[1].calendar_id == "child-travel"
+        assert result.sub_calendars[1].name == "Travel"
+        assert result.sub_calendars[1].parent_id == "parent-1"
 
 
 class TestGetEventsQueryString:
@@ -134,16 +244,33 @@ class TestGetEventsQueryString:
         params = parse_qs(parsed.query)
         assert params["subCalendarId"] == ["abc-123"]
 
+    def test_user_time_zone_id_utc_passed(self, client, date_range):
+        client._session.get.return_value = _make_success_response({"events": []})
+
+        client.get_events("cal-1", date_range)
+
+        called_url = client._session.get.call_args[0][0]
+        parsed = urlparse(called_url)
+        params = parse_qs(parsed.query)
+        assert params["userTimeZoneId"] == ["UTC"]
+
     def test_start_and_end_iso_format(self, client, date_range):
         client._session.get.return_value = _make_success_response({"events": []})
 
         client.get_events("cal-1", date_range)
 
         called_url = client._session.get.call_args[0][0]
-        # The URL contains the ISO timestamps directly; verify they appear
-        # in the raw query string (parse_qs decodes '+' as space).
         assert date_range.start.isoformat() in called_url
         assert date_range.end.isoformat() in called_url
+
+    def test_headers_passed_on_request(self, client, date_range):
+        client._session.get.return_value = _make_success_response({"events": []})
+
+        client.get_events("cal-1", date_range)
+
+        call_kwargs = client._session.get.call_args[1]
+        assert call_kwargs["headers"]["X-Requested-With"] == "XMLHttpRequest"
+        assert "application/json" in call_kwargs["headers"]["Accept"]
 
     def test_sub_calendar_id_accepted_as_calendar_id(self, client, date_range):
         """A sub-calendar ID is accepted as the calendar_id parameter."""
