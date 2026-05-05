@@ -288,7 +288,7 @@ EXPORT_CALENDAR_SCHEMA: dict = {
 
 LIST_CALENDARS_SCHEMA: dict = {
     "name": "list_calendars",
-    "description": "List available calendars in a Confluence space",
+    "description": "List available calendars in a Confluence space by reading calendar macros from a page",
     "inputSchema": {
         "type": "object",
         "properties": {
@@ -299,9 +299,9 @@ LIST_CALENDARS_SCHEMA: dict = {
                     "(e.g. https://acme.atlassian.net/wiki)"
                 ),
             },
-            "space_key": {
+            "page_url": {
                 "type": "string",
-                "description": "Confluence space key to query",
+                "description": "Full Confluence page URL containing calendar macros",
             },
             "email": {
                 "type": "string",
@@ -312,7 +312,7 @@ LIST_CALENDARS_SCHEMA: dict = {
                 "description": "Confluence API token (falls back to CONFLUENCE_API_TOKEN env var)",
             },
         },
-        "required": ["base_url", "space_key"],
+        "required": ["base_url", "page_url"],
     },
 }
 

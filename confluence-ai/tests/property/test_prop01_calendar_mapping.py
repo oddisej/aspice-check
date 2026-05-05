@@ -1,11 +1,14 @@
-"""Feature: confluence-calendar-export, Property 1: Calendar response mapping preserves IDs, names, and sub-calendar structure."""
+"""Feature: confluence-calendar-export, Property 1: _map_subcalendars_payload preserves fields and sorts both levels case-insensitively."""
 
 from __future__ import annotations
 
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from confluence_ai.calendar_client import _map_subcalendars_payload
+from confluence_ai.calendar_client import (
+    _map_subcalendars_payload,
+    _sort_calendars_case_insensitive,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -123,3 +126,32 @@ class TestProperty01CalendarMapping:
                 assert sc.name == child_raw["name"]
                 assert sc.type == child_raw["type"]
                 assert sc.parent_id == child_raw["parentId"]
+
+
+class TestProperty01Sorting:
+    """Property 1 (sorting): _sort_calendars_case_insensitive sorts both levels by name.casefold()."""
+
+    @given(payload=st_subcalendars_payload())
+    @settings(max_examples=100)
+    def test_top_level_sorted_case_insensitive(self, payload: list[dict]) -> None:
+        """Top-level calendars are sorted ascending by name.casefold().
+
+        **Validates: Requirements 1.9, 1.10**
+        """
+        result = _map_subcalendars_payload(payload)
+        sorted_result = _sort_calendars_case_insensitive(result)
+        names = [c.name.casefold() for c in sorted_result]
+        assert names == sorted(names)
+
+    @given(payload=st_subcalendars_payload())
+    @settings(max_examples=100)
+    def test_sub_calendars_sorted_case_insensitive(self, payload: list[dict]) -> None:
+        """Sub-calendars within each parent are sorted ascending by name.casefold().
+
+        **Validates: Requirements 1.9, 1.10**
+        """
+        result = _map_subcalendars_payload(payload)
+        sorted_result = _sort_calendars_case_insensitive(result)
+        for cal in sorted_result:
+            sc_names = [sc.name.casefold() for sc in cal.sub_calendars]
+            assert sc_names == sorted(sc_names)

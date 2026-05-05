@@ -1,4 +1,4 @@
-"""Feature: confluence-calendar-export, Property 5: Markdown front-matter parses to the original metadata."""
+"""Feature: confluence-calendar-export, Property 6: Markdown front-matter parses to the original metadata."""
 
 from __future__ import annotations
 
@@ -98,8 +98,8 @@ def _extract_frontmatter(text: str) -> dict:
 # ---------------------------------------------------------------------------
 
 
-class TestProperty05MarkdownFrontmatter:
-    """Property 5: Markdown front-matter parses to the original metadata."""
+class TestProperty06MarkdownFrontmatter:
+    """Property 6: Markdown front-matter parses to the original metadata."""
 
     @given(
         metadata=st_metadata(),

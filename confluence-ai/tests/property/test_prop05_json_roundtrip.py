@@ -1,4 +1,4 @@
-"""Feature: confluence-calendar-export, Property 4: JSON render + parse round-trips events and metadata."""
+"""Feature: confluence-calendar-export, Property 5: JSON render + parse round-trips events and metadata."""
 
 from __future__ import annotations
 
@@ -100,8 +100,8 @@ def _build_metadata(
 # ---------------------------------------------------------------------------
 
 
-class TestProperty04JSONRoundtrip:
-    """Property 4: JSON render + parse round-trips events and metadata."""
+class TestProperty05JSONRoundtrip:
+    """Property 5: JSON render + parse round-trips events and metadata."""
 
     @given(
         metadata=st_metadata(),

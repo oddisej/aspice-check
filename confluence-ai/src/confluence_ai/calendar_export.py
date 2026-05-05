@@ -97,9 +97,18 @@ def export_calendar(
     events = client.get_events(calendar_id, date_range)
 
     # Step 5: Resolve calendar_name
+    # If events come from multiple sub-calendars (parent was auto-resolved
+    # to children), fall back to calendar_id since we can't easily get the
+    # parent name without space_key. If all events share one sub_calendar_name,
+    # use that. Otherwise fall back to calendar_id.
     calendar_name = calendar_id
-    if events and events[0].sub_calendar_name:
-        calendar_name = events[0].sub_calendar_name
+    if events:
+        unique_names = {e.sub_calendar_name for e in events if e.sub_calendar_name}
+        if len(unique_names) == 1:
+            calendar_name = unique_names.pop()
+        # len(unique_names) > 1 means parent resolved to multiple children;
+        # len(unique_names) == 0 means no sub_calendar_name on any event;
+        # both cases fall back to calendar_id (already set above).
 
     # Step 6: Select renderer based on output_format
     valid_formats = ("json", "markdown")

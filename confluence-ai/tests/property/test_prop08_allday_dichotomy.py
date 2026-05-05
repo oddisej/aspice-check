@@ -1,4 +1,4 @@
-"""Feature: confluence-calendar-export, Property 7: All-day vs timed event rendering dichotomy."""
+"""Feature: confluence-calendar-export, Property 8: All-day vs timed event rendering dichotomy."""
 
 from __future__ import annotations
 
@@ -85,8 +85,8 @@ def _find_event_bullet_line(output: str, summary: str) -> str:
 # ---------------------------------------------------------------------------
 
 
-class TestProperty07AllDayDichotomy:
-    """Property 7: All-day vs timed event rendering dichotomy."""
+class TestProperty08AllDayDichotomy:
+    """Property 8: All-day vs timed event rendering dichotomy."""
 
     @given(event=st_event(all_day=True))
     @settings(max_examples=100)

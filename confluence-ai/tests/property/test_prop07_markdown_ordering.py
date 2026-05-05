@@ -1,4 +1,4 @@
-"""Feature: confluence-calendar-export, Property 6: Markdown events render grouped and chronologically ordered."""
+"""Feature: confluence-calendar-export, Property 7: Markdown events render grouped and chronologically ordered."""
 
 from __future__ import annotations
 
@@ -83,8 +83,8 @@ def _extract_date_headers(text: str) -> list[str]:
 # ---------------------------------------------------------------------------
 
 
-class TestProperty06MarkdownOrdering:
-    """Property 6: Markdown events render grouped and chronologically ordered."""
+class TestProperty07MarkdownOrdering:
+    """Property 7: Markdown events render grouped and chronologically ordered."""
 
     @given(events=st.lists(st_event(), min_size=1, max_size=10))
     @settings(max_examples=100)

@@ -256,6 +256,7 @@ class SubCalendar:
     type: str  # e.g., "custom", "leaves", "travel", "rota"
     color: str = ""
     description: str = ""
+    parent_id: str = ""
 
 
 @dataclass

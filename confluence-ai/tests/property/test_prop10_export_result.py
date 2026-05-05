@@ -1,4 +1,4 @@
-"""Feature: confluence-calendar-export, Property 9: export_calendar result invariants."""
+"""Feature: confluence-calendar-export, Property 10: export_calendar result invariants."""
 
 from __future__ import annotations
 
@@ -56,8 +56,8 @@ def _build_event(
 # ---------------------------------------------------------------------------
 
 
-class TestProperty09ExportResult:
-    """Property 9: export_calendar result invariants."""
+class TestProperty10ExportResult:
+    """Property 10: export_calendar result invariants."""
 
     @given(events=st.lists(st_event(), min_size=0, max_size=10))
     @settings(max_examples=100)

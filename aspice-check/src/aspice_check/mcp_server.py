@@ -453,8 +453,8 @@ class AspiceMCPServer:
     def _handle_list_calendars(self, params: dict) -> dict:
         """Handle list_calendars tool call.
 
-        Lists available calendars in a Confluence space via the Team
-        Calendars plugin REST API.
+        Lists available calendars by reading calendar macros from a
+        Confluence page and querying the subcalendars REST API.
         """
         from confluence_ai.calendar_client import CalendarClient
 
@@ -463,7 +463,7 @@ class AspiceMCPServer:
             email=params.get("email") or os.environ.get("CONFLUENCE_EMAIL", ""),
             api_token=params.get("api_token") or os.environ.get("CONFLUENCE_API_TOKEN", ""),
         )
-        calendars = client.list_calendars(params["space_key"])
+        calendars = client.list_calendars_from_page(params["page_url"])
         return {"calendars": [asdict(c) for c in calendars]}
 
     def _handle_export_calendar(self, params: dict) -> dict:

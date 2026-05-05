@@ -141,6 +141,19 @@ class TestGetEventsErrors:
         assert exc_info.value.status_code == 500
         assert "events" in exc_info.value.endpoint.lower()
 
+    def test_500_with_bad_start_datetime_raises_calendar_api_error_with_hint(
+        self, client, date_range
+    ):
+        client._session.get.return_value = _make_response(
+            500, text="BAD_START_DATETIME"
+        )
+
+        with pytest.raises(CalendarAPIError) as exc_info:
+            client.get_events("cal-123", date_range)
+
+        assert exc_info.value.status_code == 500
+        assert "ISO 8601 timestamps" in str(exc_info.value)
+
     def test_connection_error_raises_confluence_connection_error(
         self, client, date_range
     ):

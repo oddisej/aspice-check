@@ -1,4 +1,4 @@
-"""Feature: confluence-calendar-export, Property 2: Event response mapping is field-complete, timezone-aware, and one-per-occurrence."""
+"""Feature: confluence-calendar-export, Property 3: Event response mapping is field-complete and timezone-aware."""
 
 from __future__ import annotations
 
@@ -71,31 +71,36 @@ def _build_event_dict(
 # ---------------------------------------------------------------------------
 
 
-class TestProperty02EventMapping:
-    """Property 2: Event response mapping is field-complete, timezone-aware, and one-per-occurrence."""
+class TestProperty03EventMapping:
+    """Property 3: Event response mapping is field-complete and timezone-aware."""
 
     @given(raw=st_plugin_event_dict())
     @settings(max_examples=100)
     def test_mapped_event_fields_non_none(self, raw: dict) -> None:
         """Every mapped Event has non-None required fields.
 
-        **Validates: Requirements 2.3, 2.6**
+        **Validates: Requirements 2.4**
         """
         event = CalendarClient._map_event(raw)
         assert event.event_id is not None
+        assert isinstance(event.event_id, str)
         assert event.summary is not None
+        assert isinstance(event.summary, str)
         assert event.start is not None
         assert event.end is not None
         assert event.description is not None
+        assert isinstance(event.description, str)
         assert event.location is not None
+        assert isinstance(event.location, str)
         assert event.organizer is not None
+        assert isinstance(event.organizer, str)
 
     @given(raw=st_plugin_event_dict())
     @settings(max_examples=100)
     def test_mapped_event_tz_aware(self, raw: dict) -> None:
         """start and end are timezone-aware.
 
-        **Validates: Requirements 2.3, 2.6**
+        **Validates: Requirements 2.4**
         """
         event = CalendarClient._map_event(raw)
         assert event.start.tzinfo is not None
@@ -106,7 +111,7 @@ class TestProperty02EventMapping:
     def test_mapped_event_end_gte_start(self, raw: dict) -> None:
         """end >= start for every mapped event.
 
-        **Validates: Requirements 2.3, 2.6**
+        **Validates: Requirements 2.4**
         """
         event = CalendarClient._map_event(raw)
         assert event.end >= event.start
@@ -116,7 +121,7 @@ class TestProperty02EventMapping:
     def test_mapped_event_all_day_is_bool(self, raw: dict) -> None:
         """all_day is a bool reflecting the allDay input flag.
 
-        **Validates: Requirements 2.3, 2.6**
+        **Validates: Requirements 2.4**
         """
         event = CalendarClient._map_event(raw)
         assert isinstance(event.all_day, bool)
@@ -127,7 +132,7 @@ class TestProperty02EventMapping:
     def test_one_event_per_occurrence(self, events: list[dict]) -> None:
         """K raw event dicts produce exactly K Event instances.
 
-        **Validates: Requirements 2.3, 2.6**
+        **Validates: Requirements 2.4**
         """
         mapped = [CalendarClient._map_event(raw) for raw in events]
         assert len(mapped) == len(events)

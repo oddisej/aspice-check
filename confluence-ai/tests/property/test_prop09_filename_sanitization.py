@@ -1,4 +1,4 @@
-"""Feature: confluence-calendar-export, Property 8: Calendar filename sanitization produces filesystem-safe names."""
+"""Feature: confluence-calendar-export, Property 9: Calendar filename sanitization produces filesystem-safe names."""
 
 from __future__ import annotations
 
@@ -34,8 +34,8 @@ _mixed_str_st = st.text(
 _SAFE_PATTERN = re.compile(r"[A-Za-z0-9_\-]+")
 
 
-class TestProperty08FilenameSanitization:
-    """Property 8: Calendar filename sanitization produces filesystem-safe names."""
+class TestProperty09FilenameSanitization:
+    """Property 9: Calendar filename sanitization produces filesystem-safe names."""
 
     @given(name=_arbitrary_str_st)
     @settings(max_examples=100)
