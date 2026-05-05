@@ -166,14 +166,19 @@ The server exposes `evaluate_sdp`, `validate_kb`, `list_standards`, `export_page
 ### From PyPI
 
 ```bash
-# For MCP server / AI agent usage (recommended)
-pipx install "aspice-check[bedrock]"
+# Pick your AI provider:
+pipx install "aspice-check[bedrock]"     # Amazon Bedrock (Claude via AWS credentials)
+pipx install "aspice-check[openai]"      # OpenAI GPT-4o
+pipx install "aspice-check[anthropic]"   # Anthropic Claude (direct API key)
+pipx install "aspice-check[all]"         # All providers
+```
 
-# Or with pip in a venv
+Or with pip in a venv:
+```bash
 pip install "aspice-check[bedrock]"
 ```
 
-This single command installs everything: `confluence-ai`, `aspice-eval`, boto3, and registers `aspice-mcp` + `aspice-analyze` commands.
+This single command installs everything: `confluence-ai`, `aspice-eval`, the chosen AI provider SDK, and registers `aspice-mcp` + `aspice-analyze` commands.
 
 **Other AI providers:**
 ```bash
