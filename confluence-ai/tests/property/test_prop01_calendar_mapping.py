@@ -5,7 +5,7 @@ from __future__ import annotations
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from confluence_ai.calendar_client import CalendarClient
+from confluence_ai.calendar_client import _map_subcalendars_payload
 
 
 # ---------------------------------------------------------------------------
@@ -17,27 +17,43 @@ _name_st = st.text(min_size=1, max_size=50, alphabet=st.characters(whitelist_cat
 _type_st = st.sampled_from(["custom", "leaves", "travel", "rota", "events"])
 
 
-def st_sub_calendar_dict() -> st.SearchStrategy[dict]:
-    """Generate a raw sub-calendar dict as returned by the plugin."""
+def st_child_subcalendar_entry(parent_id: st.SearchStrategy[str] = _id_st) -> st.SearchStrategy[dict]:
+    """Generate a child entry in the subcalendars.json payload shape.
+
+    Shape: {"subCalendar": {"id": "...", "name": "...", "type": "...", "color": "...", "description": "...", "parentId": "..."}}
+    """
     return st.fixed_dictionaries({
-        "subCalendarId": _id_st,
-        "name": _name_st,
-        "type": _type_st,
-        "color": st.text(min_size=0, max_size=7),
-        "description": st.text(min_size=0, max_size=50),
+        "subCalendar": st.fixed_dictionaries({
+            "id": _id_st,
+            "name": _name_st,
+            "type": _type_st,
+            "color": st.text(min_size=0, max_size=7),
+            "description": st.text(min_size=0, max_size=50),
+            "parentId": parent_id,
+        }),
     })
 
 
-def st_calendar_dict() -> st.SearchStrategy[dict]:
-    """Generate a raw parent calendar dict as returned by the plugin."""
-    return st.fixed_dictionaries({
-        "subCalendarId": _id_st,
-        "name": _name_st,
-        "type": _type_st,
-        "spaceKey": st.text(min_size=1, max_size=10, alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
-        "description": st.text(min_size=0, max_size=50),
-        "subCalendars": st.lists(st_sub_calendar_dict(), min_size=0, max_size=5),
-    })
+def st_subcalendars_payload_entry() -> st.SearchStrategy[dict]:
+    """Generate a single entry in the subcalendars.json payload array.
+
+    Shape: {"subCalendar": {"id": "...", "name": "...", ...}, "childSubCalendars": [...]}
+    """
+    return _id_st.flatmap(lambda pid: st.fixed_dictionaries({
+        "subCalendar": st.fixed_dictionaries({
+            "id": st.just(pid),
+            "name": _name_st,
+            "type": _type_st,
+            "spaceKey": st.text(min_size=1, max_size=10, alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+            "description": st.text(min_size=0, max_size=50),
+        }),
+        "childSubCalendars": st.lists(st_child_subcalendar_entry(st.just(pid)), min_size=0, max_size=5),
+    }))
+
+
+def st_subcalendars_payload() -> st.SearchStrategy[list[dict]]:
+    """Generate a full subcalendars.json payload array (list of entries)."""
+    return st.lists(st_subcalendars_payload_entry(), min_size=1, max_size=3)
 
 
 # ---------------------------------------------------------------------------
@@ -48,55 +64,62 @@ def st_calendar_dict() -> st.SearchStrategy[dict]:
 class TestProperty01CalendarMapping:
     """Property 1: Calendar response mapping preserves IDs, names, and sub-calendar structure."""
 
-    @given(raw=st_calendar_dict())
+    @given(payload=st_subcalendars_payload())
     @settings(max_examples=100)
-    def test_calendar_id_preserved(self, raw: dict) -> None:
-        """calendar_id equals the input subCalendarId.
+    def test_calendar_id_preserved(self, payload: list[dict]) -> None:
+        """calendar_id equals the input subCalendar.id for each entry.
 
         **Validates: Requirements 1.1, 1.2**
         """
-        result = CalendarClient._map_calendar(raw)
-        assert result.calendar_id == raw["subCalendarId"]
+        result = _map_subcalendars_payload(payload)
+        for i, cal in enumerate(result):
+            assert cal.calendar_id == payload[i]["subCalendar"]["id"]
 
-    @given(raw=st_calendar_dict())
+    @given(payload=st_subcalendars_payload())
     @settings(max_examples=100)
-    def test_calendar_name_preserved(self, raw: dict) -> None:
-        """name equals the input name.
+    def test_calendar_name_preserved(self, payload: list[dict]) -> None:
+        """name equals the input subCalendar.name for each entry.
 
         **Validates: Requirements 1.1, 1.2**
         """
-        result = CalendarClient._map_calendar(raw)
-        assert result.name == raw["name"]
+        result = _map_subcalendars_payload(payload)
+        for i, cal in enumerate(result):
+            assert cal.name == payload[i]["subCalendar"]["name"]
 
-    @given(raw=st_calendar_dict())
+    @given(payload=st_subcalendars_payload())
     @settings(max_examples=100)
-    def test_calendar_type_preserved(self, raw: dict) -> None:
-        """type equals the input type.
+    def test_calendar_type_preserved(self, payload: list[dict]) -> None:
+        """type equals the input subCalendar.type for each entry.
 
         **Validates: Requirements 1.1, 1.2**
         """
-        result = CalendarClient._map_calendar(raw)
-        assert result.type == raw["type"]
+        result = _map_subcalendars_payload(payload)
+        for i, cal in enumerate(result):
+            assert cal.type == payload[i]["subCalendar"]["type"]
 
-    @given(raw=st_calendar_dict())
+    @given(payload=st_subcalendars_payload())
     @settings(max_examples=100)
-    def test_sub_calendars_length_matches(self, raw: dict) -> None:
-        """sub_calendars list has the same length as input subCalendars.
+    def test_sub_calendars_length_matches(self, payload: list[dict]) -> None:
+        """sub_calendars list has the same length as input childSubCalendars.
 
         **Validates: Requirements 1.1, 1.2**
         """
-        result = CalendarClient._map_calendar(raw)
-        assert len(result.sub_calendars) == len(raw["subCalendars"])
+        result = _map_subcalendars_payload(payload)
+        for i, cal in enumerate(result):
+            assert len(cal.sub_calendars) == len(payload[i]["childSubCalendars"])
 
-    @given(raw=st_calendar_dict())
+    @given(payload=st_subcalendars_payload())
     @settings(max_examples=100)
-    def test_sub_calendars_order_and_ids_preserved(self, raw: dict) -> None:
-        """sub_calendar IDs match input subCalendars in order.
+    def test_sub_calendars_ids_and_names_preserved(self, payload: list[dict]) -> None:
+        """sub_calendar IDs and names match input childSubCalendars in order.
 
-        **Validates: Requirements 1.1, 1.2**
+        **Validates: Requirements 1.1, 1.2, 1.3**
         """
-        result = CalendarClient._map_calendar(raw)
-        for i, sc in enumerate(result.sub_calendars):
-            assert sc.calendar_id == raw["subCalendars"][i]["subCalendarId"]
-            assert sc.name == raw["subCalendars"][i]["name"]
-            assert sc.type == raw["subCalendars"][i]["type"]
+        result = _map_subcalendars_payload(payload)
+        for i, cal in enumerate(result):
+            for j, sc in enumerate(cal.sub_calendars):
+                child_raw = payload[i]["childSubCalendars"][j]["subCalendar"]
+                assert sc.calendar_id == child_raw["id"]
+                assert sc.name == child_raw["name"]
+                assert sc.type == child_raw["type"]
+                assert sc.parent_id == child_raw["parentId"]
