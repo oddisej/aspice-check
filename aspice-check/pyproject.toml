@@ -36,6 +36,22 @@ dev = [
     "hypothesis>=6.90.0",
     "pytest-mock",
 ]
+bedrock = [
+    "confluence-ai[bedrock]>=0.1.0",
+    "aspice-eval[bedrock]>=0.1.0",
+]
+openai = [
+    "confluence-ai[openai]>=0.1.0",
+    "aspice-eval[openai]>=0.1.0",
+]
+anthropic = [
+    "confluence-ai[anthropic]>=0.1.0",
+    "aspice-eval[anthropic]>=0.1.0",
+]
+all = [
+    "confluence-ai[all]>=0.1.0",
+    "aspice-eval[all]>=0.1.0",
+]
 
 [project.scripts]
 aspice-analyze = "aspice_check.pipeline:analyze"
