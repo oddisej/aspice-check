@@ -52,7 +52,7 @@ class TestCalendarMCPToolsListing:
         assert "export_calendar" in tool_names
 
     def test_list_calendars_schema_has_required_params(self):
-        """list_calendars schema declares base_url and space_key as required."""
+        """list_calendars schema declares base_url and page_url as required."""
         server = AspiceMCPServer()
         response = server._handle_request(_jsonrpc_request("tools/list"))
 
@@ -62,9 +62,9 @@ class TestCalendarMCPToolsListing:
         assert "inputSchema" in schema
         input_schema = schema["inputSchema"]
         assert "base_url" in input_schema["properties"]
-        assert "space_key" in input_schema["properties"]
+        assert "page_url" in input_schema["properties"]
         assert "base_url" in input_schema["required"]
-        assert "space_key" in input_schema["required"]
+        assert "page_url" in input_schema["required"]
 
     def test_export_calendar_schema_has_required_params(self):
         """export_calendar schema declares base_url, calendar_id, output_dir as required."""
@@ -115,7 +115,7 @@ class TestListCalendarsTool:
             return_value=None,
         )
         mocker.patch(
-            "confluence_ai.calendar_client.CalendarClient.list_calendars",
+            "confluence_ai.calendar_client.CalendarClient.list_calendars_from_page",
             return_value=mock_calendars,
         )
 
@@ -127,7 +127,7 @@ class TestListCalendarsTool:
                     "name": "list_calendars",
                     "arguments": {
                         "base_url": "https://acme.atlassian.net/wiki",
-                        "space_key": "ENG",
+                        "page_url": "https://acme.atlassian.net/wiki/spaces/ENG/pages/123456/Calendar",
                         "email": "user@example.com",
                         "api_token": "token-123",
                     },
@@ -211,7 +211,7 @@ class TestCalendarToolValidation:
                     "name": "list_calendars",
                     "arguments": {
                         # Missing base_url — required
-                        "space_key": "ENG",
+                        "page_url": "https://acme.atlassian.net/wiki/spaces/ENG/pages/123456/Calendar",
                     },
                 },
             )
@@ -242,8 +242,8 @@ class TestCalendarToolValidation:
         assert response["error"]["code"] == -32602
         assert response["error"]["message"] == "Invalid params"
 
-    def test_missing_space_key_returns_invalid_params_error(self):
-        """Missing space_key on list_calendars returns -32602 error."""
+    def test_missing_page_url_returns_invalid_params_error(self):
+        """Missing page_url on list_calendars returns -32602 error."""
         server = AspiceMCPServer()
         response = server._handle_request(
             _jsonrpc_request(
@@ -252,7 +252,7 @@ class TestCalendarToolValidation:
                     "name": "list_calendars",
                     "arguments": {
                         "base_url": "https://acme.atlassian.net/wiki",
-                        # Missing space_key — required
+                        # Missing page_url — required
                     },
                 },
             )
