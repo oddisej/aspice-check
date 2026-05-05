@@ -1,51 +1,144 @@
-# Confluence AI
+# confluence-ai
 
-A general-purpose AI-powered Confluence toolkit — export, publish, and describe Confluence Cloud pages. Export pages to self-contained Markdown files with locally downloaded images and AI-generated image descriptions for inline images and Gliffy diagrams.
+General-purpose AI-powered Confluence toolkit — export, publish, and describe pages.
 
-## Features
+## Library Usage
 
-- Export Confluence Cloud pages to clean Markdown
-- Download all inline images and Gliffy diagram PNGs locally
-- Generate AI-powered image descriptions using Anthropic Claude, OpenAI GPT-4o, or Amazon Bedrock
-- Preserve heading hierarchy
-- YAML front-matter with page metadata
-- Graceful handling of partial failures (missing images, AI errors)
+### Export a Page
 
-## Installation
+```python
+from confluence_ai import export_page, ImageDescriberConfig
 
-```bash
-# Clone the repository and install in editable mode
-cd confluence-ai
-pip install -e ".[dev]"
+# Export with AI-powered image descriptions
+result = export_page(
+    "https://acme.atlassian.net/wiki/spaces/ENG/pages/123456/My-Page",
+    "./output",
+    email="user@acme.com",
+    api_token="your-api-token",
+    ai_config=ImageDescriberConfig(
+        provider="bedrock",
+        model="us.anthropic.claude-sonnet-4-20250514-v1:0",
+    ),
+)
+print(f"Exported to: {result.markdown_path}")
+print(f"Images: {result.images_downloaded}, Descriptions: {result.descriptions_generated}")
 
-# With AI provider support
-pip install -e ".[anthropic]"   # For Anthropic Claude
-pip install -e ".[openai]"      # For OpenAI GPT-4o
-pip install -e ".[all]"         # Both providers
+# Export without AI descriptions
+result = export_page(
+    "https://acme.atlassian.net/wiki/spaces/ENG/pages/123456/My-Page",
+    "./output",
+    email="user@acme.com",
+    api_token="your-api-token",
+)
 ```
 
-### Requirements
+### Publish a Page
 
-- Python 3.10 or later
-- A Confluence Cloud instance with API access
-- An API token for your Confluence account
+```python
+from confluence_ai import publish_page
 
-## Usage
+url = publish_page(
+    "<h1>Report</h1><p>Analysis results...</p>",
+    email="user@acme.com",
+    api_token="your-api-token",
+    base_url="https://acme.atlassian.net/wiki",
+    space_key="ENG",
+    title="Gap Analysis Report - 2024-01-15",
+    parent_page_id="123456",
+)
+print(f"Published: {url}")
+```
 
-### Basic export (no AI descriptions)
+### Export as JSON
+
+```python
+from confluence_ai import export_page
+
+result = export_page(
+    "https://acme.atlassian.net/wiki/spaces/ENG/pages/123456/My-Page",
+    "./output",
+    email="user@acme.com",
+    api_token="your-api-token",
+    output_format="json",
+)
+```
+
+## Extension Points
+
+### Custom Image Describer
+
+Subclass `ImageDescriber` and register it to use your own vision model:
+
+```python
+from confluence_ai import ImageDescriber, ImageDescriberConfig, ImageContext, register_describer
+
+class LocalLlavaDescriber(ImageDescriber):
+    """Image describer using a local LLaVA model."""
+
+    def describe(self, image_path: str, context: ImageContext) -> str:
+        # Call your local model here
+        return f"Description of {context.filename}"
+
+# Register the custom provider
+register_describer("local-llava", LocalLlavaDescriber)
+
+# Use it via the standard factory
+from confluence_ai import create_describer
+
+describer = create_describer(ImageDescriberConfig(provider="local-llava", model="llava-1.5"))
+description = describer.describe("diagram.png", ImageContext(is_gliffy=True))
+```
+
+### Custom Output Renderer
+
+Subclass `OutputRenderer` to export pages in formats beyond Markdown and JSON:
+
+```python
+from confluence_ai import OutputRenderer, register_renderer
+from confluence_ai.models import ContentNode, PageMetadata
+
+class ReStructuredTextRenderer(OutputRenderer):
+    """Render Confluence pages as reStructuredText."""
+
+    def render(
+        self,
+        nodes: list[ContentNode],
+        metadata: PageMetadata,
+        descriptions: dict[str, str] | None = None,
+    ) -> str:
+        # Convert nodes to RST format
+        lines = [metadata.page_title, "=" * len(metadata.page_title), ""]
+        # ... render nodes ...
+        return "\n".join(lines)
+
+# Register and use
+register_renderer("rst", ReStructuredTextRenderer)
+
+from confluence_ai import export_page
+
+result = export_page(
+    "https://acme.atlassian.net/wiki/spaces/ENG/pages/123456/My-Page",
+    "./output",
+    email="user@acme.com",
+    api_token="your-api-token",
+    output_format="rst",
+)
+```
+
+## CLI Usage
+
+### confluence-export
 
 ```bash
+# Basic export (no AI descriptions)
 confluence-export \
   "https://acme.atlassian.net/wiki/spaces/ENG/pages/12345/My-Page" \
   ./output \
   --email user@example.com \
   --api-token YOUR_API_TOKEN \
   --no-ai
-```
 
-### Export with AI image descriptions
-
-```bash
+# Export with AI image descriptions
 confluence-export \
   "https://acme.atlassian.net/wiki/spaces/ENG/pages/12345/My-Page" \
   ./output \
@@ -55,153 +148,29 @@ confluence-export \
   --ai-api-key YOUR_ANTHROPIC_KEY
 ```
 
-### Using environment variables
-
-```bash
-export CONFLUENCE_EMAIL="user@example.com"
-export CONFLUENCE_API_TOKEN="your-token"
-export CONFLUENCE_EXPORT_AI_PROVIDER="anthropic"
-export ANTHROPIC_API_KEY="your-anthropic-key"
-
-confluence-export \
-  "https://acme.atlassian.net/wiki/spaces/ENG/pages/12345/My-Page" \
-  ./output
-```
-
-### Verbose logging
-
-```bash
-confluence-export \
-  "https://acme.atlassian.net/wiki/spaces/ENG/pages/12345/My-Page" \
-  ./output \
-  --email user@example.com \
-  --api-token YOUR_API_TOKEN \
-  --no-ai \
-  --verbose
-```
-
-## CLI Reference
-
-```
-confluence-export <PAGE_URL> <OUTPUT_DIR> [OPTIONS]
-```
-
-### Arguments
-
-| Argument | Description |
-|---|---|
-| `PAGE_URL` | Full Confluence Cloud page URL |
-| `OUTPUT_DIR` | Directory for the Markdown file and images |
-
-### Options
-
 | Option | Env Variable | Description |
 |---|---|---|
 | `--email` | `CONFLUENCE_EMAIL` | Confluence account email |
 | `--api-token` | `CONFLUENCE_API_TOKEN` | Confluence Cloud API token |
-| `--confluence-url` | — | Override base URL extracted from page URL |
-| `--ai-provider` | `CONFLUENCE_EXPORT_AI_PROVIDER` | AI provider: `anthropic` or `openai` |
-| `--ai-model` | `CONFLUENCE_EXPORT_AI_MODEL` | AI model name (defaults per provider) |
+| `--ai-provider` | `CONFLUENCE_EXPORT_AI_PROVIDER` | AI provider: `anthropic`, `openai`, or `bedrock` |
+| `--ai-model` | `CONFLUENCE_EXPORT_AI_MODEL` | AI model name |
 | `--ai-api-key` | `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` | AI provider API key |
 | `--no-ai` | — | Skip AI image description generation |
 | `--verbose` | — | Enable DEBUG-level logging |
 
-## Environment Variables
-
-| Variable | Description |
-|---|---|
-| `CONFLUENCE_EMAIL` | Confluence account email address |
-| `CONFLUENCE_API_TOKEN` | Confluence Cloud API token |
-| `CONFLUENCE_EXPORT_AI_PROVIDER` | AI provider name (`anthropic` or `openai`) |
-| `CONFLUENCE_EXPORT_AI_MODEL` | AI model name |
-| `ANTHROPIC_API_KEY` | Anthropic API key (used when provider is `anthropic`) |
-| `OPENAI_API_KEY` | OpenAI API key (used when provider is `openai`) |
-
-## AI Provider Configuration
-
-### Anthropic Claude (default)
+## Installation
 
 ```bash
-export CONFLUENCE_EXPORT_AI_PROVIDER="anthropic"
-export ANTHROPIC_API_KEY="sk-ant-..."
-# Default model: claude-sonnet-4-20250514
+pip install confluence-ai
+
+# With AI provider support
+pip install "confluence-ai[bedrock]"    # Amazon Bedrock (Claude)
+pip install "confluence-ai[openai]"     # OpenAI GPT-4o
+pip install "confluence-ai[anthropic]"  # Anthropic Claude (direct API)
+pip install "confluence-ai[all]"        # All providers
 ```
 
-### OpenAI GPT-4o
-
-```bash
-export CONFLUENCE_EXPORT_AI_PROVIDER="openai"
-export OPENAI_API_KEY="sk-..."
-# Default model: gpt-4o
-```
-
-For Gliffy diagrams, the AI prompt focuses on process flow elements: activities, decision points, swimlanes, transitions, and text labels.
-
-## Output Structure
-
-```
-output/
-├── My_Page.md              # Converted Markdown with front-matter
-└── images/
-    ├── architecture.png     # Downloaded inline images
-    ├── process_flow.png     # Gliffy diagram PNG previews
-    └── ...
-```
-
-### Example Output
-
-```markdown
----
-source_url: https://acme.atlassian.net/wiki/spaces/ENG/pages/12345/My-Page
-page_id: '12345'
-page_title: My Page
-export_timestamp: '2024-01-15T10:30:00+00:00'
-exporter_version: 0.1.0
-space_key: ENG
-labels:
-- sdp
-- process
----
-
-# My Page
-
-This document describes the software development process.
-
-![Architecture Diagram](images/architecture.png)
-
-> **Image Description:** A high-level architecture diagram showing the system's
-> main components: the API gateway, microservices layer, and database cluster.
-> Arrows indicate data flow between components.
-
-## Process Overview
-
-The development process follows ASPICE guidelines.
-
-- Step 1: Requirements analysis
-- Step 2: Design and implementation
-```
-
-## Development
-
-```bash
-# Install with dev dependencies
-pip install -e ".[dev]"
-
-# Run all tests
-pytest
-
-# Run only unit tests
-pytest tests/unit/
-
-# Run only property-based tests
-pytest tests/property/
-
-# Run only integration tests
-pytest tests/integration/
-
-# Run with dev profile (faster, 50 examples)
-pytest --hypothesis-profile=dev
-```
+Requires Python 3.10+.
 
 ## License
 
