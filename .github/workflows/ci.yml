@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  test:
+    name: Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install packages in editable mode
+        run: |
+          pip install --upgrade pip
+          pip install -e "./confluence-ai[dev,all]"
+          pip install -e "./aspice-eval[dev,all]"
+          pip install -e "./aspice-check[dev,all]"
+
+      - name: Run confluence-ai tests
+        working-directory: confluence-ai
+        run: pytest tests/ -v --hypothesis-profile=ci
+
+      - name: Run aspice-eval tests
+        working-directory: aspice-eval
+        run: pytest tests/ -v --hypothesis-profile=ci
+
+      - name: Run aspice-check tests
+        working-directory: aspice-check
+        run: pytest tests/ -v
