@@ -153,13 +153,31 @@ aspice-analyze \
   --groups SWE,SYS
 ```
 
+**List and export Confluence Team Calendars** — use `confluence-ai` alone:
+
+```python
+from confluence_ai import export_calendar_grouped
+
+result = export_calendar_grouped(
+    base_url="https://acme.atlassian.net/wiki",
+    calendar_id="31fc5bcc-b80d-4a27-bed1-5a33eb83001d",
+    output_dir="./calendar-output",
+    email="user@example.com",
+    api_token="secret",
+    output_format="json",  # or "markdown"
+)
+print(f"Exported {result.event_count} events to {result.output_path}")
+```
+
+When given a parent calendar ID, `export_calendar_grouped` resolves the parent's descriptive name, fetches events from all child subcalendars, and produces a single unified output file. When given a child subcalendar ID, it behaves like a single-calendar export.
+
 **AI agent integration** — run the MCP server:
 
 ```bash
 aspice-mcp
 ```
 
-The server exposes `evaluate_sdp`, `validate_kb`, `list_standards`, `export_page`, and `describe_image` as MCP tools.
+The server exposes `evaluate_sdp`, `validate_kb`, `list_standards`, `export_page`, `describe_image`, `list_calendars`, `export_calendar`, and `publish_page` as MCP tools.
 
 ## Quick Start
 
@@ -234,6 +252,8 @@ The `aspice-mcp` server exposes 6 tools to any MCP-compatible AI assistant:
 | `validate_kb` | Validate a knowledge base for schema/completeness |
 | `list_standards` | List available KB standards |
 | `describe_image` | Generate an AI description of an image |
+| `list_calendars` | Discover Team Calendars referenced by a Confluence page |
+| `export_calendar` | Export events from a Team Calendar to JSON or Markdown (unified view) |
 
 ### Install
 

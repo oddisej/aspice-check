@@ -63,6 +63,44 @@ result = export_page(
 )
 ```
 
+### List Calendars from a Page
+
+```python
+from confluence_ai.calendar_client import CalendarClient
+
+client = CalendarClient(
+    base_url="https://acme.atlassian.net/wiki",
+    email="user@acme.com",
+    api_token="your-api-token",
+)
+calendars = client.list_calendars_from_page(
+    "https://acme.atlassian.net/wiki/spaces/ENG/pages/123/Team-Calendar"
+)
+for cal in calendars:
+    print(f"{cal.name} ({len(cal.sub_calendars)} subcalendars)")
+```
+
+### Export Calendar Events
+
+```python
+from confluence_ai import export_calendar_grouped
+
+# Export all events from a parent calendar as a unified view
+result = export_calendar_grouped(
+    base_url="https://acme.atlassian.net/wiki",
+    calendar_id="31fc5bcc-b80d-4a27-bed1-5a33eb83001d",
+    output_dir="./calendar-output",
+    email="user@acme.com",
+    api_token="your-api-token",
+    output_format="json",  # or "markdown"
+)
+print(f"Exported {result.event_count} events to {result.output_path}")
+```
+
+`export_calendar_grouped` resolves the parent calendar's descriptive name, fetches events from all child subcalendars, and produces a single unified output file. In Markdown format, events from multiple subcalendars include a `Calendar:` provenance sub-bullet.
+
+The lower-level `export_calendar` function is also available if you don't need parent name resolution.
+
 ## Extension Points
 
 ### Custom Image Describer

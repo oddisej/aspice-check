@@ -132,7 +132,10 @@ The server reads JSON-RPC requests from stdin and writes responses to stdout. Lo
 | `validate_kb` | Validate a knowledge base directory for schema compliance and completeness |
 | `list_standards` | List available knowledge base standards and their process groups |
 | `export_page` | Export a Confluence Cloud page to Markdown with AI image descriptions |
+| `publish_page` | Publish content to Confluence Cloud as a page |
 | `describe_image` | Generate an AI description of an image file |
+| `list_calendars` | Discover Team Calendars referenced by a Confluence page |
+| `export_calendar` | Export events from a Team Calendar to JSON or Markdown (unified subcalendar view) |
 
 ### Tool Parameters
 
@@ -145,6 +148,12 @@ The server reads JSON-RPC requests from stdin and writes responses to stdout. Lo
 **export_page** — `page_url` (required), `output_dir` (required), `email` (required), `api_token` (required), `ai_provider`, `ai_model`, `output_format`
 
 **describe_image** — `image_path` (required), `provider` (required), `model` (required), `is_gliffy`, `page_title`
+
+**publish_page** — `base_url` (required), `space_key` (required), `title` (required), `file_path`, `html_content`, `parent_page_id`, `email`, `api_token`
+
+**list_calendars** — `base_url` (required), `page_url` (required), `email`, `api_token`
+
+**export_calendar** — `base_url` (required), `calendar_id` (required), `output_dir` (required), `output_format` (`json` or `markdown`, default `json`), `start_date`, `end_date`, `email`, `api_token`
 
 ### Example Tool Call (JSON-RPC)
 
