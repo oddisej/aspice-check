@@ -8,7 +8,7 @@ from unittest.mock import MagicMock, patch
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from confluence_ai.calendar_client import CalendarClient
+from confluence_ai.calendar_client import CalendarClient, _normalize_display_name
 from confluence_ai.models import DateRange
 
 
@@ -140,7 +140,10 @@ class TestProperty04GetEventsPassthrough:
 
         for i, event in enumerate(result):
             assert event.event_id == raw_events[i]["id"]
-            assert event.summary == raw_events[i]["title"]
+            # Summary is normalized: "Last, First" → "First Last" (see
+            # _normalize_display_name in calendar_client.py). For inputs
+            # without comma-name format, the title passes through unchanged.
+            assert event.summary == _normalize_display_name(raw_events[i]["title"])
 
     @given(raw_events=st_raw_event_list())
     @settings(max_examples=100)
