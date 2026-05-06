@@ -108,6 +108,17 @@ class CalendarMarkdownRenderer:
     3. Events grouped by date (H2 headers), sorted chronologically
     """
 
+    def __init__(self, show_subcalendar: bool = False) -> None:
+        """Initialize the Markdown renderer.
+
+        Args:
+            show_subcalendar: If True, include a "Calendar:" sub-bullet
+                on each event showing the sub_calendar_name. Used by
+                the grouped export when events come from multiple
+                subcalendars.
+        """
+        self._show_subcalendar = show_subcalendar
+
     def render(self, events: list[Event], metadata: CalendarMetadata) -> str:
         """Serialise events + metadata as Markdown.
 
@@ -176,6 +187,10 @@ class CalendarMarkdownRenderer:
 
             for event in group_events:
                 lines.append(self._render_event_line(event))
+
+                # Sub-calendar provenance (only when enabled and non-empty)
+                if self._show_subcalendar and event.sub_calendar_name:
+                    lines.append(f"  - Calendar: {event.sub_calendar_name}")
 
                 # Optional sub-bullets (only when non-empty)
                 if event.location:

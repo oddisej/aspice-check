@@ -165,7 +165,7 @@ class TestExportCalendarTool:
         )
 
         mocker.patch(
-            "confluence_ai.export_calendar",
+            "confluence_ai.export_calendar_grouped",
             return_value=mock_result,
         )
 
@@ -196,6 +196,66 @@ class TestExportCalendarTool:
         assert payload["output_path"] == fake_output_path
         assert payload["event_count"] == 5
         assert payload["warnings"] == ["Some warning"]
+
+
+class TestExportCalendarUsesGroupedExport:
+    """Verify the export_calendar MCP tool uses export_calendar_grouped internally."""
+
+    def test_export_calendar_tool_calls_grouped_not_original(self, tmp_path, mocker):
+        """export_calendar MCP tool calls export_calendar_grouped, not export_calendar.
+
+        Validates: Requirements 6.1, 6.2, 6.3, 6.4
+        """
+        from confluence_ai.models import CalendarExportResult
+
+        output_dir = str(tmp_path / "cal_output")
+        fake_output_path = str(tmp_path / "cal_output" / "Team_Calendar.json")
+
+        mock_result = CalendarExportResult(
+            output_path=fake_output_path,
+            event_count=3,
+            warnings=[],
+        )
+
+        mock_grouped = mocker.patch(
+            "confluence_ai.export_calendar_grouped",
+            return_value=mock_result,
+        )
+        mock_original = mocker.patch(
+            "confluence_ai.export_calendar",
+            return_value=mock_result,
+        )
+
+        server = AspiceMCPServer()
+        response = server._handle_request(
+            _jsonrpc_request(
+                "tools/call",
+                {
+                    "name": "export_calendar",
+                    "arguments": {
+                        "base_url": "https://acme.atlassian.net/wiki",
+                        "calendar_id": "parent-cal-001",
+                        "output_dir": output_dir,
+                        "output_format": "json",
+                        "email": "user@example.com",
+                        "api_token": "token-123",
+                    },
+                },
+            )
+        )
+
+        assert "result" in response, f"Expected result, got: {response}"
+        # Verify grouped export was called
+        mock_grouped.assert_called_once()
+        # Verify original export was NOT called
+        mock_original.assert_not_called()
+
+        # Verify response includes expected fields
+        content = response["result"]["content"]
+        payload = json.loads(content[0]["text"])
+        assert payload["output_path"] == fake_output_path
+        assert payload["event_count"] == 3
+        assert payload["warnings"] == []
 
 
 class TestCalendarToolValidation:

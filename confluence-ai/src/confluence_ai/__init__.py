@@ -25,6 +25,7 @@ from confluence_ai.providers import create_describer, register_describer
 from confluence_ai.export import export_page
 from confluence_ai.publish import publish_page
 from confluence_ai.calendar_export import export_calendar
+from confluence_ai.calendar_export import export_calendar_grouped
 
 # --- Config & result models ---
 from confluence_ai.models import (      
@@ -81,6 +82,7 @@ __all__ = [
     "export_page",
     "publish_page",
     "export_calendar",
+    "export_calendar_grouped",
     # Models
     "ImageDescriberConfig",
     "ImageContext",

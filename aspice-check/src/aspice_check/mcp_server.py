@@ -470,8 +470,12 @@ class AspiceMCPServer:
         """Handle export_calendar tool call.
 
         Exports events from a Confluence Team Calendar to JSON or Markdown.
-        Parses optional start_date/end_date into a DateRange; leaves
-        date_range=None when either is missing (the library applies defaults).
+        Uses the grouped export to produce unified output when a parent
+        calendar ID is provided. Parses optional start_date/end_date into
+        a DateRange; leaves date_range=None when either is missing (the
+        library applies defaults).
+
+        Requirements: 6.1, 6.2, 6.3, 6.4
         """
         from confluence_ai.models import DateRange
 
@@ -482,7 +486,7 @@ class AspiceMCPServer:
                 end=datetime.fromisoformat(params["end_date"]),
             )
 
-        result = confluence_ai.export_calendar(
+        result = confluence_ai.export_calendar_grouped(
             base_url=params["base_url"],
             calendar_id=params["calendar_id"],
             output_dir=params["output_dir"],
