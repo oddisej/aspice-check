@@ -260,8 +260,11 @@ class TestGetEventsQueryString:
         client.get_events("cal-1", date_range)
 
         called_url = client._session.get.call_args[0][0]
-        assert date_range.start.isoformat() in called_url
-        assert date_range.end.isoformat() in called_url
+        # Timestamps are formatted as YYYY-MM-DDTHH:MM:SSZ (not +00:00)
+        expected_start = date_range.start.strftime("%Y-%m-%dT%H:%M:%SZ")
+        expected_end = date_range.end.strftime("%Y-%m-%dT%H:%M:%SZ")
+        assert expected_start in called_url
+        assert expected_end in called_url
 
     def test_headers_passed_on_request(self, client, date_range):
         client._session.get.return_value = _make_success_response({"events": []})

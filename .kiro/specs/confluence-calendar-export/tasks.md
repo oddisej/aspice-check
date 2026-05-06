@@ -215,7 +215,7 @@ Conventions:
     - Assert missing `page_url` returns `-32602` validation error
     - _Requirements: 6.6, 6.7, 6.8_
 
-- [-] 11. Final checkpoint — Ensure the whole feature is green
+- [x] 11. Final checkpoint — Ensure the whole feature is green
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes

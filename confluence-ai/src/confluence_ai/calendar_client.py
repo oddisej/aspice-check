@@ -198,8 +198,8 @@ class CalendarClient:
             CalendarAPIError: On other non-2xx responses.
             ConfluenceConnectionError: If the server is unreachable.
         """
-        start_iso = date_range.start.isoformat()
-        end_iso = date_range.end.isoformat()
+        start_iso = date_range.start.strftime("%Y-%m-%dT%H:%M:%SZ")
+        end_iso = date_range.end.strftime("%Y-%m-%dT%H:%M:%SZ")
         url = (
             f"{self._base_url}/rest/calendar-services/1.0/calendar/events.json"
             f"?subCalendarId={calendar_id}"
