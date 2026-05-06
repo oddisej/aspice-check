@@ -312,7 +312,7 @@ class CalendarClient:
         timestamps to UTC. Defaults missing string fields to ``""`` and
         missing booleans to ``False``.
         """
-        # Parse organizer — prefer email, fall back to displayName
+        # Parse organizer — prefer organizer dict, then first invitee, then empty
         organizer_raw = raw.get("organizer")
         if isinstance(organizer_raw, dict):
             organizer = (
@@ -320,6 +320,8 @@ class CalendarClient:
                 or organizer_raw.get("displayName")
                 or ""
             )
+        elif raw.get("invitees"):
+            organizer = raw["invitees"][0].get("displayName", "")
         else:
             organizer = ""
 
