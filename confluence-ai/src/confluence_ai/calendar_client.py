@@ -325,13 +325,17 @@ class CalendarClient:
         else:
             organizer = ""
 
+        # Normalize "Last, First" → "First Last"
+        organizer = _normalize_display_name(organizer)
+        summary = _normalize_display_name(raw.get("title", ""))
+
         # Parse timestamps
         start = _parse_datetime(raw.get("start", ""))
         end = _parse_datetime(raw.get("end", ""))
 
         return Event(
             event_id=raw.get("id", ""),
-            summary=raw.get("title", ""),
+            summary=summary,
             start=start,
             end=end,
             all_day=bool(raw.get("allDay", False)),
@@ -463,6 +467,28 @@ def _sort_calendars_case_insensitive(cals: list[Calendar]) -> list[Calendar]:
         cal.sub_calendars.sort(key=lambda sc: sc.name.casefold())
     cals.sort(key=lambda c: c.name.casefold())
     return cals
+
+
+def _normalize_display_name(name: str) -> str:
+    """Normalize a display name from 'Last, First' to 'First Last'.
+
+    If the name contains exactly one comma, assumes 'Last, First' format
+    and flips to 'First Last'. Otherwise returns the name unchanged.
+
+    Args:
+        name: The raw display name string.
+
+    Returns:
+        The normalized name.
+    """
+    if "," in name:
+        parts = name.split(",", 1)
+        if len(parts) == 2:
+            last = parts[0].strip()
+            first = parts[1].strip()
+            if first and last:
+                return f"{first} {last}"
+    return name
 
 
 def _parse_datetime(value: str) -> datetime:
