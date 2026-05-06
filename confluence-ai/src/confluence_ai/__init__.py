@@ -7,7 +7,7 @@ Markdown or JSON (or custom formats), and publish HTML back to Confluence.
 
 from __future__ import annotations
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 # --- Core classes ---
 from confluence_ai.client import ConfluenceClient
