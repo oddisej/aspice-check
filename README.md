@@ -1,5 +1,10 @@
 # aspice-check
 
+[![PyPI - confluence-ai](https://img.shields.io/pypi/v/confluence-ai)](https://pypi.org/project/confluence-ai/)
+[![PyPI - aspice-eval](https://img.shields.io/pypi/v/aspice-eval)](https://pypi.org/project/aspice-eval/)
+[![PyPI - aspice-check](https://img.shields.io/pypi/v/aspice-check)](https://pypi.org/project/aspice-check/)
+[![CI](https://github.com/oddisej/aspice-check/actions/workflows/ci.yml/badge.svg)](https://github.com/oddisej/aspice-check/actions/workflows/ci.yml)
+
 An AI-powered toolkit for Automotive SPICE (ASPICE) compliance self-assessment, with a Confluence Cloud integration and an MCP (Model Context Protocol) server. Published as three independent Python packages so you can use only the parts you need.
 
 ## Repository Layout
