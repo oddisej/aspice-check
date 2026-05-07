@@ -6,28 +6,47 @@ Runs the full test suite on push to `master`/`main` and on pull requests. Tests 
 
 ## `release.yml` — PyPI Publish + GitHub Release
 
-Builds and publishes the three packages to PyPI and creates a GitHub release.
+Builds and publishes packages to PyPI and creates a GitHub release. Each package has its **own version number** in its `pyproject.toml` and releases independently.
+
+### How it decides what to publish
+
+Each publish job reads that package's version from its `pyproject.toml` and checks if that version already exists on PyPI.
+- If already published → **skipped** (no error)
+- If not yet published → built and uploaded
+
+This means you can bump a subset of packages without breaking the workflow for the others.
 
 ### Triggers
 
-**Tag push** (recommended for production releases):
+**Per-package tag** (recommended for independent releases):
+```bash
+git tag confluence-ai/v0.3.0
+git push origin confluence-ai/v0.3.0
+```
+This will attempt to publish only `confluence-ai`. Same pattern for `aspice-eval/vX.Y.Z` and `aspice-check/vX.Y.Z`.
+
+**Unified tag** (coordinated releases — all packages at same version):
 ```bash
 git tag v0.2.1
 git push origin v0.2.1
 ```
-This will:
-1. Run tests
-2. Publish `confluence-ai`, `aspice-eval`, `aspice-check` to PyPI in dependency order
-3. Create a GitHub release tagged `v0.2.1` with built wheels/sdists attached
+This considers all three packages; each is published only if its current version isn't already on PyPI.
 
 **Manual dispatch** (via GitHub Actions UI):
 - Go to Actions → Release → Run workflow
 - Inputs:
-  - `version` — version string (e.g. `0.2.1`)
   - `packages` — `all` or one of `confluence-ai`, `aspice-eval`, `aspice-check`
   - `test_pypi` — if `true`, publishes to TestPyPI instead of production
+- Uses the current version in each package's `pyproject.toml`
+- Does NOT create a GitHub release (only tag pushes do)
 
-Manual dispatch does NOT create a GitHub release — only tag pushes do.
+### GitHub Release
+
+A GitHub release is created for every tag push (both unified and per-package). The release includes:
+- Auto-generated release notes from commits since the previous tag
+- All built wheels and sdists from the packages that were actually published
+
+TestPyPI uploads skip release creation.
 
 ### Required Secrets
 
@@ -37,17 +56,13 @@ Configure in GitHub repo settings → Secrets and variables → Actions:
 |---|---|
 | `PYPI_API_TOKEN` | PyPI API token (starts with `pypi-...`). Create at https://pypi.org/manage/account/token/ |
 
-For TestPyPI uploads, the same token won't work — you'd need a separate TestPyPI token. If you need that, add a `TESTPYPI_API_TOKEN` secret and branch the workflow on `inputs.test_pypi`.
-
 ### Publish Order
 
-Packages are published sequentially in dependency order:
+Packages always publish in dependency order when more than one is targeted:
 1. `confluence-ai` (standalone)
 2. `aspice-eval` (standalone)
 3. `aspice-check` (depends on both above)
 
-If `confluence-ai` fails to publish, `aspice-eval` and `aspice-check` are skipped.
-
 ### Versioning
 
-Make sure `pyproject.toml` and `__init__.py` version strings match the tag before pushing. The workflow does not bump versions automatically.
+Each package has its own version in `pyproject.toml` and `__init__.py`. Bump the versions there before tagging. The workflow does not bump versions automatically.

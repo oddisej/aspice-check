@@ -3,15 +3,17 @@ name: Release
 on:
   push:
     tags:
+      # Unified: v0.2.1 — publishes any package whose current pyproject
+      # version is not yet on PyPI
       - "v*.*.*"
+      # Per-package: confluence-ai/v0.3.0, aspice-eval/v0.2.2, aspice-check/v0.2.2
+      - "confluence-ai/v*.*.*"
+      - "aspice-eval/v*.*.*"
+      - "aspice-check/v*.*.*"
   workflow_dispatch:
     inputs:
-      version:
-        description: "Version to release (e.g. 0.2.1). Used when triggered manually."
-        required: true
-        type: string
       packages:
-        description: "Packages to publish"
+        description: "Packages to publish (skipped if version already exists on PyPI)"
         required: true
         default: "all"
         type: choice
@@ -28,45 +30,65 @@ on:
 
 jobs:
   # ---------------------------------------------------------------------
-  # Determine the version string from the tag or manual input
+  # Determine which packages to consider for publishing based on the
+  # trigger (unified tag, per-package tag, or manual dispatch).
+  # Actual "is this version already on PyPI?" check happens per-job.
   # ---------------------------------------------------------------------
   prepare:
     name: Prepare
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.version.outputs.version }}
       publish_confluence_ai: ${{ steps.targets.outputs.confluence_ai }}
       publish_aspice_eval: ${{ steps.targets.outputs.aspice_eval }}
       publish_aspice_check: ${{ steps.targets.outputs.aspice_check }}
+      is_tag_push: ${{ steps.targets.outputs.is_tag_push }}
     steps:
-      - name: Extract version
-        id: version
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            VERSION="${{ inputs.version }}"
-          else
-            # Strip leading 'v' from tag ref (e.g. refs/tags/v0.2.1 -> 0.2.1)
-            VERSION="${GITHUB_REF_NAME#v}"
-          fi
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "Version: $VERSION"
-
-      - name: Select packages to publish
+      - name: Select packages to consider
         id: targets
         run: |
-          SELECTION="${{ inputs.packages || 'all' }}"
-          if [[ "$SELECTION" == "all" ]]; then
-            echo "confluence_ai=true" >> "$GITHUB_OUTPUT"
-            echo "aspice_eval=true" >> "$GITHUB_OUTPUT"
-            echo "aspice_check=true" >> "$GITHUB_OUTPUT"
+          REF="${GITHUB_REF_NAME:-}"
+          EVENT="${{ github.event_name }}"
+
+          CA=false
+          AE=false
+          AC=false
+          IS_TAG=false
+
+          if [[ "$EVENT" == "workflow_dispatch" ]]; then
+            SELECTION="${{ inputs.packages }}"
+            if [[ "$SELECTION" == "all" ]]; then
+              CA=true; AE=true; AC=true
+            else
+              [[ "$SELECTION" == "confluence-ai" ]] && CA=true
+              [[ "$SELECTION" == "aspice-eval" ]]   && AE=true
+              [[ "$SELECTION" == "aspice-check" ]]  && AC=true
+            fi
           else
-            echo "confluence_ai=$([[ "$SELECTION" == "confluence-ai" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
-            echo "aspice_eval=$([[ "$SELECTION" == "aspice-eval" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
-            echo "aspice_check=$([[ "$SELECTION" == "aspice-check" ]] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+            IS_TAG=true
+            # Tag triggered: decide which package(s) from the tag pattern
+            case "$REF" in
+              confluence-ai/v*)  CA=true ;;
+              aspice-eval/v*)    AE=true ;;
+              aspice-check/v*)   AC=true ;;
+              v*)                CA=true; AE=true; AC=true ;;  # unified
+              *)
+                echo "Unknown tag pattern: $REF"
+                exit 1
+                ;;
+            esac
           fi
 
+          echo "confluence_ai=$CA" >> "$GITHUB_OUTPUT"
+          echo "aspice_eval=$AE"   >> "$GITHUB_OUTPUT"
+          echo "aspice_check=$AC"  >> "$GITHUB_OUTPUT"
+          echo "is_tag_push=$IS_TAG" >> "$GITHUB_OUTPUT"
+
+          echo "Ref: $REF"
+          echo "Event: $EVENT"
+          echo "confluence-ai: $CA, aspice-eval: $AE, aspice-check: $AC"
+
   # ---------------------------------------------------------------------
-  # Run tests before publishing
+  # Run tests before publishing anything
   # ---------------------------------------------------------------------
   test:
     name: Test
@@ -102,13 +124,16 @@ jobs:
         run: pytest tests/
 
   # ---------------------------------------------------------------------
-  # Build and publish each package (conditionally)
+  # Publish confluence-ai (skipped if version already on PyPI)
   # ---------------------------------------------------------------------
   publish-confluence-ai:
     name: Publish confluence-ai
     runs-on: ubuntu-latest
     needs: [prepare, test]
     if: needs.prepare.outputs.publish_confluence_ai == 'true'
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -121,22 +146,59 @@ jobs:
       - name: Install build tooling
         run: pip install --upgrade pip build twine
 
+      - name: Read package version
+        id: version
+        run: |
+          VERSION=$(python -c "
+          import tomllib
+          with open('confluence-ai/pyproject.toml','rb') as f: print(tomllib.load(f)['project']['version'])
+          ")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "confluence-ai version: $VERSION"
+
+      - name: Check if version already published on PyPI
+        id: check
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if [[ "${{ inputs.test_pypi }}" == "true" ]]; then
+            URL="https://test.pypi.org/pypi/confluence-ai/$VERSION/json"
+          else
+            URL="https://pypi.org/pypi/confluence-ai/$VERSION/json"
+          fi
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          if [[ "$HTTP_CODE" == "200" ]]; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "confluence-ai $VERSION already on PyPI — skipping"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+            echo "confluence-ai $VERSION not on PyPI — will publish"
+          fi
+
       - name: Build confluence-ai
+        if: steps.check.outputs.already_published == 'false'
         run: python -m build confluence-ai/ --outdir confluence-ai/dist
 
       - name: Publish confluence-ai to PyPI
+        id: publish
+        if: steps.check.outputs.already_published == 'false'
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
           TWINE_REPOSITORY_URL: ${{ inputs.test_pypi && 'https://test.pypi.org/legacy/' || 'https://upload.pypi.org/legacy/' }}
-        run: python -m twine upload --non-interactive confluence-ai/dist/*
+        run: |
+          python -m twine upload --non-interactive confluence-ai/dist/*
+          echo "published=true" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
+        if: steps.check.outputs.already_published == 'false'
         uses: actions/upload-artifact@v4
         with:
           name: confluence-ai-dist
           path: confluence-ai/dist/*
 
+  # ---------------------------------------------------------------------
+  # Publish aspice-eval (skipped if version already on PyPI)
+  # ---------------------------------------------------------------------
   publish-aspice-eval:
     name: Publish aspice-eval
     runs-on: ubuntu-latest
@@ -145,6 +207,9 @@ jobs:
       always() &&
       needs.prepare.outputs.publish_aspice_eval == 'true' &&
       (needs.publish-confluence-ai.result == 'success' || needs.publish-confluence-ai.result == 'skipped')
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -157,22 +222,59 @@ jobs:
       - name: Install build tooling
         run: pip install --upgrade pip build twine
 
+      - name: Read package version
+        id: version
+        run: |
+          VERSION=$(python -c "
+          import tomllib
+          with open('aspice-eval/pyproject.toml','rb') as f: print(tomllib.load(f)['project']['version'])
+          ")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "aspice-eval version: $VERSION"
+
+      - name: Check if version already published on PyPI
+        id: check
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if [[ "${{ inputs.test_pypi }}" == "true" ]]; then
+            URL="https://test.pypi.org/pypi/aspice-eval/$VERSION/json"
+          else
+            URL="https://pypi.org/pypi/aspice-eval/$VERSION/json"
+          fi
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          if [[ "$HTTP_CODE" == "200" ]]; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "aspice-eval $VERSION already on PyPI — skipping"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+            echo "aspice-eval $VERSION not on PyPI — will publish"
+          fi
+
       - name: Build aspice-eval
+        if: steps.check.outputs.already_published == 'false'
         run: python -m build aspice-eval/ --outdir aspice-eval/dist
 
       - name: Publish aspice-eval to PyPI
+        id: publish
+        if: steps.check.outputs.already_published == 'false'
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
           TWINE_REPOSITORY_URL: ${{ inputs.test_pypi && 'https://test.pypi.org/legacy/' || 'https://upload.pypi.org/legacy/' }}
-        run: python -m twine upload --non-interactive aspice-eval/dist/*
+        run: |
+          python -m twine upload --non-interactive aspice-eval/dist/*
+          echo "published=true" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
+        if: steps.check.outputs.already_published == 'false'
         uses: actions/upload-artifact@v4
         with:
           name: aspice-eval-dist
           path: aspice-eval/dist/*
 
+  # ---------------------------------------------------------------------
+  # Publish aspice-check (skipped if version already on PyPI)
+  # ---------------------------------------------------------------------
   publish-aspice-check:
     name: Publish aspice-check
     runs-on: ubuntu-latest
@@ -182,6 +284,9 @@ jobs:
       needs.prepare.outputs.publish_aspice_check == 'true' &&
       (needs.publish-confluence-ai.result == 'success' || needs.publish-confluence-ai.result == 'skipped') &&
       (needs.publish-aspice-eval.result == 'success' || needs.publish-aspice-eval.result == 'skipped')
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -194,25 +299,59 @@ jobs:
       - name: Install build tooling
         run: pip install --upgrade pip build twine
 
+      - name: Read package version
+        id: version
+        run: |
+          VERSION=$(python -c "
+          import tomllib
+          with open('aspice-check/pyproject.toml','rb') as f: print(tomllib.load(f)['project']['version'])
+          ")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "aspice-check version: $VERSION"
+
+      - name: Check if version already published on PyPI
+        id: check
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if [[ "${{ inputs.test_pypi }}" == "true" ]]; then
+            URL="https://test.pypi.org/pypi/aspice-check/$VERSION/json"
+          else
+            URL="https://pypi.org/pypi/aspice-check/$VERSION/json"
+          fi
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          if [[ "$HTTP_CODE" == "200" ]]; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "aspice-check $VERSION already on PyPI — skipping"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+            echo "aspice-check $VERSION not on PyPI — will publish"
+          fi
+
       - name: Build aspice-check
+        if: steps.check.outputs.already_published == 'false'
         run: python -m build aspice-check/ --outdir aspice-check/dist
 
       - name: Publish aspice-check to PyPI
+        id: publish
+        if: steps.check.outputs.already_published == 'false'
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
           TWINE_REPOSITORY_URL: ${{ inputs.test_pypi && 'https://test.pypi.org/legacy/' || 'https://upload.pypi.org/legacy/' }}
-        run: python -m twine upload --non-interactive aspice-check/dist/*
+        run: |
+          python -m twine upload --non-interactive aspice-check/dist/*
+          echo "published=true" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
+        if: steps.check.outputs.already_published == 'false'
         uses: actions/upload-artifact@v4
         with:
           name: aspice-check-dist
           path: aspice-check/dist/*
 
   # ---------------------------------------------------------------------
-  # Create a GitHub release with all build artifacts attached
-  # (only runs on tag push, not manual dispatch)
+  # Create a GitHub release (tag push only, not manual dispatch;
+  # skipped when publishing to TestPyPI)
   # ---------------------------------------------------------------------
   create-release:
     name: Create GitHub Release
@@ -224,8 +363,7 @@ jobs:
       - publish-aspice-check
     if: |
       always() &&
-      github.event_name == 'push' &&
-      startsWith(github.ref, 'refs/tags/v') &&
+      needs.prepare.outputs.is_tag_push == 'true' &&
       !inputs.test_pypi
     permissions:
       contents: write
@@ -237,12 +375,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: dist-artifacts
+        continue-on-error: true
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          name: Release ${{ needs.prepare.outputs.version }}
+          name: Release ${{ github.ref_name }}
           generate_release_notes: true
           files: |
             dist-artifacts/**/*.whl
