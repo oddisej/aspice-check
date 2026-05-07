@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aspice-eval"
-version = "0.2.1"
+version = "0.2.4"
 description = "ASPICE Knowledge Base & Agent Workflow evaluation tool for SDP gap analysis"
 readme = "README.md"
 license = {text = "MIT"}

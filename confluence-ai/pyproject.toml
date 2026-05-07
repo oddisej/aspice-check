@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "confluence-ai"
-version = "0.2.3"
+version = "0.2.4"
 description = "General-purpose AI-powered Confluence toolkit — export, publish, and describe pages"
 readme = "README.md"
 license = {text = "MIT"}
