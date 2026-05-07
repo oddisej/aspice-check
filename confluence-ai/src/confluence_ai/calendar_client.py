@@ -492,9 +492,17 @@ def _normalize_display_name(name: str) -> str:
 
 
 def _parse_datetime(value: str) -> datetime:
-    """Parse an ISO 8601 datetime string, normalising naive values to UTC."""
+    """Parse an ISO 8601 datetime string, normalising naive values to UTC.
+
+    Accepts the ``Z`` UTC marker suffix (e.g. ``2025-01-05T09:00:00Z``) by
+    converting it to ``+00:00`` — ``datetime.fromisoformat`` only accepts
+    ``Z`` natively from Python 3.11 onwards.
+    """
     if not value:
         return datetime(1970, 1, 1, tzinfo=timezone.utc)
+    # Normalize Z suffix to +00:00 for Python 3.10 compatibility
+    if value.endswith("Z"):
+        value = value[:-1] + "+00:00"
     dt = datetime.fromisoformat(value)
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
