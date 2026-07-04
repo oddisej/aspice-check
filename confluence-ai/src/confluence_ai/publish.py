@@ -66,6 +66,42 @@ def _sanitize_emoji(html_content: str) -> str:
     return _EMOJI_RE.sub("", html_content)
 
 
+def _set_full_width(confluence: Any, base_url: str, page_id: str) -> None:
+    """Set a Confluence page to full-width layout.
+
+    Updates the ``content-appearance-published`` and
+    ``content-appearance-draft`` properties so the page renders
+    edge-to-edge rather than in the narrow centered column.
+    """
+    session = confluence._session
+    base = base_url.rstrip("/")
+
+    for key in ("content-appearance-published", "content-appearance-draft"):
+        prop_url = f"{base}/rest/api/content/{page_id}/property/{key}"
+        resp = session.get(prop_url)
+        if resp.status_code == 200:
+            version = resp.json().get("version", {}).get("number", 0) + 1
+            payload = {
+                "key": key,
+                "value": "full-width",
+                "version": {"number": version},
+            }
+            session.put(prop_url, json=payload)
+        else:
+            # Property doesn't exist yet — create it
+            props_url = (
+                f"{base}/rest/api/content/{page_id}/property"
+            )
+            payload = {
+                "key": key,
+                "value": "full-width",
+                "version": {"number": 1},
+            }
+            session.post(props_url, json=payload)
+
+    logger.info("Set page %s to full-width layout", page_id)
+
+
 def _convert_to_storage(
     confluence: Any, base_url: str, html_content: str
 ) -> str:
@@ -113,6 +149,7 @@ def publish_page(
     space_key: str,
     title: str,
     parent_page_id: str | None = None,
+    full_width: bool = True,
 ) -> str:
     """Publish HTML content to Confluence Cloud as a page.
 
@@ -139,6 +176,9 @@ def publish_page(
         Page title. Used for deduplication.
     parent_page_id:
         Optional parent page ID. Only used when creating a new page.
+    full_width:
+        If ``True`` (default), set the page layout to full-width after
+        publishing so content stretches across the entire page.
 
     Returns
     -------
@@ -233,6 +273,8 @@ def publish_page(
         )
         page_url = f"{base}/spaces/{space_key}/pages/{existing_id}"
         logger.info("Updated existing page: %s", page_url)
+        if full_width:
+            _set_full_width(confluence, base_url, existing_id)
         return page_url
 
     result = confluence.create_page(
@@ -248,4 +290,6 @@ def publish_page(
     )
     page_url = f"{base}/spaces/{space_key}/pages/{new_id}"
     logger.info("Created new page: %s", page_url)
+    if full_width and new_id != "unknown":
+        _set_full_width(confluence, base_url, new_id)
     return page_url
