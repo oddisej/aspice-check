@@ -330,7 +330,8 @@ class HTMLReportRenderer(ReportRenderer):
 
         Handles the specific Markdown patterns used in the report:
         headers, tables, unordered/ordered lists (with nesting),
-        bold text, and paragraphs.
+        bold text, blockquotes (rendered as Confluence Note panels),
+        and paragraphs.
         Produces clean HTML suitable for pasting into Confluence or
         other HTML-based documentation systems.
         """
@@ -363,6 +364,36 @@ class HTMLReportRenderer(ReportRenderer):
                 level = len(header_match.group(1))
                 text = _html_inline(header_match.group(2))
                 html_lines.append(f"<h{level}>{text}</h{level}>")
+                i += 1
+                continue
+
+            # --- Blockquotes (rendered as Confluence Note panels) ---
+            if line.startswith(">"):
+                _close_all_lists()
+                bq_lines: list[str] = []
+                while i < len(lines) and lines[i].startswith(">"):
+                    # Strip the leading '>' and optional space
+                    bq_content = lines[i][1:]
+                    if bq_content.startswith(" "):
+                        bq_content = bq_content[1:]
+                    bq_lines.append(bq_content)
+                    i += 1
+                # Convert the collected blockquote content recursively
+                bq_md = "\n".join(bq_lines)
+                bq_html = HTMLReportRenderer._markdown_to_html(bq_md)
+                html_lines.append(
+                    '<ac:structured-macro ac:name="info">'
+                    "<ac:rich-text-body>"
+                    f"{bq_html}"
+                    "</ac:rich-text-body>"
+                    "</ac:structured-macro>"
+                )
+                continue
+
+            # --- Horizontal rule ---
+            if re.match(r"^-{3,}$", line.strip()):
+                _close_all_lists()
+                html_lines.append("<hr/>")
                 i += 1
                 continue
 
@@ -401,7 +432,30 @@ class HTMLReportRenderer(ReportRenderer):
             ul_match = re.match(r"^(\s*)- (.+)$", line)
             if ul_match:
                 indent = len(ul_match.group(1))
-                text = _html_inline(ul_match.group(2))
+                item_parts = [ul_match.group(2)]
+                # Collect continuation lines (indented beyond the bullet)
+                continuation_indent = indent + 2
+                while i + 1 < len(lines):
+                    next_line = lines[i + 1]
+                    if not next_line.strip():
+                        break
+                    if re.match(r"^\s*- ", next_line):
+                        break
+                    if re.match(r"^\s*\d+\.\s+", next_line):
+                        break
+                    if next_line.startswith("|"):
+                        break
+                    if next_line.startswith(">"):
+                        break
+                    if next_line.startswith("#"):
+                        break
+                    # Must be indented at least as far as continuation
+                    if len(next_line) - len(next_line.lstrip()) >= continuation_indent:
+                        item_parts.append(next_line.strip())
+                        i += 1
+                    else:
+                        break
+                text = _html_inline(" ".join(item_parts))
 
                 if not list_stack:
                     html_lines.append("<ul>")
@@ -460,10 +514,31 @@ class HTMLReportRenderer(ReportRenderer):
                 i += 1
                 continue
 
-            # --- Paragraph text ---
-            text = _html_inline(line)
-            html_lines.append(f"<p>{text}</p>")
+            # --- Paragraph text (with continuation line joining) ---
+            para_parts: list[str] = [line]
             i += 1
+            # Collect continuation lines: non-empty, non-special lines
+            while i < len(lines):
+                next_line = lines[i]
+                if not next_line.strip():
+                    break
+                if next_line.startswith("#"):
+                    break
+                if next_line.startswith("|"):
+                    break
+                if next_line.startswith(">"):
+                    break
+                if re.match(r"^-{3,}$", next_line.strip()):
+                    break
+                if re.match(r"^\s*- ", next_line):
+                    break
+                if re.match(r"^\s*\d+\.\s+", next_line):
+                    break
+                para_parts.append(next_line)
+                i += 1
+            # Join then apply inline formatting so bold/italic can span lines
+            joined = " ".join(para_parts)
+            html_lines.append(f"<p>{_html_inline(joined)}</p>")
 
         # Close any open elements
         if in_table:
@@ -474,12 +549,21 @@ class HTMLReportRenderer(ReportRenderer):
 
 
 def _html_inline(text: str) -> str:
-    """Convert inline Markdown formatting to HTML.
+    r"""Convert inline Markdown formatting to HTML.
 
-    Handles ``**bold**`` and emoji characters.
+    Handles ``**bold**``, ``*italic*``, ``[text](url)`` links,
+    backtick code spans, and emoji characters.
     """
+    # Code spans: `text` (handle first to avoid bold/italic inside code)
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    # Links: [text](url)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
+    # Bold+italic: ***text***
+    text = re.sub(r"\*\*\*(.+?)\*\*\*", r"<strong><em>\1</em></strong>", text)
     # Bold: **text**
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    # Italic: *text*
+    text = re.sub(r"\*(.+?)\*", r"<em>\1</em>", text)
 
     return text
 
