@@ -326,8 +326,9 @@ class TestPublishPageFlow:
         )
 
         # First positional/keyword arg to session.post is the URL, the
-        # ``json`` kwarg carries the payload.
-        call = instance._session.post.call_args
+        # ``json`` kwarg carries the payload. The first post call is the
+        # conversion API; later calls are from _set_full_width.
+        call = instance._session.post.call_args_list[0]
         payload = call.kwargs["json"]
         assert "[!]" in payload["value"]
         assert "\u26a0\ufe0f" not in payload["value"]
