@@ -338,6 +338,7 @@ class HTMLReportRenderer(ReportRenderer):
         html_lines: list[str] = []
         lines = md.split("\n")
         in_table = False
+        toc_emitted = False
         # Stack tracks open list elements: each entry is ("ul" or "ol", indent_level)
         list_stack: list[tuple[str, int]] = []
         i = 0
@@ -364,6 +365,14 @@ class HTMLReportRenderer(ReportRenderer):
                 level = len(header_match.group(1))
                 text = _html_inline(header_match.group(2))
                 html_lines.append(f"<h{level}>{text}</h{level}>")
+                # Inject TOC macro after the first h1
+                if level == 1 and not toc_emitted:
+                    html_lines.append(
+                        '<ac:structured-macro ac:name="toc">'
+                        '<ac:parameter ac:name="maxLevel">3</ac:parameter>'
+                        "</ac:structured-macro>"
+                    )
+                    toc_emitted = True
                 i += 1
                 continue
 
